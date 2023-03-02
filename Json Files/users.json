@@ -4,18 +4,20 @@
   	"firstName":"Trey",
   	"lastName":"White",
     "email":"twhite@gmail.com",
-    "username": "trey12"
+    "username": "trey12",
+    "type":"student"
   },{
   	"id":"2",
   	"firstName":"Molly",
   	"lastName":"Sansa",
     "email":"mSansa@gmail.com",
-    "username": "yayCode"
+    "username": "yayCode",
+    "type":"creator"
   },{
   	"id":"3",
   	"firstName":"Topher",
   	"lastName":"Finger",
     "email":"tFinger@gmail.com",
-    "username": "itsTopher"
+    "type":"student"
   }
 ]

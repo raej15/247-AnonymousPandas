@@ -1,0 +1,17 @@
+we only need courses and users json files
+course creator is now just "creator"
+how to get UUIDs
+
+import java.util.UUID;
+class UUIDdemo
+{
+    public static void main(String arg[]) throws UnsupportedOperationException
+    {
+        for (int i = 0; i < 20; i++) {
+            UUID gfg = UUID.randomUUID();
+            System.out.println(gfg);
+        }
+    }
+}
+
+

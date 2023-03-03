@@ -1,18 +1,18 @@
 [
     {
         "id":"2euhruehqrhQEIRHq",
-        "description":"Quiz 2",
-        "language": "Java",
+        "description":"This is a course about javascript.",
+        "language": "javascript",
         "completed": "TRUE",
         "modules":[
             {   "title": "Loops",
                 "topics": [{
                 "title":"for loop",
-                "content": "A loop is a .... blah blah",
+                "content": "A loop is a .... blah blah"
                 }],
                 "quiz":[
                     {
-                        "question":"...",
+                        "question":"What is a loop?",
                         "answers":[],
                         "correct-ans":2
                     }

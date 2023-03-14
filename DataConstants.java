@@ -1,1 +1,3 @@
+public abstract class DataConstants{
 
+}

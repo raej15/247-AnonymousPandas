@@ -1,4 +1,5 @@
-package src;
+<<<<<<< HEAD
+//package src;
 /*
 * Written By Anonmyous Pandas
 */
@@ -13,3 +14,6 @@ public class DataWriter {
     }
 
 }
+=======
+
+>>>>>>> 8b0905737661e3dc80541b0e7f4c60cc9ecaf06e

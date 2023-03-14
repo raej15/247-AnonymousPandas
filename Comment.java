@@ -11,11 +11,12 @@ public class Comment {
     private ArrayList<Comment> comments;
 
     public void Comment(Module module) {
-
+        comments = new ArrayList<Comment>();
     }
     
+    //this needs to be passsing in a comment object rather than a string
     public void addComment(String comment) {
-
+        comments.add(comment);
     }
 
     public void removeComment() {

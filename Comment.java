@@ -14,7 +14,7 @@ public class Comment {
         comments = new ArrayList<Comment>();
     }
     
-    //this needs to be passsing in a comment object rather than a string
+    //does this need to be passsing in a comment object rather than a string??
     public void addComment(String comment) {
         comments.add(comment);
     }

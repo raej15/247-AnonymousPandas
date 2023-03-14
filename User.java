@@ -45,6 +45,8 @@
     }
 
     public boolean checkPassword(String password) {
-        return true;
+        if (password.equals(this.password))
+            return true;
+        return false;
     }
  }

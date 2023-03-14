@@ -37,12 +37,12 @@
                     {
                         "question":"How is a string formatted?",
                         "answers":["String strName = 'apple'", "String 'apple'", "Str strName = 'apple'" ],
-                        "correctAnswer": 0
+                        "correctIndex": 0
                     },
                     {
                         "question":"You can multiply a string and a number.",
                         "answers":["True", "False" ],
-                        "correctAnswer": 0
+                        "correctIndex": 0
                     }
                 ],
                 "comments":[
@@ -101,12 +101,12 @@
                     {
                         "question":"What is the difference between an object and other variables?",
                         "answers":["Objects can only store numbers.", "Objects can only store strings.", "Objects can store a mixture of variables." ],
-                        "correctAnswer": "C"
+                        "correctIndex": 2
                     },
                     {
                         "question":"An example of an array of objects...var users = [{firstName: 'Ann',lastName: 'Smith'},{firstName: 'Jennifer',lastName: 'Smith'}]",
                         "answers":[ "True", "False" ],
-                        "correctAnswer": "A"
+                        "correctIndex": 0
                     }
                 ]
             }
@@ -119,11 +119,13 @@
                 "comments": [
                     {
                         "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
-                        "comment": "Front end developers use JavaScript to add behavior to webpages."
+                        "comment": "Front end developers use JavaScript to add behavior to webpages.",
+                        "comments": []
                     },
                     {
                         "user": "41cacde1-48d5-4374-9119-4121510741f5",
-                        "comment": "They also use HTML to display the content and CSS to make the webpages have different colors and fonts."
+                        "comment": "They also use HTML to display the content and CSS to make the webpages have different colors and fonts.",
+                        "comments": []
                     }
                 ]
             },
@@ -133,11 +135,13 @@
                 "comments": [
                     {
                         "user": "41cacde1-48d5-4374-9119-4121510741f5",
-                        "comment": "WebStorm is one of the most frequently used integrated development environments for JavaScript, and probably the best IDE for frontend development available at the moment."
+                        "comment": "WebStorm is one of the most frequently used integrated development environments for JavaScript, and probably the best IDE for frontend development available at the moment.",
+                        "comments": []
                     },
                     {
                         "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
-                        "comment": "I use Visual Studio Code and I really like it."
+                        "comment": "I use Visual Studio Code and I really like it.",
+                        "comments": []
                     }
                 ]
             }

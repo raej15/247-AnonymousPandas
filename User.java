@@ -12,6 +12,7 @@
     protected String firstName;
     protected String lastName;
 
+    //What to put in this?
     public User() {
 
     }

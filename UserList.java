@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class UserList {
     private Userlist userList;
-    private ArraryList<User> users;
+    private ArrayList<User> users;
 
     private UserList() {
         public UserList getInstance();

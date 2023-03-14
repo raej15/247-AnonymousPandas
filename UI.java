@@ -31,6 +31,34 @@ public class UI {
         currentQuestion.setUserAnswer(2);
 
         System.out.println();
-        System.out.println(currentQuestion.isCorrect());
+        currentQuiz.addQuestion("How many lines of code is this?\n20 Lines of code\n");
+
+        currentQuestion = currentQuiz.getQuestion(1);
+        System.out.println(currentQuestion.getQuestion());
+
+        currentQuestion.addAnswer("5 Lines");
+        currentQuestion.addAnswer("10 Lines");
+        currentQuestion.addAnswer("20 Lines");
+        currentQuestion.getAnswers();
+
+        currentQuestion.setCorrectAnswer(2);
+        currentQuestion.setUserAnswer(2);
+
+        System.out.println();
+        currentQuiz.addQuestion("What is an int");
+
+        currentQuestion = currentQuiz.getQuestion(2);
+        System.out.println(currentQuestion.getQuestion());
+
+        currentQuestion.addAnswer("A datatype for storing numbers");
+        currentQuestion.addAnswer("A datatype for storing ascii text");
+        currentQuestion.addAnswer("Both of the above");
+        currentQuestion.getAnswers();
+
+        currentQuestion.setCorrectAnswer(0);
+        currentQuestion.setUserAnswer(0);
+
+        System.out.println();
+        System.out.println(currentQuiz.getGrade()+"%");
     }
 }

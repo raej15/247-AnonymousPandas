@@ -2,6 +2,7 @@
  * Written by Anonymous Pandas
  */
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Quiz {
@@ -42,15 +43,16 @@ public class Quiz {
             }
         }
 
-        int correct = 0;
+        double correct = 0;
 
         for (int i = 0; questions.size() > i; i++) {
             if (questions.get(i).isCorrect()) {
                 correct++;
             }
         }
-
-        return correct/questions.size();
+        
+        String result = new DecimalFormat("#.##").format((correct/questions.size())*100);
+        return Double.parseDouble(result);
      }
 
      public void removeQuestion(String question) {

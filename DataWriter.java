@@ -6,10 +6,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DataWriter {
-    DataWriter dw = new DataWriter();
-    public void saveUsers(){
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
+public class DataWriter extends DataConstants {
+    //users json
+    public static void saveUsers(){
+        Users users =
+        ArrayList<User> userList =  
+    }
+    public static JSONObject getUsersJson(User user) {
+        JSONObject userDetails = new JSONObject();
+        userDetails.put(userid, user.get)
     }
 
 }

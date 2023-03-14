@@ -5,16 +5,17 @@
  import java.util.UUID;
 
  public class User {
-    private UUID UUID;
+    private UUID uuid;
     protected String username;
     protected String password;
     protected String email;
     protected String firstName;
     protected String lastName;
+    
 
     //What to put in this?
     public User() {
-
+        
     }
 
     public String toString() {

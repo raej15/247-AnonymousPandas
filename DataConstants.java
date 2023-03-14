@@ -9,5 +9,5 @@ public abstract class DataConstants{
     protected static final String USER_TYPE = "type";
 
     //courses.json still needs to be implemented
-
+    protected static final String COURSES_FILE_NAME = "json/courses.json";
 }

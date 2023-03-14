@@ -9,6 +9,13 @@ import java.util.UUID;
 
 public class DataLoader {
      
+/**
+ * Load users method 
+ * Json Parser reads and writes while JSON array store data
+ * for loap: JSONObject, username, email, password 
+ * @return ArrayList<UserList> 
+ */
+
     public static ArrayList<UserList> loadUsers()
     {
         ArrayList<UserList> users = new ArrayList<UserList>();
@@ -20,15 +27,22 @@ public class DataLoader {
   
         FileReader reader = new FileReader(USERS_FILE_NAME);
         JSONParser parser = new JSONParser();
-        JSONArray usersJSON = (JSONArray)parser.parse(reader);
-    
-        if(usersJSON !=null)
+        JSONArray usersJSON = (JSONArray)parser.parse(reader)
+;
+    if(usersJSON !=null)
+    {
+        for(int i =0; i < usersJSON.size(); i++)
         {
-            for(int i =0; i < usersJSON.size(); i++)
-            {
-                JSONObject usersJSON = (JSONObject)usersJSON.get(i);
-                
-            }
+            JSONObject usersJSON = (JSONObject)usersJSON.get(i);
+            
         }
     }
+    return users;
+} catch(Exception e)
+{
+    e.printStackTrace();
+}
+
+return null;
+
 }

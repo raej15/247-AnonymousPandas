@@ -17,8 +17,8 @@ public class Module {
         quiz = new Quiz();
     }
 
-    public void addLesson() {
-        lessons.add(new Lesson());
+    public void addLesson(String lesson, String description) {
+        lessons.add(new Lesson(lesson, description));
     }
 
     public void updateModuleName(String moduleName) {
@@ -36,7 +36,39 @@ public class Module {
     public Quiz getQuiz() {
         return quiz;
     }
+
+    public Lesson getLesson(String lessonName) {
+        if (lessons.size() == 0) {
+            System.out.println("There are no lessons to get");
+            return null;
+        }
+        
+        for (int i = 0; lessons.size() > i; i++) {
+            if (lessons.get(i).getLessonName().equals(lessonName)) {
+                return lessons.get(i);
+            }
+        }
+
+        System.out.println("That lesson could not be found");
+        return null;
+    }
     
+    public void removeLesson(String lessonName) {
+        if (lessons.size() == 0) {
+            System.out.println("There are no lessons to remove");
+            return;
+        }
+        
+        for (int i = 0; lessons.size() > i; i++) {
+            if (lessons.get(i).getLessonName().equals(lessonName)) {
+                lessons.remove(i);
+                return;
+            }
+        }
+
+        System.out.println("That lesson could not be found");
+    }
+
     public void toggleCompleted() {
         completed = !completed;
     }

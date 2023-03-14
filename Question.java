@@ -4,42 +4,56 @@
 
  import java.util.ArrayList;
 
- public class Question {
-      private ArrayList<String> answers;
-      private String question;
-      private int correctAnswer;
-      private int userAnswer;
+/**
+ * A question (If an answer is set to -1, then that means it has not been set yet)
+ */
+public class Question {
+    private ArrayList<String> answers;
+    private String question;
+    private int correctAnswer;
+    private int userAnswer;
 
-      Question(String question) {
+    Question(String question) {
         answers = new ArrayList<String>();
         this.question = question;
         correctAnswer = -1;
         userAnswer = -1;
-      }
+    }
 
-      public void addAnswer(String answer) {
+    public void addAnswer(String answer) {
         answers.add(answer);
-      }
+    }
 
-      public void setCorrectAnswer(int answer) {
+    public void setCorrectAnswer(int answer) {
         correctAnswer = answer;
-      }
+    }
       
-      public void setUserAnswer(int answer) {
+    public void setUserAnswer(int answer) {
         userAnswer = answer;
-      }
+    }
 
-      public int getCorrectAnswer() {
+    public int getCorrectAnswer() {
         return correctAnswer;
-      }
+    }
 
-      public int getUserAnswer() {
+    public int getUserAnswer() {
         return userAnswer;
-      }
+    }
 
-      public String getQuestion() {
+    public String getQuestion() {
         return question;
-      }
+    }
+
+    public void getAnswers() {
+        if (answers.size() == 0) {
+            System.out.println("There are no answers to return");
+            return;
+        }
+
+        for (int i = 0; answers.size() > i; i++) {
+            System.out.println(i+": "+answers.get(i));
+        }
+    }
 
       public boolean hasUserAnswer() {
         if (userAnswer == -1) {
@@ -49,7 +63,9 @@
         }
       }
 
-      public void removeAnswer(String answer) {
+      
+    
+    public void removeAnswer(String answer) {
         if (answers.size() == 0) {
             System.out.println("There are no answers to remove");
             return;

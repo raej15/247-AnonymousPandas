@@ -51,6 +51,22 @@ public class Course {
         return completed;
     }
 
+    public Module getModule(String moduleName) {
+        if (modules.size() == 0) {
+            System.out.println("There are no modules to get");
+            return null;
+        }
+        
+        for (int i = 0; modules.size() > i; i++) {
+            if (modules.get(i).getModuleName().equals(moduleName)) {
+                return modules.get(i);
+            }
+        }
+
+        System.out.println("That module could not be found");
+        return null;
+    }
+
     public void removeModule(String moduleName) {
         if (modules.size() == 0) {
             System.out.println("There are no modules to remove");

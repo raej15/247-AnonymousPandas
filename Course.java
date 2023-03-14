@@ -12,7 +12,6 @@ public class Course {
     private String courseName;
     private String description;
     private Language language;
-    private boolean completed;
 
     /**
      * Creates a new course
@@ -25,7 +24,6 @@ public class Course {
         this.courseName = courseName;
         this.description = description;
         this.language = language;
-        completed = false;
     }
 
     /**
@@ -84,13 +82,6 @@ public class Course {
         return language;
     }
     
-    /**
-     * Returns the state of the completed variable
-     * @return True if the course has been finished, false if it has not
-     */
-    public boolean getCompleted() {
-        return completed;
-    }
     
     /**
      * Returns a module based on the inputted name, if it exists
@@ -131,12 +122,5 @@ public class Course {
         }
 
         System.out.println("That module could not be found");
-    }
-
-    /**
-     * Changes the state of the completed variable
-     */
-    public void toggleCompleted() {
-        completed = !completed;
     }
 }

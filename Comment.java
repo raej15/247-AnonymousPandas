@@ -7,24 +7,35 @@ import java.util.ArrayList;
 
 public class Comment {
     private String comment;
-    private Student user;
+    public Student commenter;
     private ArrayList<Comment> comments;
 
-    public void Comment(Module module) {
+    public Comment(String comment, Student commenter) {
+        this.comment = comment;
+        this.commenter = commenter;
         comments = new ArrayList<Comment>();
     }
     
-    //does this need to be passsing in a comment object rather than a string??
-    public void addComment(String comment) {
+    //does this need to be passsing in a comment object rather than a string?? Yesss
+    public void addComment(Comment comment) {
         comments.add(comment);
     }
 
-    public void removeComment() {
-
+    public void removeComment(String removeComment){
+        for(Comment comment : comments) {
+            if(comment.getCommentString().equals(removeComment)) {
+                comments.remove(comment);
+                return;
+            }
+        }
     }
 
     public String getComment() {
         return this.comment;
+    }
+
+    public String getCommentString(){
+        return comment;
     }
 
 

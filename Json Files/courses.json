@@ -18,11 +18,6 @@
         "courseName": "Introduction to JavaScript",
         "description":"JavaScript is a scripting language for creating dynamic web page content.",
         "language": "Javascript",
-        "grades": [
-            {
-                
-            }
-        ],
         "modules":[
                 {"moduleName": "Variables",
                 "lessons": [{

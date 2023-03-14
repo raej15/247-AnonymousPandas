@@ -5,6 +5,8 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
+import java.util.LinkedHashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,12 +14,31 @@ import org.json.simple.JSONObject;
 public class DataWriter extends DataConstants {
     //users json
     public static void saveUsers(){
-        Users users =
-        ArrayList<User> userList =  
+        User users = User.getInstance();
+        ArrayList <User> userList = users.getUser();
+        JSONArray jsonUsers = new JSONArray();
+        
+        for(int i = 0; i < userList.size(); i++){
+            jsonUsers.add(getUsersJson(userList.get(i)));
+        }
+        try(FileWriter fileWriter = new FileWriter(USER_FILE_NAME)){
+            fileWriter.write(jsonUsers.toJSONString());
+            fileWriter.flush();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     public static JSONObject getUsersJson(User user) {
         JSONObject userDetails = new JSONObject();
-        userDetails.put(userid, user.get)
+        userDetails.put(USER_USER_NAME, user.getUserName());
+        userDetails.put(USER_EMAIL, user.getEmail());
+        userDetails.put(USER_PASSWORD, user.getPassword());
+        userDetails.put(USER_FIRST_NAME, user.getFirstName());
+        userDetails.put(USER_LAST_NAME, user.getLastName());
+        userDetails.put(USER_ID, user.getID().toString());
+        userDetails.put(USER_USER_TYPE, user.getUserType());
+
+        return userDetails;
     }
 
 }

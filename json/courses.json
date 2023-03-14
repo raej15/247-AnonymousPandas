@@ -37,12 +37,12 @@
                     {
                         "question":"How is a string formatted?",
                         "answers":["String strName = 'apple'", "String 'apple'", "Str strName = 'apple'" ],
-                        "correctAnswer": "A"
+                        "correctAnswer": 0
                     },
                     {
                         "question":"You can multiply a string and a number.",
                         "answers":["True", "False" ],
-                        "correctAnswer": "A"
+                        "correctAnswer": 0
                     }
                 ],
                 "comments":[
@@ -52,11 +52,14 @@
                         "comments": [
                             {
                                 "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
-                                "comment": "You create two variables that are type number (no quotes) and initialize their values. Then use the variable names to multiply using the asterisk symbol."
+                                "comment": "You create two variables that are type number (no quotes) and initialize their values. Then use the variable names to multiply using the asterisk symbol.",
+                                "comments": []
+
                             },
                             {
                                 "user": "41cacde1-48d5-4374-9119-4121510741f5",
-                                "comment": "An example is var calculation = variableName1 * variableName2."
+                                "comment": "An example is var calculation = variableName1 * variableName2.",
+                                "comments": []
                             }
                         ]
                     },
@@ -66,11 +69,13 @@
                         "comments": [
                             {
                                 "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
-                                "comment": "An array is a data structure that contains a group of elements. Typically these elements are all of the same data type."
+                                "comment": "An array is a data structure that contains a group of elements. Typically these elements are all of the same data type.",
+                                "comments": []
                             },
                             {
                                 "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
-                                "comment": "You can access an array using the indicies."
+                                "comment": "You can access an array using the indicies.",
+                                "comments": []
                             }
                         ]
                     }

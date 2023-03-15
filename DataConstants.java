@@ -9,6 +9,12 @@ public abstract class DataConstants{
 	protected static final String USER_EMAIL = "email";
     protected static final String USER_TYPE = "type";
 
-    //courses.json still needs to be implemented
-    protected static final String COURSES_FILE_NAME = "json/courses.json";
+    //courses.json still missing some for now
+    protected static final String COURSE_FILE_NAME = "json/courses.json";
+    protected static final String COURSE_AUTHOR = "author";
+    protected static final String COURSE_NAME = "courseName";
+    protected static final String COURSE_DESCRIPTION = "courseName";
+    protected static final String COURSE_LANGUAGE = "language";
+    protected static final String COURSE_MODULES = "modules";
+
 }

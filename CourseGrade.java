@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CourseGrade {
 
-    private course Course;
+    private Course course;
     public static ArrayList<grades> Grades;
     
 }

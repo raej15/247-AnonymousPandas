@@ -11,10 +11,18 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
+    /*
+    * DataWriter extends from DataConstants
+    * the void method saveUsers() calls from the arraylist
+    * JSONArray stores the user sizes
+    * JSONObject getsUserJson(User user) and puts the users details
+    * @return usersDetails
+    */
+
     //users json
     public static void saveUsers(){
         User users = User.getInstance();
-        ArrayList <User> userList = users.getUser();
+        ArrayList<User> userList = users.getUsers();
         JSONArray jsonUsers = new JSONArray();
         
         for(int i = 0; i < userList.size(); i++){

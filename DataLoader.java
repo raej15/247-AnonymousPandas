@@ -21,13 +21,14 @@ private static final String USERS_FILE_NAME = null;
  * Json Parser reads & writes 
  * JSON array store data
  * for loop has JSONObject, username, email, and password 
- * @return ArrayList<UserList> 
+ * @return ArrayList<User> 
  */
 
-//userid, firstName, lastName, email, username, type (order in json file)
+//userid, firstName, lastName, email, username, password, type (order in json file)
 
-    public static ArrayList<UserList> loadUsers() {
-            ArrayList<UserList> users = new ArrayList<UserList>();
+    public static ArrayList<User> loadUsers() {
+        ArrayList<User> users = new ArrayList<User>();
+            
         try {
             FileReader reader = new FileReader(USERS_FILE_NAME);
             JSONParser parser = new JSONParser();
@@ -43,14 +44,17 @@ private static final String USERS_FILE_NAME = null;
                 String lastName = (String)userJSON.get(USER_LAST_NAME);
                 String email = (String)userJSON.get(USER_EMAIL);
                 String username = (String)userJSON.get(USER_USER_NAME);
+                String password = (String)userJSON.get(USER_PASSWORD);
                 String type = (String)userJSON.get(USER_TYPE);
 
-                //users.add(new User(username, email, password));
                 if (type.equals("Student")) {
-                    users.add(new Student());
+                    users.add(new Student(id,username,password,email,firstName,lastName));
+                } else {
+                    users.add(new CourseCreator(id,username,password,email,firstName,lastName));
                 }
             }
         }
+        UserList.setUserList(users);
         return users;
         } 
 

@@ -3,9 +3,13 @@ import java.util.ArrayList;
 
 public class UserList {
     private UserList userList;
-    private ArrayList<User> users;
+    public static ArrayList<User> users;
     public UserList getInstance(){
         return userList;
+    }
+
+    public static void setUserList(ArrayList <User> users){
+        UserList.users = users;
     }
 
     public User getUser(String username){

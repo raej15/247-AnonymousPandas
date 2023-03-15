@@ -1,4 +1,3 @@
-//package src;
 /*
 * Written By Anonmyous Pandas
 */
@@ -36,7 +35,7 @@ public class DataWriter extends DataConstants {
         userDetails.put(USER_FIRST_NAME, user.getFirstName());
         userDetails.put(USER_LAST_NAME, user.getLastName());
         userDetails.put(USER_ID, user.getID().toString());
-        userDetails.put(USER_USER_TYPE, user.getUserType());
+        userDetails.put(USER_TYPE, user.getUserType());
 
         return userDetails;
     }

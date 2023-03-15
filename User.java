@@ -5,7 +5,6 @@
  import java.util.UUID;
 
  public class User {
-    private UUID uuid;
     protected String username;
     protected String password;
     protected String email;
@@ -14,8 +13,12 @@
     
 
     //What to put in this?
-    public User() {
-        
+    public User(String username, String password, String email, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String toString() {

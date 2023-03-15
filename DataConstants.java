@@ -1,3 +1,8 @@
+
+/*
+ * Written by Anonmyous Pandas 
+ */
+
 public abstract class DataConstants{
     //fully updated for users.json
     protected static final String USER_FILE_NAME = "json/users.json";

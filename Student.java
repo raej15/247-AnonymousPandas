@@ -1,3 +1,8 @@
+
+/*
+ * Written by Anonmyous Pandas 
+ */
+
 import java.util.UUID;
 
 public class Student extends User{

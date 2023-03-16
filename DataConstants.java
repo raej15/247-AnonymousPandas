@@ -32,6 +32,12 @@ public abstract class DataConstants{
     protected static final String COURSE_QUIZ_QUESTIONS = "question";
     protected static final String COURSE_QUIZ_ANSWERS = "answers";
     protected static final String COURSE_QUIZ_CORRECT_INDEX = "correctIndex";
+    protected static final String COURSE_COMMENTS = "comments";
+    protected static final String COURSE_COMMENTS_USER = "user";
+    protected static final String COURSE_COMMENTS_COMMENT = "comment";
+
+
+
 
 
 

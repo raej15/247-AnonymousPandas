@@ -5,6 +5,7 @@
 /**
  * I'm currently using this to test the code that I've written. This will need to be updated eventually
  */
+
 public class UI {
     public static void main(String[] args) {
         Course currentCourse = new Course("JavaScript", "A JavaScript course", Language.JavaScript);

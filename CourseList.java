@@ -62,7 +62,7 @@ public class CourseList {
         }
     }
 
-    public ArrayList<Course> getUsers() {
+    public ArrayList<Course> getCourses() {
         return courses;
     }
 }

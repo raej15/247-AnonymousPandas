@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class UserList {
     private UserList userList;
     public static ArrayList<User> users;
-    public UserList getInstance(){
+    public static UserList getInstance(){
         return userList;
     }
 

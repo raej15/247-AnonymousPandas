@@ -27,11 +27,26 @@ public class LearningManagementSystemFacade {
 
     public void loadUI() {
         String userInput = "";
+        int userInputINT = 0;
 
         if (user == null) {
             System.out.println("Please enter in your username");
             userInput = input.nextLine();
             setUser(userInput);
+            return;
+        }
+
+        if (course == null) {
+            System.out.println("You are logged in as "+user.getUserName());
+            System.out.println("Please select which course you wish to access");
+            courseList.printCourses();
+            userInputINT = input.nextInt();
+            setCourse(userInputINT);
+            return;
+        }
+
+        if (module == null) {
+
         }
     }
 
@@ -50,13 +65,19 @@ public class LearningManagementSystemFacade {
             return;
         }
 
+        System.out.println("\nYou have logged in as "+username);
         this.user = user;
-        System.out.println("It worked");
         return;
     }
 
-    private static void setCourse() {
+    private void setCourse(int courseIndex) {
+        if (!courseList.has(courseIndex)) {
+            System.out.println("The course does not exist");
+            return;
+        }
 
+        this.course = courseList.getCourse(courseIndex);
+        return;
     }
 
     private static void setModule() {

@@ -32,12 +32,8 @@ public class UI {
             clearTerminal();
 
             facade.loadUI();
-
-            if (true) {
-                break;
-            }
         }
 
-        saveData();
+        //saveData();
     }
 }

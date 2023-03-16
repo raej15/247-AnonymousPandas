@@ -5,7 +5,7 @@
 
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,6 +26,14 @@ private static final String USERS_FILE_NAME = null;
 
 //userid, firstName, lastName, email, username, password, type (order in json file)
 
+public static void main(String[] args) {
+    
+    ArrayList<User> users = loadUsers();
+    for (User user: users) {
+        System.out.println(user.getFirstName());
+    }
+
+}
     public static ArrayList<User> loadUsers() {
         ArrayList<User> users = new ArrayList<User>();
             
@@ -33,8 +41,8 @@ private static final String USERS_FILE_NAME = null;
             FileReader reader = new FileReader(USERS_FILE_NAME);
             JSONParser parser = new JSONParser();
             JSONArray usersJSON = (JSONArray)parser.parse(reader);
-
-        if(usersJSON !=null)
+        System.out.println(usersJSON.size());
+        if(usersJSON != null)
         {
             for(int i =0; i < usersJSON.size(); i++)
             {

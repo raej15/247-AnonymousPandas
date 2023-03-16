@@ -38,7 +38,9 @@ public static void main(String[] args) {
         ArrayList<User> users = new ArrayList<User>();
             
         try {
-            FileReader reader = new FileReader(USERS_FILE_NAME);
+            System.out.println("before");
+            FileReader reader = new FileReader("json/users.json");
+            System.out.println("after");
             JSONParser parser = new JSONParser();
             JSONArray usersJSON = (JSONArray)parser.parse(reader);
         System.out.println(usersJSON.size());

@@ -1,7 +1,6 @@
 /*
  * Written by Anonmyous Pandas 
  */
-
  import java.util.UUID;
 
  public class User {
@@ -22,7 +21,7 @@
     }
 
     public String toString() {
-        return "yay";
+        return "First Name: "+firstName+ "\nLast Name: "+lastName+"\nUsername: " + username +"\nPassword: "+password+"\nemail: "+email;
     }
 
     public String getUserName() {

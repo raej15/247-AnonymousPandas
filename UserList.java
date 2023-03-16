@@ -8,7 +8,16 @@ public class UserList {
     private static UserList userList;
 
     public static ArrayList<User> users;
+    private UserList(){
+        users = new ArrayList<>();
+        users.add(new Student("x","x","x","x","x"));
+        setUserList(users);
+    }
     public static UserList getInstance(){
+        if(userList == null){
+            userList = new UserList();
+        }
+        
         return userList;
     }
 

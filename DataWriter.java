@@ -18,11 +18,13 @@ public class DataWriter extends DataConstants {
     * JSONObject getsUserJson(User user) and puts the users details
     * @return usersDetails
     */
-
+    public static void main(String[] args){
+        saveUsers();
+    }
     //users json
     public static void saveUsers(){
         UserList users = UserList.getInstance();
-        ArrayList<User> userList = users.getUsers(); //create this method!
+        ArrayList<User> userList = users.getUsers();
         JSONArray jsonUsers = new JSONArray();
         
         for(int i = 0; i < userList.size(); i++){
@@ -44,7 +46,14 @@ public class DataWriter extends DataConstants {
         userDetails.put(USER_LAST_NAME, user.getLastName());
         userDetails.put(USER_TYPE, user.getUserType());
 
+         System.out.println(userDetails);
+
+
         return userDetails;
     }
+
+    //saveCourses
+
+    //
 
 }

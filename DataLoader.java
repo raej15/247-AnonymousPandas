@@ -13,7 +13,9 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants{
      
-private static final String USERS_FILE_NAME = null;
+private static final String USER_FILE_NAME = null;
+private static final String COURSE_FILE_NAME = null;
+
 
 /**
  * Load users method 

@@ -18,8 +18,14 @@ public abstract class DataConstants{
     protected static final String COURSE_FILE_NAME = "json/courses.json";
     protected static final String COURSE_AUTHOR = "author";
     protected static final String COURSE_NAME = "courseName";
-    protected static final String COURSE_DESCRIPTION = "courseName";
+    protected static final String COURSE_DESCRIPTION = "description";
     protected static final String COURSE_LANGUAGE = "language";
     protected static final String COURSE_MODULES = "modules";
+    protected static final String COURSE_STUDENT = "students";
+    protected static final String COURSE_ID = "id";
+    protected static final String COURSE_GRADES = "grades";
+
+
+
 
 }

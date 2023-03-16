@@ -6,11 +6,14 @@
 import java.util.ArrayList;
 
 public class CourseList {
-
-    private CourseList courselist;
+    private static CourseList courseList = new CourseList();
     private ArrayList<Course> courses;
 
-    CourseList() {
+    private CourseList() {
 
+    }
+
+    public static CourseList getInstance() {
+        return courseList;
     }
 }

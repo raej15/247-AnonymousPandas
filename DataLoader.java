@@ -93,21 +93,22 @@ public static void main(String[] args) {
                 String courseDescription = (String)coursesJSON.get(COURSE_DESCRIPTION);
                 Language courseLanguage = (Language)coursesJSON.get(COURSE_LANGUAGE);
                 Module courseModules = (Module)coursesJSON.get(COURSE_MODULES);
-                String courseStudent = (String)coursesJSON.get(COURSE_STUDENT);
-                String courseStudentId = (String)coursesJSON.get(COURSE_STUDENT_ID);
-                String courseStudentGrades = (String)coursesJSON.get(COURSE_STUDENT_GRADES);
+                Student courseStudent = (Student)coursesJSON.get(COURSE_STUDENT);
+                UUID courseStudentId = UUID.fromString((String)coursesJSON.get(COURSE_STUDENT_ID));
+                double courseStudentGrades = (double)coursesJSON.get(COURSE_STUDENT_GRADES);
                 String courseModuleName = (String)coursesJSON.get(COURSE_MODULE_NAME);
-                String courseLessons = (String)coursesJSON.get(COURSE_LESSONS);
+                Lesson courseLessons = (Lesson)coursesJSON.get(COURSE_LESSONS);
                 String courseLessonName = (String)coursesJSON.get(COURSE_LESSON_NAME);
                 String courseLessonContent = (String)coursesJSON.get(COURSE_LESSON_CONTENT);
-                String courseModuleQuiz = (String)coursesJSON.get(COURSE_MODULE_QUIZ);
-                String courseQuizQuestions = (String)coursesJSON.get(COURSE_QUIZ_QUESTIONS);
+                Quiz courseModuleQuiz = (Quiz)coursesJSON.get(COURSE_MODULE_QUIZ);
+                Question courseQuizQuestions = (Question)coursesJSON.get(COURSE_QUIZ_QUESTIONS);
                 String courseQuizAnswers = (String)coursesJSON.get(COURSE_QUIZ_ANSWERS);
-                String quizCorrectIndex = (String)coursesJSON.get(COURSE_QUIZ_CORRECT_INDEX);
-                String comments = (String)coursesJSON.get(COURSE_COMMENTS);
-                String commentUser = (String)coursesJSON.get(COURSE_COMMENTS_USER);
+                int quizCorrectIndex = (int)coursesJSON.get(COURSE_QUIZ_CORRECT_INDEX);
+                Comment comments = (Comment)coursesJSON.get(COURSE_COMMENTS);
+                UUID commentUser =  UUID.fromString((String)(String)coursesJSON.get(COURSE_COMMENTS_USER));
                 String commentContent = (String)coursesJSON.get(COURSE_COMMENTS_COMMENT);
 
+                //course constructor probably needs author passed in
                 courses.add(new Course(courseName, courseDescription, courseLanguage));
                             
             }

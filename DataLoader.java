@@ -30,7 +30,8 @@ public static void main(String[] args) {
     
     ArrayList<User> users = loadUsers();
     for (User user: users) {
-        System.out.println(user.getFirstName());
+        System.out.println(user.toString()+"\n---------------");
+
     }
 
 }
@@ -38,12 +39,9 @@ public static void main(String[] args) {
         ArrayList<User> users = new ArrayList<User>();
             
         try {
-            System.out.println("before");
-            FileReader reader = new FileReader("json/users.json");
-            System.out.println("after");
+            FileReader reader = new FileReader(USER_FILE_NAME);
             JSONParser parser = new JSONParser();
             JSONArray usersJSON = (JSONArray)parser.parse(reader);
-        System.out.println(usersJSON.size());
         if(usersJSON != null)
         {
             for(int i =0; i < usersJSON.size(); i++)

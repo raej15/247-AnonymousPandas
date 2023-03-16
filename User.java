@@ -9,6 +9,7 @@
     protected String email;
     protected String firstName;
     protected String lastName;
+    protected UUID id;
     
 
     //What to put in this?
@@ -18,6 +19,15 @@
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User(UUID id, String username, String password, String email, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
     }
 
     public String toString() {

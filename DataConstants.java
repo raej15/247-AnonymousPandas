@@ -4,7 +4,9 @@
  */
 
 public abstract class DataConstants{
-    //fully updated for users.json
+    /**
+     * Data Contants for users.json
+     */    
     protected static final String USER_FILE_NAME = "json/users.json";
 	protected static final String USER_ID = "userid";
 	protected static final String USER_USER_NAME = "username";
@@ -14,7 +16,9 @@ public abstract class DataConstants{
 	protected static final String USER_EMAIL = "email";
     protected static final String USER_TYPE = "type";
 
-    //courses.json still missing some for now
+    /**
+     * Data Contants for courses.json
+     */
     protected static final String COURSE_FILE_NAME = "json/courses.json";
     protected static final String COURSE_AUTHOR = "author";
     protected static final String COURSE_NAME = "courseName";

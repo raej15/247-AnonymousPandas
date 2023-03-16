@@ -14,6 +14,10 @@ public class UserList {
     }
 
     public static UserList getInstance(){
+        if(userList == null){
+            userList = new UserList();
+        }
+        
         return userList;
     }
 

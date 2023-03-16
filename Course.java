@@ -3,6 +3,8 @@
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for, and if it's been completed
@@ -12,6 +14,8 @@ public class Course {
     private String courseName;
     private String description;
     private Language language;
+    public HashMap<UUID, ArrayList<Double>> grades;
+    public UUID author;
 
     /**
      * Creates a new course
@@ -24,6 +28,11 @@ public class Course {
         this.courseName = courseName;
         this.description = description;
         this.language = language;
+    }
+
+    Course(UUID author, HashMap<UUID, ArrayList<Double>> grades){
+        this.author = author;
+        this.grades = grades;
     }
 
     /**
@@ -81,7 +90,9 @@ public class Course {
     public Language getLanguage() {
         return language;
     }
-    
+    public UUID getAuthorID(){
+        return this.author;
+    }
     
     /**
      * Returns a module based on the inputted name, if it exists
@@ -122,5 +133,9 @@ public class Course {
         }
 
         System.out.println("That module could not be found");
+    }
+
+    public void setGrades(HashMap<UUID, ArrayList<Double>> grades){
+        this.grades = grades;
     }
 }

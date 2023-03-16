@@ -73,4 +73,55 @@ public static void main(String[] args) {
         return null;
 
     }
+
+    //needs a lot of work still!! but i updated it a bunch 
+    public static ArrayList<Course> loadCourses() {
+
+        ArrayList<Course> courses = new ArrayList<Course>();
+            
+        try {
+            FileReader reader = new FileReader(COURSE_FILE_NAME);
+            JSONParser parser = new JSONParser();
+            JSONArray courseJSON = (JSONArray)parser.parse(reader);
+        if(courseJSON != null)
+        {
+            for(int i =0; i < courseJSON.size(); i++)
+            {
+                JSONObject coursesJSON = (JSONObject)courseJSON.get(i);
+                UUID author = UUID.fromString((String)coursesJSON.get(COURSE_AUTHOR));
+                String courseName = (String)coursesJSON.get(COURSE_NAME);
+                String courseDescription = (String)coursesJSON.get(COURSE_DESCRIPTION);
+                Language courseLanguage = (Language)coursesJSON.get(COURSE_LANGUAGE);
+                Module courseModules = (Module)coursesJSON.get(COURSE_MODULES);
+                String courseStudent = (String)coursesJSON.get(COURSE_STUDENT);
+                String courseStudentId = (String)coursesJSON.get(COURSE_STUDENT_ID);
+                String courseStudentGrades = (String)coursesJSON.get(COURSE_STUDENT_GRADES);
+                String courseModuleName = (String)coursesJSON.get(COURSE_MODULE_NAME);
+                String courseLessons = (String)coursesJSON.get(COURSE_LESSONS);
+                String courseLessonName = (String)coursesJSON.get(COURSE_LESSON_NAME);
+                String courseLessonContent = (String)coursesJSON.get(COURSE_LESSON_CONTENT);
+                String courseModuleQuiz = (String)coursesJSON.get(COURSE_MODULE_QUIZ);
+                String courseQuizQuestions = (String)coursesJSON.get(COURSE_QUIZ_QUESTIONS);
+                String courseQuizAnswers = (String)coursesJSON.get(COURSE_QUIZ_ANSWERS);
+                String quizCorrectIndex = (String)coursesJSON.get(COURSE_QUIZ_CORRECT_INDEX);
+                String comments = (String)coursesJSON.get(COURSE_COMMENTS);
+                String commentUser = (String)coursesJSON.get(COURSE_COMMENTS_USER);
+                String commentContent = (String)coursesJSON.get(COURSE_COMMENTS_COMMENT);
+
+                courses.add(new Course(courseName, courseDescription, courseLanguage));
+                            
+            }
+        }
+        CourseList.setCourseList(courses);
+        return courses;
+        } 
+
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
 }

@@ -5,14 +5,14 @@
 import java.util.ArrayList;
 
 public class UserList {
-    private static UserList userList;
-
+    private static UserList userList = new UserList();
     public static ArrayList<User> users;
-    private UserList(){
-        users = new ArrayList<>();
-        users.add(new Student("x","x","x","x","x"));
-        setUserList(users);
+
+    private UserList() {
+        users = new ArrayList<User>();
+        users.add(new User("Johnny", "Password", "John@gmail.com", "John", "Smith"));
     }
+
     public static UserList getInstance(){
         if(userList == null){
             userList = new UserList();
@@ -41,6 +41,24 @@ public class UserList {
                 return;
             }
         }
+    }
+
+    public boolean has(String username) {
+        for(User user : users) {
+            if(user.getUserName().equals(username)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean login(User user, String password) {
+        if (user.checkPassword(password)) {
+            return true;
+        }
+
+        return false;
     }
 
     public ArrayList<User> getUsers() {

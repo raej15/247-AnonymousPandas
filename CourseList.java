@@ -10,11 +10,7 @@ public class CourseList {
     private CourseList courselist;
     private ArrayList<Course> courses;
 
-    private courseList() {
-
-        public CourseList getInstance(){
-
-        }
+    CourseList() {
 
     }
 }

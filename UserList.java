@@ -5,7 +5,8 @@
 import java.util.ArrayList;
 
 public class UserList {
-    private UserList userList;
+    private static UserList userList;
+
     public static ArrayList<User> users;
     public static UserList getInstance(){
         return userList;
@@ -31,6 +32,10 @@ public class UserList {
                 return;
             }
         }
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
     }
 
     

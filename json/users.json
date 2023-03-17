@@ -5,6 +5,7 @@
   	"lastName":"White",
     "email":"twhite@gmail.com",
     "username": "trey12",
+    "password": "trey1",
     "type":"Student"
   },{
     "userid": "dd6e2806-c8bd-4f14-a1f5-4ef0bdbcb7cc",
@@ -12,6 +13,7 @@
   	"lastName":"Sansa",
     "email":"mSansa@gmail.com",
     "username": "yayCode",
+    "password": "trey1",
     "type":"Creator"
   },{
     "userid": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
@@ -19,6 +21,7 @@
   	"lastName":"Russell",
     "email":"topher@gmail.com",
     "username": "topherR",
+    "password": "chris1",
     "type":"Student"
   },{
     "userid": "41cacde1-48d5-4374-9119-4121510741f5",
@@ -26,6 +29,7 @@
   	"lastName":"Swift",
     "email":"tswizzle@gmail.com",
     "username": "swiftie92",
+    "password": "swifties",
     "type":"Student"
   },{
     "userid": "878a27e5-78b2-499a-847e-1c60c84cf9f2",
@@ -33,6 +37,7 @@
   	"lastName":"Winfrey",
     "email":"oprah@gmail.com",
     "username": "youGetACar",
+    "password": "yum",
     "type":"Student"
   },{
     "userid": "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf",
@@ -40,6 +45,7 @@
   	"lastName":"Jordan",
     "email":"@gmail.com",
     "username": "chicagoBulls23",
+    "password": "jordans",
     "type":"Creator"
   }
 ]

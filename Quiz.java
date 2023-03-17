@@ -20,6 +20,10 @@ public class Quiz {
         title = "Quiz";
      }
 
+     public Quiz(ArrayList<Question> questions ) {
+        this.questions = questions;
+     }
+
      /**
       * Adds a new question to the quiz
       * @param question The question

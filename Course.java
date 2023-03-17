@@ -16,7 +16,7 @@ public class Course {
     private String description;
     private Language language;
     public String languageStr;
-    public HashMap<UUID, ArrayList<Long>> grades;
+    public HashMap<UUID, ArrayList<Double>> grades;
     public UUID author;
 
     /**
@@ -32,7 +32,7 @@ public class Course {
         this.language = language;
     }
 
-    Course(String courseName, String description, String language, UUID author, HashMap<UUID, ArrayList<Long>> grades){
+    Course(String courseName, String description, String language, UUID author, HashMap<UUID, ArrayList<Double>> grades){
         this.courseName = courseName;
         this.description = description;
         this.languageStr = language;
@@ -140,7 +140,7 @@ public class Course {
         System.out.println("That module could not be found");
     }
 
-    public void setGrades(HashMap<UUID, ArrayList<Long>> grades){
+    public void setGrades(HashMap<UUID, ArrayList<Double>> grades){
         this.grades = grades;
     }
 
@@ -155,10 +155,8 @@ public class Course {
  */
 
     public String getGrades() {
-        // iterating through key/value mappings
-        //System.out.println("Student Grades: ");
         String finalStr = "Student Grades:";
-        for(Entry<UUID, ArrayList<Long>> entry: grades.entrySet()) {
+        for(Entry<UUID, ArrayList<Double>> entry: grades.entrySet()) {
             finalStr+="\n";
             finalStr+=entry;
         }

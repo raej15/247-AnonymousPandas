@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Module {
     private ArrayList<Lesson> lessons;
     private String moduleName;
-    private boolean completed;
     private Quiz quiz;
 
     /**
@@ -20,8 +19,13 @@ public class Module {
     Module(String moduleName) {
         lessons = new ArrayList<Lesson>();
         this.moduleName = moduleName;
-        completed = false;
         quiz = new Quiz();
+    }
+
+    Module(String moduleName, ArrayList<Lesson> lessons, Quiz quiz) {
+        this.moduleName = moduleName;
+        this.lessons = lessons;
+        this.quiz = quiz;
     }
 
     /**
@@ -47,14 +51,6 @@ public class Module {
      */
     public String getModuleName() {
         return moduleName;
-    }
-
-    /**
-     * Returns the state of the completed variable
-     * @return True if it has been completed, false if it has not
-     */
-    public boolean getCompleted() {
-        return completed;
     }
 
     /**
@@ -104,12 +100,5 @@ public class Module {
         }
 
         System.out.println("That lesson could not be found");
-    }
-
-    /**
-     * Changes the state of the completed variable
-     */
-    public void toggleCompleted() {
-        completed = !completed;
     }
 }

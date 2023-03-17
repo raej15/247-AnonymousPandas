@@ -84,17 +84,17 @@ public class DataLoader extends DataConstants{
                 JSONObject courseJSON = (JSONObject)coursesJSON.get(i);
                 UUID author = UUID.fromString((String)courseJSON.get(COURSE_AUTHOR));
                 // hashmap to hold the student grades with their ID
-                HashMap<UUID, ArrayList<Long>> grades = new HashMap<UUID, ArrayList<Long>>();
+                HashMap<UUID, ArrayList<Double>> grades = new HashMap<UUID, ArrayList<Double>>();
                 JSONArray studentsJSON = (JSONArray)courseJSON.get(COURSE_STUDENT);
                 // loops through each student
                 for (int j = 0; j < studentsJSON.size();j++) {
                     JSONObject studentJSON = (JSONObject)studentsJSON.get(j);
                     UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENT_ID));
                     JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENT_GRADES);
-                    ArrayList <Long> studentGrades = new ArrayList<Long>();
+                    ArrayList <Double> studentGrades = new ArrayList<Double>();
                     // loop through grades array
                     for (int k = 0; k < gradesJSON.size(); k++) {
-                        long grade = (long) gradesJSON.get(k);
+                        double grade = (double)(long) gradesJSON.get(k);
                         studentGrades.add(grade);
                     }
                     grades.put(studentID,studentGrades);
@@ -146,7 +146,6 @@ public class DataLoader extends DataConstants{
                         JSONArray answersJSON = (JSONArray)questionJSON.get(COURSE_QUIZ_ANSWERS);
                         ArrayList <String> answers = new ArrayList<String>();
                         for (int m = 0; m < answersJSON.size(); m++){
-                            //JSONObject answerJSON = (JSONObject)questionJSON.get(m);
                             String answer = (String)answersJSON.get(m);
                             answers.add(answer);
                         }
@@ -156,6 +155,35 @@ public class DataLoader extends DataConstants{
                          Question newQuestion = new Question(question, answers, correctIndex);
                          questions.add(newQuestion);
                     }
+                    Quiz quiz = new Quiz(questions);
+
+                    //module comments
+                    //COURSE_COMMENTS = "comments";
+                    //COURSE_COMMENTS_COMMENT = "comment";
+                    ArrayList<Comment> comments = new ArrayList<Comment>();
+                    JSONArray moduleCommentsJSON = (JSONArray)moduleJSON.get(COURSE_COMMENTS);
+                    for (int k = 0; k < moduleCommentsJSON.size(); k++) {
+                        JSONObject commentJSON = (JSONObject)moduleCommentsJSON.get(k);
+                        UUID commenter = UUID.fromString((String)commentJSON.get(COURSE_COMMENTS_USER));
+                        String comment = (String)commentJSON.get(COURSE_COMMENTS_COMMENT);
+                        JSONArray nestedCommentsJSON = (JSONArray)commentJSON.get(COURSE_COMMENTS);
+                        // nested comments
+                        ArrayList<Comment> nestedComments = new ArrayList<Comment>();
+                        for (int m = 0; m < nestedCommentsJSON.size(); m++) {
+                            JSONObject nestedCommentJSON = (JSONObject)moduleCommentsJSON.get(k);
+                            UUID nestedCommenter = UUID.fromString((String)nestedCommentJSON.get(COURSE_COMMENTS_USER));
+                            String nestedComment = (String)nestedCommentJSON.get(COURSE_COMMENTS_COMMENT);
+                            ArrayList<Comment> doubleComments = new ArrayList<Comment>();
+                            Comment newComment = new Comment(nestedCommenter, nestedComment, doubleComments);
+                            nestedComments.add(newComment);
+                        }
+                        Comment newComment = new Comment(commenter, comment, nestedComments);
+                        comments.add(newComment);
+                    }
+
+                    Module newModule = new Module(moduleName, lessons, quiz);
+                    modules.add(newModule);
+                    
                 }
 
                 Course course = new Course(courseName, courseDescription, language, author, grades);

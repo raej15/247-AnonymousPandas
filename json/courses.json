@@ -108,6 +108,41 @@
                         "answers":[ "True", "False" ],
                         "correctIndex": 0
                     }
+                ],
+                "comments":[
+                    {
+                        "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+                        "comment": "Are objects hard in JavaScript?",
+                        "comments": [
+                            {
+                                "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
+                                "comment": "No once you get used to them they aren't bad!",
+                                "comments": []
+
+                            },
+                            {
+                                "user": "41cacde1-48d5-4374-9119-4121510741f5",
+                                "comment": "A little weird at first.",
+                                "comments": []
+                            }
+                        ]
+                    },
+                    {
+                        "user": "41cacde1-48d5-4374-9119-4121510741f5",
+                        "comment": "These are fun!!!",
+                        "comments": [
+                            {
+                                "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+                                "comment": "Yes so helful.",
+                                "comments": []
+                            },
+                            {
+                                "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
+                                "comment": "Why did I not learn this earlier!",
+                                "comments": []
+                            }
+                        ]
+                    }
                 ]
             }
 

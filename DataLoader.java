@@ -5,7 +5,7 @@
 
 import java.io.FileReader;
 import java.util.ArrayList;
-//import java.util.Iterator;
+import java.util.HashMap;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -29,18 +29,18 @@ public class DataLoader extends DataConstants{
 
 //userid, firstName, lastName, email, username, password, type (order in json file)
 
-public static void main(String[] args) {
-    
-    ArrayList<User> users = loadUsers();
-    for (User user: users) {
-        System.out.println(user.toString()+"\n---------------");
-
+    public static void main(String[] args) {
+        ArrayList<User> users = loadUsers();
+        for (User user: users) {
+            System.out.println(user.toString()+"\n---------------");
+        }
+        ArrayList<Course> courses = loadCourses();
+        for (Course course: courses) {
+            System.out.println(course.getAuthorID());
+        }
     }
-
-}
     public static ArrayList<User> loadUsers() {
         ArrayList<User> users = new ArrayList<User>();
-            
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
             JSONParser parser = new JSONParser();
@@ -68,17 +68,63 @@ public static void main(String[] args) {
         UserList.setUserList(users);
         return users;
         } 
-
         catch(Exception e) {
             e.printStackTrace();
         }
+        return null;
 
+    }
+
+    public static ArrayList<Course> loadCourses() {
+        ArrayList<Course> courses = new ArrayList<Course>();
+        try {
+            FileReader reader = new FileReader(COURSE_FILE_NAME);
+            JSONParser parser = new JSONParser();
+            JSONArray coursesJSON = (JSONArray)parser.parse(reader);
+        if(coursesJSON != null)
+        {
+            // loops through each course in courses.json
+            for(int i =0; i < coursesJSON.size(); i++)
+            {
+                JSONObject courseJSON = (JSONObject)coursesJSON.get(i);
+                UUID author = UUID.fromString((String)courseJSON.get(COURSE_AUTHOR));
+
+                // hashmap to hold the student grades with their ID
+                HashMap<UUID, ArrayList<Double>> grades = new HashMap<UUID, ArrayList<Double>>();
+                JSONObject studentsJSON = (JSONObject)courseJSON.get(COURSE_STUDENT);
+                // loops through each student
+                for (int j = 0; j < studentsJSON.size();j++) {
+                    System.out.println("students");
+                    JSONObject studentJSON = (JSONObject)studentsJSON.get(j);
+                    UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENT));
+
+                    JSONObject gradesJSON = (JSONObject)studentJSON.get(COURSE_STUDENT_GRADES);
+
+                    ArrayList <Double> studentGrades = new ArrayList<Double>();
+                    // loop through grades array
+                    for (int k = 0; k < gradesJSON.size(); k++) {
+                        double grade = (Double)gradesJSON.get(k);
+                        studentGrades.add(grade);
+                    }
+                    grades.put(studentID,studentGrades);
+                }
+                Course course = new Course(author, grades);
+                courses.add(course);
+            }
+            
+        }
+        CourseList.setCourseList(courses);
+        return courses;
+        } 
+        catch(Exception e) {
+            e.printStackTrace();
+        }
         return null;
 
     }
 
     //needs a lot of work still!! but i updated it a bunch 
-    public static ArrayList<Course> loadCourses() {
+    public static ArrayList<Course> loadCourses2() {
 
         ArrayList<Course> courses = new ArrayList<Course>();
             

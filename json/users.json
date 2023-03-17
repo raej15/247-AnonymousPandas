@@ -5,13 +5,24 @@
   	"lastName":"White",
     "email":"twhite@gmail.com",
     "username": "trey12",
+<<<<<<< HEAD
+    "password": "trey1",
+=======
+    "password": "treyWhite12",
+>>>>>>> dcea3fba2f5b3f239cd574ae4358a7460b201e4f
     "type":"Student"
   },{
     "userid": "dd6e2806-c8bd-4f14-a1f5-4ef0bdbcb7cc",
   	"firstName":"Molly",
   	"lastName":"Sansa",
     "email":"mSansa@gmail.com",
+<<<<<<< HEAD
     "username": "yayCode",
+    "password": "trey1",
+=======
+    "username": "salsa",
+    "password": "salseDance",
+>>>>>>> dcea3fba2f5b3f239cd574ae4358a7460b201e4f
     "type":"Creator"
   },{
     "userid": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
@@ -19,6 +30,11 @@
   	"lastName":"Russell",
     "email":"topher@gmail.com",
     "username": "topherR",
+<<<<<<< HEAD
+    "password": "chris1",
+=======
+    "password": "topheristiktokfamous",
+>>>>>>> dcea3fba2f5b3f239cd574ae4358a7460b201e4f
     "type":"Student"
   },{
     "userid": "41cacde1-48d5-4374-9119-4121510741f5",
@@ -26,6 +42,11 @@
   	"lastName":"Swift",
     "email":"tswizzle@gmail.com",
     "username": "swiftie92",
+<<<<<<< HEAD
+    "password": "swifties",
+=======
+    "password": "youbelongwithme",
+>>>>>>> dcea3fba2f5b3f239cd574ae4358a7460b201e4f
     "type":"Student"
   },{
     "userid": "878a27e5-78b2-499a-847e-1c60c84cf9f2",
@@ -33,6 +54,11 @@
   	"lastName":"Winfrey",
     "email":"oprah@gmail.com",
     "username": "youGetACar",
+<<<<<<< HEAD
+    "password": "yum",
+=======
+    "password": "oprahOprah",
+>>>>>>> dcea3fba2f5b3f239cd574ae4358a7460b201e4f
     "type":"Student"
   },{
     "userid": "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf",
@@ -40,6 +66,11 @@
   	"lastName":"Jordan",
     "email":"mj23@gmail.com",
     "username": "chicagoBulls23",
+<<<<<<< HEAD
+    "password": "jordans",
+=======
+    "password": "curryisbetter",
+>>>>>>> dcea3fba2f5b3f239cd574ae4358a7460b201e4f
     "type":"Creator"
   }
 ]

@@ -7,10 +7,11 @@ import java.util.ArrayList;
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
  */
-public class Module {
+public class Module extends DataConstants{
     private ArrayList<Lesson> lessons;
     private String moduleName;
     private Quiz quiz;
+    private ArrayList<Comment> comments;
 
     /**
      * Creates a new module
@@ -22,10 +23,11 @@ public class Module {
         quiz = new Quiz();
     }
 
-    Module(String moduleName, ArrayList<Lesson> lessons, Quiz quiz) {
+    Module(String moduleName, ArrayList<Lesson> lessons, Quiz quiz, ArrayList<Comment> comments) {
         this.moduleName = moduleName;
         this.lessons = lessons;
         this.quiz = quiz;
+        this.comments = comments;
     }
 
     /**
@@ -100,5 +102,19 @@ public class Module {
         }
 
         System.out.println("That lesson could not be found");
+    }
+
+    public String toString(){
+        String finalStr = RED+BOLD+"\nModule Name: "+ moduleName+RESET;
+        for (Lesson lesson: lessons){
+            finalStr+="\n";
+            finalStr+=lesson.toString();
+        }
+        finalStr+=quiz.toString();
+        for (Comment comment: comments){
+            finalStr+="\n";
+            finalStr+=comment.toString();
+        }
+        return finalStr;
     }
 }

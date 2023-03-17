@@ -7,7 +7,7 @@
 /**
  * A question (If an answer is set to -1, then that means it has not been set yet)
  */
-public class Question {
+public class Question extends DataConstants{
     private ArrayList<String> answers;
     private String question;
     public int correctIndex;
@@ -92,5 +92,14 @@ public class Question {
         }
 
         System.out.println("That answer could not be found");
+    }
+
+    public String toString(){
+        String finalStr = GREEN+BOLD+"Question: "+RESET+GREEN+ question+RESET;
+        for (String answer: answers) {
+            finalStr+="\n\t";
+            finalStr+=answer;
+        }
+        return finalStr;
     }
 }

@@ -10,7 +10,7 @@ import java.util.UUID;
 /**
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for, and if it's been completed
  */
-public class Course {
+public class Course extends DataConstants{
     private ArrayList<Module> modules;
     private String courseName;
     private String description;
@@ -18,6 +18,7 @@ public class Course {
     public String languageStr;
     public HashMap<UUID, ArrayList<Double>> grades;
     public UUID author;
+    public ArrayList<Comment> courseComments;
 
     /**
      * Creates a new course
@@ -32,12 +33,14 @@ public class Course {
         this.language = language;
     }
 
-    Course(String courseName, String description, String language, UUID author, HashMap<UUID, ArrayList<Double>> grades){
+    Course(String courseName, String description, String language, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments){
         this.courseName = courseName;
         this.description = description;
         this.languageStr = language;
         this.author = author;
         this.grades = grades;
+        this.modules = modules;
+        this.courseComments = courseComments;
     }
 
     /**
@@ -144,16 +147,6 @@ public class Course {
         this.grades = grades;
     }
 
-/*
- * // iterating through key/value mappings
-    System.out.print("Entries: ");
-    for(Entry<String, String> entry: languages.entrySet()) {
-      System.out.print(entry);
-      System.out.print(", ");
-    }
-    }
- */
-
     public String getGrades() {
         String finalStr = "Student Grades:";
         for(Entry<UUID, ArrayList<Double>> entry: grades.entrySet()) {
@@ -164,6 +157,15 @@ public class Course {
     }
 
     public String toString(){
-        return "Course Name: "+ this.courseName + "\nDescription: "+ this.description+"\nLanguage: "+this.languageStr+"\nAuthor Id: "+this.author+ "\n"+getGrades();
+        String finalStr =  BOLD+"Course Name: "+ this.courseName + RESET+"\nDescription: "+ this.description+"\nLanguage: "+this.languageStr+"\nAuthor Id: "+this.author+ "\n"+getGrades();
+        for(Module module: modules) {
+            finalStr+="\n";
+            finalStr+=module.toString();
+        }
+        for (Comment comment: courseComments){
+            finalStr+="\n";
+            finalStr+=comment.toString();
+        }
+        return finalStr;
     }
 }

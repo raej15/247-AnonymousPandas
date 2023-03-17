@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * A quiz which consists of a title and an ArrayList of questions
  */
-public class Quiz {
+public class Quiz extends DataConstants{
      private ArrayList<Question> questions;
      private String title;
 
@@ -83,5 +83,14 @@ public class Quiz {
         }
 
         System.out.println("That question could not be found");
+     }
+
+     public String toString(){
+        String finalStr = GREEN+BOLD+"\nQuiz"+RESET;
+        for (Question question: questions) {
+            finalStr+="\n";
+            finalStr+=question.toString();
+        }
+        return finalStr;
      }
 }

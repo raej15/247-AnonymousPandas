@@ -31,7 +31,9 @@ public class DataLoader extends DataConstants{
         }
         ArrayList<Course> courses = loadCourses();
         for (Course course: courses) {
+            System.out.println("------------------------------------------------------------------------");
             System.out.println(course.toString());
+            System.out.println("------------------------------------------------------------------------");
         }
     }
     public static ArrayList<User> loadUsers() {
@@ -115,7 +117,6 @@ public class DataLoader extends DataConstants{
                     
                     // module name
                     String moduleName = (String)moduleJSON.get(COURSE_MODULE_NAME);
-                    System.out.println(moduleName);
 
                     //lessons
                     ArrayList <Lesson> lessons = new ArrayList<Lesson>();
@@ -157,22 +158,21 @@ public class DataLoader extends DataConstants{
                     }
                     Quiz quiz = new Quiz(questions);
 
-                    //module comments
-                    //COURSE_COMMENTS = "comments";
-                    //COURSE_COMMENTS_COMMENT = "comment";
                     ArrayList<Comment> comments = new ArrayList<Comment>();
-                    JSONArray moduleCommentsJSON = (JSONArray)moduleJSON.get(COURSE_COMMENTS);
+                    JSONArray moduleCommentsJSON = (JSONArray)moduleJSON.get(COURSE_MODULE_MODULE_COMMENTS);
                     for (int k = 0; k < moduleCommentsJSON.size(); k++) {
+                        
                         JSONObject commentJSON = (JSONObject)moduleCommentsJSON.get(k);
                         UUID commenter = UUID.fromString((String)commentJSON.get(COURSE_COMMENTS_USER));
                         String comment = (String)commentJSON.get(COURSE_COMMENTS_COMMENT);
-                        JSONArray nestedCommentsJSON = (JSONArray)commentJSON.get(COURSE_COMMENTS);
+
+                        JSONArray nestedCommentsJSON = (JSONArray)commentJSON.get(COURSE_NESTED_COMMENTS);
                         // nested comments
                         ArrayList<Comment> nestedComments = new ArrayList<Comment>();
                         for (int m = 0; m < nestedCommentsJSON.size(); m++) {
-                            JSONObject nestedCommentJSON = (JSONObject)moduleCommentsJSON.get(k);
+                            JSONObject nestedCommentJSON = (JSONObject)nestedCommentsJSON.get(m);
                             UUID nestedCommenter = UUID.fromString((String)nestedCommentJSON.get(COURSE_COMMENTS_USER));
-                            String nestedComment = (String)nestedCommentJSON.get(COURSE_COMMENTS_COMMENT);
+                            String nestedComment = (String)nestedCommentJSON.get(COURSE_NESTED_COMMENT);
                             ArrayList<Comment> doubleComments = new ArrayList<Comment>();
                             Comment newComment = new Comment(nestedCommenter, nestedComment, doubleComments);
                             nestedComments.add(newComment);
@@ -181,12 +181,36 @@ public class DataLoader extends DataConstants{
                         comments.add(newComment);
                     }
 
-                    Module newModule = new Module(moduleName, lessons, quiz);
+                    Module newModule = new Module(moduleName, lessons, quiz, comments);
                     modules.add(newModule);
+
                     
                 }
+                // course comments
+                ArrayList<Comment> courseComments = new ArrayList<Comment>();
+                JSONArray courseCommentsJSON = (JSONArray)courseJSON.get(COURSE_COURSE_COMMENTS);
+                for (int k = 0; k < courseCommentsJSON.size(); k++) {
+                    
+                    JSONObject commentJSON = (JSONObject)courseCommentsJSON.get(k);
+                    UUID commenter = UUID.fromString((String)commentJSON.get(COURSE_COMMENTS_USER));
+                    String comment = (String)commentJSON.get(COURSE_COMMENTS_COMMENT);
 
-                Course course = new Course(courseName, courseDescription, language, author, grades);
+                    JSONArray nestedCommentsJSON = (JSONArray)commentJSON.get(COURSE_NESTED_COMMENTS);
+                    // nested comments
+                    ArrayList<Comment> nestedComments = new ArrayList<Comment>();
+                    for (int m = 0; m < nestedCommentsJSON.size(); m++) {
+                        JSONObject nestedCommentJSON = (JSONObject)nestedCommentsJSON.get(m);
+                        UUID nestedCommenter = UUID.fromString((String)nestedCommentJSON.get(COURSE_COMMENTS_USER));
+                        String nestedComment = (String)nestedCommentJSON.get(COURSE_NESTED_COMMENT);
+                        ArrayList<Comment> doubleComments = new ArrayList<Comment>();
+                        Comment newComment = new Comment(nestedCommenter, nestedComment, doubleComments);
+                        nestedComments.add(newComment);
+                    }
+                    Comment newComment = new Comment(commenter, comment, nestedComments);
+                    courseComments.add(newComment);
+                }
+
+                Course course = new Course(courseName, courseDescription, language, author, grades, modules, courseComments);
                 courses.add(course);
             }
             

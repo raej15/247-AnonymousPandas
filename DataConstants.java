@@ -39,9 +39,20 @@ public abstract class DataConstants{
     protected static final String COURSE_COMMENTS = "comments";
     protected static final String COURSE_COMMENTS_USER = "user";
     protected static final String COURSE_COMMENTS_COMMENT = "comment";
+    protected static final String COURSE_NESTED_COMMENTS = "nestedComments";
+    protected static final String COURSE_NESTED_COMMENT = "nestedComment";
+    protected static final String COURSE_MODULE_MODULE_COMMENTS = "moduleComments";
+    protected static final String COURSE_COURSE_COMMENTS = "courseComments";
 
 
-
+    protected static final String RESET = "\u001B[0m";
+    protected static final String BLACK = "\u001B[30m";
+    protected static final String RED = "\u001B[31m";
+    protected static final String GREEN = "\u001B[32m";
+    protected static final String BLUE = "\u001B[34m";
+    protected static final String PURPLE = "\u001B[35m";
+    protected static final String CYAN = "\u001B[36m";
+    protected static final String BOLD = "\u001b[1m";
 
 
 

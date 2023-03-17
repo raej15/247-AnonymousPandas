@@ -5,7 +5,7 @@
 /**
  * A lesson which consists of a name and its description, which is what the user will read
  */
-public class Lesson {
+public class Lesson extends DataConstants{
     private String lessonName;
     private String content;
 
@@ -52,6 +52,6 @@ public class Lesson {
     }
 
     public String toString() {
-        return "Lesson Name: " + this.lessonName + "\nContent: "+ this.content;
+        return BLUE+BOLD+"Lesson Name: " + this.lessonName +RESET+BLUE+ "\nContent: "+ this.content+RESET;
     }
 }

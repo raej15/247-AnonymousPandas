@@ -45,5 +45,14 @@ public class Comment {
         return comment;
     }
 
+    public String toString(){
+        String finalStr = "Comment: " + this.comment;
+        for(Comment comment: comments) {
+            finalStr+="\n";
+            finalStr+="\tNested Comment: " + comment.getComment();
+        }
+        return finalStr;
+    }
+
 
 }

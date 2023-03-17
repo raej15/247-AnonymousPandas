@@ -45,20 +45,19 @@
                         "correctIndex": 0
                     }
                 ],
-                "comments":[
+                "moduleComments":[
                     {
                         "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
-                        "comment": "Where is it the best to code in JavaScript?",
-                        "comments": [
+                        "comment": "How do you multiply two variables?",
+                        "nestedComments": [
                             {
                                 "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
-                                "comment": "You create two variables that are type number (no quotes) and initialize their values. Then use the variable names to multiply using the asterisk symbol.",
+                                "nestedComment": "You create two variables that are type number (no quotes) and initialize their values. Then use the variable names to multiply using the asterisk symbol.",
                                 "comments": []
-
                             },
                             {
                                 "user": "41cacde1-48d5-4374-9119-4121510741f5",
-                                "comment": "An example is var calculation = variableName1 * variableName2.",
+                                "nestedComment": "An example is var calculation = variableName1 * variableName2.",
                                 "comments": []
                             }
                         ]
@@ -66,21 +65,19 @@
                     {
                         "user": "41cacde1-48d5-4374-9119-4121510741f5",
                         "comment": "I don't understand arrays.",
-                        "comments": [
+                        "nestedComments": [
                             {
                                 "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
-                                "comment": "An array is a data structure that contains a group of elements. Typically these elements are all of the same data type.",
+                                "nestedComment": "An array is a data structure that contains a group of elements. Typically these elements are all of the same data type.",
                                 "comments": []
                             },
                             {
                                 "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
-                                "comment": "You can access an array using the indicies.",
+                                "nestedComment": "You can access an array using the indicies.",
                                 "comments": []
                             }
                         ]
-                    }
-                    
-
+                    } 
                 ]
             },
                 {"moduleName": "Objects",
@@ -90,7 +87,7 @@
                 },
                 {
                     "lessonName":"Example",
-                    "content": "You might use an object for a user. Each user could have a first name, last name, and weight. The first and last names would be a string. The weight would be a number. Ex: var user1 = {firstName:'Ann', lastName:'Smith', weight:'125'};"
+                    "content": "You might use an object for a user. Each user could have a first name, last name, and weight. The first and last names would be a string. The weight would be a number. Ex: var user1 = {firstName:'Ann', lastName:'Smith', weight:'125'}"
                 },
                 {
                     "lessonName":"Objects and Arrays",
@@ -109,20 +106,20 @@
                         "correctIndex": 0
                     }
                 ],
-                "comments":[
+                "moduleComments":[
                     {
                         "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
                         "comment": "Are objects hard in JavaScript?",
-                        "comments": [
+                        "nestedComments": [
                             {
                                 "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
-                                "comment": "No once you get used to them they aren't bad!",
+                                "nestedComment": "No once you get used to them they aren't bad!",
                                 "comments": []
 
                             },
                             {
                                 "user": "41cacde1-48d5-4374-9119-4121510741f5",
-                                "comment": "A little weird at first.",
+                                "nestedComment": "A little weird at first.",
                                 "comments": []
                             }
                         ]
@@ -130,15 +127,15 @@
                     {
                         "user": "41cacde1-48d5-4374-9119-4121510741f5",
                         "comment": "These are fun!!!",
-                        "comments": [
+                        "nestedComments": [
                             {
                                 "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
-                                "comment": "Yes so helful.",
+                                "nestedComment": "Yes so helful.",
                                 "comments": []
                             },
                             {
                                 "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
-                                "comment": "Why did I not learn this earlier!",
+                                "nestedComment": "Why did I not learn this earlier!",
                                 "comments": []
                             }
                         ]
@@ -147,19 +144,19 @@
             }
 
         ],
-        "comments":[
+        "courseComments":[
             {
                 "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
                 "comment": "Who uses JavaScript?",
-                "comments": [
+                "nestedComments": [
                     {
                         "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
-                        "comment": "Front end developers use JavaScript to add behavior to webpages.",
+                        "nestedComment": "Front end developers use JavaScript to add behavior to webpages.",
                         "comments": []
                     },
                     {
                         "user": "41cacde1-48d5-4374-9119-4121510741f5",
-                        "comment": "They also use HTML to display the content and CSS to make the webpages have different colors and fonts.",
+                        "nestedComment": "They also use HTML to display the content and CSS to make the webpages have different colors and fonts.",
                         "comments": []
                     }
                 ]
@@ -167,15 +164,15 @@
             {
                 "user": "878a27e5-78b2-499a-847e-1c60c84cf9f2",
                 "comment": "Where is the best place to code JavaScript?",
-                "comments": [
+                "nestedComments": [
                     {
                         "user": "41cacde1-48d5-4374-9119-4121510741f5",
-                        "comment": "WebStorm is one of the most frequently used integrated development environments for JavaScript, and probably the best IDE for frontend development available at the moment.",
+                        "nestedComment": "WebStorm is one of the most frequently used integrated development environments for JavaScript, and probably the best IDE for frontend development available at the moment.",
                         "comments": []
                     },
                     {
                         "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
-                        "comment": "I use Visual Studio Code and I really like it.",
+                        "nestedComment": "I use Visual Studio Code and I really like it.",
                         "comments": []
                     }
                 ]

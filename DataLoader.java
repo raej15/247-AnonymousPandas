@@ -36,8 +36,7 @@ public class DataLoader extends DataConstants{
         }
         ArrayList<Course> courses = loadCourses();
         for (Course course: courses) {
-            System.out.println(course.getAuthorID());
-            course.getGrades();
+            System.out.println(course.toString());
         }
     }
     public static ArrayList<User> loadUsers() {
@@ -75,16 +74,7 @@ public class DataLoader extends DataConstants{
         return null;
 
     }
-    
-    /*
-     * JSONArray allergies = (JSONArray)camperJSON.get(ALLERGIES);
-                    ArrayList<String> allergyList = new ArrayList<String>();
-                    if(allergies != null)
-                    {
-                        for(int k = 0 ; k < allergies.size(); k++)
-                            allergyList.add((String)allergies.get(k));
-                    }                
-     */
+
     public static ArrayList<Course> loadCourses() {
         ArrayList<Course> courses = new ArrayList<Course>();
         try {
@@ -114,7 +104,11 @@ public class DataLoader extends DataConstants{
                     }
                     grades.put(studentID,studentGrades);
                 }
-                Course course = new Course(author, grades);
+                // course name
+                String courseName = (String)courseJSON.get(COURSE_NAME);
+                // course description
+                String courseDescription = (String)courseJSON.get(COURSE_DESCRIPTION);
+                Course course = new Course(courseName, courseDescription, author, grades);
                 courses.add(course);
             }
             

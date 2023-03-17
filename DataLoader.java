@@ -37,6 +37,7 @@ public class DataLoader extends DataConstants{
         ArrayList<Course> courses = loadCourses();
         for (Course course: courses) {
             System.out.println(course.getAuthorID());
+            course.getGrades();
         }
     }
     public static ArrayList<User> loadUsers() {
@@ -74,7 +75,16 @@ public class DataLoader extends DataConstants{
         return null;
 
     }
-
+    
+    /*
+     * JSONArray allergies = (JSONArray)camperJSON.get(ALLERGIES);
+                    ArrayList<String> allergyList = new ArrayList<String>();
+                    if(allergies != null)
+                    {
+                        for(int k = 0 ; k < allergies.size(); k++)
+                            allergyList.add((String)allergies.get(k));
+                    }                
+     */
     public static ArrayList<Course> loadCourses() {
         ArrayList<Course> courses = new ArrayList<Course>();
         try {
@@ -88,22 +98,18 @@ public class DataLoader extends DataConstants{
             {
                 JSONObject courseJSON = (JSONObject)coursesJSON.get(i);
                 UUID author = UUID.fromString((String)courseJSON.get(COURSE_AUTHOR));
-
                 // hashmap to hold the student grades with their ID
-                HashMap<UUID, ArrayList<Double>> grades = new HashMap<UUID, ArrayList<Double>>();
-                JSONObject studentsJSON = (JSONObject)courseJSON.get(COURSE_STUDENT);
+                HashMap<UUID, ArrayList<Long>> grades = new HashMap<UUID, ArrayList<Long>>();
+                JSONArray studentsJSON = (JSONArray)courseJSON.get(COURSE_STUDENT);
                 // loops through each student
                 for (int j = 0; j < studentsJSON.size();j++) {
-                    System.out.println("students");
                     JSONObject studentJSON = (JSONObject)studentsJSON.get(j);
-                    UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENT));
-
-                    JSONObject gradesJSON = (JSONObject)studentJSON.get(COURSE_STUDENT_GRADES);
-
-                    ArrayList <Double> studentGrades = new ArrayList<Double>();
+                    UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENT_ID));
+                    JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENT_GRADES);
+                    ArrayList <Long> studentGrades = new ArrayList<Long>();
                     // loop through grades array
                     for (int k = 0; k < gradesJSON.size(); k++) {
-                        double grade = (Double)gradesJSON.get(k);
+                        long grade = (long) gradesJSON.get(k);
                         studentGrades.add(grade);
                     }
                     grades.put(studentID,studentGrades);

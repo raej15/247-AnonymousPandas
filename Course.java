@@ -4,6 +4,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 /**
@@ -14,7 +15,7 @@ public class Course {
     private String courseName;
     private String description;
     private Language language;
-    public HashMap<UUID, ArrayList<Double>> grades;
+    public HashMap<UUID, ArrayList<Long>> grades;
     public UUID author;
 
     /**
@@ -30,7 +31,7 @@ public class Course {
         this.language = language;
     }
 
-    Course(UUID author, HashMap<UUID, ArrayList<Double>> grades){
+    Course(UUID author, HashMap<UUID, ArrayList<Long>> grades){
         this.author = author;
         this.grades = grades;
     }
@@ -135,7 +136,26 @@ public class Course {
         System.out.println("That module could not be found");
     }
 
-    public void setGrades(HashMap<UUID, ArrayList<Double>> grades){
+    public void setGrades(HashMap<UUID, ArrayList<Long>> grades){
         this.grades = grades;
+    }
+
+/*
+ * // iterating through key/value mappings
+    System.out.print("Entries: ");
+    for(Entry<String, String> entry: languages.entrySet()) {
+      System.out.print(entry);
+      System.out.print(", ");
+    }
+    }
+ */
+
+    public void getGrades() {
+        // iterating through key/value mappings
+        System.out.println("Student Grades: ");
+        for(Entry<UUID, ArrayList<Long>> entry: grades.entrySet()) {
+            System.out.println(entry);
+            //System.out.print(", ");
+        }
     }
 }

@@ -13,11 +13,6 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants{
 
-//these seem to cause errors when not commented out?
-//private static final String USER_FILE_NAME = null;
-//private static final String COURSE_FILE_NAME = null;
-
-
 /**
  * Load users method 
  * users JSON  
@@ -108,7 +103,62 @@ public class DataLoader extends DataConstants{
                 String courseName = (String)courseJSON.get(COURSE_NAME);
                 // course description
                 String courseDescription = (String)courseJSON.get(COURSE_DESCRIPTION);
-                Course course = new Course(courseName, courseDescription, author, grades);
+                // language
+                String language = (String)courseJSON.get(COURSE_LANGUAGE);
+
+                //looping through modules
+                ArrayList <Module> modules = new ArrayList<Module>();
+                JSONArray modulesJSON = (JSONArray)courseJSON.get(COURSE_MODULES);
+                for (int j = 0; j < modulesJSON.size(); j++) {
+                    // module
+                    JSONObject moduleJSON = (JSONObject)modulesJSON.get(j);
+                    
+                    // module name
+                    String moduleName = (String)moduleJSON.get(COURSE_MODULE_NAME);
+                    System.out.println(moduleName);
+
+                    //lessons
+                    ArrayList <Lesson> lessons = new ArrayList<Lesson>();
+                    JSONArray lessonsJSON = (JSONArray)moduleJSON.get(COURSE_LESSONS);
+                    for (int k = 0; k < lessonsJSON.size(); k++) {
+                        // lesson
+                        JSONObject lessonJSON = (JSONObject)lessonsJSON.get(k);
+                        // lesson name
+                        String lessonName = (String)lessonJSON.get(COURSE_LESSON_NAME);
+                        // lesson content
+                        String lessonContent = (String)lessonJSON.get(COURSE_LESSON_CONTENT);
+
+                        Lesson lesson = new Lesson(lessonName, lessonContent);
+                        lessons.add(lesson);
+                    }
+
+                    //quiz
+                    ArrayList<Question> questions = new ArrayList<Question>();
+                    JSONArray quizJSON = (JSONArray)moduleJSON.get(COURSE_MODULE_QUIZ);
+                    for (int k = 0; k <quizJSON.size(); k++) {
+                        // question
+                        JSONObject questionJSON = (JSONObject)quizJSON.get(k);
+
+                        // question content
+                        String question = (String)questionJSON.get(COURSE_QUIZ_QUESTIONS);
+
+                        // answer choices
+                        JSONArray answersJSON = (JSONArray)questionJSON.get(COURSE_QUIZ_ANSWERS);
+                        ArrayList <String> answers = new ArrayList<String>();
+                        for (int m = 0; m < answersJSON.size(); m++){
+                            //JSONObject answerJSON = (JSONObject)questionJSON.get(m);
+                            String answer = (String)answersJSON.get(m);
+                            answers.add(answer);
+                        }
+                         // correct index
+                         int correctIndex = (int)(long)questionJSON.get(COURSE_QUIZ_CORRECT_INDEX);
+
+                         Question newQuestion = new Question(question, answers, correctIndex);
+                         questions.add(newQuestion);
+                    }
+                }
+
+                Course course = new Course(courseName, courseDescription, language, author, grades);
                 courses.add(course);
             }
             

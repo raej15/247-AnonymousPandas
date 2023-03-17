@@ -15,6 +15,7 @@ public class Course {
     private String courseName;
     private String description;
     private Language language;
+    public String languageStr;
     public HashMap<UUID, ArrayList<Long>> grades;
     public UUID author;
 
@@ -31,9 +32,10 @@ public class Course {
         this.language = language;
     }
 
-    Course(String courseName, String description, UUID author, HashMap<UUID, ArrayList<Long>> grades){
+    Course(String courseName, String description, String language, UUID author, HashMap<UUID, ArrayList<Long>> grades){
         this.courseName = courseName;
         this.description = description;
+        this.languageStr = language;
         this.author = author;
         this.grades = grades;
     }
@@ -164,6 +166,6 @@ public class Course {
     }
 
     public String toString(){
-        return "Course Name: "+ this.courseName + "\nDescription: "+ this.description+"\nAuthor Id: "+this.author+ "\n"+getGrades();
+        return "Course Name: "+ this.courseName + "\nDescription: "+ this.description+"\nLanguage: "+this.languageStr+"\nAuthor Id: "+this.author+ "\n"+getGrades();
     }
 }

@@ -57,31 +57,10 @@ public class Quiz {
      public String getTitle() {
         return title;
      }
-
-     /**
-      * Calculates the grade of the user if the quiz has been finished
-      * @return -1 if the quiz has not been finished, 0-100 for the user's grade
-      */
-     public double getGrade() {
-        for (int i = 0; questions.size() > i; i++) {
-            if (!questions.get(i).hasUserAnswer()) {
-                System.out.println("You can't submit the quiz since you haven't answered all the questions");
-                return -1;
-            }
-        }
-
-        double correct = 0;
-
-        for (int i = 0; questions.size() > i; i++) {
-            if (questions.get(i).isCorrect()) {
-                correct++;
-            }
-        }
-        
-        String result = new DecimalFormat("#.##").format((correct/questions.size())*100);
-        return Double.parseDouble(result);
-     }
-
+/* 
+ * 
+*/
+     
      /**
       * Removes a question, if it exist
       * @param question The question to remove

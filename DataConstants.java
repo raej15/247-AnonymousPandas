@@ -31,7 +31,7 @@ public abstract class DataConstants{
     protected static final String COURSE_MODULE_NAME = "moduleName";
     protected static final String COURSE_LESSONS = "lessons";
     protected static final String COURSE_LESSON_NAME = "lessonName";
-    protected static final String COURSE_LESSON_CONTENT = "lessonName";
+    protected static final String COURSE_LESSON_CONTENT = "content";
     protected static final String COURSE_MODULE_QUIZ = "quiz";
     protected static final String COURSE_QUIZ_QUESTIONS = "question";
     protected static final String COURSE_QUIZ_ANSWERS = "answers";

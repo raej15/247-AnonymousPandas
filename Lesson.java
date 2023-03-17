@@ -7,16 +7,16 @@
  */
 public class Lesson {
     private String lessonName;
-    private String description;
+    private String content;
 
     /**
      * Creates a new lesson
      * @param lessonName The name of the lesson
-     * @param description The content of the lesson
+     * @param content The content of the lesson
      */
-    Lesson(String lessonName, String description) {
+    Lesson(String lessonName, String content) {
         this.lessonName = lessonName;
-        this.description = description;
+        this.content = content;
     }
 
     /**
@@ -28,11 +28,11 @@ public class Lesson {
     }
 
     /**
-     * Updates the description to a new one
-     * @param description The new description
+     * Updates the content to a new one
+     * @param content The new content
      */
-    public void updateDescription(String description) {
-        this.description = description;
+    public void updateContent(String content) {
+        this.content = content;
     }
 
     /**
@@ -44,10 +44,14 @@ public class Lesson {
     }
 
     /**
-     * Returns the lesson's description
-     * @return The description of the lesson
+     * Returns the lesson's content
+     * @return The content of the lesson
      */
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
+    }
+
+    public String toString() {
+        return "Lesson Name: " + this.lessonName + "\nContent: "+ this.content;
     }
 }

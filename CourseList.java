@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CourseList {
     public static ArrayList<Course> courses;
-    private static CourseList courselist;
+    private static CourseList courseList;
 
     private CourseList() {
         courses = new ArrayList<Course>();
@@ -15,11 +15,11 @@ public class CourseList {
     }
 
     public static CourseList getInstance(){
-        if (courselist == null) {
-			courselist = new CourseList();
+        if (courseList == null) {
+			courseList = new CourseList();
 		}
 
-        return courselist;
+        return courseList;
     }
 
     public static void setCourseList(ArrayList <Course> courses){
@@ -56,9 +56,17 @@ public class CourseList {
        
     }
 
-    public void printCourses() {
+    public void printCourseNames() {
         for(int i = 0; courses.size() > i; i++) {
             System.out.println(i+": "+courses.get(i).getCourseName());
+        }
+    }
+
+    public void printCourses(){
+        for (Course course: courses) {
+            System.out.println("------------------------------------------------------------------------");
+            System.out.println(course.toString());
+            System.out.println("------------------------------------------------------------------------");
         }
     }
 

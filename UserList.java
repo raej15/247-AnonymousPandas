@@ -64,4 +64,10 @@ public class UserList {
     public ArrayList<User> getUsers() {
         return users;
     }
+
+    public void printUsers(){
+        for (User user: users) {
+            System.out.println(user.toString()+"\n---------------");
+        }
+    }
 }

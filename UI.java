@@ -13,7 +13,10 @@ public class UI {
     }
 
     private static void loadData() {
-
+        DataLoader.loadCourses();
+        //CourseList.getInstance().printCourses();
+        DataLoader.loadUsers();
+        //UserList.getInstance().printUsers();
     }
 
     private static void saveData() {
@@ -30,7 +33,7 @@ public class UI {
 
         while (true) {
             
-            clearTerminal();
+            //clearTerminal();
 
             facade.loadUI();
         }

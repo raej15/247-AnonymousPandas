@@ -39,7 +39,7 @@ public class LearningManagementSystemFacade {
         if (course == null) {
             System.out.println("You are logged in as "+user.getUserName());
             System.out.println("Please select which course you wish to access");
-            courseList.printCourses();
+            courseList.printCourseNames();
             userInputINT = input.nextInt();
             setCourse(userInputINT);
             return;

@@ -35,6 +35,7 @@ public class DataLoader extends DataConstants{
         }
     }
     public static ArrayList<User> loadUsers() {
+        System.out.println("loading users...");
         ArrayList<User> users = new ArrayList<User>();
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
@@ -71,6 +72,7 @@ public class DataLoader extends DataConstants{
     }
 
     public static ArrayList<Course> loadCourses() {
+        System.out.println("loading courses...");
         ArrayList<Course> courses = new ArrayList<Course>();
         try {
             FileReader reader = new FileReader(COURSE_FILE_NAME);

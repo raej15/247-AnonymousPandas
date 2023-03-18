@@ -22,8 +22,6 @@ public class DataLoader extends DataConstants{
  * @return ArrayList<User> 
  */
 
-//userid, firstName, lastName, email, username, password, type (order in json file)
-
     public static void main(String[] args) {
         ArrayList<User> users = loadUsers();
         for (User user: users) {

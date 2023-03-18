@@ -15,7 +15,6 @@ public class Course extends DataConstants{
     private String courseName;
     private String description;
     private Language language;
-    public String languageStr;
     public HashMap<UUID, ArrayList<Double>> grades;
     public UUID author;
     public ArrayList<Comment> courseComments;
@@ -33,14 +32,22 @@ public class Course extends DataConstants{
         this.language = language;
     }
 
-    Course(String courseName, String description, String language, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments){
+    Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments){
         this.courseName = courseName;
         this.description = description;
-        this.languageStr = language;
+        setLanguage(languageStr);
         this.author = author;
         this.grades = grades;
         this.modules = modules;
         this.courseComments = courseComments;
+    }
+
+    public void setLanguage(String languageStr){
+        if (languageStr.equalsIgnoreCase("javascript")){
+            this.language=Language.JavaScript;
+        } else if (languageStr.equalsIgnoreCase("python")) {
+            this.language=Language.Python;
+        }
     }
 
     /**
@@ -157,7 +164,7 @@ public class Course extends DataConstants{
     }
 
     public String toString(){
-        String finalStr =  BOLD+"Course Name: "+ this.courseName + RESET+"\nDescription: "+ this.description+"\nLanguage: "+this.languageStr+"\nAuthor Id: "+this.author+ "\n"+getGrades();
+        String finalStr =  BOLD+"Course Name: "+ this.courseName + RESET+"\nDescription: "+ this.description+"\nLanguage: "+this.language+"\nAuthor Id: "+this.author+ "\n"+getGrades();
         for(Module module: modules) {
             finalStr+="\n";
             finalStr+=module.toString();

@@ -47,7 +47,7 @@ public class Quiz extends DataConstants{
       */
      public Question getQuestion(int index) {
         if (!(questions.size() > index)) {
-            System.out.println("That is not an answer");
+            System.out.println("Invalid input");
             return null;
         }
 
@@ -61,29 +61,32 @@ public class Quiz extends DataConstants{
      public String getTitle() {
         return title;
      }
-/* 
- * 
-*/
      
-     /**
-      * Removes a question, if it exist
-      * @param question The question to remove
-      */
-     public void removeQuestion(String question) {
-        if (questions.size() == 0) {
-            System.out.println("There are no questions to remove");
-            return;
-        }
+   /**
+   * Removes a question, if it exist
+   * @param question The question to remove
+   */
+   public void removeQuestion(String question) {
+      if (questions.size() == 0) {
+         System.out.println("There are no questions to remove");
+         return;
+      }
         
-        for (int i = 0; questions.size() > i; i++) {
-            if (questions.get(i).getQuestion().equals(question)) {
-                questions.remove(i);
-                return;
-            }
-        }
+      for (int i = 0; questions.size() > i; i++) {
+         if (questions.get(i).getQuestion().equals(question)) {
+            questions.remove(i);
+            return;
+         }
+      }
 
-        System.out.println("That question could not be found");
-     }
+      System.out.println("That question could not be found");
+   }
+
+   public void printQuestions() {
+      for(int i = 0; questions.size() > i; i++) {
+         System.out.println(i+": "+questions.get(i).getQuestion());
+      }
+   }
 
      public String toString(){
         String finalStr = GREEN+BOLD+"\nQuiz"+RESET;

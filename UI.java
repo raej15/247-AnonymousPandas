@@ -23,17 +23,13 @@ public class UI {
 
     }
 
-    private static void login() {
-        
-    }
-
     public static void main(String[] args) {
         LearningManagementSystemFacade facade = new LearningManagementSystemFacade();
         loadData();
 
         while (true) {
             
-            //clearTerminal();
+            clearTerminal();
 
             facade.loadUI();
         }

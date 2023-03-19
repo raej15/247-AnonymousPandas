@@ -68,16 +68,14 @@ public class Module extends DataConstants{
      * @param lessonName The name of the lesson the user wants
      * @return A lesson
      */
-    public Lesson getLesson(String lessonName) {
+    public Lesson getLesson(int lessonIndex) {
         if (lessons.size() == 0) {
             System.out.println("There are no lessons to get");
             return null;
         }
         
-        for (int i = 0; lessons.size() > i; i++) {
-            if (lessons.get(i).getLessonName().equals(lessonName)) {
-                return lessons.get(i);
-            }
+        if (lessons.size() > lessonIndex) {
+            return lessons.get(lessonIndex);
         }
 
         System.out.println("That lesson could not be found");
@@ -102,6 +100,12 @@ public class Module extends DataConstants{
         }
 
         System.out.println("That lesson could not be found");
+    }
+
+    public void printLessonNames() {
+        for(int i = 0; lessons.size() > i; i++) {
+            System.out.println(i+": "+lessons.get(i).getLessonName());
+        }
     }
 
     public String toString(){

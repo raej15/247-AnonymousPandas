@@ -114,16 +114,14 @@ public class Course extends DataConstants{
      * @param moduleName The module you want to get
      * @return A module object
      */
-    public Module getModule(String moduleName) {
+    public Module getModule(int moduleIndex) {
         if (modules.size() == 0) {
             System.out.println("There are no modules to get");
             return null;
         }
         
-        for (int i = 0; modules.size() > i; i++) {
-            if (modules.get(i).getModuleName().equals(moduleName)) {
-                return modules.get(i);
-            }
+        if (modules.size() > moduleIndex) {
+            return modules.get(moduleIndex);
         }
 
         System.out.println("That module could not be found");
@@ -161,6 +159,12 @@ public class Course extends DataConstants{
             finalStr+=entry;
         }
         return finalStr;
+    }
+
+    public void printModuleNames() {
+        for(int i = 0; modules.size() > i; i++) {
+            System.out.println(i+": "+modules.get(i).getModuleName());
+        }
     }
 
     public String toString(){

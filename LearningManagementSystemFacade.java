@@ -1,4 +1,3 @@
-
 /*
  * Written by Anonmyous Pandas 
  */
@@ -18,16 +17,27 @@ public class LearningManagementSystemFacade {
     private Question question;
     private Comment comment;
     private Scanner input;
+    private boolean check;
+    private boolean modulePrint;
+    private boolean lessonPrint;
 
     LearningManagementSystemFacade() {
         courseList = CourseList.getInstance();
         userList = UserList.getInstance();
         input = new Scanner(System.in);
+        modulePrint = false;
+        lessonPrint = false;
+        check = true;
     }
 
+    /**
+     * This loads in the UI based on whichever variables are null
+     */
     public void loadUI() {
         String userInput = "";
         int userInputINT = 0;
+
+        addCourses();
 
         if (user == null) {
             System.out.println("Please enter in your username");
@@ -38,15 +48,96 @@ public class LearningManagementSystemFacade {
 
         if (course == null) {
             System.out.println("You are logged in as "+user.getUserName());
+            consoleBarrier();
+
             System.out.println("Please select which course you wish to access");
             courseList.printCourseNames();
-            userInputINT = input.nextInt();
+
+            userInputINT = intCheck();
             setCourse(userInputINT);
             return;
         }
 
-        if (module == null) {
+        if (modulePrint) {
+            System.out.println("Pick a module");
+            consoleBarrier();
+            course.printModuleNames();
 
+            userInputINT = intCheck();
+            setModule(userInputINT);
+            modulePrint = false;
+            return;
+        }
+
+        if (module == null) {
+            System.out.println(course.getCourseName());
+            consoleBarrier();
+
+            System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Go back");
+            userInputINT = intCheck();
+
+            if (userInputINT == 1) {
+                modulePrint = true;
+            } else if (userInputINT == 2) {
+                System.out.println("This is still being worked on");
+            } else if (userInputINT == 3) {
+                course = null;
+            } else {
+                System.out.println("Please input a valid option");
+            }
+
+            return;
+        }
+
+        if (lessonPrint) {
+            System.out.println("Pick a lesson");
+            consoleBarrier();
+            module.printLessonNames();
+
+            userInputINT = intCheck();
+            setLesson(userInputINT);
+            lessonPrint = false;
+            return;
+        }
+
+        if (quiz != null) {
+            System.out.println(quiz.getTitle());
+            consoleBarrier();
+            quiz.printQuestions();
+
+            userInputINT = intCheck();
+        }
+
+        if (lesson == null) {
+            System.out.println(module.getModuleName());
+            consoleBarrier();
+
+            System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go back");
+            userInputINT = intCheck();
+
+            if (userInputINT == 1) {
+                lessonPrint = true;
+            } else if (userInputINT == 2) {
+                setQuiz();
+            } else if (userInputINT == 3) {
+                module = null;
+            } else {
+                System.out.println("Please input a valid option");
+            }
+
+            return;
+        }
+    }
+
+    /**
+     * Im using this for testing purposes
+     */
+    private void addCourses() {
+        if (check) {
+            courseList.addCourse(new Course("Python Basics", "The basics of python", Language.Python));
+            courseList.getCourse("Python Basics").addModule("The first week");
+            courseList.getCourse("Python Basics").getModule(0).addLesson("What are data types?", "This goves over various data types");
+            check = false;
         }
     }
 
@@ -80,24 +171,43 @@ public class LearningManagementSystemFacade {
         return;
     }
 
-    private static void setModule() {
-        
-
+    private void setModule(int moduleIndex) {
+        module = course.getModule(moduleIndex);
+        return;
     }
 
-    private static void setLesson() {
-
+    private void setLesson(int lessonIndex) {
+        lesson = module.getLesson(lessonIndex);
+        return;
     }
 
-    private static void setQuiz() {
-
+    private void setQuiz() {
+        quiz = module.getQuiz();
     }
 
-    private static void setQuestion() {
-
+    private void setQuestion(int questionIndex) {
+        question = quiz.getQuestion(questionIndex);
     }
 
-    private static void setComment() {
+    private void setComment() {
 
+    }
+    
+    private void consoleBarrier() {
+        System.out.println("--------------------------------------------------");
+    }
+
+    private int intCheck() {
+        String userInput = "";
+
+        while (true) {
+            userInput = input.nextLine();
+
+            try {
+                return Integer.parseInt(userInput);
+            } catch (Exception e) {
+                System.out.println("Please input a number");
+            }
+        }
     }
 }

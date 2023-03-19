@@ -74,6 +74,7 @@ public class DataWriter extends DataConstants {
         courseDetails.put(COURSE_NAME, course.getCourseName());
         courseDetails.put(COURSE_DESCRIPTION,course.getDescription());
         
+        return courseDetails;
     }
 
 }

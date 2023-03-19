@@ -43,6 +43,7 @@ public class CourseList {
 
         return null;
     }
+    
 
     public boolean has(int index) {
         if (courses.size() > index) {

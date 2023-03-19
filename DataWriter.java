@@ -53,7 +53,27 @@ public class DataWriter extends DataConstants {
     }
 
     //saveCourses
+    public static void saveCourses(){
+        CourseList courses = CourseList.getInstance();
+        ArrayList <Course> courseList = courses.getCourse(); // need to create a get Course method
+        JSONArray jsonCourses = new JSONArray();
 
-    //
+        for(int i = 0; i < courseList.size(); i++){
+            jsonCourses.add(getCourseJson(courseList.get(i)));
+        }
+        try(FileWriter fileWriter = new FileWriter(COURSE_FILE_NAME)){
+            fileWriter.write(jsonCourses.toJSONString());
+            fileWriter.flush();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    //Course Json
+    public static JSONObject getCourseJson(Course course){
+        JSONObject courseDetails = new JSONObject();
+        courseDetails.put(COURSE_NAME, course.getCourseName());
+        courseDetails.put(COURSE_DESCRIPTION,course.getDescription());
+        
+    }
 
 }

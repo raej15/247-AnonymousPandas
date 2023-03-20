@@ -2,7 +2,7 @@
  * Written by Anonmyous Pandas 
  */
 
- public class FinalCertification {
+ public class FinalCertification extends Quiz{
     private String certificate;
     private double grade;
 

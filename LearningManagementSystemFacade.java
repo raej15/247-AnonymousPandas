@@ -58,13 +58,23 @@ public class LearningManagementSystemFacade {
             return;
         }
 
+        // This needs to be completed
+        if (quiz != null) {
+            System.out.println(quiz.getTitle());
+            consoleBarrier();
+            quiz.printQuestions();
+
+            userInputINT = intCheck();
+            return;
+        }
+
         if (modulePrint) {
             System.out.println("Pick a module");
             consoleBarrier();
             course.printModuleNames();
 
             userInputINT = intCheck();
-            setModule(userInputINT);
+            setModule(userInputINT - 1);
             modulePrint = false;
             return;
         }
@@ -79,7 +89,7 @@ public class LearningManagementSystemFacade {
             if (userInputINT == 1) {
                 modulePrint = true;
             } else if (userInputINT == 2) {
-                System.out.println("This is still being worked on");
+                setQuiz(1);
             } else if (userInputINT == 3) {
                 course = null;
             } else {
@@ -95,17 +105,9 @@ public class LearningManagementSystemFacade {
             module.printLessonNames();
 
             userInputINT = intCheck();
-            setLesson(userInputINT);
+            setLesson(userInputINT - 1);
             lessonPrint = false;
             return;
-        }
-
-        if (quiz != null) {
-            System.out.println(quiz.getTitle());
-            consoleBarrier();
-            quiz.printQuestions();
-
-            userInputINT = intCheck();
         }
 
         if (lesson == null) {
@@ -118,7 +120,7 @@ public class LearningManagementSystemFacade {
             if (userInputINT == 1) {
                 lessonPrint = true;
             } else if (userInputINT == 2) {
-                setQuiz();
+                setQuiz(2);
             } else if (userInputINT == 3) {
                 module = null;
             } else {
@@ -126,6 +128,19 @@ public class LearningManagementSystemFacade {
             }
 
             return;
+        }
+
+        System.out.println(lesson.getContent());
+        consoleBarrier();
+        System.out.println("1. Go back");
+
+        while (true) {
+            userInputINT = intCheck();
+            
+            if (userInputINT == 1) {
+                lesson = null;
+                return;
+            }
         }
     }
 
@@ -136,7 +151,7 @@ public class LearningManagementSystemFacade {
         if (check) {
             courseList.addCourse(new Course("Python Basics", "The basics of python", Language.Python));
             courseList.getCourse("Python Basics").addModule("The first week");
-            courseList.getCourse("Python Basics").getModule(0).addLesson("What are data types?", "This goves over various data types");
+            courseList.getCourse("Python Basics").getModule(0).addLesson("What are data types?", "This goes over various data types");
             check = false;
         }
     }
@@ -181,8 +196,12 @@ public class LearningManagementSystemFacade {
         return;
     }
 
-    private void setQuiz() {
-        quiz = module.getQuiz();
+    private void setQuiz(int mode) {
+        if (mode == 1) {
+            quiz = course.getCertificate();
+        } else if (mode == 2) {
+            quiz = module.getQuiz();
+        }
     }
 
     private void setQuestion(int questionIndex) {

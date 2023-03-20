@@ -15,6 +15,7 @@ public class Course extends DataConstants{
     private String courseName;
     private String description;
     private Language language;
+    private FinalCertification cert;
     public HashMap<UUID, ArrayList<Double>> grades;
     public UUID author;
     public ArrayList<Comment> courseComments;
@@ -98,6 +99,10 @@ public class Course extends DataConstants{
         return description;
     }
 
+    public FinalCertification getCertificate() {
+        return cert;
+    }
+
     /**
      * Returns the language that the course is for
      * @return language
@@ -105,6 +110,7 @@ public class Course extends DataConstants{
     public Language getLanguage() {
         return language;
     }
+
     public UUID getAuthorID(){
         return this.author;
     }
@@ -163,7 +169,7 @@ public class Course extends DataConstants{
 
     public void printModuleNames() {
         for(int i = 0; modules.size() > i; i++) {
-            System.out.println(i+": "+modules.get(i).getModuleName());
+            System.out.println(i + 1+": "+modules.get(i).getModuleName());
         }
     }
 

@@ -104,7 +104,7 @@ public class Module extends DataConstants{
 
     public void printLessonNames() {
         for(int i = 0; lessons.size() > i; i++) {
-            System.out.println(i+": "+lessons.get(i).getLessonName());
+            System.out.println(i + 1+": "+lessons.get(i).getLessonName());
         }
     }
 

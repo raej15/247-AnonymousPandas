@@ -99,7 +99,7 @@ public class UI {
         return modulePrint;
     }
 
-    private static boolean printModules(LMSFacade facade, facade) {
+    private static boolean printModules(LMSFacade facade) {
         System.out.println("Pick a module");
         consoleBarrier();
         facade.getCourse().printModuleNames();

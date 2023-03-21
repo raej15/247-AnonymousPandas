@@ -6,6 +6,10 @@
     private String certificate;
     private double grade;
 
+    FinalCertification() {
+        super.title = "Final Cert";
+    }
+
     //needs to be completed
     public void addFinalCertification() {
 

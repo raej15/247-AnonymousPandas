@@ -32,7 +32,7 @@ public class DataWriter2 extends DataConstants {
             System.out.println("------------------------------------------------------------------------");
         }
         saveUsers();
-        saveCourses();
+        //saveCourses();
     }
     //users json
     public static void saveUsers(){
@@ -57,17 +57,20 @@ public class DataWriter2 extends DataConstants {
      */
     public static JSONObject getUsersJson(User user) {
         JSONObject userDetails = new JSONObject();
-        //userDetails.put(USER_ID,user.getID());
-        System.out.println(user.getUUID());
+        if ((user instanceof Student)) {
+            UUID studentId = ((Student) user).getUUID();
+            userDetails.put(USER_ID,studentId.toString());
+        } else {
+            UUID studentId = ((CourseCreator) user).getUUID();
+            userDetails.put(USER_ID,studentId.toString());
+        }
+
         userDetails.put(USER_FIRST_NAME, user.getFirstName());
         userDetails.put(USER_LAST_NAME, user.getLastName());
         userDetails.put(USER_EMAIL, user.getEmail());
         userDetails.put(USER_USER_NAME, user.getUserName());
         userDetails.put(USER_PASSWORD, user.getPassword());
-        //this is wrong - getUserType returns 1 no matter the type of user
-        //userDetails.put(USER_TYPE, user.getUserType());
 
-         //System.out.println(userDetails);
          if ((user instanceof Student)) {
             userDetails.put(USER_TYPE, "Student");
         } else {

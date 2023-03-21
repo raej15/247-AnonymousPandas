@@ -15,7 +15,6 @@ public class Student extends User{
         super(username, password, email, firstName, lastName);
         this.uuid = uuid;
         this.type = "Student";
-        System.out.println("Class Student ID: "+uuid);
     }
 
     public Student(String firstName, String lastName, String email, String username, String password){

@@ -94,6 +94,10 @@ public class Question extends DataConstants{
         System.out.println("That answer could not be found");
     }
 
+    
+    /** 
+     * @return String
+     */
     public String toString(){
         String finalStr = GREEN+BOLD+"Question: "+RESET+GREEN+ question+RESET;
         for (String answer: answers) {

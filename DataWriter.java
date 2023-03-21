@@ -10,6 +10,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
+    
+    /** 
+     * @param args
+     */
     /*
     * DataWriter extends from DataConstants
     * the void method saveUsers() calls from the arraylist
@@ -37,6 +41,11 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
+    
+    /** 
+     * @param user
+     * @return JSONObject
+     */
     public static JSONObject getUsersJson(User user) {
         JSONObject userDetails = new JSONObject();
         userDetails.put(USER_USER_NAME, user.getUserName());
@@ -68,6 +77,11 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
+    
+    /** 
+     * @param course
+     * @return JSONObject
+     */
     //Course Json
     public static JSONObject getCourseJson(Course course){
         JSONObject courseDetails = new JSONObject();
@@ -79,14 +93,39 @@ public class DataWriter extends DataConstants {
         return courseDetails;
     }
 
+/** 
+ * @param course
+ * @return JSONObject
+ */
+
+    
+    /** 
+     * @param module
+     * @return JSONObject
+     */
     public static JSONObject getModuleJson(Module module){
         JSONObject moduleDetails = new JSONObject();
         //moduleDetails.put(COURSE_MODULES, module.ge());
         moduleDetails.put(COURSE_MODULE_NAME, module.getModuleName());
         
+    
+    /** 
+     * @param module
+     * @return JSONObject
+     */
         return moduleDetails;
     }
 
+    
+    /** 
+     * @param lesson
+     * @return JSONObject
+     */
+    
+    /** 
+     * @param lesson
+     * @return JSONObject
+     */
     public static JSONObject getLessonJson(Lesson lesson){
         JSONObject lessonDetails = new JSONObject();
         //moduleDetails.put(COURSE_MODULES, module.ge());

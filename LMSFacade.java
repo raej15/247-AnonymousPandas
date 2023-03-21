@@ -159,6 +159,10 @@ public class LMSFacade {
         }
     }
 
+    
+    /** 
+     * @param username
+     */
     private void setUser(String username) {
         if (!userList.has(username)) {
             System.out.println("The user does not exist");
@@ -179,6 +183,10 @@ public class LMSFacade {
         return;
     }
 
+    
+    /** 
+     * @param courseIndex
+     */
     private void setCourse(int courseIndex) {
         if (!courseList.has(courseIndex)) {
             System.out.println("The course does not exist");
@@ -189,16 +197,28 @@ public class LMSFacade {
         return;
     }
 
+    
+    /** 
+     * @param moduleIndex
+     */
     private void setModule(int moduleIndex) {
         module = course.getModule(moduleIndex);
         return;
     }
 
+    
+    /** 
+     * @param lessonIndex
+     */
     private void setLesson(int lessonIndex) {
         lesson = module.getLesson(lessonIndex);
         return;
     }
 
+    
+    /** 
+     * @param mode
+     */
     private void setQuiz(int mode) {
         if (mode == 1) {
             quiz = course.getCertificate();
@@ -207,6 +227,10 @@ public class LMSFacade {
         }
     }
 
+    
+    /** 
+     * @param questionIndex
+     */
     private void setQuestion(int questionIndex) {
         question = quiz.getQuestion(questionIndex);
     }
@@ -219,6 +243,10 @@ public class LMSFacade {
         System.out.println("--------------------------------------------------");
     }
 
+    
+    /** 
+     * @return int
+     */
     private int intCheck() {
         String userInput = "";
 

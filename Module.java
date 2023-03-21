@@ -108,6 +108,10 @@ public class Module extends DataConstants{
         }
     }
 
+    
+    /** 
+     * @return String
+     */
     public String toString(){
         String finalStr = RED+BOLD+"\nModule Name: "+ moduleName+RESET;
         for (Lesson lesson: lessons){

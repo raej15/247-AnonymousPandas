@@ -15,6 +15,10 @@ public class CourseList extends DataConstants{
         //courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
     }
 
+    
+    /** 
+     * @return CourseList
+     */
     public static CourseList getInstance(){
         if (courseList == null) {
 			courseList = new CourseList();
@@ -23,10 +27,19 @@ public class CourseList extends DataConstants{
         return courseList;
     }
 
+    
+    /** 
+     * @param courses
+     */
     public static void setCourseList(ArrayList <Course> courses){
         CourseList.courses = courses;
     }
 
+    
+    /** 
+     * @param courseName
+     * @return Course
+     */
     public Course getCourse(String courseName){
         for(Course course : courses) {
             if(course.getCourseName().equals(courseName)) {
@@ -37,6 +50,11 @@ public class CourseList extends DataConstants{
         return null;
     }
 
+    
+    /** 
+     * @param index
+     * @return Course
+     */
     public Course getCourse(int index) {
         if (courses.size() > index) {
             return courses.get(index);
@@ -46,6 +64,11 @@ public class CourseList extends DataConstants{
     }
     
 
+    
+    /** 
+     * @param index
+     * @return boolean
+     */
     public boolean has(int index) {
         if (courses.size() > index) {
             return true;
@@ -54,6 +77,10 @@ public class CourseList extends DataConstants{
         return false;
     }
 
+    
+    /** 
+     * @param username
+     */
     public void removeCourse(String username){
        
     }
@@ -72,10 +99,18 @@ public class CourseList extends DataConstants{
         }
     }
 
+    
+    /** 
+     * @return ArrayList<Course>
+     */
     public ArrayList<Course> getCourses() {
         return courses;
     }
 
+    
+    /** 
+     * @param newCourse
+     */
     public void addCourse(Course newCourse) {
         courses.add(newCourse);
     }

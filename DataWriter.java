@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.LinkedHashMap;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -74,8 +73,29 @@ public class DataWriter extends DataConstants {
         JSONObject courseDetails = new JSONObject();
         courseDetails.put(COURSE_NAME, course.getCourseName());
         courseDetails.put(COURSE_DESCRIPTION,course.getDescription());
+        courseDetails.put(COURSE_LANGUAGE,course.getLanguage());
+
         
         return courseDetails;
     }
+
+    public static JSONObject getModuleJson(Module module){
+        JSONObject moduleDetails = new JSONObject();
+        //moduleDetails.put(COURSE_MODULES, module.ge());
+        moduleDetails.put(COURSE_MODULE_NAME, module.getModuleName());
+        
+        return moduleDetails;
+    }
+
+    public static JSONObject getLessonJson(Lesson lesson){
+        JSONObject lessonDetails = new JSONObject();
+        //moduleDetails.put(COURSE_MODULES, module.ge());
+        lessonDetails.put(COURSE_LESSON_NAME, lesson.getLessonName());
+        lessonDetails.put(COURSE_LESSON_CONTENT, lesson.getContent());
+
+        
+        return moduleDetails;
+    }
+
 
 }

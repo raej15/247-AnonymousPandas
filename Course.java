@@ -191,9 +191,9 @@ public class Course extends DataConstants{
     }
 
     public void printStudents(){
-        for (UUID student: students){
-            System.out.println(student);
-        }
+        //for (Student student:){
+            //System.out.println(student);
+        //}
     }
 
     public ArrayList<UUID> getStudents(){

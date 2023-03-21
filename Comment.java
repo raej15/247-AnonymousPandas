@@ -5,7 +5,6 @@ import java.util.UUID;
  * Written by Anonymous Pandas
  */
 
-
 public class Comment {
     private String comment;
     public UUID commenter;
@@ -23,14 +22,13 @@ public class Comment {
         this.comments = comments;
     }
     
-    //does this need to be passsing in a comment object rather than a string?? Yesss
     public void addComment(Comment comment) {
         comments.add(comment);
     }
 
     public void removeComment(String removeComment){
         for(Comment comment : comments) {
-            if(comment.getCommentString().equals(removeComment)) {
+            if(comment.getComment().equals(removeComment)) {
                 comments.remove(comment);
                 return;
             }
@@ -39,10 +37,6 @@ public class Comment {
 
     public String getComment() {
         return this.comment;
-    }
-
-    public String getCommentString(){
-        return comment;
     }
 
     public String toString(){

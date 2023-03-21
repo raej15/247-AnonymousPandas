@@ -160,6 +160,7 @@ public class UI {
     }
 
     private static boolean printLessons(LMSFacade facade) {
+    private static boolean printLessons(LMSFacade facade) {
         System.out.println("Pick a lesson");
         consoleBarrier();
         facade.getModule().printLessonNames();

@@ -152,7 +152,7 @@ public class DataWriter extends DataConstants {
         lessonDetails.put(COURSE_LESSON_CONTENT, lesson.getContent());
 
         
-        return moduleDetails;
+        return lessonDetails;
     }
 
 

@@ -36,7 +36,7 @@ public class Course extends DataConstants{
         cert = new FinalCertification();
     }
 
-    Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<Student> students){
+    Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<UUID> students){
         this.courseName = courseName;
         this.description = description;
         setLanguage(languageStr);

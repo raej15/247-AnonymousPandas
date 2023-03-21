@@ -1,1 +1,8 @@
-[{"author":"51dc7b49-b0a3-4a04-a3d0-4781d1efbedf"}]
+[{"courseName":"Introduction to JavaScript",
+"author":"51dc7b49-b0a3-4a04-a3d0-4781d1efbedf",
+"students":[
+    ["41cacde1-48d5-4374-9119-4121510741f5",[65.0,-1.0]],
+    ["87410238-bbc8-4bd0-813b-9c04c25bc8e1",[98.0,-1.0]],
+    ["878a27e5-78b2-499a-847e-1c60c84cf9f2",[86.0,-1.0]],
+    ["1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",[50.0,-1.0]]],
+"description":"JavaScript is a scripting language for creating dynamic web page content."}]

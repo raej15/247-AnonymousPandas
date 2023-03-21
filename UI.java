@@ -85,15 +85,12 @@ public class UI {
         return;
     }
 
-<<<<<<< HEAD
     private static boolean home(LMSFacade facade) {
-=======
     /**
      * This loads the home screen of the user
      * @return True if the program should continue, false if not
      */
     private static boolean home() {
->>>>>>> d9a8c6315c1e704195f9a084a0d465338e48fa40
         System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
@@ -197,11 +194,8 @@ public class UI {
         return false;
     }
 
-<<<<<<< HEAD
     private static boolean loadUI(LMSFacade facade) {
-=======
     private static boolean loadUI() {
->>>>>>> d9a8c6315c1e704195f9a084a0d465338e48fa40
         int userInputINT = 0;
         addCourses();
 

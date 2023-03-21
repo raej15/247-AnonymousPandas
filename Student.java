@@ -23,6 +23,10 @@ public class Student extends User{
         this.type = 1;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getType(){
         return type;
     }

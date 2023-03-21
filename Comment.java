@@ -22,10 +22,18 @@ public class Comment {
         this.comments = comments;
     }
     
+    
+    /** 
+     * @param comment
+     */
     public void addComment(Comment comment) {
         comments.add(comment);
     }
 
+    
+    /** 
+     * @param removeComment
+     */
     public void removeComment(String removeComment){
         for(Comment comment : comments) {
             if(comment.getComment().equals(removeComment)) {
@@ -35,10 +43,18 @@ public class Comment {
         }
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getComment() {
         return this.comment;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String toString(){
         String finalStr = "Comment: " + this.comment;
         for(Comment comment: comments) {

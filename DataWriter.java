@@ -10,6 +10,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
+    
+    /** 
+     * @param args
+     */
     /*
     * DataWriter extends from DataConstants
     * the void method saveUsers() calls from the arraylist
@@ -37,6 +41,11 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
+    
+    /** 
+     * @param user
+     * @return JSONObject
+     */
     public static JSONObject getUsersJson(User user) {
         JSONObject userDetails = new JSONObject();
         userDetails.put(USER_USER_NAME, user.getUserName());
@@ -68,25 +77,74 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
+    
+    /** 
+     * @param course
+     * @return JSONObject
+     */
     //Course Json
     public static JSONObject getCourseJson(Course course){
         JSONObject courseDetails = new JSONObject();
+        courseDetails.put(COURSE_AUTHOR, course.getAuthorID().toString());
+        courseDetails.put(COURSE_STUDENT_ID, course.getStudents());
+        courseDetails.put(COURSE_STUDENT_GRADES, course.getGrades());
+
+        //JSONArray studentArray = new JSONArray();
+
+        /*for(Student student : course.getStudents()){
+            Map<String, String> studentMap = new LinkedHashMap<String, String>(); 
+            studentMap.put(USER_ID, student.getID().toString());
+            studentMap.put(USER_USER_NAME, student.getUserName());
+            studentMap.put(USER_PASSWORD, student.getPassword());
+            studentMap.put(USER_FIRST_NAME, student.getFirstName());
+            studentMap.put(USER_LAST_NAME, student.getLastName());
+            studentArray.add(studentMap);
+        }*/
+
+
+        //courseDetails.put(COURSE_STUDENT, studentArray);
+
         courseDetails.put(COURSE_NAME, course.getCourseName());
         courseDetails.put(COURSE_DESCRIPTION,course.getDescription());
-        courseDetails.put(COURSE_LANGUAGE,course.getLanguage());
 
-        
+
+
         return courseDetails;
     }
 
+/** 
+ * @param course
+ * @return JSONObject
+ */
+
+    
+    /** 
+     * @param module
+     * @return JSONObject
+     */
     public static JSONObject getModuleJson(Module module){
         JSONObject moduleDetails = new JSONObject();
         //moduleDetails.put(COURSE_MODULES, module.ge());
         moduleDetails.put(COURSE_MODULE_NAME, module.getModuleName());
         
+    
+    /** 
+     * @param module
+     * @return JSONObject
+     */
         return moduleDetails;
     }
 
+    
+    /** 
+     * @param lesson
+     * @return JSONObject
+     */
+    
+    /** 
+     * @param lesson
+     * @return JSONObject
+     */
     public static JSONObject getLessonJson(Lesson lesson){
         JSONObject lessonDetails = new JSONObject();
         //moduleDetails.put(COURSE_MODULES, module.ge());
@@ -94,7 +152,7 @@ public class DataWriter extends DataConstants {
         lessonDetails.put(COURSE_LESSON_CONTENT, lesson.getContent());
 
         
-        return moduleDetails;
+        return lessonDetails;
     }
 
 

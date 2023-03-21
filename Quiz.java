@@ -88,6 +88,10 @@ public class Quiz extends DataConstants{
       }
    }
 
+     
+     /** 
+      * @return String
+      */
      public String toString(){
         String finalStr = GREEN+BOLD+"\nQuiz"+RESET;
         for (Question question: questions) {

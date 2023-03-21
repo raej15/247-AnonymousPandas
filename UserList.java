@@ -14,6 +14,10 @@ public class UserList extends DataConstants{
         users.add(new User("Johnny", "Password", "John@gmail.com", "John", "Smith"));
     }
 
+    
+    /** 
+     * @return UserList
+     */
     public static UserList getInstance(){
         if(userList == null){
             userList = new UserList();
@@ -22,10 +26,19 @@ public class UserList extends DataConstants{
         return userList;
     }
 
+    
+    /** 
+     * @param users
+     */
     public static void setUserList(ArrayList <User> users){
         UserList.users = users;
     }
 
+    
+    /** 
+     * @param username
+     * @return User
+     */
     public User getUser(String username){
         for(User user : users) {
             if(user.getUserName().equals(username)) {
@@ -35,6 +48,10 @@ public class UserList extends DataConstants{
         return null;
     }
 
+    
+    /** 
+     * @param username
+     */
     public void removeUser(String username){
         for(User user : users) {
             if(user.getUserName().equals(username)) {
@@ -44,6 +61,11 @@ public class UserList extends DataConstants{
         }
     }
 
+    
+    /** 
+     * @param username
+     * @return boolean
+     */
     public boolean has(String username) {
         for(User user : users) {
             if(user.getUserName().equals(username)) {
@@ -54,6 +76,12 @@ public class UserList extends DataConstants{
         return false;
     }
 
+    
+    /** 
+     * @param user
+     * @param password
+     * @return boolean
+     */
     public boolean login(User user, String password) {
         if (user.checkPassword(password)) {
             return true;
@@ -62,6 +90,10 @@ public class UserList extends DataConstants{
         return false;
     }
 
+    
+    /** 
+     * @return ArrayList<User>
+     */
     public ArrayList<User> getUsers() {
         return users;
     }
@@ -72,10 +104,18 @@ public class UserList extends DataConstants{
         }
     }
 
+    
+    /** 
+     * @param newUser
+     */
     public void addUser(User newUser) {
         users.add(newUser);
     }
 
+    
+    /** 
+     * @param currentUser
+     */
     public void editUser(User currentUser) {
         try (Scanner sc = new Scanner(System.in)) {
             currentUser.toString();

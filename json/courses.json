@@ -1,1 +1,182 @@
-[]
+[
+    {
+        "author":"51dc7b49-b0a3-4a04-a3d0-4781d1efbedf",
+        "students":[{
+            "id":  "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+            "grades":[50, -1]
+        }, {
+            "id": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
+            "grades":[98, -1]
+        }, {
+            "id": "878a27e5-78b2-499a-847e-1c60c84cf9f2",
+            "grades":[86, -1]
+        }, {
+            "id": "41cacde1-48d5-4374-9119-4121510741f5",
+            "grades":[65, -1]
+        }
+        ],
+        "courseName": "Introduction to JavaScript",
+        "description":"JavaScript is a scripting language for creating dynamic web page content.",
+        "language": "Javascript",
+        "modules":[
+                {"moduleName": "Variables",
+                "lessons": [{
+                    "lessonName":"Strings",
+                    "content": "One way to use a variable is to hold text. You use key word 'var' to do this. Ex: var color = 'blue'. "
+                },
+                {
+                    "lessonName":"Numbers",
+                    "content": "You also use 'var' to hold numbers. You can use variables to do calculations. Ex: var size = 5. Notice how their are no quotes around the value.  "
+                },
+                {
+                    "lessonName":"Arrays",
+                    "content": "Arrays are used to store multiple values in a single variable. Ex: var colors = ['red', 'orange', 'yellow']. This example is an array of strings therefore each value is surrounded by quotes. Arrays are indexed starting at zero. For this example colors[0] is equal to 'red' and colors[2] is equal to 'yellow'."
+                }
+                ],
+                "quiz":[
+                    {
+                        "question":"How is a string formatted?",
+                        "answers":["var strName = 'apple'", "String 'apple'", "Str strName = 'apple'" ],
+                        "correctIndex": 0
+                    },
+                    {
+                        "question":"You can multiply a string and a number.",
+                        "answers":["True", "False" ],
+                        "correctIndex": 0
+                    }
+                ],
+                "moduleComments":[
+                    {
+                        "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+                        "comment": "How do you multiply two variables?",
+                        "nestedComments": [
+                            {
+                                "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
+                                "nestedComment": "You create two variables that are type number (no quotes) and initialize their values. Then use the variable names to multiply using the asterisk symbol.",
+                                "comments": []
+                            },
+                            {
+                                "user": "41cacde1-48d5-4374-9119-4121510741f5",
+                                "nestedComment": "An example is var calculation = variableName1 * variableName2.",
+                                "comments": []
+                            }
+                        ]
+                    },
+                    {
+                        "user": "41cacde1-48d5-4374-9119-4121510741f5",
+                        "comment": "I don't understand arrays.",
+                        "nestedComments": [
+                            {
+                                "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+                                "nestedComment": "An array is a data structure that contains a group of elements. Typically these elements are all of the same data type.",
+                                "comments": []
+                            },
+                            {
+                                "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
+                                "nestedComment": "You can access an array using the indicies.",
+                                "comments": []
+                            }
+                        ]
+                    } 
+                ]
+            },
+                {"moduleName": "Objects",
+                "lessons": [{
+                    "lessonName":"What is an object?",
+                    "content": "An object is a data type that can take in collections of key-value pairs. A major difference between an object and other data types such as strings and numbers in JavaScript is that an objects can store different types of data as its values."
+                },
+                {
+                    "lessonName":"Example",
+                    "content": "You might use an object for a user. Each user could have a first name, last name, and weight. The first and last names would be a string. The weight would be a number. Ex: var user1 = {firstName:'Ann', lastName:'Smith', weight:'125'}"
+                },
+                {
+                    "lessonName":"Objects and Arrays",
+                    "content": "Objects can be stored in an array. For example, to store users you could create user objects and add them to a users array."
+                }
+                ],
+                "quiz":[
+                    {
+                        "question":"What is the difference between an object and other variables?",
+                        "answers":["Objects can only store numbers.", "Objects can only store strings.", "Objects can store a mixture of variables." ],
+                        "correctIndex": 2
+                    },
+                    {
+                        "question":"An example of an array of objects...var users = [{firstName: 'Ann',lastName: 'Smith'},{firstName: 'Jennifer',lastName: 'Smith'}]",
+                        "answers":[ "True", "False" ],
+                        "correctIndex": 0
+                    }
+                ],
+                "moduleComments":[
+                    {
+                        "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+                        "comment": "Are objects hard in JavaScript?",
+                        "nestedComments": [
+                            {
+                                "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
+                                "nestedComment": "No once you get used to them they aren't bad!",
+                                "comments": []
+
+                            },
+                            {
+                                "user": "41cacde1-48d5-4374-9119-4121510741f5",
+                                "nestedComment": "A little weird at first.",
+                                "comments": []
+                            }
+                        ]
+                    },
+                    {
+                        "user": "41cacde1-48d5-4374-9119-4121510741f5",
+                        "comment": "These are fun!!!",
+                        "nestedComments": [
+                            {
+                                "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+                                "nestedComment": "Yes so helful.",
+                                "comments": []
+                            },
+                            {
+                                "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
+                                "nestedComment": "Why did I not learn this earlier!",
+                                "comments": []
+                            }
+                        ]
+                    }
+                ]
+            }
+
+        ],
+        "courseComments":[
+            {
+                "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+                "comment": "Who uses JavaScript?",
+                "nestedComments": [
+                    {
+                        "user": "87410238-bbc8-4bd0-813b-9c04c25bc8e1",
+                        "nestedComment": "Front end developers use JavaScript to add behavior to webpages.",
+                        "comments": []
+                    },
+                    {
+                        "user": "41cacde1-48d5-4374-9119-4121510741f5",
+                        "nestedComment": "They also use HTML to display the content and CSS to make the webpages have different colors and fonts.",
+                        "comments": []
+                    }
+                ]
+            },
+            {
+                "user": "878a27e5-78b2-499a-847e-1c60c84cf9f2",
+                "comment": "Where is the best place to code JavaScript?",
+                "nestedComments": [
+                    {
+                        "user": "41cacde1-48d5-4374-9119-4121510741f5",
+                        "nestedComment": "WebStorm is one of the most frequently used integrated development environments for JavaScript, and probably the best IDE for frontend development available at the moment.",
+                        "comments": []
+                    },
+                    {
+                        "user": "1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",
+                        "nestedComment": "I use Visual Studio Code and I really like it.",
+                        "comments": []
+                    }
+                ]
+            }
+        ]
+    }
+]

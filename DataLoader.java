@@ -34,6 +34,10 @@ public class DataLoader extends DataConstants{
             System.out.println("------------------------------------------------------------------------");
         }
     }
+    
+    /** 
+     * @return ArrayList<User>
+     */
     public static ArrayList<User> loadUsers() {
         System.out.println("loading users...");
         ArrayList<User> users = new ArrayList<User>();
@@ -71,6 +75,10 @@ public class DataLoader extends DataConstants{
 
     }
 
+    
+    /** 
+     * @return ArrayList<Course>
+     */
     public static ArrayList<Course> loadCourses() {
         System.out.println("loading courses...");
         ArrayList<Course> courses = new ArrayList<Course>();

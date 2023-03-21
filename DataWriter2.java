@@ -67,8 +67,12 @@ public class DataWriter2 extends DataConstants {
         //userDetails.put(USER_TYPE, user.getUserType());
 
          //System.out.println(userDetails);
-
-
+         if ((user instanceof Student)) {
+            userDetails.put(USER_TYPE, "Student");
+        } else {
+            userDetails.put(USER_TYPE, "Creator");
+        }
+        //System.out.println(userDetails);
         return userDetails;
     }
 

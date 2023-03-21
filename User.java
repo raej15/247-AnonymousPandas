@@ -9,7 +9,6 @@
     protected String email;
     protected String firstName;
     protected String lastName;
-    protected UUID id;
     
 
     //What to put in this?
@@ -27,7 +26,6 @@
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.id = id;
     }
 
     
@@ -100,15 +98,6 @@
     public void setUsername(String username){
         this.username = username;
     }
-
-    
-    /** 
-     * @return UUID
-     */
-    public UUID getID(){
-        return id;
-    }
-
     
     /** 
      * @param password

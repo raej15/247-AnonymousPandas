@@ -21,6 +21,7 @@ public class CourseList extends DataConstants{
      */
     public static CourseList getInstance(){
         if (courseList == null) {
+            System.out.println("null list");
 			courseList = new CourseList();
 		}
 

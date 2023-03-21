@@ -13,20 +13,27 @@ public class UI {
     private static boolean modulePrint = false;
     private static boolean lessonPrint = false;
     private static boolean check = true;
+    private static LMSFacade facade;
     private static Scanner input;
 
+    /**
+     * Clears the terminal
+     */
     private static void clearTerminal() {
         System.out.println("\033[H\033[2J");
         System.out.flush();
     }
 
+    /**
+     * Adds a barrier to make it look nicer
+     */
     private static void consoleBarrier() {
         System.out.println("--------------------------------------------------");
     }
 
-    
-    /** 
-     * @return int
+    /**
+     * Forces the user to input an integer
+     * @return An int that the user inputted
      */
     private static int intCheck() {
         String userInput = "";
@@ -45,7 +52,7 @@ public class UI {
     /**
      * Im using this for testing purposes
      */
-    private static void addCourses(LMSFacade facade) {
+    private static void addCourses() {
         if (check == true) {
             facade.getCourseList().addCourse(new Course("Python Basics", "The basics of python", Language.Python));
             facade.getCourseList().getCourse("Python Basics").addModule("The first week");
@@ -54,6 +61,9 @@ public class UI {
         }
     }
 
+    /**
+     * Loads in data from the JSON files
+     */
     private static void loadData() {
         DataLoader.loadCourses();
         //CourseList.getInstance().printCourses();
@@ -65,18 +75,25 @@ public class UI {
 
     }
 
-    
-    /** 
-     * @param facade
+    /**
+     * Lets the user login
      */
-    private static void login(LMSFacade facade) {
+    private static void login() {
         System.out.println("Please enter in your username");
         String userInput = input.nextLine();
         facade.setUser(userInput);
         return;
     }
 
+<<<<<<< HEAD
     private static boolean home(LMSFacade facade) {
+=======
+    /**
+     * This loads the home screen of the user
+     * @return True if the program should continue, false if not
+     */
+    private static boolean home() {
+>>>>>>> d9a8c6315c1e704195f9a084a0d465338e48fa40
         System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
@@ -96,7 +113,10 @@ public class UI {
 
     }
 
-    private static void courseLoader(LMSFacade facade) {
+    /**
+     * 
+     */
+    private static void courseLoader() {
         System.out.println("Please select which course you wish to access");
         consoleBarrier();
 
@@ -108,13 +128,7 @@ public class UI {
         return;
     }
 
-    
-    /** 
-     * @param facade
-     * @param modulePrint
-     * @return boolean
-     */
-    private static boolean courseOptions(LMSFacade facade, boolean modulePrint) {
+    private static boolean courseOptions() {
         System.out.println(facade.getCourse().getCourseName());
         consoleBarrier();
 
@@ -134,12 +148,7 @@ public class UI {
         return modulePrint;
     }
 
-    
-    /** 
-     * @param facade
-     * @return boolean
-     */
-    private static boolean printModules(LMSFacade facade) {
+    private static boolean printModules() {
         System.out.println("Pick a module");
         consoleBarrier();
         facade.getCourse().printModuleNames();
@@ -149,11 +158,7 @@ public class UI {
         return false;
     }
 
-    
-    /** 
-     * @param facade
-     */
-    private static void quizLoader(LMSFacade facade) {
+    private static void quizLoader() {
         System.out.println(facade.getQuiz().getTitle());
         consoleBarrier();
         facade.getQuiz().printQuestions();
@@ -162,13 +167,7 @@ public class UI {
         return;
     }
 
-    
-    /** 
-     * @param facade
-     * @param lessonPrint
-     * @return boolean
-     */
-    private static boolean moduleOptions(LMSFacade facade, boolean lessonPrint) {
+    private static boolean moduleOptions() {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
@@ -188,12 +187,7 @@ public class UI {
         return lessonPrint;
     }
 
-    
-    /** 
-     * @param facade
-     * @return boolean
-     */
-    private static boolean printLessons(LMSFacade facade) {
+    private static boolean printLessons() {
         System.out.println("Pick a lesson");
         consoleBarrier();
         facade.getModule().printLessonNames();
@@ -203,47 +197,51 @@ public class UI {
         return false;
     }
 
+<<<<<<< HEAD
     private static boolean loadUI(LMSFacade facade) {
+=======
+    private static boolean loadUI() {
+>>>>>>> d9a8c6315c1e704195f9a084a0d465338e48fa40
         int userInputINT = 0;
-        addCourses(facade);
+        addCourses();
 
         if (!facade.hasUser()) {
-            login(facade);
+            login();
             return true;
         }
 
         if (coursePrint) {
-            courseLoader(facade);
+            courseLoader();
             return true;
         }
 
         if (!facade.hasCourse()) {
-            return home(facade);
+            return home();
         }
 
         // This needs to be completed
         if (facade.hasQuiz()) {
-            quizLoader(facade);
+            quizLoader();
             return true;
         }
 
         if (modulePrint) {
-            modulePrint = printModules(facade);
+            modulePrint = printModules();
             return true;
         }
 
         if (!facade.hasModule()) {
-            modulePrint = courseOptions(facade, modulePrint);
+            modulePrint = courseOptions();
             return true;
         }
 
         if (lessonPrint) {
-            lessonPrint = printLessons(facade);
+            lessonPrint = printLessons();
             return true;
         }
 
         if (!facade.hasLesson()) {
-            lessonPrint = moduleOptions(facade, lessonPrint);
+            lessonPrint = moduleOptions();
             return true;
         }
 
@@ -265,10 +263,10 @@ public class UI {
         input = new Scanner(System.in);
         loadData();
 
-        LMSFacade facade = new LMSFacade(input);
+        facade = new LMSFacade(input);
         clearTerminal();
 
-        while (loadUI(facade)) {
+        while (loadUI()) {
             clearTerminal();
         }
 

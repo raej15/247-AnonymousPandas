@@ -76,15 +76,7 @@ public class UI {
         return;
     }
 
-<<<<<<< HEAD
-    
-    /** 
-     * @param facade
-     */
-    private static void courseSelect(LMSFacade facade) {
-=======
     private static boolean home(LMSFacade facade) {
->>>>>>> 696ada944cbc515d13fff588db7a7e351e57613b
         System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
@@ -211,15 +203,7 @@ public class UI {
         return false;
     }
 
-<<<<<<< HEAD
-    
-    /** 
-     * @param facade
-     */
-    private static void loadUI(LMSFacade facade) {
-=======
     private static boolean loadUI(LMSFacade facade) {
->>>>>>> 696ada944cbc515d13fff588db7a7e351e57613b
         int userInputINT = 0;
         addCourses(facade);
 

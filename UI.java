@@ -24,6 +24,10 @@ public class UI {
         System.out.println("--------------------------------------------------");
     }
 
+    
+    /** 
+     * @return int
+     */
     private static int intCheck() {
         String userInput = "";
 
@@ -61,6 +65,10 @@ public class UI {
 
     }
 
+    
+    /** 
+     * @param facade
+     */
     private static void login(LMSFacade facade) {
         System.out.println("Please enter in your username");
         String userInput = input.nextLine();
@@ -68,7 +76,15 @@ public class UI {
         return;
     }
 
+<<<<<<< HEAD
+    
+    /** 
+     * @param facade
+     */
+    private static void courseSelect(LMSFacade facade) {
+=======
     private static boolean home(LMSFacade facade) {
+>>>>>>> 696ada944cbc515d13fff588db7a7e351e57613b
         System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
@@ -100,6 +116,12 @@ public class UI {
         return;
     }
 
+    
+    /** 
+     * @param facade
+     * @param modulePrint
+     * @return boolean
+     */
     private static boolean courseOptions(LMSFacade facade, boolean modulePrint) {
         System.out.println(facade.getCourse().getCourseName());
         consoleBarrier();
@@ -120,6 +142,11 @@ public class UI {
         return modulePrint;
     }
 
+    
+    /** 
+     * @param facade
+     * @return boolean
+     */
     private static boolean printModules(LMSFacade facade) {
         System.out.println("Pick a module");
         consoleBarrier();
@@ -130,6 +157,10 @@ public class UI {
         return false;
     }
 
+    
+    /** 
+     * @param facade
+     */
     private static void quizLoader(LMSFacade facade) {
         System.out.println(facade.getQuiz().getTitle());
         consoleBarrier();
@@ -139,6 +170,12 @@ public class UI {
         return;
     }
 
+    
+    /** 
+     * @param facade
+     * @param lessonPrint
+     * @return boolean
+     */
     private static boolean moduleOptions(LMSFacade facade, boolean lessonPrint) {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
@@ -159,6 +196,11 @@ public class UI {
         return lessonPrint;
     }
 
+    
+    /** 
+     * @param facade
+     * @return boolean
+     */
     private static boolean printLessons(LMSFacade facade) {
         System.out.println("Pick a lesson");
         consoleBarrier();
@@ -169,7 +211,15 @@ public class UI {
         return false;
     }
 
+<<<<<<< HEAD
+    
+    /** 
+     * @param facade
+     */
+    private static void loadUI(LMSFacade facade) {
+=======
     private static boolean loadUI(LMSFacade facade) {
+>>>>>>> 696ada944cbc515d13fff588db7a7e351e57613b
         int userInputINT = 0;
         addCourses(facade);
 

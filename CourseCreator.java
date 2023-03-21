@@ -22,6 +22,10 @@ public class CourseCreator extends User{
         this.type = 2;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getType(){
         return type;
     }

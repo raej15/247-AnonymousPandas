@@ -12,6 +12,7 @@ public class CourseList extends DataConstants{
 
     private CourseList() {
         courses = new ArrayList<Course>();
+        DataLoader.loadCourses();
         //courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
     }
 
@@ -21,7 +22,6 @@ public class CourseList extends DataConstants{
      */
     public static CourseList getInstance(){
         if (courseList == null) {
-            System.out.println("null list");
 			courseList = new CourseList();
 		}
 

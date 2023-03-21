@@ -227,6 +227,7 @@ public class DataLoader extends DataConstants{
             }
             
         }
+        
         CourseList.setCourseList(courses);
         return courses;
         } 

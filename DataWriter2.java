@@ -21,18 +21,8 @@ public class DataWriter2 extends DataConstants {
     * @return usersDetails
     */
     public static void main(String[] args){
-        ArrayList<User> users = DataLoader.loadUsers();
-        for (User user: users) {
-            System.out.println(user.toString()+"\n---------------");
-        }
-        ArrayList<Course> courses = DataLoader.loadCourses();
-        for (Course course: courses) {
-            System.out.println("------------------------------------------------------------------------");
-            System.out.println(course.toString());
-            System.out.println("------------------------------------------------------------------------");
-        }
         saveUsers();
-        //saveCourses();
+        saveCourses();
     }
     //users json
     public static void saveUsers(){
@@ -129,7 +119,7 @@ public class DataWriter2 extends DataConstants {
             System.out.println(uuid);
             student.add(uuid);
             student.add(studentGrades);
-            ((Map) studentsJSON).put(COURSE_STUDENT,student);
+            //studentsJSON.put(COURSE_STUDENT,student);
         }
             
         

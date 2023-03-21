@@ -32,15 +32,10 @@ public class Course extends DataConstants{
         this.courseName = courseName;
         this.description = description;
         this.language = language;
-<<<<<<< HEAD
         this.students = new ArrayList<Student>();
-=======
-        cert = new FinalCertification();
-        this.students = new ArrayList<UUID>();
->>>>>>> 535ed03005cb8689c0b02169cbf2ba32ebe23c93
     }
 
-    Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<UUID> students){
+    Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<Student> students){
         this.courseName = courseName;
         this.description = description;
         setLanguage(languageStr);

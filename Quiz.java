@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Quiz extends DataConstants{
      private ArrayList<Question> questions;
-     private String title;
+     protected String title;
 
      /**
       * Creates a new quiz titled "Quiz"

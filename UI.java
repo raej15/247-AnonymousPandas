@@ -40,7 +40,7 @@ public class UI {
     /**
      * Im using this for testing purposes
      */
-    private static void addCourses(LearningManagementSystemFacade facade) {
+    private static void addCourses(LMSFacade facade) {
         if (check == true) {
             facade.getCourseList().addCourse(new Course("Python Basics", "The basics of python", Language.Python));
             facade.getCourseList().getCourse("Python Basics").addModule("The first week");
@@ -60,14 +60,14 @@ public class UI {
 
     }
 
-    private static void login(LearningManagementSystemFacade facade) {
+    private static void login(LMSFacade facade) {
         System.out.println("Please enter in your username");
         String userInput = input.nextLine();
         facade.setUser(userInput);
         return;
     }
 
-    private static void courseSelect(LearningManagementSystemFacade facade) {
+    private static void courseSelect(LMSFacade facade) {
         System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
@@ -79,7 +79,7 @@ public class UI {
         return;
     }
 
-    private static boolean courseOptions(LearningManagementSystemFacade facade, boolean modulePrint) {
+    private static boolean courseOptions(LMSFacade facade, boolean modulePrint) {
         System.out.println(facade.getCourse().getCourseName());
         consoleBarrier();
 
@@ -99,7 +99,7 @@ public class UI {
         return modulePrint;
     }
 
-    private static boolean printModules(LearningManagementSystemFacade facade) {
+    private static boolean printModules(LMSFacade facade, facade) {
         System.out.println("Pick a module");
         consoleBarrier();
         facade.getCourse().printModuleNames();
@@ -109,7 +109,7 @@ public class UI {
         return false;
     }
 
-    private static void quizLoader(LearningManagementSystemFacade facade) {
+    private static void quizLoader(LMSFacade facade) {
         System.out.println(facade.getQuiz().getTitle());
         consoleBarrier();
         facade.getQuiz().printQuestions();
@@ -118,7 +118,7 @@ public class UI {
         return;
     }
 
-    private static boolean moduleOptions(LearningManagementSystemFacade facade, boolean lessonPrint) {
+    private static boolean moduleOptions(LMSFacade facade, boolean lessonPrint) {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
@@ -138,7 +138,7 @@ public class UI {
         return lessonPrint;
     }
 
-    private static boolean printLessons(LearningManagementSystemFacade facade) {
+    private static boolean printLessons(LMSFacade facade) {
         System.out.println("Pick a lesson");
         consoleBarrier();
         facade.getModule().printLessonNames();
@@ -148,7 +148,7 @@ public class UI {
         return false;
     }
 
-    private static void loadUI(LearningManagementSystemFacade facade) {
+    private static void loadUI(LMSFacade facade) {
         int userInputINT = 0;
 
         addCourses(facade);
@@ -204,7 +204,7 @@ public class UI {
     }
 
     public static void main(String[] args) {
-        LearningManagementSystemFacade facade = new LearningManagementSystemFacade();
+        LMSFacade facade = new LMSFacade();
         input = new Scanner(System.in);
         loadData();
 

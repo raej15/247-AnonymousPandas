@@ -51,6 +51,7 @@ public class DataLoader extends DataConstants{
             {
                 JSONObject userJSON = (JSONObject)usersJSON.get(i);
                 UUID id = UUID.fromString((String)userJSON.get(USER_ID));
+                System.out.println("DL id: "+id);
                 String firstName = (String)userJSON.get(USER_FIRST_NAME);
                 String lastName = (String)userJSON.get(USER_LAST_NAME);
                 String email = (String)userJSON.get(USER_EMAIL);

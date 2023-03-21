@@ -15,6 +15,7 @@ public class Student extends User{
         super(username, password, email, firstName, lastName);
         this.uuid = uuid;
         this.type = "Student";
+        System.out.println("Class Student ID: "+uuid);
     }
 
     public Student(String firstName, String lastName, String email, String username, String password){
@@ -29,5 +30,9 @@ public class Student extends User{
      */
     public String getType(){
         return type;
+    }
+
+    public UUID getUUID(){
+        return uuid;
     }
 }

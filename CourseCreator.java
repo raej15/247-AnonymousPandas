@@ -29,4 +29,8 @@ public class CourseCreator extends User{
     public String getType(){
         return type;
     }
+
+    public UUID getUUID(){
+        return uuid;
+    }
 }

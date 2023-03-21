@@ -19,7 +19,7 @@ public class Course extends DataConstants{
     public HashMap<UUID, ArrayList<Double>> grades;
     public UUID author;
     public ArrayList<Comment> courseComments;
-    public ArrayList<Student> students;
+    public ArrayList<UUID> students;
 
     /**
      * Creates a new course
@@ -32,7 +32,8 @@ public class Course extends DataConstants{
         this.courseName = courseName;
         this.description = description;
         this.language = language;
-        this.students = new ArrayList<Student>();
+        this.students = new ArrayList<UUID>();
+        cert = new FinalCertification();
     }
 
     Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<Student> students){
@@ -190,12 +191,12 @@ public class Course extends DataConstants{
     }
 
     public void printStudents(){
-        for (Student student: students){
-            System.out.println(student);
-        }
+        //for (Student student:){
+            //System.out.println(student);
+        //}
     }
 
-    public ArrayList<Student> getStudents(){
+    public ArrayList<UUID> getStudents(){
         return students;
     }
 }

@@ -74,9 +74,9 @@ public class DataWriter extends DataConstants {
         courseDetails.put(COURSE_AUTHOR, course.getAuthorID().toString());
         courseDetails.put(COURSE_STUDENT_GRADES, course.getGrades());
 
-        JSONArray studentArray = new JSONArray();
+        //JSONArray studentArray = new JSONArray();
 
-        for(Student student : course.getStudents()){
+        /*for(Student student : course.getStudents()){
             Map<String, String> studentMap = new LinkedHashMap<String, String>(); 
             studentMap.put(USER_ID, student.getID().toString());
             studentMap.put(USER_USER_NAME, student.getUserName());
@@ -84,10 +84,10 @@ public class DataWriter extends DataConstants {
             studentMap.put(USER_FIRST_NAME, student.getFirstName());
             studentMap.put(USER_LAST_NAME, student.getLastName());
             studentArray.add(studentMap);
-        }
-        
+        }*/
 
-        courseDetails.put(COURSE_STUDENT, studentArray);
+
+        //courseDetails.put(COURSE_STUDENT, studentArray);
 
         courseDetails.put(COURSE_NAME, course.getCourseName());
         courseDetails.put(COURSE_DESCRIPTION,course.getDescription());

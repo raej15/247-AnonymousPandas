@@ -9,6 +9,7 @@ import java.util.Scanner;
  */
 
 public class UI {
+    private static boolean coursePrint = false;
     private static boolean modulePrint = false;
     private static boolean lessonPrint = false;
     private static boolean check = true;
@@ -75,19 +76,43 @@ public class UI {
         return;
     }
 
+<<<<<<< HEAD
     
     /** 
      * @param facade
      */
     private static void courseSelect(LMSFacade facade) {
+=======
+    private static boolean home(LMSFacade facade) {
+>>>>>>> 696ada944cbc515d13fff588db7a7e351e57613b
         System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
+        System.out.println("1. Enter a course\n2. Logout");
+        int userInputINT = intCheck();
+
+        switch (userInputINT) {
+            case 1:
+                coursePrint = true;
+                return true;
+            case 2:
+                return false;
+            default:
+                System.out.println("Please enter in a valid input");
+                return true;
+        }
+
+    }
+
+    private static void courseLoader(LMSFacade facade) {
         System.out.println("Please select which course you wish to access");
+        consoleBarrier();
+
         facade.getCourseList().printCourseNames();
 
         int userInputINT = intCheck();
         facade.setCourse(userInputINT);
+        coursePrint = false;
         return;
     }
 
@@ -186,49 +211,56 @@ public class UI {
         return false;
     }
 
+<<<<<<< HEAD
     
     /** 
      * @param facade
      */
     private static void loadUI(LMSFacade facade) {
+=======
+    private static boolean loadUI(LMSFacade facade) {
+>>>>>>> 696ada944cbc515d13fff588db7a7e351e57613b
         int userInputINT = 0;
-
         addCourses(facade);
 
         if (!facade.hasUser()) {
             login(facade);
-            return;
+            return true;
+        }
+
+        if (coursePrint) {
+            courseLoader(facade);
+            return true;
         }
 
         if (!facade.hasCourse()) {
-            courseSelect(facade);
-            return;
+            return home(facade);
         }
 
         // This needs to be completed
         if (facade.hasQuiz()) {
             quizLoader(facade);
-            return;
+            return true;
         }
 
         if (modulePrint) {
             modulePrint = printModules(facade);
-            return;
+            return true;
         }
 
         if (!facade.hasModule()) {
             modulePrint = courseOptions(facade, modulePrint);
-            return;
+            return true;
         }
 
         if (lessonPrint) {
             lessonPrint = printLessons(facade);
-            return;
+            return true;
         }
 
         if (!facade.hasLesson()) {
             lessonPrint = moduleOptions(facade, lessonPrint);
-            return;
+            return true;
         }
 
         System.out.println(facade.getLesson().getContent());
@@ -240,23 +272,24 @@ public class UI {
             
             if (userInputINT == 1) {
                 facade.setLesson(-1);
-                return;
+                return true;
             }
         }
     }
 
     public static void main(String[] args) {
-        LMSFacade facade = new LMSFacade();
         input = new Scanner(System.in);
         loadData();
 
-        while (true) {
-            
-            clearTerminal();
+        LMSFacade facade = new LMSFacade(input);
+        clearTerminal();
 
-            loadUI(facade);
+        while (loadUI(facade)) {
+            clearTerminal();
         }
 
+        clearTerminal();
+        System.out.println("Goodbye");
         //saveData();
     }
 }

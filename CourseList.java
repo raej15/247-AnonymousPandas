@@ -87,7 +87,7 @@ public class CourseList extends DataConstants{
 
     public void printCourseNames() {
         for(int i = 0; courses.size() > i; i++) {
-            System.out.println(i+": "+courses.get(i).getCourseName());
+            System.out.println(i+1+": "+courses.get(i).getCourseName());
         }
     }
 

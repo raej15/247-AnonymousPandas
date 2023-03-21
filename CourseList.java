@@ -4,14 +4,15 @@
  */
 
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class CourseList {
+public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
     private static CourseList courseList;
 
     private CourseList() {
         courses = new ArrayList<Course>();
-        courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
+        //courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
     }
 
     public static CourseList getInstance(){
@@ -77,5 +78,12 @@ public class CourseList {
 
     public void addCourse(Course newCourse) {
         courses.add(newCourse);
+    }
+
+    public void printStudents(){
+        for (Course course: courses){
+            System.out.println(course.getCourseName());
+            course.printStudents();
+        }
     }
 }

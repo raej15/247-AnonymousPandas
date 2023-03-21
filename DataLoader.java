@@ -55,9 +55,9 @@ public class DataLoader extends DataConstants{
                 String type = (String)userJSON.get(USER_TYPE);
 
                 if (type.equals("Student")) {
-                    users.add(new Student(id,username,password,email,firstName,lastName));
+                    users.add(new Student(id,firstName, lastName, email, username,password));
                 } else {
-                    users.add(new CourseCreator(id,username,password,email,firstName,lastName));
+                    users.add(new CourseCreator(id,firstName, lastName, email, username,password));
                 }
             }
         }
@@ -88,10 +88,13 @@ public class DataLoader extends DataConstants{
                 // hashmap to hold the student grades with their ID
                 HashMap<UUID, ArrayList<Double>> grades = new HashMap<UUID, ArrayList<Double>>();
                 JSONArray studentsJSON = (JSONArray)courseJSON.get(COURSE_STUDENT);
+                // Array List that holds the student UUID's enrolled in this course
+                ArrayList<UUID> students = new ArrayList<UUID>();
                 // loops through each student
                 for (int j = 0; j < studentsJSON.size();j++) {
                     JSONObject studentJSON = (JSONObject)studentsJSON.get(j);
                     UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENT_ID));
+                    students.add(studentID);
                     JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENT_GRADES);
                     ArrayList <Double> studentGrades = new ArrayList<Double>();
                     // loop through grades array
@@ -210,7 +213,7 @@ public class DataLoader extends DataConstants{
                     courseComments.add(newComment);
                 }
 
-                Course course = new Course(courseName, courseDescription, language, author, grades, modules, courseComments);
+                Course course = new Course(courseName, courseDescription, language, author, grades, modules, courseComments, students);
                 courses.add(course);
             }
             

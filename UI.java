@@ -16,15 +16,17 @@ public class UI {
         DataLoader.loadCourses();
         //CourseList.getInstance().printCourses();
         DataLoader.loadUsers();
-        //UserList.getInstance().printUsers();
+        UserList.getInstance().printUsers();
     }
 
     private static void saveData() {
 
     }
 
+    
+
     public static void main(String[] args) {
-        LearningManagementSystemFacade facade = new LearningManagementSystemFacade();
+        LMSFacade facade = new LMSFacade();
         loadData();
 
         while (true) {

@@ -5,11 +5,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LearningManagementSystemFacade {
+public class LMSFacade {
     private CourseList courseList;
-    private UserList userList;
+    private static UserList userList;
     private Course course;
-    private User user;
+    public User user;
     private CourseCreator courseCreator;
     private Module module;
     private Lesson lesson;
@@ -21,7 +21,7 @@ public class LearningManagementSystemFacade {
     private boolean modulePrint;
     private boolean lessonPrint;
 
-    LearningManagementSystemFacade() {
+    LMSFacade() {
         courseList = CourseList.getInstance();
         userList = UserList.getInstance();
         input = new Scanner(System.in);
@@ -39,13 +39,15 @@ public class LearningManagementSystemFacade {
 
         addCourses();
 
+
         if (user == null) {
             System.out.println("Please enter in your username");
             userInput = input.nextLine();
             setUser(userInput);
+            //System.out.println(courseList.currentCourses());
             return;
         }
-
+        /*
         if (course == null) {
             System.out.println("You are logged in as "+user.getUserName());
             consoleBarrier();
@@ -142,6 +144,7 @@ public class LearningManagementSystemFacade {
                 return;
             }
         }
+        */
     }
 
     /**
@@ -229,4 +232,6 @@ public class LearningManagementSystemFacade {
             }
         }
     }
+
+    
 }

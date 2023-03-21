@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 /*
  * Written by Anonymous Pandas
@@ -7,13 +8,19 @@ import java.util.ArrayList;
 
 public class Comment {
     private String comment;
-    public Student commenter;
+    public UUID commenter;
     private ArrayList<Comment> comments;
+
 
     public Comment(String comment, Student commenter) {
         this.comment = comment;
-        this.commenter = commenter;
         comments = new ArrayList<Comment>();
+    }
+    
+    public Comment(UUID commenter, String comment, ArrayList<Comment> comments) {
+        this.commenter = commenter;
+        this.comment = comment;
+        this.comments = comments;
     }
     
     //does this need to be passsing in a comment object rather than a string?? Yesss
@@ -36,6 +43,15 @@ public class Comment {
 
     public String getCommentString(){
         return comment;
+    }
+
+    public String toString(){
+        String finalStr = "Comment: " + this.comment;
+        for(Comment comment: comments) {
+            finalStr+="\n";
+            finalStr+="\tNested Comment: " + comment.getComment();
+        }
+        return finalStr;
     }
 
 

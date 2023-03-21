@@ -3,15 +3,23 @@
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.UUID;
 
 /**
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for, and if it's been completed
  */
-public class Course {
+public class Course extends DataConstants{
     private ArrayList<Module> modules;
     private String courseName;
     private String description;
     private Language language;
+    private FinalCertification cert;
+    public HashMap<UUID, ArrayList<Double>> grades;
+    public UUID author;
+    public ArrayList<Comment> courseComments;
+    public ArrayList<Student> students;
 
     /**
      * Creates a new course
@@ -24,6 +32,31 @@ public class Course {
         this.courseName = courseName;
         this.description = description;
         this.language = language;
+<<<<<<< HEAD
+        this.students = new ArrayList<Student>();
+=======
+        cert = new FinalCertification();
+        this.students = new ArrayList<UUID>();
+>>>>>>> 535ed03005cb8689c0b02169cbf2ba32ebe23c93
+    }
+
+    Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<UUID> students){
+        this.courseName = courseName;
+        this.description = description;
+        setLanguage(languageStr);
+        this.author = author;
+        this.grades = grades;
+        this.modules = modules;
+        this.courseComments = courseComments;
+        this.students = students;
+    }
+
+    public void setLanguage(String languageStr){
+        if (languageStr.equalsIgnoreCase("javascript")){
+            this.language=Language.JavaScript;
+        } else if (languageStr.equalsIgnoreCase("python")) {
+            this.language=Language.Python;
+        }
     }
 
     /**
@@ -74,6 +107,10 @@ public class Course {
         return description;
     }
 
+    public FinalCertification getCertificate() {
+        return cert;
+    }
+
     /**
      * Returns the language that the course is for
      * @return language
@@ -81,23 +118,24 @@ public class Course {
     public Language getLanguage() {
         return language;
     }
-    
+
+    public UUID getAuthorID(){
+        return this.author;
+    }
     
     /**
      * Returns a module based on the inputted name, if it exists
      * @param moduleName The module you want to get
      * @return A module object
      */
-    public Module getModule(String moduleName) {
+    public Module getModule(int moduleIndex) {
         if (modules.size() == 0) {
             System.out.println("There are no modules to get");
             return null;
         }
         
-        for (int i = 0; modules.size() > i; i++) {
-            if (modules.get(i).getModuleName().equals(moduleName)) {
-                return modules.get(i);
-            }
+        if (modules.size() > moduleIndex) {
+            return modules.get(moduleIndex);
         }
 
         System.out.println("That module could not be found");
@@ -122,5 +160,47 @@ public class Course {
         }
 
         System.out.println("That module could not be found");
+    }
+
+    public void setGrades(HashMap<UUID, ArrayList<Double>> grades){
+        this.grades = grades;
+    }
+
+    public String getGrades() {
+        String finalStr = "Student Grades:";
+        for(Entry<UUID, ArrayList<Double>> entry: grades.entrySet()) {
+            finalStr+="\n";
+            finalStr+=entry;
+        }
+        return finalStr;
+    }
+
+    public void printModuleNames() {
+        for(int i = 0; modules.size() > i; i++) {
+            System.out.println(i + 1+": "+modules.get(i).getModuleName());
+        }
+    }
+
+    public String toString(){
+        String finalStr =  BOLD+"Course Name: "+ this.courseName + RESET+"\nDescription: "+ this.description+"\nLanguage: "+this.language+"\nAuthor Id: "+this.author+ "\n"+getGrades();
+        for(Module module: modules) {
+            finalStr+="\n";
+            finalStr+=module.toString();
+        }
+        for (Comment comment: courseComments){
+            finalStr+="\n";
+            finalStr+=comment.toString();
+        }
+        return finalStr;
+    }
+
+    public void printStudents(){
+        for (Student student: students){
+            System.out.println(student);
+        }
+    }
+
+    public ArrayList<Student> getStudents(){
+        return students;
     }
 }

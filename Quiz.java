@@ -8,9 +8,9 @@ import java.util.ArrayList;
 /**
  * A quiz which consists of a title and an ArrayList of questions
  */
-public class Quiz {
+public class Quiz extends DataConstants{
      private ArrayList<Question> questions;
-     private String title;
+     protected String title;
 
      /**
       * Creates a new quiz titled "Quiz"
@@ -18,6 +18,10 @@ public class Quiz {
      Quiz() {
         questions = new ArrayList<Question>();
         title = "Quiz";
+     }
+
+     public Quiz(ArrayList<Question> questions ) {
+        this.questions = questions;
      }
 
      /**
@@ -43,7 +47,7 @@ public class Quiz {
       */
      public Question getQuestion(int index) {
         if (!(questions.size() > index)) {
-            System.out.println("That is not an answer");
+            System.out.println("Invalid input");
             return null;
         }
 
@@ -57,48 +61,39 @@ public class Quiz {
      public String getTitle() {
         return title;
      }
-
-     /**
-      * Calculates the grade of the user if the quiz has been finished
-      * @return -1 if the quiz has not been finished, 0-100 for the user's grade
-      */
-     public double getGrade() {
-        for (int i = 0; questions.size() > i; i++) {
-            if (!questions.get(i).hasUserAnswer()) {
-                System.out.println("You can't submit the quiz since you haven't answered all the questions");
-                return -1;
-            }
-        }
-
-        double correct = 0;
-
-        for (int i = 0; questions.size() > i; i++) {
-            if (questions.get(i).isCorrect()) {
-                correct++;
-            }
-        }
+     
+   /**
+   * Removes a question, if it exist
+   * @param question The question to remove
+   */
+   public void removeQuestion(String question) {
+      if (questions.size() == 0) {
+         System.out.println("There are no questions to remove");
+         return;
+      }
         
-        String result = new DecimalFormat("#.##").format((correct/questions.size())*100);
-        return Double.parseDouble(result);
-     }
-
-     /**
-      * Removes a question, if it exist
-      * @param question The question to remove
-      */
-     public void removeQuestion(String question) {
-        if (questions.size() == 0) {
-            System.out.println("There are no questions to remove");
+      for (int i = 0; questions.size() > i; i++) {
+         if (questions.get(i).getQuestion().equals(question)) {
+            questions.remove(i);
             return;
-        }
-        
-        for (int i = 0; questions.size() > i; i++) {
-            if (questions.get(i).getQuestion().equals(question)) {
-                questions.remove(i);
-                return;
-            }
-        }
+         }
+      }
 
-        System.out.println("That question could not be found");
+      System.out.println("That question could not be found");
+   }
+
+   public void printQuestions() {
+      for(int i = 0; questions.size() > i; i++) {
+         System.out.println(i+": "+questions.get(i).getQuestion());
+      }
+   }
+
+     public String toString(){
+        String finalStr = GREEN+BOLD+"\nQuiz"+RESET;
+        for (Question question: questions) {
+            finalStr+="\n";
+            finalStr+=question.toString();
+        }
+        return finalStr;
      }
 }

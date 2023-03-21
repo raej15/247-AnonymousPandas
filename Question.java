@@ -7,11 +7,10 @@
 /**
  * A question (If an answer is set to -1, then that means it has not been set yet)
  */
-public class Question {
+public class Question extends DataConstants{
     private ArrayList<String> answers;
     private String question;
-    private int correctAnswer;
-    private int userAnswer;
+    public int correctIndex;
 
     /**
      * Creates a new question
@@ -20,8 +19,13 @@ public class Question {
     Question(String question) {
         answers = new ArrayList<String>();
         this.question = question;
-        correctAnswer = -1;
-        userAnswer = -1;
+        correctIndex = -1;
+    }
+
+    Question(String question, ArrayList<String> answers, int correctIndex) {
+        this.question = question;
+        this.answers = answers;
+        this.correctIndex = correctIndex;
     }
 
     /**
@@ -36,32 +40,16 @@ public class Question {
      * Sets an answer as correct
      * @param answer The correct answer's number
      */
-    public void setCorrectAnswer(int answer) {
-        correctAnswer = answer;
-    }
-    
-    /**
-     * Stores the user's answer
-     * @param answer The user's answer
-     */
-    public void setUserAnswer(int answer) {
-        userAnswer = answer;
+    public void setCorrectIndex(int answer) {
+        correctIndex = answer;
     }
 
     /**
      * Gets the correct answer
      * @return The correct answer
      */
-    public int getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    /**
-     * Gets the user's answer
-     * @return The user's answer
-     */
-    public int getUserAnswer() {
-        return userAnswer;
+    public int getCorrectIndex() {
+        return correctIndex;
     }
 
     /**
@@ -85,18 +73,6 @@ public class Question {
             System.out.println(i+": "+answers.get(i));
         }
     }
-
-    /**
-     * Checks if the user has answered this question
-     * @return True if the user has, false if not
-     */
-    public boolean hasUserAnswer() {
-        if (userAnswer == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
     
     /**
      * Removes an answer from the answer list
@@ -118,15 +94,12 @@ public class Question {
         System.out.println("That answer could not be found");
     }
 
-    /**
-     * Checks if the user's answer is correct
-     * @return True if the user is correct, false if not
-     */
-    public boolean isCorrect() {
-        if (correctAnswer == userAnswer) {
-            return true;
+    public String toString(){
+        String finalStr = GREEN+BOLD+"Question: "+RESET+GREEN+ question+RESET;
+        for (String answer: answers) {
+            finalStr+="\n\t";
+            finalStr+=answer;
         }
-
-        return false;
+        return finalStr;
     }
 }

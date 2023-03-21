@@ -19,6 +19,7 @@ public class DataWriter extends DataConstants {
     */
     public static void main(String[] args){
         saveUsers();
+        saveCourses();
     }
     //users json
     public static void saveUsers(){
@@ -52,7 +53,49 @@ public class DataWriter extends DataConstants {
     }
 
     //saveCourses
+    public static void saveCourses(){
+        CourseList courses = CourseList.getInstance();
+        ArrayList <Course> courseList = courses.getCourses(); 
+        JSONArray jsonCourses = new JSONArray();
 
-    //
+        for(int i = 0; i < courseList.size(); i++){
+            jsonCourses.add(getCourseJson(courseList.get(i)));
+        }
+        try(FileWriter fileWriter = new FileWriter(COURSE_FILE_NAME)){
+            fileWriter.write(jsonCourses.toJSONString());
+            fileWriter.flush();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    //Course Json
+    public static JSONObject getCourseJson(Course course){
+        JSONObject courseDetails = new JSONObject();
+        courseDetails.put(COURSE_NAME, course.getCourseName());
+        courseDetails.put(COURSE_DESCRIPTION,course.getDescription());
+        courseDetails.put(COURSE_LANGUAGE,course.getLanguage());
+
+        
+        return courseDetails;
+    }
+
+    public static JSONObject getModuleJson(Module module){
+        JSONObject moduleDetails = new JSONObject();
+        //moduleDetails.put(COURSE_MODULES, module.ge());
+        moduleDetails.put(COURSE_MODULE_NAME, module.getModuleName());
+        
+        return moduleDetails;
+    }
+
+    public static JSONObject getLessonJson(Lesson lesson){
+        JSONObject lessonDetails = new JSONObject();
+        //moduleDetails.put(COURSE_MODULES, module.ge());
+        lessonDetails.put(COURSE_LESSON_NAME, lesson.getLessonName());
+        lessonDetails.put(COURSE_LESSON_CONTENT, lesson.getContent());
+
+        
+        return moduleDetails;
+    }
+
 
 }

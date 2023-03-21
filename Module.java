@@ -7,11 +7,11 @@ import java.util.ArrayList;
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
  */
-public class Module {
+public class Module extends DataConstants{
     private ArrayList<Lesson> lessons;
     private String moduleName;
-    private boolean completed;
     private Quiz quiz;
+    private ArrayList<Comment> comments;
 
     /**
      * Creates a new module
@@ -20,8 +20,14 @@ public class Module {
     Module(String moduleName) {
         lessons = new ArrayList<Lesson>();
         this.moduleName = moduleName;
-        completed = false;
         quiz = new Quiz();
+    }
+
+    Module(String moduleName, ArrayList<Lesson> lessons, Quiz quiz, ArrayList<Comment> comments) {
+        this.moduleName = moduleName;
+        this.lessons = lessons;
+        this.quiz = quiz;
+        this.comments = comments;
     }
 
     /**
@@ -50,14 +56,6 @@ public class Module {
     }
 
     /**
-     * Returns the state of the completed variable
-     * @return True if it has been completed, false if it has not
-     */
-    public boolean getCompleted() {
-        return completed;
-    }
-
-    /**
      * Returns the quiz associated with the module
      * @return A quiz object
      */
@@ -70,16 +68,14 @@ public class Module {
      * @param lessonName The name of the lesson the user wants
      * @return A lesson
      */
-    public Lesson getLesson(String lessonName) {
+    public Lesson getLesson(int lessonIndex) {
         if (lessons.size() == 0) {
             System.out.println("There are no lessons to get");
             return null;
         }
         
-        for (int i = 0; lessons.size() > i; i++) {
-            if (lessons.get(i).getLessonName().equals(lessonName)) {
-                return lessons.get(i);
-            }
+        if (lessons.size() > lessonIndex) {
+            return lessons.get(lessonIndex);
         }
 
         System.out.println("That lesson could not be found");
@@ -106,10 +102,23 @@ public class Module {
         System.out.println("That lesson could not be found");
     }
 
-    /**
-     * Changes the state of the completed variable
-     */
-    public void toggleCompleted() {
-        completed = !completed;
+    public void printLessonNames() {
+        for(int i = 0; lessons.size() > i; i++) {
+            System.out.println(i + 1+": "+lessons.get(i).getLessonName());
+        }
+    }
+
+    public String toString(){
+        String finalStr = RED+BOLD+"\nModule Name: "+ moduleName+RESET;
+        for (Lesson lesson: lessons){
+            finalStr+="\n";
+            finalStr+=lesson.toString();
+        }
+        finalStr+=quiz.toString();
+        for (Comment comment: comments){
+            finalStr+="\n";
+            finalStr+=comment.toString();
+        }
+        return finalStr;
     }
 }

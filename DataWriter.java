@@ -86,6 +86,7 @@ public class DataWriter extends DataConstants {
     public static JSONObject getCourseJson(Course course){
         JSONObject courseDetails = new JSONObject();
         courseDetails.put(COURSE_AUTHOR, course.getAuthorID().toString());
+        courseDetails.put(COURSE_STUDENT_ID, course.getStudents());
         courseDetails.put(COURSE_STUDENT_GRADES, course.getGrades());
 
         //JSONArray studentArray = new JSONArray();

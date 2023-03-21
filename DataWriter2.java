@@ -63,7 +63,8 @@ public class DataWriter2 extends DataConstants {
         userDetails.put(USER_EMAIL, user.getEmail());
         userDetails.put(USER_USER_NAME, user.getUserName());
         userDetails.put(USER_PASSWORD, user.getPassword());
-        userDetails.put(USER_TYPE, user.getUserType());
+        //this is wrong - getUserType returns 1 no matter the type of user
+        //userDetails.put(USER_TYPE, user.getUserType());
 
          //System.out.println(userDetails);
 

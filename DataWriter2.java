@@ -99,7 +99,7 @@ public class DataWriter2 extends DataConstants {
         JSONObject courseJSON = new JSONObject();
 
         // adding course author to courseJSON
-        courseJSON.put(COURSE_AUTHOR, course.getAuthorID().toString());
+        courseJSON.put(COURSE_AUTHOR, course.getAuthorID().toString()); // author
 
         // object of students (which is a hash map of student id and their respective grades )
         JSONArray studentsJSON = new JSONArray();
@@ -107,6 +107,7 @@ public class DataWriter2 extends DataConstants {
         // getting grades from course
         HashMap<UUID, ArrayList<Double>> grades = course.getGrades();
         
+        // loops through grades and adds them to students jsonarray
         for (HashMap.Entry<UUID,ArrayList<Double>> entry : grades.entrySet()) {
             // retrieving key and value for the student
             JSONArray studentJSON = new JSONArray();
@@ -116,11 +117,40 @@ public class DataWriter2 extends DataConstants {
             studentJSON.add(studentGrades);
             studentsJSON.add(studentJSON);
         }
-        
+        courseJSON.put(COURSE_STUDENT, studentsJSON); // students
 
-        courseJSON.put(COURSE_STUDENT, studentsJSON);
-        courseJSON.put(COURSE_NAME, course.getCourseName());
-        courseJSON.put(COURSE_DESCRIPTION,course.getDescription());
+        courseJSON.put(COURSE_NAME, course.getCourseName()); // course courseName
+        courseJSON.put(COURSE_DESCRIPTION,course.getDescription()); // course description
+        
+        String languagestr = course.getLanguageStr(course.getLanguage());
+        courseJSON.put(COURSE_LANGUAGE,languagestr); // language
+
+        // getting modules
+        ArrayList<Module> modules = course.getModules();
+        JSONArray modulesJSON = new JSONArray();
+
+        // looping through the modules
+        for (Module module: modules){
+            JSONArray moduleJSON = new JSONArray();
+            moduleJSON.add(module.getModuleName());
+            System.out.println("module name: "+module.getModuleName());
+
+            // lessons
+            JSONArray lessonsJSON = new JSONArray();
+            ArrayList<Lesson> lessons = module.getLessons();
+            
+            // looping through lessons
+            for (Lesson lesson: lessons) {
+                JSONArray lessonJSON = new JSONArray();
+                lessonJSON.add(lesson.getLessonName());
+                lessonJSON.add(lesson.getContent());
+                lessonsJSON.add(lessonJSON);
+            }
+            modulesJSON.add(lessonsJSON);
+
+        }
+        courseJSON.put(COURSE_MODULES,modulesJSON);
+
 
         return courseJSON;
     }

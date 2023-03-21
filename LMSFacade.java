@@ -131,7 +131,7 @@
              return;
          }
          
-         module = course.getModule(moduleIndex);
+         module = course.getModuleAtIndex(moduleIndex);
          return;
      }
  

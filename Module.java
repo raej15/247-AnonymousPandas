@@ -47,6 +47,10 @@ public class Module extends DataConstants{
         this.moduleName = moduleName;
     }
 
+    public ArrayList<Lesson> getLessons(){
+        return lessons;
+    }
+
     /**
      * Returns the name of the module
      * @return The module's name

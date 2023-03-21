@@ -47,16 +47,21 @@ public class Course extends DataConstants{
         this.students = students;
     }
 
-    public void getGradesat(){
-
-    }
-
     public void setLanguage(String languageStr){
         if (languageStr.equalsIgnoreCase("javascript")){
             this.language=Language.JavaScript;
         } else if (languageStr.equalsIgnoreCase("python")) {
             this.language=Language.Python;
         }
+    }
+
+    public String getLanguageStr(Language language) {
+        if (language == Language.JavaScript){
+            return "JavaScript";
+        } else if (language == Language.Python) {
+            return "Python";
+        } 
+        return null;
     }
 
     /**
@@ -122,13 +127,17 @@ public class Course extends DataConstants{
     public UUID getAuthorID(){
         return this.author;
     }
+
+    public ArrayList<Module> getModules(){
+        return modules;
+    }
     
     /**
      * Returns a module based on the inputted name, if it exists
      * @param moduleName The module you want to get
      * @return A module object
      */
-    public Module getModule(int moduleIndex) {
+    public Module getModuleAtIndex(int moduleIndex) {
         if (modules.size() == 0) {
             System.out.println("There are no modules to get");
             return null;

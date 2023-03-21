@@ -3,8 +3,9 @@
  */
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class UserList {
+public class UserList extends DataConstants{
     private static UserList userList = new UserList();
     public static ArrayList<User> users;
 
@@ -69,5 +70,74 @@ public class UserList {
         for (User user: users) {
             System.out.println(user.toString()+"\n---------------");
         }
+    }
+
+    public void addUser(User newUser) {
+        users.add(newUser);
+    }
+
+    public void editUser(User currentUser) {
+        try (Scanner sc = new Scanner(System.in)) {
+            currentUser.toString();
+            System.out.println("What would you like to edit?");
+            for(int i = 1; i < 6; i++){
+                System.out.println(i + ". "+ PROFILE[i-1]);
+            }
+            int input = sc.nextInt();
+            switch (input) {
+            case 1:
+                System.out.println("New First Name:");
+                sc.nextLine();
+                currentUser.setFirstName(sc.nextLine());
+                currentUser.toString();
+                break;
+            case 2:
+                System.out.println("New Last Name:");
+                sc.nextLine();
+                currentUser.setLastName(sc.nextLine());
+                currentUser.toString();
+                break;
+            case 3:
+                System.out.println("New Email:");
+                sc.nextLine();
+                currentUser.setEmail(sc.nextLine());
+                currentUser.toString();
+                break;    
+            case 4:
+                System.out.println("New Username:");
+                sc.nextLine();
+                currentUser.setUsername(sc.nextLine());
+                currentUser.toString();
+                break;
+            case 5:
+                System.out.println("New Password:");
+                sc.nextLine();
+                String newPassword = sc.nextLine();
+                currentUser.setPassword(newPassword);
+                currentUser.toString();
+            break;
+            }
+        }
+    }
+
+    public static void newUser(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Student(1) or Course Creator(2)");
+        int type = sc.nextInt();
+        sc.nextLine();
+    
+        String[] userInput = new String[5];
+        for(int i = 0; i < PROFILE.length; i++){
+            System.out.println(PROFILE[i]+":");
+            userInput[i] = sc.nextLine();
+        }
+        if (type == 1) {
+            Student newUser = new Student(userInput[0], userInput[1], userInput[2],userInput[3], userInput[4]);
+            users.add(newUser);
+        } else if (type == 2) {
+            CourseCreator newUser = new CourseCreator(userInput[0], userInput[1], userInput[2],userInput[3], userInput[4]);
+            users.add(newUser);
+        }
+             
     }
 }

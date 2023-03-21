@@ -28,7 +28,7 @@
   	"firstName":"Taylor",
   	"lastName":"Swift",
     "email":"tswizzle@gmail.com",
-    "username": "swiftie92",
+    "username": "swiftie13",
     "password": "youbelongwithme",
     "type":"Student"
   },{
@@ -47,5 +47,13 @@
     "username": "chicagoBulls23",
     "password": "curryisbetter",
     "type":"Creator"
+  },{
+    "userid": "90dc7b23-b0a3-4a04-a3d0-4781d1efbedk",
+    "firstName":"first",
+    "lastName":"last",
+    "email":"email",
+    "username": "username",
+    "password": "password",
+    "type":"Student"
   }
 ]

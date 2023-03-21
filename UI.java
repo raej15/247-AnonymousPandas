@@ -53,7 +53,7 @@ public class UI {
         DataLoader.loadCourses();
         //CourseList.getInstance().printCourses();
         DataLoader.loadUsers();
-        //UserList.getInstance().printUsers();
+        UserList.getInstance().printUsers();
     }
 
     private static void saveData() {

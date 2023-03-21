@@ -1,15 +1,14 @@
-/*
-* Written By Anonmyous Pandas
-*/
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
-import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataWriter extends DataConstants {
+public class DataWriter2 extends DataConstants {
     
     /** 
      * @param args
@@ -22,6 +21,16 @@ public class DataWriter extends DataConstants {
     * @return usersDetails
     */
     public static void main(String[] args){
+        ArrayList<User> users = DataLoader.loadUsers();
+        for (User user: users) {
+            System.out.println(user.toString()+"\n---------------");
+        }
+        ArrayList<Course> courses = DataLoader.loadCourses();
+        for (Course course: courses) {
+            System.out.println("------------------------------------------------------------------------");
+            System.out.println(course.toString());
+            System.out.println("------------------------------------------------------------------------");
+        }
         saveUsers();
         saveCourses();
     }
@@ -48,16 +57,15 @@ public class DataWriter extends DataConstants {
      */
     public static JSONObject getUsersJson(User user) {
         JSONObject userDetails = new JSONObject();
-        userDetails.put(USER_USER_NAME, user.getUserName());
-        userDetails.put(USER_EMAIL, user.getEmail());
-        userDetails.put(USER_PASSWORD, user.getPassword());
+        userDetails.put(USER_ID,user.getID());
         userDetails.put(USER_FIRST_NAME, user.getFirstName());
         userDetails.put(USER_LAST_NAME, user.getLastName());
+        userDetails.put(USER_EMAIL, user.getEmail());
+        userDetails.put(USER_USER_NAME, user.getUserName());
+        userDetails.put(USER_PASSWORD, user.getPassword());
+        userDetails.put(USER_TYPE, user.getUserType());
 
-        // this is wrong
-        //userDetails.put(USER_TYPE, user.getUserType());
-
-         System.out.println(userDetails);
+         //System.out.println(userDetails);
 
 
         return userDetails;
@@ -68,7 +76,7 @@ public class DataWriter extends DataConstants {
         CourseList courses = CourseList.getInstance();
         ArrayList <Course> courseList = courses.getCourses(); 
         JSONArray jsonCourses = new JSONArray();
-
+        System.out.println(courseList.size());
         for(int i = 0; i < courseList.size(); i++){
             jsonCourses.add(getCourseJson(courseList.get(i)));
         }
@@ -84,34 +92,49 @@ public class DataWriter extends DataConstants {
      * @param course
      * @return JSONObject
      */
-    //Course Json
+    // called for each course in courseList
     public static JSONObject getCourseJson(Course course){
-        JSONObject courseDetails = new JSONObject();
-        courseDetails.put(COURSE_AUTHOR, course.getAuthorID().toString());
-        courseDetails.put(COURSE_STUDENT_ID, course.getStudents());
-        courseDetails.put(COURSE_STUDENT_GRADES, course.getGrades());
+        System.out.println("Writing course...");
 
-        //JSONArray studentArray = new JSONArray();
+        // onject for current course
+        JSONObject courseJSON = new JSONObject();
 
-        /*for(Student student : course.getStudents()){
-            Map<String, String> studentMap = new LinkedHashMap<String, String>(); 
-            studentMap.put(USER_ID, student.getID().toString());
-            studentMap.put(USER_USER_NAME, student.getUserName());
-            studentMap.put(USER_PASSWORD, student.getPassword());
-            studentMap.put(USER_FIRST_NAME, student.getFirstName());
-            studentMap.put(USER_LAST_NAME, student.getLastName());
-            studentArray.add(studentMap);
-        }*/
+        // adding course author to courseJSON
+        courseJSON.put(COURSE_AUTHOR, course.getAuthorID().toString());
+        //courseJSON.put(COURSE_STUDENT_ID, course.getStudents());
+        //courseJSON.put(COURSE_STUDENT_GRADES, course.getGrades());
+      
+        // object of students (which is a hash map of student id and their respective grades )
+        JSONArray studentsJSON = new JSONArray();
+
+        // getting grades from course
+        HashMap<UUID, ArrayList<Double>> grades = course.getGrades();
+        
+        // loops through hash map of grades
+        for (HashMap.Entry<UUID,ArrayList<Double>> entry : grades.entrySet()) {
+            //System.out.println("Key = " + entry.getKey() +", Value = " + entry.getValue());
+            // retrieving key and value for the student
+            JSONArray student = new JSONArray();
+            UUID uuid = entry.getKey();
+            ArrayList<Double> studentGrades = entry.getValue();
+            System.out.println(uuid);
+            student.add(uuid);
+            student.add(studentGrades);
+            ((Map) studentsJSON).put(COURSE_STUDENT,student);
+        }
+            
+        
+      
 
 
         //courseDetails.put(COURSE_STUDENT, studentArray);
 
-        courseDetails.put(COURSE_NAME, course.getCourseName());
-        courseDetails.put(COURSE_DESCRIPTION,course.getDescription());
+        //courseJSON.put(COURSE_NAME, course.getCourseName());
+        //courseJSON.put(COURSE_DESCRIPTION,course.getDescription());
 
 
 
-        return courseDetails;
+        return courseJSON;
     }
 
 /** 

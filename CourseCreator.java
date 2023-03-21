@@ -7,26 +7,26 @@ import java.util.UUID;
 
 public class CourseCreator extends User{
 
-    public int type;
+    public String type;
     public UUID uuid;
 
     public CourseCreator(UUID uuid, String firstName, String lastName, String email, String username, String password){
         super(username, password, email, firstName, lastName);
         this.uuid = uuid;
-        this.type = 2;
+        this.type = "Creator";
     }
 
     public CourseCreator(String firstName, String lastName, String email, String username, String password){
         super(username, password, email, firstName, lastName);
         this.uuid = UUID.randomUUID();
-        this.type = 2;
+        this.type = "Creator";
     }
 
     
     /** 
      * @return int
      */
-    public int getType(){
+    public String getType(){
         return type;
     }
 }

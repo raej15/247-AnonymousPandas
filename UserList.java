@@ -11,7 +11,7 @@ public class UserList extends DataConstants{
 
     private UserList() {
         users = new ArrayList<User>();
-        users.add(new User("Johnny", "Password", "John@gmail.com", "John", "Smith"));
+       // users.add(new User("Johnny", "Password", "John@gmail.com", "John", "Smith"));
     }
 
     

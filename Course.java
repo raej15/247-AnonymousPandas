@@ -47,6 +47,10 @@ public class Course extends DataConstants{
         this.students = students;
     }
 
+    public void getGradesat(){
+
+    }
+
     public void setLanguage(String languageStr){
         if (languageStr.equalsIgnoreCase("javascript")){
             this.language=Language.JavaScript;
@@ -162,7 +166,7 @@ public class Course extends DataConstants{
         this.grades = grades;
     }
 
-    public String getGrades() {
+    public String gradesToString() {
         String finalStr = "Student Grades:";
         for(Entry<UUID, ArrayList<Double>> entry: grades.entrySet()) {
             finalStr+="\n";
@@ -171,14 +175,20 @@ public class Course extends DataConstants{
         return finalStr;
     }
 
+
+
     public void printModuleNames() {
         for(int i = 0; modules.size() > i; i++) {
             System.out.println(i + 1+": "+modules.get(i).getModuleName());
         }
     }
 
+    public HashMap<UUID, ArrayList<Double>> getGrades(){
+        return grades;
+    }
+
     public String toString(){
-        String finalStr =  BOLD+"Course Name: "+ this.courseName + RESET+"\nDescription: "+ this.description+"\nLanguage: "+this.language+"\nAuthor Id: "+this.author+ "\n"+getGrades();
+        String finalStr =  BOLD+"Course Name: "+ this.courseName + RESET+"\nDescription: "+ this.description+"\nLanguage: "+this.language+"\nAuthor Id: "+this.author+ "\n"+gradesToString();
         for(Module module: modules) {
             finalStr+="\n";
             finalStr+=module.toString();
@@ -191,9 +201,9 @@ public class Course extends DataConstants{
     }
 
     public void printStudents(){
-        //for (Student student:){
-            //System.out.println(student);
-        //}
+        for (UUID student:students){
+            System.out.println(student);
+        }
     }
 
     public ArrayList<UUID> getStudents(){

@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.LinkedHashMap;
-import java.util.Map;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -87,6 +85,7 @@ public class DataWriter extends DataConstants {
             studentMap.put(USER_LAST_NAME, student.getLastName());
             studentArray.add(studentMap);
         }
+        
 
         courseDetails.put(COURSE_STUDENT, studentArray);
 
@@ -97,5 +96,24 @@ public class DataWriter extends DataConstants {
 
         return courseDetails;
     }
+
+    public static JSONObject getModuleJson(Module module){
+        JSONObject moduleDetails = new JSONObject();
+        //moduleDetails.put(COURSE_MODULES, module.ge());
+        moduleDetails.put(COURSE_MODULE_NAME, module.getModuleName());
+        
+        return moduleDetails;
+    }
+
+    public static JSONObject getLessonJson(Lesson lesson){
+        JSONObject lessonDetails = new JSONObject();
+        //moduleDetails.put(COURSE_MODULES, module.ge());
+        lessonDetails.put(COURSE_LESSON_NAME, lesson.getLessonName());
+        lessonDetails.put(COURSE_LESSON_CONTENT, lesson.getContent());
+
+        
+        return moduleDetails;
+    }
+
 
 }

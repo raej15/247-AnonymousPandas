@@ -5,9 +5,10 @@
  public class FinalCertification extends Quiz{
     private String certificate;
     private double grade;
+    private String title;
 
     FinalCertification() {
-        super.title = "Final Cert";
+        this.title = "Final Cert";
     }
 
     //needs to be completed

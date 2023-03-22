@@ -110,11 +110,16 @@ public class DataWriter2 extends DataConstants {
         // loops through grades and adds them to students jsonarray
         for (HashMap.Entry<UUID,ArrayList<Double>> entry : grades.entrySet()) {
             // retrieving key and value for the student
-            JSONArray studentJSON = new JSONArray();
+            JSONObject studentJSON = new JSONObject();
             UUID uuid = entry.getKey();
             ArrayList<Double> studentGrades = entry.getValue();
-            studentJSON.add(uuid.toString());
-            studentJSON.add(studentGrades);
+            ArrayList<Long> longStudentGrades = new ArrayList<Long>();
+            for (Double grade: studentGrades){
+                long lgrade = Math.round(grade);
+                longStudentGrades.add(lgrade);
+            }
+            studentJSON.put(COURSE_STUDENT_ID,uuid.toString());
+            studentJSON.put(COURSE_STUDENT_GRADES,longStudentGrades);
             studentsJSON.add(studentJSON);
         }
         courseJSON.put(COURSE_STUDENT, studentsJSON); // students
@@ -176,7 +181,6 @@ public class DataWriter2 extends DataConstants {
                 JSONObject commentJSON = new JSONObject();
                 commentJSON.put(COURSE_COMMENTS_USER, comment.getCommenter().toString());
                 commentJSON.put(COURSE_COMMENTS_COMMENT, comment.getComment());
-                System.out.println("Comment: "+comment.getComment());
                 ArrayList<Comment> nestedComments = comment.getComments();
                 JSONArray nestedCommentsJSON = new JSONArray();
                 for (Comment nestedC: nestedComments){
@@ -188,7 +192,6 @@ public class DataWriter2 extends DataConstants {
                     emptyArrayJSON.add(emptyArray);
                     nestedCommentJSON.put(COURSE_COMMENTS,emptyArray); // comments (the empty array)
                     nestedCommentsJSON.add(nestedCommentJSON);
-                    System.out.println("nestedC: "+nestedC);
                 }
                 commentJSON.put(COURSE_NESTED_COMMENTS,nestedCommentsJSON); // nestedComment
                 moduleCommentsJSON.add(commentJSON);

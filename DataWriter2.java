@@ -131,9 +131,8 @@ public class DataWriter2 extends DataConstants {
 
         // looping through the modules
         for (Module module: modules){
-            JSONArray moduleJSON = new JSONArray();
-            moduleJSON.add(module.getModuleName());
-            System.out.println("module name: "+module.getModuleName());
+            JSONObject moduleJSON = new JSONObject();
+        
 
             // lessons
             JSONArray lessonsJSON = new JSONArray();
@@ -141,14 +140,47 @@ public class DataWriter2 extends DataConstants {
             
             // looping through lessons
             for (Lesson lesson: lessons) {
-                JSONArray lessonJSON = new JSONArray();
-                lessonJSON.add(lesson.getLessonName());
-                lessonJSON.add(lesson.getContent());
+                JSONObject lessonJSON = new JSONObject();
+                lessonJSON.put(COURSE_LESSON_NAME,lesson.getLessonName());
+                lessonJSON.put(COURSE_LESSON_CONTENT,lesson.getContent());
                 lessonsJSON.add(lessonJSON);
             }
-            modulesJSON.add(lessonsJSON);
+            moduleJSON.put(COURSE_MODULE_NAME,module.getModuleName()); // module name
+            moduleJSON.put(COURSE_LESSONS,lessonsJSON); // lessons
 
+            // quiz (array)
+            // questions - array
+            // question - object
+            
+            JSONArray quizJSON = new JSONArray();
+            JSONArray questionsJSON = new JSONArray();
+            
+                //put questionContent
+                // put answers array
+                // put correct Index
+
+            ArrayList<Question> questions = module.getQuizQuestions();
+            // loop through quiz questions
+            for (Question question: questions){
+                JSONObject questionJSON = new JSONObject();
+                questionJSON.put(COURSE_QUIZ_QUESTIONS,question.getQuestion());
+                JSONArray answerChoicesJSON = new JSONArray();
+                ArrayList<String> answerChoices = question.getAnswers();
+                for (String ac: answerChoices){
+                    answerChoicesJSON.add(ac);
+                }
+                questionJSON.put(COURSE_QUIZ_ANSWERS, answerChoicesJSON);
+                questionJSON.put(COURSE_QUIZ_CORRECT_INDEX, question.getCorrectIndex());
+
+                questionsJSON.add(questionJSON);
+            }
+            quizJSON.add(questionsJSON);
+            moduleJSON.put(COURSE_MODULE_QUIZ,quizJSON);
+
+
+            modulesJSON.add(moduleJSON);
         }
+        
         courseJSON.put(COURSE_MODULES,modulesJSON);
 
 

@@ -63,7 +63,7 @@ public class Question extends DataConstants{
     /**
      * Prints out all of the answers
      */
-    public void getAnswers() {
+    public void printAnswers() {
         if (answers.size() == 0) {
             System.out.println("There are no answers to return");
             return;
@@ -72,6 +72,10 @@ public class Question extends DataConstants{
         for (int i = 0; answers.size() > i; i++) {
             System.out.println(i+": "+answers.get(i));
         }
+    }
+
+    public ArrayList<String> getAnswers() {
+        return answers;
     }
     
     /**

@@ -3,41 +3,67 @@
         "courseName":"Introduction to JavaScript",
         "author":"51dc7b49-b0a3-4a04-a3d0-4781d1efbedf",
         "students":[
-            ["41cacde1-48d5-4374-9119-4121510741f5",[65.0,-1.0]],
-            ["87410238-bbc8-4bd0-813b-9c04c25bc8e1",[98.0,-1.0]],
-            ["878a27e5-78b2-499a-847e-1c60c84cf9f2",[86.0,-1.0]],
-            ["1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",[50.0,-1.0]]],
-            "description":"JavaScript is a scripting language for creating dynamic web page content.",
-            "language":"JavaScript",
-            "modules":
-            [
-                [
+                ["41cacde1-48d5-4374-9119-4121510741f5",[65.0,-1.0]],
+                ["87410238-bbc8-4bd0-813b-9c04c25bc8e1",[98.0,-1.0]],
+                ["878a27e5-78b2-499a-847e-1c60c84cf9f2",[86.0,-1.0]],
+                ["1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",[50.0,-1.0]]
+        ],
+        "description":"JavaScript is a scripting language for creating dynamic web page content.",
+        "language":"JavaScript",
+        "modules":[
+            {
+                "quiz":[
                     [
-                        "Strings",
-                        "One way to use a variable is to hold text. You use key word 'var' to do this. Ex: var color = 'blue'. "
-                    ],
-                    [
-                        "Numbers","You also use 'var' to hold numbers. You can use variables to do calculations. Ex: var size = 5. Notice how their are no quotes around the value.  "
-                    ],
-                    [
-                        "Arrays",
-                        "Arrays are used to store multiple values in a single variable. Ex: var colors = ['red', 'orange', 'yellow']. This example is an array of strings therefore each value is surrounded by quotes. Arrays are indexed starting at zero. For this example colors[0] is equal to 'red' and colors[2] is equal to 'yellow'."
+                        {
+                            "question":"How is a string formatted?",
+                            "answers":["var strName = 'apple'","String 'apple'","Str strName = 'apple'"],
+                            "correctIndex":0
+                        },{
+                            "question":"You can multiply a string and a number.",
+                            "answers":["True","False"],
+                            "correctIndex":0
+                        }
                     ]
                 ],
-                [
-                    [
-                        "What is an object?",
-                        "An object is a data type that can take in collections of key-value pairs. A major difference between an object and other data types such as strings and numbers in JavaScript is that an objects can store different types of data as its values."
-                    ],
-                    [
-                        "Example",
-                        "You might use an object for a user. Each user could have a first name, last name, and weight. The first and last names would be a string. The weight would be a number. Ex: var user1 = {firstName:'Ann', lastName:'Smith', weight:'125'}"
-                    ],
-                    [
-                        "Objects and Arrays",
-                        "Objects can be stored in an array. For example, to store users you could create user objects and add them to a users array."
-                    ]
+                "moduleName": "Variables",
+                "lessons":[
+                        {
+                            "content":"One way to use a variable is to hold text. You use key word 'var' to do this. Ex: var color = 'blue'. ","lessonName":"Strings"
+                        },{
+                            "content":"You also use 'var' to hold numbers. You can use variables to do calculations. Ex: var size = 5. Notice how their are no quotes around the value.  ","lessonName":"Numbers"
+                        },{
+                            "content":"Arrays are used to store multiple values in a single variable. Ex: var colors = ['red', 'orange', 'yellow']. This example is an array of strings therefore each value is surrounded by quotes. Arrays are indexed starting at zero. For this example colors[0] is equal to 'red' and colors[2] is equal to 'yellow'.","lessonName":"Arrays"
+                        }
                 ]
-            ]
+            },
+            {
+                "quiz":[
+                    [
+                        {
+                            "question":"What is the difference between an object and other variables?",
+                            "answers":["Objects can only store numbers.","Objects can only store strings.","Objects can store a mixture of variables."],
+                            "correctIndex":2
+                        },{
+                            "question":"An example of an array of objects...var users = [{firstName: 'Ann',lastName: 'Smith'},{firstName: 'Jennifer',lastName: 'Smith'}]",
+                            "answers":["True","False"],
+                            "correctIndex":0
+                        }
+                    ]
+                ],
+                "moduleName":"Objects",
+                "lessons":[
+                    {
+                        "content":"An object is a data type that can take in collections of key-value pairs. A major difference between an object and other data types such as strings and numbers in JavaScript is that an objects can store different types of data as its values.",
+                        "lessonName":"What is an object?"
+                    },{
+                        "content":"You might use an object for a user. Each user could have a first name, last name, and weight. The first and last names would be a string. The weight would be a number. Ex: var user1 = {firstName:'Ann', lastName:'Smith', weight:'125'}",
+                        "lessonName":"Example"
+                    },{
+                        "content":"Objects can be stored in an array. For example, to store users you could create user objects and add them to a users array.",
+                        "lessonName":"Objects and Arrays"
+                    }
+                ]
+            }
+        ]
     }
 ]

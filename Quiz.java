@@ -24,6 +24,10 @@ public class Quiz extends DataConstants{
         this.questions = questions;
      }
 
+     public ArrayList<Question> getQuestions(){
+      return questions;
+     }
+
      /**
       * Adds a new question to the quiz
       * @param question The question

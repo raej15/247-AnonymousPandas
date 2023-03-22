@@ -67,6 +67,10 @@ public class Module extends DataConstants{
         return quiz;
     }
 
+    public ArrayList<Question> getQuizQuestions(){
+        return quiz.getQuestions();
+    }
+
     /**
      * Returns a lesson via its name, if it exists
      * @param lessonName The name of the lesson the user wants

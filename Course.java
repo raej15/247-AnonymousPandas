@@ -104,6 +104,10 @@ public class Course extends DataConstants{
         return courseName;
     }
 
+    public ArrayList<Comment> getCourseComments(){
+        return courseComments;
+    }
+
     /**
      * Gets the description of the course
      * @return description

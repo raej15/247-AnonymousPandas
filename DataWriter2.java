@@ -147,41 +147,66 @@ public class DataWriter2 extends DataConstants {
             }
             moduleJSON.put(COURSE_MODULE_NAME,module.getModuleName()); // module name
             moduleJSON.put(COURSE_LESSONS,lessonsJSON); // lessons
-
-            // quiz (array)
-            // questions - array
-            // question - object
-            
             JSONArray quizJSON = new JSONArray();
-            JSONArray questionsJSON = new JSONArray();
-            
-                //put questionContent
-                // put answers array
-                // put correct Index
 
-            ArrayList<Question> questions = module.getQuizQuestions();
+            ArrayList<Question> questions = module.getQuizQuestions(); //retrieving questions from the course
+
             // loop through quiz questions
             for (Question question: questions){
                 JSONObject questionJSON = new JSONObject();
-                questionJSON.put(COURSE_QUIZ_QUESTIONS,question.getQuestion());
+                questionJSON.put(COURSE_QUIZ_QUESTIONS,question.getQuestion()); // question
                 JSONArray answerChoicesJSON = new JSONArray();
                 ArrayList<String> answerChoices = question.getAnswers();
                 for (String ac: answerChoices){
                     answerChoicesJSON.add(ac);
                 }
-                questionJSON.put(COURSE_QUIZ_ANSWERS, answerChoicesJSON);
-                questionJSON.put(COURSE_QUIZ_CORRECT_INDEX, question.getCorrectIndex());
+                questionJSON.put(COURSE_QUIZ_ANSWERS, answerChoicesJSON); // answers
+                questionJSON.put(COURSE_QUIZ_CORRECT_INDEX, question.getCorrectIndex()); // correctIndex
 
-                questionsJSON.add(questionJSON);
+                quizJSON.add(questionJSON);
             }
-            quizJSON.add(questionsJSON);
-            moduleJSON.put(COURSE_MODULE_QUIZ,quizJSON);
+            moduleJSON.put(COURSE_MODULE_QUIZ,quizJSON); // quiz
 
+            // Module Comments
+            ArrayList<Comment> moduleComments = module.getComments(); // retrieving comments from module
+            JSONArray moduleCommentsJSON = new JSONArray();
+            // loop through module comments
+
+            // COURSE_COMMENTS_COMMENT = "comment";
+            // COURSE_NESTED_COMMENTS = "nestedComments";
+            // COURSE_NESTED_COMMENT = "nestedComment";
+            // COURSE_MODULE_MODULE_COMMENTS = "moduleComments";
+            // COURSE_COURSE_COMMENTS = "courseComments";
+
+            for (Comment comment: moduleComments){
+                JSONObject commentJSON = new JSONObject();
+                commentJSON.put(COURSE_COMMENTS_USER, comment.getCommenter().toString());
+                commentJSON.put(COURSE_COMMENTS_COMMENT, comment.getComment());
+                System.out.println("Comment: "+comment.getComment());
+                ArrayList<Comment> nestedComments = comment.getComments();
+                JSONArray nestedCommentsJSON = new JSONArray();
+                for (Comment nestedC: nestedComments){
+                    JSONObject nestedCommentJSON = new JSONObject();
+                    nestedCommentJSON.put(COURSE_COMMENTS_USER, nestedC.getCommenter().toString());
+                    nestedCommentJSON.put(COURSE_NESTED_COMMENT, nestedC.getComment());
+                    JSONArray emptyArrayJSON = new JSONArray();
+                    ArrayList<Comment> emptyArray = new ArrayList<Comment>();
+                    emptyArrayJSON.add(emptyArray);
+                    nestedCommentJSON.put(COURSE_COMMENTS,emptyArray);
+                    nestedCommentsJSON.add(nestedCommentJSON);
+                    System.out.println("nestedC: "+nestedC);
+                }
+                commentJSON.put(COURSE_NESTED_COMMENTS,nestedCommentsJSON); // nestedComment
+                moduleCommentsJSON.add(commentJSON);
+                //commentJSON.add(commentJSON);
+                
+            }
+            moduleJSON.put(COURSE_MODULE_MODULE_COMMENTS, moduleCommentsJSON); // moduleComments
 
             modulesJSON.add(moduleJSON);
         }
         
-        courseJSON.put(COURSE_MODULES,modulesJSON);
+        courseJSON.put(COURSE_MODULES,modulesJSON); // modules
 
 
         return courseJSON;

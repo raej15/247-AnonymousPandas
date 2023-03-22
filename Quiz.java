@@ -10,14 +10,12 @@ import java.util.ArrayList;
  */
 public class Quiz extends DataConstants{
      private ArrayList<Question> questions;
-     protected String title;
 
      /**
       * Creates a new quiz titled "Quiz"
       */
      Quiz() {
         questions = new ArrayList<Question>();
-        title = "Quiz";
      }
 
      public Quiz(ArrayList<Question> questions ) {
@@ -37,14 +35,6 @@ public class Quiz extends DataConstants{
      }
 
      /**
-      * Updates the title to a new one
-      * @param title The new title
-      */
-     public void updateTitle(String title) {
-        this.title = title;
-     }
-
-     /**
       * Returns a question, if it exists
       * @param index The number of the question you want
       * @return A question object
@@ -56,14 +46,6 @@ public class Quiz extends DataConstants{
         }
 
         return questions.get(index);
-     }
-
-     /**
-      * Returns the quiz's title
-      * @return The title
-      */
-     public String getTitle() {
-        return title;
      }
      
    /**

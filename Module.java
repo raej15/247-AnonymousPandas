@@ -59,6 +59,10 @@ public class Module extends DataConstants{
         return moduleName;
     }
 
+    public ArrayList<Comment> getComments(){
+        return comments;
+    }
+
     /**
      * Returns the quiz associated with the module
      * @return A quiz object

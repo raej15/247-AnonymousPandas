@@ -22,11 +22,11 @@
                 {"moduleName": "Variables",
                 "lessons": [{
                     "lessonName":"Strings",
-                    "content": "One way to use a variable is to hold text. You use key word 'var' to do this. Ex: var color = 'blue'. "
+                    "content": "One way to use a variable is to hold text. You use key word 'var' to do this. Ex: var color = 'blue'."
                 },
                 {
                     "lessonName":"Numbers",
-                    "content": "You also use 'var' to hold numbers. You can use variables to do calculations. Ex: var size = 5. Notice how their are no quotes around the value.  "
+                    "content": "You also use 'var' to hold numbers. You can use variables to do calculations. Ex: var size = 5. Notice how their are no quotes around the value."
                 },
                 {
                     "lessonName":"Arrays",

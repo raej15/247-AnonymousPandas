@@ -51,6 +51,14 @@ public class Comment {
         return this.comment;
     }
 
+    public UUID getCommenter(){
+        return commenter;
+    }
+
+    public ArrayList<Comment> getComments(){
+        return comments;
+    }
+
     
     /** 
      * @return String

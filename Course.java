@@ -137,8 +137,8 @@ public class Course extends DataConstants{
     }
     
     /**
-     * Returns a module based on the inputted name, if it exists
-     * @param moduleName The module you want to get
+     * Returns a module based on the inputted index, if it exists
+     * @param moduleIndex The index of the module you want to get
      * @return A module object
      */
     public Module getModuleAtIndex(int moduleIndex) {

@@ -56,7 +56,7 @@ public class UI {
         if (check == true) {
             facade.getCourseList().addCourse(new Course("Python Basics", "The basics of python", Language.Python));
             facade.getCourseList().getCourse("Python Basics").addModule("The first week");
-            facade.getCourseList().getCourse("Python Basics").getModule(0).addLesson("What are data types?", "This goes over various data types");
+            facade.getCourseList().getCourse("Python Basics").getModuleAtIndex(0).addLesson("What are data types?", "This goes over various data types");
             check = false;
         }
     }
@@ -85,7 +85,6 @@ public class UI {
         return;
     }
 
-    private static boolean home(LMSFacade facade) {
     /**
      * This loads the home screen of the user
      * @return True if the program should continue, false if not
@@ -111,7 +110,7 @@ public class UI {
     }
 
     /**
-     * 
+     * Lets the user pick whichever course they want to access
      */
     private static void courseLoader() {
         System.out.println("Please select which course you wish to access");
@@ -125,7 +124,10 @@ public class UI {
         return;
     }
 
-    private static boolean courseOptions() {
+    /**
+     * Shows the user what options they have for the current course
+     */
+    private static void courseOptions() {
         System.out.println(facade.getCourse().getCourseName());
         consoleBarrier();
 
@@ -142,21 +144,28 @@ public class UI {
             System.out.println("Please input a valid option");
         }
 
-        return modulePrint;
+        return;
     }
 
-    private static boolean printModules() {
+    /**
+     * Shows the user the various modules they can pick
+     */
+    private static void printModules() {
         System.out.println("Pick a module");
         consoleBarrier();
         facade.getCourse().printModuleNames();
 
         int userInputINT = intCheck();
         facade.setModule(userInputINT - 1);
-        return false;
+        modulePrint = false;
+        return;
     }
 
+    /**
+     * This lets the user access and complete quizzes (Need to finish this)
+     */
     private static void quizLoader() {
-        System.out.println(facade.getQuiz().getTitle());
+        System.out.println(facade.getQuiz().toString());
         consoleBarrier();
         facade.getQuiz().printQuestions();
 
@@ -164,7 +173,10 @@ public class UI {
         return;
     }
 
-    private static boolean moduleOptions() {
+    /**
+     * Shows the options that the user has for the current module
+     */
+    private static void moduleOptions() {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
@@ -181,20 +193,27 @@ public class UI {
             System.out.println("Please input a valid option");
         }
 
-        return lessonPrint;
+        return;
     }
 
-    private static boolean printLessons() {
+    /**
+     * Prints out the various options for lessons that the user has
+     */
+    private static void printLessons() {
         System.out.println("Pick a lesson");
         consoleBarrier();
         facade.getModule().printLessonNames();
 
         int userInputINT = intCheck();
         facade.setLesson(userInputINT - 1);
-        return false;
+        lessonPrint = false;
+        return;
     }
 
-    private static boolean loadUI(LMSFacade facade) {
+    /**
+     * Loads the UI and lets the user give input
+     * @return True if the program should continue, false if it should terminate
+     */
     private static boolean loadUI() {
         int userInputINT = 0;
         addCourses();
@@ -220,22 +239,22 @@ public class UI {
         }
 
         if (modulePrint) {
-            modulePrint = printModules();
+            printModules();
             return true;
         }
 
         if (!facade.hasModule()) {
-            modulePrint = courseOptions();
+            courseOptions();
             return true;
         }
 
         if (lessonPrint) {
-            lessonPrint = printLessons();
+            printLessons();
             return true;
         }
 
         if (!facade.hasLesson()) {
-            lessonPrint = moduleOptions();
+            moduleOptions();
             return true;
         }
 

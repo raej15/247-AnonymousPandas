@@ -81,7 +81,71 @@ public class UI {
     private static void login() {
         System.out.println("Please enter in your username");
         String userInput = input.nextLine();
-        facade.setUser(userInput);
+        
+        if (!facade.getUserList().has(userInput)) {
+            System.out.println("The user does not exist");
+            return;
+        }
+
+        System.out.println("\nPlease enter in your password");
+        User user = facade.getUserList().getUser(userInput);
+        String password = input.nextLine();
+
+        if (!facade.getUserList().login(user, password)) {
+            System.out.println("The password is incorrect");
+            return;
+        }
+
+        System.out.println("\nYou have logged in as "+userInput);
+        facade.setUser(user);
+        
+        return;
+    }
+
+    /**
+     * Registers a new user
+     */
+    private static void register() {
+        boolean check = false;
+        String username;
+        String password;
+        String email;
+        String firstName;
+        String lastName;
+        int type = 0;
+
+        System.out.println("Input the username you will use");
+        username = input.nextLine();
+        
+        System.out.println("Now enter in the password you want");
+        password = input.nextLine();
+
+        System.out.println("Now enter in your email address");
+        email = input.nextLine();
+
+        System.out.println("Now enter in your first name");
+        firstName = input.nextLine();
+
+        System.out.println("Now enter in your last name");
+        lastName = input.nextLine();
+
+        while (check) {
+            System.out.println("Are you a student or a course creator?\n1. Student\n2. Course Creator");
+            type = intCheck();
+
+            switch (type) {
+                case 1:
+                    check = false;
+                    break;
+                case 2:
+                    check = false;
+                    break;
+                default:
+                    System.out.println("Please enter in a valid input");
+            }
+        }
+
+        facade.register(username, password, email, firstName, lastName, type);
         return;
     }
 
@@ -210,12 +274,7 @@ public class UI {
         return;
     }
 
-    /**
-     * Loads the UI and lets the user give input
-     * @return True if the program should continue, false if it should terminate
-     */
-    private static boolean loadUI() {
-        int userInputINT = 0;
+    private static boolean studentUI() {
         addCourses();
 
         if (!facade.hasUser()) {
@@ -262,6 +321,8 @@ public class UI {
         consoleBarrier();
         System.out.println("1. Go back");
 
+        int userInputINT = 0;
+
         while (true) {
             userInputINT = intCheck();
             
@@ -272,11 +333,47 @@ public class UI {
         }
     }
 
+    /**
+     * Loads the UI and lets the user give input
+     * @return True if the program should continue, false if it should terminate
+     */
+    private static boolean loadUI() {
+        if (!facade.hasUser()) {
+            System.out.println("Welcome, would you like to register or login?\n1. Login\n2. Register\n3. Exit");
+            int userInputINT = intCheck();
+
+            switch (userInputINT) {
+                case 1:
+                    login();
+                    return true;
+                case 2:
+                    register();
+                    return true;
+                case 3:
+                    return false;
+                default:
+                    System.out.println("Please input a valid option");
+                    return true;
+            }
+            
+        }
+
+        switch (facade.getUser().getType()) {
+            case 1:
+                System.out.println("Students");
+            case 2:
+                System.out.println("Course Creator");
+            default:
+                System.out.println("An unexpected bug has occured");
+                return false;
+        }
+    }
+
     public static void main(String[] args) {
         input = new Scanner(System.in);
         loadData();
 
-        facade = new LMSFacade(input);
+        facade = new LMSFacade();
         //clearTerminal();
 
         while (loadUI()) {

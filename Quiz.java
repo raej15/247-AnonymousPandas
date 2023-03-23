@@ -2,7 +2,6 @@
  * Written by Anonymous Pandas
  */
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -89,7 +88,7 @@ public class Quiz extends DataConstants{
         return finalStr;
      }
 
-     public void newQuestion(){
+   public void newQuestion(){
       Scanner sc = new Scanner(System.in);
       ArrayList<String> answerChoices = new ArrayList<String>();
       System.out.println("What is the question?");

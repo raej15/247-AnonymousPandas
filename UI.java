@@ -103,10 +103,19 @@ public class UI {
     }
 
     /**
+     * Used to automatically log in the user after registering
+     */
+    private static void login(String username) {
+        facade.setUser(facade.getUserList().getUser(username));
+        
+        return;
+    }
+
+    /**
      * Registers a new user
      */
     private static void register() {
-        boolean check = false;
+        boolean check = true;
         String username;
         String password;
         String email;
@@ -146,6 +155,7 @@ public class UI {
         }
 
         facade.register(username, password, email, firstName, lastName, type);
+        login(username);
         return;
     }
 
@@ -274,6 +284,10 @@ public class UI {
         return;
     }
 
+    /**
+     * Loads the ui for student accounts
+     * @return True if the program should continue, false if not
+     */
     private static boolean studentUI() {
         addCourses();
 
@@ -355,12 +369,11 @@ public class UI {
                     System.out.println("Please input a valid option");
                     return true;
             }
-            
         }
 
         switch (facade.getUser().getType()) {
             case 1:
-                System.out.println("Students");
+                return studentUI();
             case 2:
                 System.out.println("Course Creator");
             default:

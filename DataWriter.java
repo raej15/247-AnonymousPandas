@@ -87,20 +87,16 @@ public class DataWriter extends DataConstants {
     public static JSONObject getCourseJson(Course course){
         JSONObject courseDetails = new JSONObject();
         courseDetails.put(COURSE_AUTHOR, course.getAuthorID().toString());
-        courseDetails.put(COURSE_STUDENT_ID, course.getStudents());
+        courseDetails.put(COURSE_STUDENT_ID, course.getStudents().toString());
         courseDetails.put(COURSE_STUDENT_GRADES, course.getGrades());
 
-        //JSONArray studentArray = new JSONArray();
+        JSONArray studentArray = new JSONArray();
 
-        /*for(Student student : course.getStudents()){
-            Map<String, String> studentMap = new LinkedHashMap<String, String>(); 
-            studentMap.put(USER_ID, student.getID().toString());
-            studentMap.put(USER_USER_NAME, student.getUserName());
-            studentMap.put(USER_PASSWORD, student.getPassword());
-            studentMap.put(USER_FIRST_NAME, student.getFirstName());
-            studentMap.put(USER_LAST_NAME, student.getLastName());
+        for(Course student : course.getCourse()){
+        
+            
             studentArray.add(studentMap);
-        }*/
+        }
 
 
         //courseDetails.put(COURSE_STUDENT, studentArray);

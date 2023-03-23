@@ -10,8 +10,9 @@ public class UserList extends DataConstants{
     public static ArrayList<User> users;
 
     private UserList() {
-        users = new ArrayList<User>();
+        //users = new ArrayList<User>();
        // users.add(new User("Johnny", "Password", "John@gmail.com", "John", "Smith"));
+       users = DataLoader.loadUsers();
     }
 
     

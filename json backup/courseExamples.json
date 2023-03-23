@@ -1,0 +1,97 @@
+[
+    {
+        "author":"",
+        "students":[{
+            "id":  "",
+            "grades":[]
+        }, {
+            "id": "",
+            "grades":[]
+        }, {
+            "id": "",
+            "grades":[]
+        }, {
+            "id": "",
+            "grades":[]
+        }
+        ],
+        "courseName": "Python Introduction",
+        "description":"Python is an interpreted, object-oriented, high-level programming language with dynamic semantics developed by Guido van Rossum.",
+        "language": "Python",
+        "modules":[
+                {"moduleName": "Variables",
+                "lessons": [{
+                    "lessonName":"Strings",
+                    "content": "Strings start and end with quotes. Ex: variableName = 'str' "
+                },
+                {
+                    "lessonName":"Numbers",
+                    "content": "Variables that store numbers do not need to be surrounded by quotes. Ex: variableName = 1 "
+                }
+                ],
+                "quiz":[
+                    {
+                        "question":"Strings are surrounded by quotes?",
+                        "answers":["true","false"],
+                        "correctIndex": 0
+                    },
+                    {
+                        "question":"Can variable names have spaces?",
+                        "answers":["Yes", "No" ],
+                        "correctIndex": 1
+                    }
+                ],
+                "moduleComments":[
+                    {
+                        "user": "",
+                        "comment": "",
+                        "nestedComments": [
+                            {
+                                "user": "",
+                                "nestedComment": "",
+                                "comments": []
+                            },
+                            {
+                                "user": "",
+                                "nestedComment": "",
+                                "comments": []
+                            }
+                        ]
+                    },
+                    {
+                        "user": "",
+                        "comment": "",
+                        "nestedComments": [
+                            {
+                                "user": "",
+                                "nestedComment": "",
+                                "comments": []
+                            },
+                            {
+                                "user": "",
+                                "nestedComment": "",
+                                "comments": []
+                            }
+                        ]
+                    } 
+                ]
+        
+                
+            }
+
+        ],
+        "courseComments":[
+            {
+                "user": "",
+                "comment": "",
+                "nestedComments": [
+                    {
+                        "user": "",
+                        "nestedComment": "",
+                        "comments": []
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -24,6 +24,10 @@
          this.input = input;
          check = true;
      }
+
+     public void addCourse(){
+        courseList.addCourse();
+     }
  
      // Used for testing purposes
      public CourseList getCourseList() {

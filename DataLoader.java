@@ -95,22 +95,32 @@ public class DataLoader extends DataConstants{
                 UUID author = UUID.fromString((String)courseJSON.get(COURSE_AUTHOR));
                 // hashmap to hold the student grades with their ID
                 HashMap<UUID, ArrayList<Double>> grades = new HashMap<UUID, ArrayList<Double>>();
+                HashMap<String, ArrayList<Double>> gradesNull = new HashMap<String, ArrayList<Double>>();
                 JSONArray studentsJSON = (JSONArray)courseJSON.get(COURSE_STUDENT);
                 // Array List that holds the student UUID's enrolled in this course
                 ArrayList<UUID> students = new ArrayList<UUID>();
+                ArrayList<String> studentsNullID = new ArrayList<String>();
                 // loops through each student
                 for (int j = 0; j < studentsJSON.size();j++) {
                     JSONObject studentJSON = (JSONObject)studentsJSON.get(j);
-                    UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENT_ID));
-                    students.add(studentID);
-                    JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENT_GRADES);
-                    ArrayList <Double> studentGrades = new ArrayList<Double>();
-                    // loop through grades array
-                    for (int k = 0; k < gradesJSON.size(); k++) {
-                        double grade = (double)(long) gradesJSON.get(k);
-                        studentGrades.add(grade);
+                    //check student id is null
+                    if (studentJSON.get(COURSE_STUDENT_ID).equals(" ")) {
+                        studentsNullID.add(" ");
+                        ArrayList<Double> studentGrades = new ArrayList<Double>();
+                        //JSONArray gradesJSON = new JSONArray();
+                        gradesNull.put(" ",studentGrades);
+                    } else {
+                        UUID studentID = UUID.fromString((String)studentJSON.get(COURSE_STUDENT_ID));
+                        students.add(studentID);
+                        JSONArray gradesJSON = (JSONArray)studentJSON.get(COURSE_STUDENT_GRADES);
+                        ArrayList <Double> studentGrades = new ArrayList<Double>();
+                        // loop through grades array
+                        for (int k = 0; k < gradesJSON.size(); k++) {
+                            double grade = (double)(long) gradesJSON.get(k);
+                            studentGrades.add(grade);
+                        }
+                        grades.put(studentID,studentGrades);
                     }
-                    grades.put(studentID,studentGrades);
                 }
                 // course name
                 String courseName = (String)courseJSON.get(COURSE_NAME);
@@ -174,22 +184,28 @@ public class DataLoader extends DataConstants{
                     for (int k = 0; k < moduleCommentsJSON.size(); k++) {
                         
                         JSONObject commentJSON = (JSONObject)moduleCommentsJSON.get(k);
-                        UUID commenter = UUID.fromString((String)commentJSON.get(COURSE_COMMENTS_USER));
-                        String comment = (String)commentJSON.get(COURSE_COMMENTS_COMMENT);
+                        if (commentJSON.get(COURSE_COMMENTS_USER).equals(" ")) {
+                            Comment newComment = new Comment();
+                            comments.add(newComment);
+                        } else {
+                                UUID commenter = UUID.fromString((String)commentJSON.get(COURSE_COMMENTS_USER));
+                            
+                                String comment = (String)commentJSON.get(COURSE_COMMENTS_COMMENT);
 
-                        JSONArray nestedCommentsJSON = (JSONArray)commentJSON.get(COURSE_NESTED_COMMENTS);
-                        // nested comments
-                        ArrayList<Comment> nestedComments = new ArrayList<Comment>();
-                        for (int m = 0; m < nestedCommentsJSON.size(); m++) {
-                            JSONObject nestedCommentJSON = (JSONObject)nestedCommentsJSON.get(m);
-                            UUID nestedCommenter = UUID.fromString((String)nestedCommentJSON.get(COURSE_COMMENTS_USER));
-                            String nestedComment = (String)nestedCommentJSON.get(COURSE_NESTED_COMMENT);
-                            ArrayList<Comment> doubleComments = new ArrayList<Comment>();
-                            Comment newComment = new Comment(nestedCommenter, nestedComment, doubleComments);
-                            nestedComments.add(newComment);
+                                JSONArray nestedCommentsJSON = (JSONArray)commentJSON.get(COURSE_NESTED_COMMENTS);
+                                // nested comments
+                                ArrayList<Comment> nestedComments = new ArrayList<Comment>();
+                                for (int m = 0; m < nestedCommentsJSON.size(); m++) {
+                                    JSONObject nestedCommentJSON = (JSONObject)nestedCommentsJSON.get(m);
+                                    UUID nestedCommenter = UUID.fromString((String)nestedCommentJSON.get(COURSE_COMMENTS_USER));
+                                    String nestedComment = (String)nestedCommentJSON.get(COURSE_NESTED_COMMENT);
+                                    ArrayList<Comment> doubleComments = new ArrayList<Comment>();
+                                    Comment newComment = new Comment(nestedCommenter, nestedComment, doubleComments);
+                                    nestedComments.add(newComment);
+                                }
+                                Comment newComment = new Comment(commenter, comment, nestedComments);
+                                comments.add(newComment);
                         }
-                        Comment newComment = new Comment(commenter, comment, nestedComments);
-                        comments.add(newComment);
                     }
 
                     Module newModule = new Module(moduleName, lessons, quiz, comments);
@@ -203,22 +219,28 @@ public class DataLoader extends DataConstants{
                 for (int k = 0; k < courseCommentsJSON.size(); k++) {
                     
                     JSONObject commentJSON = (JSONObject)courseCommentsJSON.get(k);
-                    UUID commenter = UUID.fromString((String)commentJSON.get(COURSE_COMMENTS_USER));
-                    String comment = (String)commentJSON.get(COURSE_COMMENTS_COMMENT);
-
-                    JSONArray nestedCommentsJSON = (JSONArray)commentJSON.get(COURSE_NESTED_COMMENTS);
-                    // nested comments
-                    ArrayList<Comment> nestedComments = new ArrayList<Comment>();
-                    for (int m = 0; m < nestedCommentsJSON.size(); m++) {
-                        JSONObject nestedCommentJSON = (JSONObject)nestedCommentsJSON.get(m);
-                        UUID nestedCommenter = UUID.fromString((String)nestedCommentJSON.get(COURSE_COMMENTS_USER));
-                        String nestedComment = (String)nestedCommentJSON.get(COURSE_NESTED_COMMENT);
-                        ArrayList<Comment> doubleComments = new ArrayList<Comment>();
-                        Comment newComment = new Comment(nestedCommenter, nestedComment, doubleComments);
-                        nestedComments.add(newComment);
+                    if (commentJSON.get(COURSE_COMMENTS_USER).equals(" ")){
+                        Comment newComment = new Comment();
+                        courseComments.add(newComment);
+                    } else {
+                        UUID commenter = UUID.fromString((String)commentJSON.get(COURSE_COMMENTS_USER));
+                        String comment = (String)commentJSON.get(COURSE_COMMENTS_COMMENT);
+    
+                        JSONArray nestedCommentsJSON = (JSONArray)commentJSON.get(COURSE_NESTED_COMMENTS);
+                        // nested comments
+                        ArrayList<Comment> nestedComments = new ArrayList<Comment>();
+                        for (int m = 0; m < nestedCommentsJSON.size(); m++) {
+                            JSONObject nestedCommentJSON = (JSONObject)nestedCommentsJSON.get(m);
+                            UUID nestedCommenter = UUID.fromString((String)nestedCommentJSON.get(COURSE_COMMENTS_USER));
+                            String nestedComment = (String)nestedCommentJSON.get(COURSE_NESTED_COMMENT);
+                            ArrayList<Comment> doubleComments = new ArrayList<Comment>();
+                            Comment newComment = new Comment(nestedCommenter, nestedComment, doubleComments);
+                            nestedComments.add(newComment);
+                        }
+                        Comment newComment = new Comment(commenter, comment, nestedComments);
+                        courseComments.add(newComment);
                     }
-                    Comment newComment = new Comment(commenter, comment, nestedComments);
-                    courseComments.add(newComment);
+                   
                 }
 
                 Course course = new Course(courseName, courseDescription, language, author, grades, modules, courseComments, students);

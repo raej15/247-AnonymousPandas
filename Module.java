@@ -165,7 +165,7 @@ public class Module extends DataConstants{
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the lesson name?");
         String lessonName = sc.nextLine();
-        System.out.println("What is the lesson description?");
+        System.out.println("What is the lesson content?");
         String lessonDescription = sc.nextLine();
         Lesson newLesson = new Lesson(lessonName, lessonDescription);
         lessons.add(newLesson);

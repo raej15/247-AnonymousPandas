@@ -56,6 +56,9 @@ public class Course extends DataConstants{
         }
     }
 
+    public void setAuthor(UUID uuid){
+        this.author = uuid;
+    }
     public String getLanguageStr(Language language) {
         if (language == Language.JavaScript){
             return "JavaScript";

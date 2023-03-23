@@ -98,30 +98,44 @@ public class DataWriter2 extends DataConstants {
         JSONObject courseJSON = new JSONObject();
 
         // adding course author to courseJSON
-        courseJSON.put(COURSE_AUTHOR, course.getAuthorID().toString()); // author
-
+        if (course.getAuthorID() == null) {
+            System.out.println("Author ID is null");
+            courseJSON.put(COURSE_AUTHOR, ""); // author NULL
+        } else {
+            courseJSON.put(COURSE_AUTHOR, course.getAuthorID().toString()); // author
+        }
+        
         // object of students (which is a hash map of student id and their respective grades )
         JSONArray studentsJSON = new JSONArray();
 
         // getting grades from course
         HashMap<UUID, ArrayList<Double>> grades = course.getGrades();
-        
-        // loops through grades and adds them to students jsonarray
-        for (HashMap.Entry<UUID,ArrayList<Double>> entry : grades.entrySet()) {
-            // retrieving key and value for the student
+        if (grades == null){
             JSONObject studentJSON = new JSONObject();
-            UUID uuid = entry.getKey();
-            ArrayList<Double> studentGrades = entry.getValue();
             ArrayList<Long> longStudentGrades = new ArrayList<Long>();
-            for (Double grade: studentGrades){
-                long lgrade = Math.round(grade);
-                longStudentGrades.add(lgrade);
-            }
-            studentJSON.put(COURSE_STUDENT_ID,uuid.toString());
+            studentJSON.put(COURSE_STUDENT_ID," ");
             studentJSON.put(COURSE_STUDENT_GRADES,longStudentGrades);
             studentsJSON.add(studentJSON);
+            courseJSON.put(COURSE_STUDENT, studentsJSON); // students
+        } else {
+            // loops through grades and adds them to students jsonarray
+            for (HashMap.Entry<UUID,ArrayList<Double>> entry : grades.entrySet()) {
+                // retrieving key and value for the student
+                JSONObject studentJSON = new JSONObject();
+                UUID uuid = entry.getKey();
+                ArrayList<Double> studentGrades = entry.getValue();
+                ArrayList<Long> longStudentGrades = new ArrayList<Long>();
+                for (Double grade: studentGrades){
+                    long lgrade = Math.round(grade);
+                    longStudentGrades.add(lgrade);
+                }
+                studentJSON.put(COURSE_STUDENT_ID,uuid.toString());
+                studentJSON.put(COURSE_STUDENT_GRADES,longStudentGrades);
+                studentsJSON.add(studentJSON);
+            }
+            courseJSON.put(COURSE_STUDENT, studentsJSON); // students
         }
-        courseJSON.put(COURSE_STUDENT, studentsJSON); // students
+    
 
         courseJSON.put(COURSE_NAME, course.getCourseName()); // course courseName
         courseJSON.put(COURSE_DESCRIPTION,course.getDescription()); // course description
@@ -172,29 +186,38 @@ public class DataWriter2 extends DataConstants {
             moduleJSON.put(COURSE_MODULE_QUIZ,quizJSON); // quiz
 
             // Module Comments
-            ArrayList<Comment> moduleComments = module.getComments(); // retrieving comments from module
             JSONArray moduleCommentsJSON = new JSONArray();
 
-            // loop through module comments
-            for (Comment comment: moduleComments){
+
+            if (module.getComments()==null){
                 JSONObject commentJSON = new JSONObject();
-                commentJSON.put(COURSE_COMMENTS_USER, comment.getCommenter().toString());
-                commentJSON.put(COURSE_COMMENTS_COMMENT, comment.getComment());
-                ArrayList<Comment> nestedComments = comment.getComments();
+                commentJSON.put(COURSE_COMMENTS_USER, " ");
+                commentJSON.put(COURSE_COMMENTS_COMMENT," ");
+                ArrayList<Comment> nestedComments = new ArrayList<Comment>();
                 JSONArray nestedCommentsJSON = new JSONArray();
-                for (Comment nestedC: nestedComments){
-                    JSONObject nestedCommentJSON = new JSONObject();
-                    nestedCommentJSON.put(COURSE_COMMENTS_USER, nestedC.getCommenter().toString());
-                    nestedCommentJSON.put(COURSE_NESTED_COMMENT, nestedC.getComment());
-                    JSONArray emptyArrayJSON = new JSONArray();
-                    ArrayList<Comment> emptyArray = new ArrayList<Comment>();
-                    emptyArrayJSON.add(emptyArray);
-                    nestedCommentJSON.put(COURSE_COMMENTS,emptyArray); // comments (the empty array)
-                    nestedCommentsJSON.add(nestedCommentJSON);
+            } else {
+                ArrayList<Comment> moduleComments = module.getComments(); // retrieving comments from module
+                // loop through module comments
+                for (Comment comment: moduleComments){
+                    JSONObject commentJSON = new JSONObject();
+                    commentJSON.put(COURSE_COMMENTS_USER, comment.getCommenter().toString());
+                    commentJSON.put(COURSE_COMMENTS_COMMENT, comment.getComment());
+                    ArrayList<Comment> nestedComments = comment.getComments();
+                    JSONArray nestedCommentsJSON = new JSONArray();
+                    for (Comment nestedC: nestedComments){
+                        JSONObject nestedCommentJSON = new JSONObject();
+                        nestedCommentJSON.put(COURSE_COMMENTS_USER, nestedC.getCommenter().toString());
+                        nestedCommentJSON.put(COURSE_NESTED_COMMENT, nestedC.getComment());
+                        JSONArray emptyArrayJSON = new JSONArray();
+                        ArrayList<Comment> emptyArray = new ArrayList<Comment>();
+                        emptyArrayJSON.add(emptyArray);
+                        nestedCommentJSON.put(COURSE_COMMENTS,emptyArray); // comments (the empty array)
+                        nestedCommentsJSON.add(nestedCommentJSON);
+                    }
+                    commentJSON.put(COURSE_NESTED_COMMENTS,nestedCommentsJSON); // nestedComment
+                    moduleCommentsJSON.add(commentJSON);
+                    
                 }
-                commentJSON.put(COURSE_NESTED_COMMENTS,nestedCommentsJSON); // nestedComment
-                moduleCommentsJSON.add(commentJSON);
-                
             }
             moduleJSON.put(COURSE_MODULE_MODULE_COMMENTS, moduleCommentsJSON); // moduleComments
 
@@ -207,30 +230,56 @@ public class DataWriter2 extends DataConstants {
         ArrayList<Comment> courseComments = course.getCourseComments(); // retrieving comments from course
         JSONArray courseCommentsJSON = new JSONArray();
         
-        // loop through module comments
-        for (Comment comment: courseComments){
+        if (courseComments == null){
             JSONObject commentJSON = new JSONObject();
-            commentJSON.put(COURSE_COMMENTS_USER, comment.getCommenter().toString());
-            commentJSON.put(COURSE_COMMENTS_COMMENT, comment.getComment());
-    
-            ArrayList<Comment> nestedComments = comment.getComments();
+            commentJSON.put(COURSE_COMMENTS_USER, " ");
+            commentJSON.put(COURSE_COMMENTS_COMMENT, " ");
+            //ArrayList<Comment> nestedComments = comment.getComments();
             JSONArray nestedCommentsJSON = new JSONArray();
-            for (Comment nestedC: nestedComments){
-                JSONObject nestedCommentJSON = new JSONObject();
-                nestedCommentJSON.put(COURSE_COMMENTS_USER, nestedC.getCommenter().toString());
-                nestedCommentJSON.put(COURSE_NESTED_COMMENT, nestedC.getComment());
-                JSONArray emptyArrayJSON = new JSONArray();
-                ArrayList<Comment> emptyArray = new ArrayList<Comment>();
-                emptyArrayJSON.add(emptyArray);
-                nestedCommentJSON.put(COURSE_COMMENTS,emptyArray); // comments (the empty array)
-                nestedCommentsJSON.add(nestedCommentJSON);
-
-            }
+            JSONObject nestedCommentJSON = new JSONObject();
+            nestedCommentJSON.put(COURSE_COMMENTS_USER, " ");
+            nestedCommentJSON.put(COURSE_NESTED_COMMENT, " ");
+            JSONArray emptyArrayJSON = new JSONArray();
+            ArrayList<Comment> emptyArray = new ArrayList<Comment>();
+            emptyArrayJSON.add(emptyArray);
+            nestedCommentJSON.put(COURSE_COMMENTS,emptyArray); // comments (the empty array)
+            nestedCommentsJSON.add(nestedCommentJSON);
             commentJSON.put(COURSE_NESTED_COMMENTS,nestedCommentsJSON); // nestedComment
             courseCommentsJSON.add(commentJSON);
-            
+            courseJSON.put(COURSE_COURSE_COMMENTS, courseCommentsJSON); // courseComments
+        } else {
+            // loop through module comments
+            for (Comment comment: courseComments){
+                JSONObject commentJSON = new JSONObject();
+                if (comment.getCommenter() == null){
+                    commentJSON.put(COURSE_COMMENTS_USER, " ");
+                    commentJSON.put(COURSE_COMMENTS_COMMENT, " ");
+                } else {
+                    commentJSON.put(COURSE_COMMENTS_USER, comment.getCommenter().toString());
+                    commentJSON.put(COURSE_COMMENTS_COMMENT, comment.getComment());
+                }
+                
+        
+                ArrayList<Comment> nestedComments = comment.getComments();
+                JSONArray nestedCommentsJSON = new JSONArray();
+                for (Comment nestedC: nestedComments){
+                    JSONObject nestedCommentJSON = new JSONObject();
+                    nestedCommentJSON.put(COURSE_COMMENTS_USER, nestedC.getCommenter().toString());
+                    nestedCommentJSON.put(COURSE_NESTED_COMMENT, nestedC.getComment());
+                    JSONArray emptyArrayJSON = new JSONArray();
+                    ArrayList<Comment> emptyArray = new ArrayList<Comment>();
+                    emptyArrayJSON.add(emptyArray);
+                    nestedCommentJSON.put(COURSE_COMMENTS,emptyArray); // comments (the empty array)
+                    nestedCommentsJSON.add(nestedCommentJSON);
+
+                }
+                commentJSON.put(COURSE_NESTED_COMMENTS,nestedCommentsJSON); // nestedComment
+                courseCommentsJSON.add(commentJSON);
+                
+            }
+            courseJSON.put(COURSE_COURSE_COMMENTS, courseCommentsJSON); // moduleComments
         }
-        courseJSON.put(COURSE_COURSE_COMMENTS, courseCommentsJSON); // moduleComments
+
 
 
         return courseJSON;

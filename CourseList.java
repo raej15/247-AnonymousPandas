@@ -139,12 +139,15 @@ public class CourseList extends DataConstants{
 
     public void addCourse() {
         Scanner sc = new Scanner(System.in);
+        // set current user as author ---- TODO FIX
+        UUID authorID = UUID.randomUUID();
         Language lan = selectLanguages();
         System.out.println("What is the course name?");
         String courseName = sc.nextLine();
         System.out.println("What is the course description?");
         String courseDescription = sc.nextLine();
         Course newCourse = new Course(courseName,courseDescription, lan);
+        newCourse.setAuthor(authorID);
         addCourse(newCourse);
         String continueCourse = "Y";
             while(continueCourse.equals("Y")){

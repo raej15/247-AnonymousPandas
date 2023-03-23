@@ -82,6 +82,7 @@ public class UI {
         System.out.println("Please enter in your username");
         String userInput = input.nextLine();
         facade.setUser(userInput);
+        facade.addCourse();
         return;
     }
 
@@ -275,8 +276,10 @@ public class UI {
     public static void main(String[] args) {
         input = new Scanner(System.in);
         loadData();
-
+        
         facade = new LMSFacade(input);
+
+    
         //clearTerminal();
 
         while (loadUI()) {

@@ -21,6 +21,12 @@ public class Comment {
         this.comment = comment;
         this.comments = comments;
     }
+
+    public Comment(){
+        comment = null;
+        commenter = null;
+        comments = new ArrayList<Comment>();
+    }
     
     
     /** 

@@ -9,8 +9,9 @@ import java.util.UUID;
 
 public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
-    private static CourseList courseList;
-
+    private static CourseList courseList = new CourseList();
+    
+/* 
     public static void main(String[] args){
         DataLoader.loadUsers();
         DataLoader.loadCourses();
@@ -24,10 +25,10 @@ public class CourseList extends DataConstants{
     private CourseList() {
         //courses = new ArrayList<Course>();
         //DataLoader.loadCourses();
-        courses = DataLoader.loadCourses();
+        //courses = DataLoader.loadCourses();
         //courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
     }
-
+*/
     
     /** 
      * @return CourseList
@@ -35,6 +36,7 @@ public class CourseList extends DataConstants{
     public static CourseList getInstance(){
         if (courseList == null) {
 			courseList = new CourseList();
+            System.out.println("Course List is null - debugging - Class UserList line 38");
 		}
 
         return courseList;
@@ -173,9 +175,7 @@ public class CourseList extends DataConstants{
         }
         String selectedLanguage = sc.nextLine().toUpperCase();
         for (int i = 0; i < strLanguages.length; i++) {
-            //System.out.println(i + strLanguages[i]);
             if(selectedLanguage.equals(strLanguages[i].toUpperCase())) {
-                //System.out.println("heyyyyy");
                 return languages[i];
             }
         }

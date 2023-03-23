@@ -58,9 +58,6 @@ public class UI {
      */
     private static void addCourses() {
         if (check == true) {
-            facade.getCourseList().addCourse(new Course("Python Basics", "The basics of python", Language.Python));
-            facade.getCourseList().getCourse("Python Basics").addModule("The first week");
-            facade.getCourseList().getCourse("Python Basics").getModuleAtIndex(0).addLesson("What are data types?", "This goes over various data types");
             check = false;
         }
     }
@@ -69,14 +66,13 @@ public class UI {
      * Loads in data from the JSON files
      */
     private static void loadData() {
-        DataLoader.loadCourses();
-        //CourseList.getInstance().printCourses();
-        DataLoader.loadUsers();
-        UserList.getInstance().printUsers();
+        UserList.setUserList(DataLoader.loadUsers());
+        CourseList.setCourseList(DataLoader.loadCourses());
     }
 
     private static void saveData() {
-
+        DataWriter2.saveUsers();
+        DataWriter2.saveCourses();
     }
 
     /**
@@ -281,14 +277,14 @@ public class UI {
         loadData();
 
         facade = new LMSFacade(input);
-        clearTerminal();
+        //clearTerminal();
 
         while (loadUI()) {
-            clearTerminal();
+            //clearTerminal();
         }
 
-        clearTerminal();
+        //clearTerminal();
         System.out.println("Goodbye");
-        //saveData();
+        saveData();
     }
 }

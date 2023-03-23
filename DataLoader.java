@@ -21,7 +21,7 @@ public class DataLoader extends DataConstants{
  * for loop has JSONObject, username, email, and password 
  * @return ArrayList<User> 
  */
-
+    /* 
     public static void main(String[] args) {
         ArrayList<User> users = loadUsers();
         for (User user: users) {
@@ -33,13 +33,13 @@ public class DataLoader extends DataConstants{
             System.out.println(course.toString());
             System.out.println("------------------------------------------------------------------------");
         }
-    }
+    }*/
     
     /** 
      * @return ArrayList<User>
      */
     public static ArrayList<User> loadUsers() {
-        System.out.println("loading users...");
+        System.out.println("Loading users...");
         ArrayList<User> users = new ArrayList<User>();
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
@@ -65,7 +65,7 @@ public class DataLoader extends DataConstants{
                 }
             }
         }
-        UserList.setUserList(users);
+        //UserList.setUserList(users);
         return users;
         } 
         catch(Exception e) {
@@ -80,7 +80,7 @@ public class DataLoader extends DataConstants{
      * @return ArrayList<Course>
      */
     public static ArrayList<Course> loadCourses() {
-        System.out.println("loading courses...");
+        System.out.println("Loading courses...");
         ArrayList<Course> courses = new ArrayList<Course>();
         try {
             FileReader reader = new FileReader(COURSE_FILE_NAME);
@@ -227,7 +227,7 @@ public class DataLoader extends DataConstants{
             
         }
         
-        CourseList.setCourseList(courses);
+        //CourseList.setCourseList(courses);
         return courses;
         } 
         catch(Exception e) {

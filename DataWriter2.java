@@ -21,13 +21,14 @@ public class DataWriter2 extends DataConstants {
     * @return usersDetails
     */
     public static void main(String[] args){
-        DataLoader.loadUsers();
-        DataLoader.loadCourses();
+        UserList.setUserList(DataLoader.loadUsers());
+        CourseList.setCourseList(DataLoader.loadCourses());
         saveUsers();
         saveCourses();
     }
     //users json
     public static void saveUsers(){
+        System.out.println("Writing users...");
         UserList users = UserList.getInstance();
         ArrayList<User> userList = users.getUsers();
         JSONArray jsonUsers = new JSONArray();
@@ -67,12 +68,12 @@ public class DataWriter2 extends DataConstants {
         } else {
             userDetails.put(USER_TYPE, "Creator");
         }
-        System.out.println(userDetails);
         return userDetails;
     }
 
     //saveCourses
     public static void saveCourses(){
+        System.out.println("Writing course...");
         CourseList courses = CourseList.getInstance();
         ArrayList <Course> courseList = courses.getCourses(); 
         JSONArray jsonCourses = new JSONArray();
@@ -93,8 +94,6 @@ public class DataWriter2 extends DataConstants {
      */
     // called for each course in courseList
     public static JSONObject getCourseJson(Course course){
-        System.out.println("Writing course...");
-
         // object for current course
         JSONObject courseJSON = new JSONObject();
 
@@ -213,7 +212,7 @@ public class DataWriter2 extends DataConstants {
             JSONObject commentJSON = new JSONObject();
             commentJSON.put(COURSE_COMMENTS_USER, comment.getCommenter().toString());
             commentJSON.put(COURSE_COMMENTS_COMMENT, comment.getComment());
-            //System.out.println("Comment: "+comment.getComment());
+    
             ArrayList<Comment> nestedComments = comment.getComments();
             JSONArray nestedCommentsJSON = new JSONArray();
             for (Comment nestedC: nestedComments){
@@ -225,7 +224,7 @@ public class DataWriter2 extends DataConstants {
                 emptyArrayJSON.add(emptyArray);
                 nestedCommentJSON.put(COURSE_COMMENTS,emptyArray); // comments (the empty array)
                 nestedCommentsJSON.add(nestedCommentJSON);
-                //System.out.println("nestedC: "+nestedC);
+
             }
             commentJSON.put(COURSE_NESTED_COMMENTS,nestedCommentsJSON); // nestedComment
             courseCommentsJSON.add(commentJSON);
@@ -237,48 +236,6 @@ public class DataWriter2 extends DataConstants {
         return courseJSON;
     }
 
-/** 
- * @param course
- * @return JSONObject
- */
-
-    
-    /** 
-     * @param module
-     * @return JSONObject
-     */
-    public static JSONObject getModuleJson(Module module){
-        JSONObject moduleDetails = new JSONObject();
-        //moduleDetails.put(COURSE_MODULES, module.ge());
-        moduleDetails.put(COURSE_MODULE_NAME, module.getModuleName());
-        
-    
-    /** 
-     * @param module
-     * @return JSONObject
-     */
-        return moduleDetails;
-    }
-
-    
-    /** 
-     * @param lesson
-     * @return JSONObject
-     */
-    
-    /** 
-     * @param lesson
-     * @return JSONObject
-     */
-    public static JSONObject getLessonJson(Lesson lesson){
-        JSONObject lessonDetails = new JSONObject();
-        //moduleDetails.put(COURSE_MODULES, module.ge());
-        lessonDetails.put(COURSE_LESSON_NAME, lesson.getLessonName());
-        lessonDetails.put(COURSE_LESSON_CONTENT, lesson.getContent());
-
-        
-        return lessonDetails;
-    }
 
 
 }

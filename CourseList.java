@@ -11,8 +11,9 @@ public class CourseList extends DataConstants{
     private static CourseList courseList;
 
     private CourseList() {
-        courses = new ArrayList<Course>();
-        DataLoader.loadCourses();
+        //courses = new ArrayList<Course>();
+        //DataLoader.loadCourses();
+        courses = DataLoader.loadCourses();
         //courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
     }
 

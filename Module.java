@@ -3,6 +3,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
@@ -22,6 +23,7 @@ public class Module extends DataConstants{
         this.moduleName = moduleName;
         quiz = new Quiz();
     }
+
 
     Module(String moduleName, ArrayList<Lesson> lessons, Quiz quiz, ArrayList<Comment> comments) {
         this.moduleName = moduleName;
@@ -136,5 +138,40 @@ public class Module extends DataConstants{
             finalStr+=comment.toString();
         }
         return finalStr;
+    }
+
+    public void createQuiz(){
+        Scanner sc = new Scanner(System.in);
+        Quiz newQuiz = new Quiz();
+        setQuiz(newQuiz);
+        String continueQuiz = "Y";
+        while(continueQuiz.equals("Y")){
+            System.out.println("Would you like to add a question? (Y/N)");
+            continueQuiz = sc.nextLine();
+            if (continueQuiz.equals("N")) {
+                return;
+            } else if (continueQuiz.equals("Y")) {
+                newQuiz.newQuestion();
+            } else {
+                System.out.println("Invalid input");
+                continueQuiz = "Y";
+                continue;
+            }
+        }
+        
+    }
+
+    public void createLesson(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What is the lesson name?");
+        String lessonName = sc.nextLine();
+        System.out.println("What is the lesson description?");
+        String lessonDescription = sc.nextLine();
+        Lesson newLesson = new Lesson(lessonName, lessonDescription);
+        lessons.add(newLesson);
+    }
+
+    public void setQuiz(Quiz quiz){
+        this.quiz = quiz;
     }
 }

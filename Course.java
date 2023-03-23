@@ -4,6 +4,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.Map.Entry;
 import java.util.UUID;
 
@@ -137,8 +138,8 @@ public class Course extends DataConstants{
     }
     
     /**
-     * Returns a module based on the inputted name, if it exists
-     * @param moduleName The module you want to get
+     * Returns a module based on the inputted index, if it exists
+     * @param moduleIndex The index of the module you want to get
      * @return A module object
      */
     public Module getModuleAtIndex(int moduleIndex) {
@@ -222,4 +223,29 @@ public class Course extends DataConstants{
     public ArrayList<UUID> getStudents(){
         return students;
     }
+
+    public void createModules() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What is the module name?");
+        String moduleName = sc.nextLine();
+        Module newModule = new Module(moduleName);
+        modules.add(newModule);
+        String continueModule = "Y";
+            while(continueModule.equals("Y")){
+                System.out.println("Would you like to add a lesson? (Y/N)");
+                continueModule = sc.nextLine();
+                if (continueModule.equals("N")) { 
+                    newModule.createQuiz();
+                    return;
+                } else if (continueModule.equals("Y")) {
+                    newModule.createLesson();
+                } else {
+                    System.out.println("Invalid input");
+                    continueModule = "Y";
+                    continue;
+                }
+            }
+    }
+
+    
 }

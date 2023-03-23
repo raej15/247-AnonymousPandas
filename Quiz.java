@@ -4,11 +4,13 @@
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A quiz which consists of a title and an ArrayList of questions
  */
 public class Quiz extends DataConstants{
+   private static final int MAXNUMANSWERCHOICES = 5;
      private ArrayList<Question> questions;
 
      /**
@@ -86,4 +88,33 @@ public class Quiz extends DataConstants{
         }
         return finalStr;
      }
+
+     public void newQuestion(){
+      Scanner sc = new Scanner(System.in);
+      ArrayList<String> answerChoices = new ArrayList<String>();
+      System.out.println("What is the question?");
+      String questiontitle = sc.nextLine();
+      String continueAC = "Y";
+      int numOfAnswerChoices = 0;
+      while(continueAC.equals("Y")){
+          System.out.println("Would you like to add an answer choice? (Y/N)");
+          continueAC = sc.nextLine();
+          if (continueAC.equals("N")|| numOfAnswerChoices >= MAXNUMANSWERCHOICES) {
+              if (numOfAnswerChoices >= MAXNUMANSWERCHOICES) {System.out.println("Too many answer choices.");}
+              System.out.println("What is the correct answer?");
+              Question newQuestion = new Question(questiontitle, answerChoices, sc.nextInt());
+              this.questions.add(newQuestion);
+              return;
+          } else if (continueAC.equals("Y")) {
+              System.out.println("What is the answer choice?");
+              answerChoices.add(sc.nextLine());
+          } else {
+              System.out.println("Invalid input");
+              continueAC = "Y";
+              continue;
+          }
+          numOfAnswerChoices++;
+      }
+      
+  }
 }

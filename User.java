@@ -78,13 +78,6 @@
 
     
     /** 
-     * @return int
-     */
-    public int getUserType() {
-        return 1;
-    }
-    
-    /** 
      * @return String
      */
     public String getUsername(){

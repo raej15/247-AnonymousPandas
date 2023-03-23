@@ -9,20 +9,20 @@ public class UserList extends DataConstants{
     private static UserList userList = new UserList();
     public static ArrayList<User> users;
 
+    /*
     private UserList() {
-        users = new ArrayList<User>();
-       // users.add(new User("Johnny", "Password", "John@gmail.com", "John", "Smith"));
+       users = DataLoader.loadUsers();
     }
-
+     */
     
     /** 
      * @return UserList
      */
     public static UserList getInstance(){
         if(userList == null){
+            System.out.println("null userList - debugging purposes - UserList Class line 23");
             userList = new UserList();
         }
-        
         return userList;
     }
 

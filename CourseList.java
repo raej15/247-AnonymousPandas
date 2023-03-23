@@ -4,18 +4,31 @@
  */
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
-    private static CourseList courseList;
-
-    private CourseList() {
-        courses = new ArrayList<Course>();
+    private static CourseList courseList = new CourseList();
+    
+/* 
+    public static void main(String[] args){
+        DataLoader.loadUsers();
         DataLoader.loadCourses();
-        //courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
+        DataWriter2.saveUsers();
+        DataWriter2.saveCourses();
+        
+        courseList.addCourse();
+        DataWriter2.saveCourses();
     }
 
+    private CourseList() {
+        //courses = new ArrayList<Course>();
+        //DataLoader.loadCourses();
+        //courses = DataLoader.loadCourses();
+        //courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
+    }
+*/
     
     /** 
      * @return CourseList
@@ -23,6 +36,7 @@ public class CourseList extends DataConstants{
     public static CourseList getInstance(){
         if (courseList == null) {
 			courseList = new CourseList();
+            System.out.println("Course List is null - debugging - Class UserList line 38");
 		}
 
         return courseList;
@@ -121,5 +135,50 @@ public class CourseList extends DataConstants{
             System.out.println(course.getCourseName());
             course.printStudents();
         }
+    }
+
+    public void addCourse() {
+        Scanner sc = new Scanner(System.in);
+        Language lan = selectLanguages();
+        System.out.println("What is the course name?");
+        String courseName = sc.nextLine();
+        System.out.println("What is the course description?");
+        String courseDescription = sc.nextLine();
+        Course newCourse = new Course(courseName,courseDescription, lan);
+        addCourse(newCourse);
+        String continueCourse = "Y";
+            while(continueCourse.equals("Y")){
+                System.out.println("Would you like to add a module? (Y/N)");
+                continueCourse = sc.nextLine();
+                if (continueCourse.equals("N")) {
+                    return;
+                } else if (continueCourse.equals("Y")) {
+                    newCourse.createModules();
+                } else {
+                    System.out.println("Invalid input");
+                    continueCourse = "Y";
+                    continue;
+                }
+            }
+    }
+
+    public Language selectLanguages(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What language would you like your course to be?");
+        Language languages[] = Language.values();
+        String strLanguages[] = new String[languages.length];
+        int counter = 0;
+        for(Language language: languages) {
+            System.out.println(language.toString());
+            strLanguages[counter] = language.toString();
+            counter++;
+        }
+        String selectedLanguage = sc.nextLine().toUpperCase();
+        for (int i = 0; i < strLanguages.length; i++) {
+            if(selectedLanguage.equals(strLanguages[i].toUpperCase())) {
+                return languages[i];
+            }
+        }
+        return null;
     }
 }

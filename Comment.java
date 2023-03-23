@@ -31,6 +31,7 @@ public class Comment {
     
     /** 
      * @param comment
+     * adding comments
      */
     public void addComment(Comment comment) {
         comments.add(comment);
@@ -39,6 +40,7 @@ public class Comment {
     
     /** 
      * @param removeComment
+     * removing comments
      */
     public void removeComment(String removeComment){
         for(Comment comment : comments) {
@@ -52,6 +54,7 @@ public class Comment {
     
     /** 
      * @return String
+     * get comments
      */
     public String getComment() {
         return this.comment;
@@ -68,6 +71,7 @@ public class Comment {
     
     /** 
      * @return String
+     * print out comments 
      */
     public String toString(){
         String finalStr = "Comment: " + this.comment;

@@ -18,6 +18,7 @@
     
     /** 
      * @return double
+     * get grade 
      */
     public double getGrade() {
         return this.grade;

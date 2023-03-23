@@ -4,6 +4,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.Map.Entry;
 import java.util.UUID;
 
@@ -222,4 +223,29 @@ public class Course extends DataConstants{
     public ArrayList<UUID> getStudents(){
         return students;
     }
+
+    public void createModules() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What is the module name?");
+        String moduleName = sc.nextLine();
+        Module newModule = new Module(moduleName);
+        modules.add(newModule);
+        String continueModule = "Y";
+            while(continueModule.equals("Y")){
+                System.out.println("Would you like to add a lesson? (Y/N)");
+                continueModule = sc.nextLine();
+                if (continueModule.equals("N")) { 
+                    newModule.createQuiz();
+                    return;
+                } else if (continueModule.equals("Y")) {
+                    newModule.createLesson();
+                } else {
+                    System.out.println("Invalid input");
+                    continueModule = "Y";
+                    continue;
+                }
+            }
+    }
+
+    
 }

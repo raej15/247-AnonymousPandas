@@ -49,6 +49,10 @@ public class UI {
         }
     }
 
+    public LMSFacade getFacade(){
+        return this.facade;
+    }
+
     /**
      * Im using this for testing purposes
      */

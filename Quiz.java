@@ -28,8 +28,6 @@ public class Quiz extends DataConstants{
       return questions;
      }
 
-     public 
-
      /**
       * Adds a new question to the quiz
       * @param question The question

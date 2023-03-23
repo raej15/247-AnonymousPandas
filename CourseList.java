@@ -11,6 +11,16 @@ public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
     private static CourseList courseList;
 
+    public static void main(String[] args){
+        DataLoader.loadUsers();
+        DataLoader.loadCourses();
+        DataWriter2.saveUsers();
+        DataWriter2.saveCourses();
+        
+        courseList.addCourse();
+        DataWriter2.saveCourses();
+    }
+
     private CourseList() {
         //courses = new ArrayList<Course>();
         //DataLoader.loadCourses();

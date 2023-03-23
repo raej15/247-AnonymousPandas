@@ -151,7 +151,7 @@ public class Module extends DataConstants{
             if (continueQuiz.equals("N")) {
                 return;
             } else if (continueQuiz.equals("Y")) {
-                newQuiz.addQuestionInput();
+                newQuiz.newQuestion();
             } else {
                 System.out.println("Invalid input");
                 continueQuiz = "Y";

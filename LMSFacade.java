@@ -225,7 +225,7 @@
          }
  
          if (mode == 1) {
-             quiz = course.getCertificate();
+             //quiz = course.getCertificate();
          } else if (mode == 2) {
              quiz = module.getQuiz();
          }

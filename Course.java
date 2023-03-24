@@ -34,7 +34,7 @@ public class Course extends DataConstants{
         this.description = description;
         this.language = language;
         this.students = new ArrayList<UUID>();
-        cert = new FinalCertification();
+        //cert = new FinalCertification();
     }
 
     Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<UUID> students){
@@ -159,6 +159,10 @@ public class Course extends DataConstants{
         return null;
     }
 
+    public FinalCertification getFinalCert(){
+        return this.cert;
+    }
+
     /**
      * Removes a module via a name, if it exists
      * @param moduleName The module to remove
@@ -183,6 +187,9 @@ public class Course extends DataConstants{
         this.grades = grades;
     }
 
+    public void setCert(FinalCertification cert){
+        this.cert = cert;
+    }
     public String gradesToString() {
         String finalStr = "Student Grades:";
         for(Entry<UUID, ArrayList<Double>> entry: grades.entrySet()) {

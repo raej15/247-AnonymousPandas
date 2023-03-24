@@ -233,7 +233,6 @@ public class DataWriter extends DataConstants {
             JSONObject commentJSON = new JSONObject();
             commentJSON.put(COURSE_COMMENTS_USER, " ");
             commentJSON.put(COURSE_COMMENTS_COMMENT, " ");
-            //ArrayList<Comment> nestedComments = comment.getComments();
             JSONArray nestedCommentsJSON = new JSONArray();
             JSONObject nestedCommentJSON = new JSONObject();
             nestedCommentJSON.put(COURSE_COMMENTS_USER, " ");
@@ -279,8 +278,35 @@ public class DataWriter extends DataConstants {
             courseJSON.put(COURSE_COURSE_COMMENTS, courseCommentsJSON); // moduleComments
         }
 
-
-
+        // final certification
+        JSONArray finalCertJSON = new JSONArray();
+        Boolean passed = course.getFinalCert().getPassed();
+        JSONObject certJSON = new JSONObject();
+        if (passed == true) {
+            certJSON.put(COURSE_FINAL_CERTIFICATION_PASSED, "True");
+        } else if (passed == false){
+            certJSON.put(COURSE_FINAL_CERTIFICATION_PASSED, "False");
+        } else {
+            certJSON.put(COURSE_FINAL_CERTIFICATION_PASSED, " ");
+        }
+        ArrayList<Question> Questions = course.getFinalCert().getQuiz().getQuestions();
+        JSONArray questionsJSON = new JSONArray();
+        for (Question question: Questions){
+            JSONObject questionJSON = new JSONObject();
+            questionJSON.put(COURSE_QUIZ_QUESTIONS, question.getQuestion());
+            JSONArray answersJSON = new JSONArray();
+            ArrayList<String> answers = question.getAnswers();
+            for (String answer: answers){
+                answersJSON.add(answer);
+            }
+            questionJSON.put(COURSE_QUIZ_ANSWERS,answersJSON);
+            questionJSON.put(COURSE_QUIZ_CORRECT_INDEX,question.getCorrectIndex());
+            questionsJSON.add(questionJSON);
+        }
+        certJSON.put(COURSE_FINAL_CERTIFICATION_QUIZ, questionsJSON);
+        finalCertJSON.add(certJSON);
+        courseJSON.put(COURSE_FINAL_CERTIFICATION, finalCertJSON);
+        
         return courseJSON;
     }
 

@@ -159,7 +159,7 @@ public class DataLoader extends DataConstants{
                             answers.add(answer);
                         }
                          // correct index
-                         int correctIndex = (int)(long)questionJSON.get(COURSE_QUIZ_CORRECT_INDEX);
+                        int correctIndex = (int)(long)questionJSON.get(COURSE_QUIZ_CORRECT_INDEX);
 
                          Question newQuestion = new Question(question, answers, correctIndex);
                          questions.add(newQuestion);
@@ -229,9 +229,36 @@ public class DataLoader extends DataConstants{
                     }
                    
                 }
-
                 Course course = new Course(courseName, courseDescription, language, author, grades, modules, courseComments, students);
+                // final certification
+                JSONArray finalCertJSON = (JSONArray)courseJSON.get(COURSE_FINAL_CERTIFICATION);
+                FinalCertification cert = new FinalCertification();
+                
+                for (int a = 0; a < finalCertJSON.size();a++){
+                    JSONObject certJSON = (JSONObject)finalCertJSON.get(a);
+                    String passed = (String)certJSON.get(COURSE_FINAL_CERTIFICATION_PASSED);
+                    JSONArray certQuizJSON = (JSONArray)certJSON.get(COURSE_FINAL_CERTIFICATION_QUIZ);
+                    ArrayList<Question> questions = new ArrayList<Question>();
+                    for (int j = 0; j < certQuizJSON.size(); j++) {
+                        JSONObject questionJSON = (JSONObject)certQuizJSON.get(j);
+                        String question = (String)questionJSON.get(COURSE_QUIZ_QUESTIONS);
+                        JSONArray answersJSON = (JSONArray)questionJSON.get(COURSE_QUIZ_ANSWERS);
+                        ArrayList<String> answers = new ArrayList<String>();
+                        for (int k = 0; k < answersJSON.size(); k++){
+                            String answer = (String)answersJSON.get(j);
+                            answers.add(answer);
+                        }
+                        int correctIndex = (int)(long)questionJSON.get(COURSE_QUIZ_CORRECT_INDEX);
+                        Question newQuestion = new Question(question, answers, correctIndex);
+                        questions.add(newQuestion);
+                    }
+                    Quiz finalCert = new Quiz(questions);
+                    cert.setQuiz(finalCert);
+                    cert.setPassed(passed);
+                    course.setCert(cert);
+                }
                 courses.add(course);
+
             }
             
         }

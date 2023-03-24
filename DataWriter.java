@@ -64,6 +64,12 @@ public class DataWriter extends DataConstants {
 
          if ((user instanceof Student)) {
             userDetails.put(USER_TYPE, "Student");
+            ArrayList<String> certs = ((Student) user).getCertifications();
+            JSONArray certsJSON = new JSONArray();
+            for (String cert: certs){
+                certsJSON.add(cert);
+            }
+            userDetails.put(CERTIFICATIONS, certsJSON);
         } else {
             userDetails.put(USER_TYPE, "Creator");
         }
@@ -280,15 +286,7 @@ public class DataWriter extends DataConstants {
 
         // final certification
         JSONArray finalCertJSON = new JSONArray();
-        Boolean passed = course.getFinalCert().getPassed();
         JSONObject certJSON = new JSONObject();
-        if (passed == true) {
-            certJSON.put(COURSE_FINAL_CERTIFICATION_PASSED, "True");
-        } else if (passed == false){
-            certJSON.put(COURSE_FINAL_CERTIFICATION_PASSED, "False");
-        } else {
-            certJSON.put(COURSE_FINAL_CERTIFICATION_PASSED, " ");
-        }
         ArrayList<Question> Questions = course.getFinalCert().getQuiz().getQuestions();
         JSONArray questionsJSON = new JSONArray();
         for (Question question: Questions){

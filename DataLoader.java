@@ -46,7 +46,13 @@ public class DataLoader extends DataConstants{
                 String type = (String)userJSON.get(USER_TYPE);
 
                 if (type.equals("Student")) {
-                    users.add(new Student(id,firstName, lastName, email, username,password));
+                    ArrayList<String> certs = new ArrayList<String>();
+                    JSONArray certsJSON = (JSONArray)userJSON.get(CERTIFICATIONS);
+                    for(int j = 0; j < certsJSON.size(); j++){
+                        String cert = (String)certsJSON.get(j);
+                        certs.add(cert);
+                    }
+                    users.add(new Student(id,firstName, lastName, email, username,password,certs));
                 } else {
                     users.add(new CourseCreator(id,firstName, lastName, email, username,password));
                 }
@@ -254,7 +260,7 @@ public class DataLoader extends DataConstants{
                     }
                     Quiz finalCert = new Quiz(questions);
                     cert.setQuiz(finalCert);
-                    cert.setPassed(passed);
+                    //cert.setPassed(passed);
                     course.setCert(cert);
                 }
                 courses.add(course);

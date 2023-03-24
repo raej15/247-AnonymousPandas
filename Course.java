@@ -16,7 +16,7 @@ public class Course extends DataConstants{
     private String courseName;
     private String description;
     private Language language;
-    private FinalCertification cert;
+    private FinalCertification cert = new FinalCertification();
     public HashMap<UUID, ArrayList<Double>> grades;
     public UUID author;
     public ArrayList<Comment> courseComments;
@@ -190,6 +190,7 @@ public class Course extends DataConstants{
     public void setCert(FinalCertification cert){
         this.cert = cert;
     }
+
     public String gradesToString() {
         String finalStr = "Student Grades:";
         for(Entry<UUID, ArrayList<Double>> entry: grades.entrySet()) {
@@ -198,8 +199,6 @@ public class Course extends DataConstants{
         }
         return finalStr;
     }
-
-
 
     public void printModuleNames() {
         for(int i = 0; modules.size() > i; i++) {
@@ -240,7 +239,6 @@ public class Course extends DataConstants{
         String moduleName = sc.nextLine();
         Module newModule = new Module(moduleName);
         modules.add(newModule);
-        System.out.println("Modules Size: (line 236 in Course class): "+modules.size());
         String continueModule = "Y";
             System.out.println("\nLESSONS:");
             while(continueModule.equals("Y")){
@@ -263,6 +261,16 @@ public class Course extends DataConstants{
                     continue;
                 }
             }
+    }
+
+    public void createFinalCert(){
+        System.out.println("\nFINAL CERTIFICATION:");
+        this.cert.makeCert();
+
+    }
+
+    public void takeCert(){
+        this.cert.getQuiz().takeQuiz();
     }
 
     

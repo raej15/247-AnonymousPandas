@@ -1,18 +1,14 @@
+import java.util.Scanner;
+
 /*
  * Written by Anonmyous Pandas 
  */
 
  public class FinalCertification{
-    /* */
-    //
-    //private double grade;
-    //private String title;
-    private Quiz quiz;
-    private Boolean passed;
 
+    private Quiz quiz;
 
     FinalCertification() {
-        this.passed = false;
         this.quiz = new Quiz();
     }
 
@@ -24,10 +20,6 @@
         return toReturn;
     }
 
-    public Boolean getPassed(){
-        return this.passed;
-    }
-
     public Quiz getQuiz(){
         return this.quiz;
     }
@@ -36,36 +28,28 @@
         this.quiz = quiz;
     }
 
-    public void setPassed(String passed){
-        if (passed.equalsIgnoreCase("true")){
-            this.passed = true;
-        } else {
-            this.passed = false;
+    public void makeCert(){
+        Scanner sc = new Scanner(System.in);
+        Quiz newQuiz = new Quiz();
+        String continueQuiz = "Y";
+        while(continueQuiz.equals("Y")){
+            if (newQuiz.getQuestions().size() == 0){
+                newQuiz.newQuestion();
+                continue;
+            } else {
+                System.out.println("Would you like to add a question? (Y/N)");
+                continueQuiz = sc.nextLine();
+            }
+            if (continueQuiz.equals("N")) {
+                return;
+            } else if (continueQuiz.equals("Y")) {
+                newQuiz.newQuestion();
+            } else {
+                System.out.println("Invalid input");
+                continueQuiz = "Y";
+                continue;
+            }
         }
     }
-    //needs to be completed
-    public void addFinalCertification() {
 
-    }
-    
-    //public String getTitle() {
-        //return title;
-    //}
-    
-    /** 
-     * @return double
-     * get grade 
-     */
-    //public double getGrade() {
-        //return this.grade;
-    //}
-    
-    
-    /** 
-     * @return String
-     */
-    //might need to be changed later
-    //public String toString() {
-        //return "This User has recieved a certificate in " + certificate + " and a final grade of " + grade;
-    //}
  }

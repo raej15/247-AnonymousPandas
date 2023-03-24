@@ -3,6 +3,7 @@
  */
 
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * I'm currently using this to test the code that I've written. This will need to be updated eventually
@@ -49,8 +50,8 @@ public class UI {
         }
     }
 
-    public LMSFacade getFacade(){
-        return this.facade;
+    public static LMSFacade getFacade(){
+        return facade;
     }
 
     /**
@@ -359,8 +360,6 @@ public class UI {
             switch (userInputINT) {
                 case 1:
                     login();
-                    // testing create course
-                    facade.getCourseList().addCourse();
                     return true;
                 case 2:
                     register();

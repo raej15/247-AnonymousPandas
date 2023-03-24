@@ -145,7 +145,7 @@ public class CourseList extends DataConstants{
         System.out.println("What is the course description?");
         String courseDescription = sc.nextLine();
         Course newCourse = new Course(courseName,courseDescription, lan);
-        newCourse.setAuthor(UUID.randomUUID());
+        newCourse.setAuthor(UI.getFacade().getUser().getUUID());
         addCourse(newCourse); // adding course to the courseList
         System.out.println("\nMODULES:");
         String continueCourse = "Y";
@@ -158,6 +158,7 @@ public class CourseList extends DataConstants{
                     continueCourse = sc.nextLine();
                 }
                 if (continueCourse.equals("N")) {
+                    newCourse.createFinalCert();
                     return;
                 } else if (continueCourse.equals("Y")) {
                     newCourse.createModules();

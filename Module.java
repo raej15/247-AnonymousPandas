@@ -4,6 +4,7 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
@@ -139,6 +140,7 @@ public class Module extends DataConstants{
         }
         return finalStr;
     }
+    
 
     public void createQuiz(){
         Scanner sc = new Scanner(System.in);
@@ -177,5 +179,13 @@ public class Module extends DataConstants{
 
     public void setQuiz(Quiz quiz){
         this.quiz = quiz;
+    }
+
+    public void takeQuiz(){
+        
+        this.quiz.takeQuiz();
+
+
+
     }
 }

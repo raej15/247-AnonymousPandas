@@ -16,6 +16,7 @@ public abstract class DataConstants{
 	protected static final String USER_LAST_NAME = "lastName";
 	protected static final String USER_EMAIL = "email";
     protected static final String USER_TYPE = "type";
+    protected static final String CERTIFICATIONS = "certifications";
 
     /**
      * Data Contants for courses.json

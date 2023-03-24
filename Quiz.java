@@ -126,7 +126,36 @@ public class Quiz extends DataConstants{
               continue;
           }
           numOfAnswerChoices++;
-      }
-      
+      }   
   }
+
+  public void takeQuiz() {
+   Scanner sc = new Scanner(System.in);
+        int points = 0;
+        int total = 0;
+        int grade = 0;
+        ArrayList<Question> questions = UI.getFacade().getModule().getQuiz().getQuestions();
+        for (Question question: questions){
+            total+=10;
+            System.out.println(question.getQuestion());
+            ArrayList<String> answerChoices = question.getAnswers();
+            int counter = 0;
+            for (String ac: answerChoices){
+                System.out.println(counter+": "+ac);
+            }
+            int choice = sc.nextInt();
+            if (choice == question.getCorrectIndex()){
+                points+=10;
+            }
+        }
+        grade = (points/total)*100;
+
+        if (grade > 75){
+            System.out.println("Congraulations you passed the quiz!");
+        }
+        // need current user to add grades to grade hashmap and current course
+  }
+
+  
+
 }

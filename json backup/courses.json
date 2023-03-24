@@ -179,7 +179,7 @@
             }
         ],
         "certification":[
-            {   "passed": "True",
+            {
                 "certQuiz":[{
                     "question":"What is the relationship between JavaScript and HTML?",
                     "answers":["HTML is for logic and is used with JavaScript to make a website.", "JavaScript and HTML are the same language.", "JavaScript is used with HTML to make webpages behavior." ],

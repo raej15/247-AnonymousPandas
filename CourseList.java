@@ -146,13 +146,19 @@ public class CourseList extends DataConstants{
         String courseName = sc.nextLine();
         System.out.println("What is the course description?");
         String courseDescription = sc.nextLine();
-        Course newCourse = new Course(courseName,courseDescription, lan);
+        Course newCourse = new Course(courseName,courseDescription,lan);
         newCourse.setAuthor(authorID);
-        addCourse(newCourse);
+        addCourse(newCourse); // adding course to the courseList
+        System.out.println("\nMODULES:");
         String continueCourse = "Y";
             while(continueCourse.equals("Y")){
-                System.out.println("Would you like to add a module? (Y/N)");
-                continueCourse = sc.nextLine();
+                if (newCourse.getModules().size() == 0) {
+                   newCourse.createModules();
+                   continue;
+                } else {
+                    System.out.println("MODULES:\nWould you like to add a module? (Y/N)");
+                    continueCourse = sc.nextLine();
+                }
                 if (continueCourse.equals("N")) {
                     return;
                 } else if (continueCourse.equals("Y")) {
@@ -169,19 +175,12 @@ public class CourseList extends DataConstants{
         Scanner sc = new Scanner(System.in);
         System.out.println("What language would you like your course to be?");
         Language languages[] = Language.values();
-        String strLanguages[] = new String[languages.length];
         int counter = 0;
         for(Language language: languages) {
-            System.out.println(language.toString());
-            strLanguages[counter] = language.toString();
+            System.out.println(counter+": "+language.toString());
             counter++;
         }
-        String selectedLanguage = sc.nextLine().toUpperCase();
-        for (int i = 0; i < strLanguages.length; i++) {
-            if(selectedLanguage.equals(strLanguages[i].toUpperCase())) {
-                return languages[i];
-            }
-        }
-        return null;
+        int selectedLanguage = sc.nextInt();
+        return languages[selectedLanguage];
     }
 }

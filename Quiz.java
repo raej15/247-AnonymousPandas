@@ -2,7 +2,6 @@
  * Written by Anonymous Pandas
  */
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -97,11 +96,24 @@ public class Quiz extends DataConstants{
       String continueAC = "Y";
       int numOfAnswerChoices = 0;
       while(continueAC.equals("Y")){
-          System.out.println("Would you like to add an answer choice? (Y/N)");
-          continueAC = sc.nextLine();
+         if (numOfAnswerChoices == 0){
+            System.out.println("What is the answer choice?");
+            answerChoices.add(sc.nextLine());
+            numOfAnswerChoices++;
+            continue;
+         } else {
+            System.out.println("Would you like to add an answer choice? (Y/N)");
+            continueAC = sc.nextLine();
+         }
           if (continueAC.equals("N")|| numOfAnswerChoices >= MAXNUMANSWERCHOICES) {
-              if (numOfAnswerChoices >= MAXNUMANSWERCHOICES) {System.out.println("Too many answer choices.");}
-              System.out.println("What is the correct answer?");
+               if (numOfAnswerChoices >= MAXNUMANSWERCHOICES)
+                  System.out.println("Too many answer choices.");
+               System.out.println("What is the correct answer? Please indicate using the corresponding number...");
+               int index = 0;
+               for (String ac: answerChoices){
+                  System.out.println(index+": "+ac);
+                  index++;
+               }
               Question newQuestion = new Question(questiontitle, answerChoices, sc.nextInt());
               this.questions.add(newQuestion);
               return;

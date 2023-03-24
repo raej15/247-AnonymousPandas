@@ -2,13 +2,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataWriter2 extends DataConstants {
+public class DataWriter extends DataConstants {
     
     /** 
      * @param args

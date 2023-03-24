@@ -82,7 +82,7 @@ public class Module extends DataConstants{
      * @param lessonName The name of the lesson the user wants
      * @return A lesson
      */
-    public Lesson getLesson(int lessonIndex) {
+    public Lesson getLessonbyIndex(int lessonIndex) {
         if (lessons.size() == 0) {
             System.out.println("There are no lessons to get");
             return null;
@@ -146,8 +146,13 @@ public class Module extends DataConstants{
         setQuiz(newQuiz);
         String continueQuiz = "Y";
         while(continueQuiz.equals("Y")){
-            System.out.println("Would you like to add a question? (Y/N)");
-            continueQuiz = sc.nextLine();
+            if (newQuiz.getQuestions().size() == 0){
+                newQuiz.newQuestion();
+                continue;
+            } else {
+                System.out.println("Would you like to add a question? (Y/N)");
+                continueQuiz = sc.nextLine();
+            }
             if (continueQuiz.equals("N")) {
                 return;
             } else if (continueQuiz.equals("Y")) {
@@ -158,7 +163,6 @@ public class Module extends DataConstants{
                 continue;
             }
         }
-        
     }
 
     public void createLesson(){

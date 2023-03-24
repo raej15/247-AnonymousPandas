@@ -71,8 +71,8 @@ public class UI {
     }
 
     private static void saveData() {
-        DataWriter2.saveUsers();
-        DataWriter2.saveCourses();
+        DataWriter.saveUsers();
+        DataWriter.saveCourses();
     }
 
     /**
@@ -345,6 +345,8 @@ public class UI {
             switch (userInputINT) {
                 case 1:
                     login();
+                    // testing create course
+                    facade.getCourseList().addCourse();
                     return true;
                 case 2:
                     register();

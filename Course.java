@@ -233,11 +233,19 @@ public class Course extends DataConstants{
         String moduleName = sc.nextLine();
         Module newModule = new Module(moduleName);
         modules.add(newModule);
+        System.out.println("Modules Size: (line 236 in Course class): "+modules.size());
         String continueModule = "Y";
+            System.out.println("\nLESSONS:");
             while(continueModule.equals("Y")){
-                System.out.println("Would you like to add a lesson? (Y/N)");
-                continueModule = sc.nextLine();
-                if (continueModule.equals("N")) { 
+                if (newModule.getLessons().size() == 0){
+                    newModule.createLesson();
+                    continue;
+                } else {
+                    System.out.println("Would you like to add a lesson? (Y/N)");
+                    continueModule = sc.nextLine();
+                }
+                if (continueModule.equals("N")) {
+                    System.out.println("\nQUIZ:");
                     newModule.createQuiz();
                     return;
                 } else if (continueModule.equals("Y")) {

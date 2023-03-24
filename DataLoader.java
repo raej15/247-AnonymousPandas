@@ -21,19 +21,6 @@ public class DataLoader extends DataConstants{
  * for loop has JSONObject, username, email, and password 
  * @return ArrayList<User> 
  */
-    /* 
-    public static void main(String[] args) {
-        ArrayList<User> users = loadUsers();
-        for (User user: users) {
-            System.out.println(user.toString()+"\n---------------");
-        }
-        ArrayList<Course> courses = loadCourses();
-        for (Course course: courses) {
-            System.out.println("------------------------------------------------------------------------");
-            System.out.println(course.toString());
-            System.out.println("------------------------------------------------------------------------");
-        }
-    }*/
     
     /** 
      * @return ArrayList<User>

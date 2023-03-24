@@ -210,7 +210,7 @@
              return;
          }
  
-         lesson = module.getLesson(lessonIndex);
+         lesson = module.getLessonbyIndex(lessonIndex);
          return;
      }
  

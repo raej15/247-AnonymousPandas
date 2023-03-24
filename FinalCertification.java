@@ -16,6 +16,10 @@
 
     }
     
+    public String getTitle() {
+        return title;
+    }
+    
     /** 
      * @return double
      * get grade 

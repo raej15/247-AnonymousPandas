@@ -96,9 +96,9 @@ public class CourseList extends DataConstants{
     /** 
      * @param username
      */
-    public void removeCourse(String username){
-       
-    }
+    public void removeCourse(Course course){
+        courses.remove(course);
+     }
 
     public void printCourseNames() {
         for(int i = 0; courses.size() > i; i++) {
@@ -139,15 +139,13 @@ public class CourseList extends DataConstants{
 
     public void addCourse() {
         Scanner sc = new Scanner(System.in);
-        // set current user as author ---- TODO FIX
-        UUID authorID = UUID.randomUUID();
         Language lan = selectLanguages();
         System.out.println("What is the course name?");
         String courseName = sc.nextLine();
         System.out.println("What is the course description?");
         String courseDescription = sc.nextLine();
-        Course newCourse = new Course(courseName,courseDescription,lan);
-        newCourse.setAuthor(authorID);
+        Course newCourse = new Course(courseName,courseDescription, lan);
+        newCourse.setAuthor(UUID.randomUUID());
         addCourse(newCourse); // adding course to the courseList
         System.out.println("\nMODULES:");
         String continueCourse = "Y";

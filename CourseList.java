@@ -81,6 +81,7 @@ public class CourseList extends DataConstants{
 
     
     /** 
+     * determines if courses contains a specific index
      * @param index
      * @return boolean
      */
@@ -94,7 +95,8 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param username
+     * Selects a course to remove
+     * @param course
      */
     public void removeCourse(Course course){
         courses.remove(course);

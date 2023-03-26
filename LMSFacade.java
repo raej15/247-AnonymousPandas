@@ -223,9 +223,10 @@
              quiz = null;
              return;
          }
- 
          if (mode == 1) {
              //quiz = course.getCertificate();
+             this.quiz = course.getCertificate().getQuiz();
+             course.takeCert();
          } else if (mode == 2) {
              quiz = module.getQuiz();
          }

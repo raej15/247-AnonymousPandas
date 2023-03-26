@@ -271,6 +271,7 @@ public class Course extends DataConstants{
 
     public void takeCert(){
         this.cert.getQuiz().takeQuiz();
+        //return cert.getQuiz();
     }
 
     

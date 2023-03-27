@@ -10,7 +10,7 @@ import java.util.UUID;
 
 /**
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for, and if it's been completed
- */
+ */ 
 public class Course extends DataConstants{
     private ArrayList<Module> modules;
     private String courseName;
@@ -27,13 +27,15 @@ public class Course extends DataConstants{
      * @param courseName The name of the course
      * @param description What the course teachers the user
      * @param language Which language the course is for
+     * @param authorID The UUID of whoever created the course
      */
-    Course(String courseName, String description, Language language) {
+    Course(String courseName, String description, Language language, UUID authorID) {
         modules = new ArrayList<Module>();
         this.courseName = courseName;
         this.description = description;
         this.language = language;
         this.students = new ArrayList<UUID>();
+        author = authorID;
         //cert = new FinalCertification();
     }
 
@@ -48,6 +50,94 @@ public class Course extends DataConstants{
         this.students = students;
     }
 
+    public String getLanguageStr(Language language) {
+        if (language == Language.JavaScript){
+            return "JavaScript";
+        } else if (language == Language.Python) {
+            return "Python";
+        } 
+        return null;
+    }
+
+    /**
+     * Gets the name of the course
+     * @return courseName
+     */
+    public String getCourseName() {
+        return courseName;
+    }
+    
+    /**
+     * Gets the description of the course
+     * @return description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Returns the final certificate associated with the course
+     * @return The final certificate
+     */
+    public FinalCertification getCertificate() {
+        return cert;
+    }
+
+    /**
+     * Returns the language that the course is for
+     * @return language
+     */
+    public Language getLanguage() {
+        return language;
+    }
+
+    /**
+     * Returns the UUID of the author
+     * @return The UUID of the author
+     */
+    public UUID getAuthorID(){
+        return this.author;
+    }
+
+    /**
+     * Returns an ArrayList of modules for this course
+     * @return An ArrayList of modules
+     */
+    public ArrayList<Module> getModules(){
+        return modules;
+    }
+    
+    /**
+     * Returns a module based on the inputted index, if it exists
+     * @param moduleIndex The index of the module you want to get
+     * @return A module object
+     */
+    public Module getModuleAtIndex(int moduleIndex) {
+        if (modules.size() == 0) {
+            System.out.println("There are no modules to get");
+            return null;
+        }
+        
+        if (modules.size() > moduleIndex) {
+            return modules.get(moduleIndex);
+        }
+
+        System.out.println("That module could not be found");
+        return null;
+    }
+
+    public ArrayList<UUID> getStudents(){
+        return students;
+    }
+
+    public ArrayList<Comment> getCourseComments(){
+        return courseComments;
+    }
+
+    public HashMap<UUID, ArrayList<Double>> getGrades(){
+        return grades;
+    }
+
     public void setLanguage(String languageStr){
         if (languageStr.equalsIgnoreCase("javascript")){
             this.language=Language.JavaScript;
@@ -58,14 +148,6 @@ public class Course extends DataConstants{
 
     public void setAuthor(UUID uuid){
         this.author = uuid;
-    }
-    public String getLanguageStr(Language language) {
-        if (language == Language.JavaScript){
-            return "JavaScript";
-        } else if (language == Language.Python) {
-            return "Python";
-        } 
-        return null;
     }
 
     /**
@@ -101,86 +183,24 @@ public class Course extends DataConstants{
     }
 
     /**
-     * Gets the name of the course
-     * @return courseName
-     */
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public ArrayList<Comment> getCourseComments(){
-        return courseComments;
-    }
-
-    /**
-     * Gets the description of the course
-     * @return description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    public FinalCertification getCertificate() {
-        return cert;
-    }
-
-    /**
-     * Returns the language that the course is for
-     * @return language
-     */
-    public Language getLanguage() {
-        return language;
-    }
-
-    public UUID getAuthorID(){
-        return this.author;
-    }
-
-    public ArrayList<Module> getModules(){
-        return modules;
-    }
-    
-    /**
-     * Returns a module based on the inputted index, if it exists
-     * @param moduleIndex The index of the module you want to get
-     * @return A module object
-     */
-    public Module getModuleAtIndex(int moduleIndex) {
-        if (modules.size() == 0) {
-            System.out.println("There are no modules to get");
-            return null;
-        }
-        
-        if (modules.size() > moduleIndex) {
-            return modules.get(moduleIndex);
-        }
-
-        System.out.println("That module could not be found");
-        return null;
-    }
-
-    public FinalCertification getFinalCert(){
-        return this.cert;
-    }
-
-    /**
      * Removes a module via a name, if it exists
      * @param moduleName The module to remove
      */
-    public void removeModule(String moduleName) {
+    public int removeModule(int moduleIndex) {
         if (modules.size() == 0) {
-            System.out.println("There are no modules to remove");
-            return;
+            return 1;
         }
         
-        for (int i = 0; modules.size() > i; i++) {
-            if (modules.get(i).getModuleName().equals(moduleName)) {
-                modules.remove(i);
-                return;
-            }
+        if (0 > moduleIndex) {
+            return 3;
         }
 
-        System.out.println("That module could not be found");
+        if (modules.size() > moduleIndex) {
+            modules.remove(moduleIndex);
+            return 0;
+        }
+
+        return 2;
     }
 
     public void setGrades(HashMap<UUID, ArrayList<Double>> grades){
@@ -206,10 +226,6 @@ public class Course extends DataConstants{
         }
     }
 
-    public HashMap<UUID, ArrayList<Double>> getGrades(){
-        return grades;
-    }
-
     public String toString(){
         String finalStr =  BOLD+"Course Name: "+ this.courseName + RESET+"\nDescription: "+ this.description+"\nLanguage: "+this.language+"\nAuthor Id: "+this.author+ "\n"+gradesToString();
         for(Module module: modules) {
@@ -229,10 +245,7 @@ public class Course extends DataConstants{
         }
     }
 
-    public ArrayList<UUID> getStudents(){
-        return students;
-    }
-
+    //TODO Fix this
     public void createModules() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the module name?");
@@ -263,15 +276,21 @@ public class Course extends DataConstants{
             }
     }
 
-    public void createFinalCert(){
+    public void createFinalCert() {
         System.out.println("\nFINAL CERTIFICATION:");
         this.cert.makeCert();
 
     }
 
-    public void takeCert(){
+    public void takeCert() {
         this.cert.getQuiz().takeQuiz();
     }
 
-    
+    public boolean hasModules() {
+        return !modules.isEmpty();
+    }
+
+    public boolean hasModuleAt(int index) {
+        return (modules.size() > index && index > -1);
+    }
 }

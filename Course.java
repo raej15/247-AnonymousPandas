@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map.Entry;
 import java.util.UUID;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -292,7 +291,7 @@ public class Course extends DataConstants{
             System.out.println("Congraulations you passed the certification exam!");
             addUserCertifications();
             //testing
-            getCertificationFile();
+                //getCertificationFile();
         } else {
             System.out.println("Unfortunately, you did not pass.");
         }
@@ -307,13 +306,13 @@ public class Course extends DataConstants{
 
     public void getCertificationFile() {
         String user = UI.getFacade().getUser().getFirstName();
-        System.out.println(getFinalCert());
+        //System.out.println(getCertificate());
         String fileName = "txtFileTests//" + user + "FinalCert.txt";
         try {
             FileWriter myWriter = new FileWriter(fileName);
             myWriter.write("*************************************\n     Certificate of Completion\n             "+UI.getFacade().getUser().getFirstName().toUpperCase() + " " + UI.getFacade().getUser().getLastName().toUpperCase() + "\n   passed the certifcation exam for\n     " + courseName+"!\n*************************************");
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            System.out.println("Successfully wrote to file.");
           } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

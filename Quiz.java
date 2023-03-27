@@ -109,23 +109,6 @@ public class Quiz extends DataConstants{
             if (numOfAnswerChoices >= MAXNUMANSWERCHOICES)
                System.out.println("Too many answer choices.");
                System.out.println("What is the correct answer? Please indicate using the corresponding number...");
-               int index = 1;
-               for (String ac: answerChoices){
-                  System.out.println(index+": "+ac);
-                  index++;
-               }
-              Question newQuestion = new Question(questiontitle, answerChoices, sc.nextInt());
-              this.questions.add(newQuestion);
-              return;
-          } else if (continueAC.equals("Y")) {
-              System.out.println("What is the answer choice?");
-              answerChoices.add(sc.nextLine());
-          } else {
-              System.out.println("Invalid input");
-              continueAC = "Y";
-              continue;
-          }
-          numOfAnswerChoices++;
                int index = 0;
             for (String ac: answerChoices){
                System.out.println(index+": "+ac);

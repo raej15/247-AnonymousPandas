@@ -1,0 +1,28 @@
+Scenario 1:
+
+John Wisdom, a teacher logs into his account.
+He previously created an awesome Python course.
+View the different course module titles. There should be at least 10 different logical titles.
+Pick the loops section, You should see course material describing the for loop.
+Add a section to the loops module on the while loop. Make sure to give it a title, and a description describing how while loops work.
+Go back to the module on loops, and look at the quiz, there should be 3 exiting questions on for loops.
+Add a new question (with all details) about the while loop.
+Logout
+
+
+Scenario 2:
+Scout Solace a student longs into her account.
+She sees that she previously completed a JavaScript course.
+She sees her grades on the different modules, and is proud of herself.
+She prints out her JavaScript certificate.
+She navigates back to her list of courses.
+She sees that she is currently enrolled in a Python course.
+She enters the Python course, and is directed to the module on loops, as she has previously completed the other modules.
+She glances through the material on for loops and while loops.
+Now she proceeds to take the quiz. She gets 2 / 4 questions correct.
+She’s now in a bad mood! She is ready to make some damage. She views the comments for the loop module. There are 4 existing comments.
+She sees a comment by Allie Anderson that says “These are throwing me for a loop… hehehe”
+Scout leaves a reply to Allie’s comment and says. “Loops are for loop-sers.”
+She decides she needs to better understand the material, so she prints out the material on loops. This does not include the quiz or the comments.
+She then leaves the Python course.
+Finally, she logs out of the system.

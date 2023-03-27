@@ -71,7 +71,7 @@ public class Quiz extends DataConstants{
 
    public void printQuestions() {
       for(int i = 0; questions.size() > i; i++) {
-         System.out.println(i+": "+questions.get(i).getQuestion());
+         System.out.println(i+1+": "+questions.get(i).getQuestion());
       }
    }
 
@@ -109,6 +109,23 @@ public class Quiz extends DataConstants{
             if (numOfAnswerChoices >= MAXNUMANSWERCHOICES)
                System.out.println("Too many answer choices.");
                System.out.println("What is the correct answer? Please indicate using the corresponding number...");
+               int index = 1;
+               for (String ac: answerChoices){
+                  System.out.println(index+": "+ac);
+                  index++;
+               }
+              Question newQuestion = new Question(questiontitle, answerChoices, sc.nextInt());
+              this.questions.add(newQuestion);
+              return;
+          } else if (continueAC.equals("Y")) {
+              System.out.println("What is the answer choice?");
+              answerChoices.add(sc.nextLine());
+          } else {
+              System.out.println("Invalid input");
+              continueAC = "Y";
+              continue;
+          }
+          numOfAnswerChoices++;
                int index = 0;
             for (String ac: answerChoices){
                System.out.println(index+": "+ac);
@@ -129,19 +146,20 @@ public class Quiz extends DataConstants{
       }   
   }
 
-  public void takeQuiz() {
+  public double takeQuiz() {
    Scanner sc = new Scanner(System.in);
         int points = 0;
         int total = 0;
-        int grade = 0;
-        ArrayList<Question> questions = UI.getFacade().getModule().getQuiz().getQuestions();
+        double grade = 0;
+        ArrayList<Question> questions = UI.getFacade().getQuiz().getQuestions();
         for (Question question: questions){
             total+=10;
             System.out.println(question.getQuestion());
             ArrayList<String> answerChoices = question.getAnswers();
-            int counter = 0;
+            int counter = 1;
             for (String ac: answerChoices){
-               System.out.println(counter+": "+ac);
+                System.out.println(counter+": "+ac);
+                counter++;
             }
             int choice = sc.nextInt();
             if (choice == question.getCorrectIndex()){
@@ -150,10 +168,7 @@ public class Quiz extends DataConstants{
         }
         grade = (points/total)*100;
 
-        if (grade > 75){
-            System.out.println("Congraulations you passed the quiz!");
-        }
-        // need current user to add grades to grade hashmap and current course
+        return grade;
   }
 
   

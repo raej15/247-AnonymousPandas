@@ -177,9 +177,10 @@ public class LMSFacade {
             return;
         }
  
-        this.course = courseList.getCourse(courseIndex - 1);
-        return;
-    }
+         this.course = courseList.getCourse(courseIndex - 1);
+         UI.getFacade().getCourse().setGrade(90);
+         return;
+     }
  
     /**
      * Sets the current module to the one located at the index in the current course
@@ -220,7 +221,8 @@ public class LMSFacade {
         }
 
         if (mode == 1) {
-            //quiz = course.getCertificate();
+            this.quiz = course.getCertificate().getQuiz();
+            return;
         } else if (mode == 2) {
             quiz = module.getQuiz();
         }

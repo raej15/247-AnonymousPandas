@@ -251,7 +251,7 @@ public class DataLoader extends DataConstants{
                         JSONArray answersJSON = (JSONArray)questionJSON.get(COURSE_QUIZ_ANSWERS);
                         ArrayList<String> answers = new ArrayList<String>();
                         for (int k = 0; k < answersJSON.size(); k++){
-                            String answer = (String)answersJSON.get(j);
+                            String answer = (String)answersJSON.get(k);
                             answers.add(answer);
                         }
                         int correctIndex = (int)(long)questionJSON.get(COURSE_QUIZ_CORRECT_INDEX);

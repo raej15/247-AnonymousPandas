@@ -25,4 +25,14 @@ public class Student extends User{
     public ArrayList<String> getCertifications(){
         return certifications;
     }
+
+    public void setCertification(String str){
+        certifications.add(str);
+    }
+
+    public void printCertifications() {
+        for(String cert: certifications) {
+            System.out.println(cert+"\n");
+        }
+    }
 }

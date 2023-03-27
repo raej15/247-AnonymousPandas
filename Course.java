@@ -282,10 +282,29 @@ public class Course extends DataConstants{
 
     }
 
-    public void takeCert() {
-        this.cert.getQuiz().takeQuiz();
+    public void takeCert(){
+        double grade = this.cert.getQuiz().takeQuiz();
+        if (grade > 75){
+            System.out.println("Congraulations you passed the certification exam!");
+            addUserCertifications();
+        } else {
+            System.out.println("Unfortunately, you did not pass.");
+        }
     }
 
+    public void addUserCertifications(){
+        String str = "*************************************\n     Certificate of Completion\n             "+UI.getFacade().getUser().getFirstName().toUpperCase() + " " + UI.getFacade().getUser().getLastName().toUpperCase() + "\n   passed the certifcation exam for\n     " + courseName+"!\n*************************************";
+        Student user = (Student) UI.getFacade().getUser();
+        user.setCertification(str);
+        System.out.println(str);
+    }
+
+    public void setGrade(double grade){
+        UUID current = UI.getFacade().getUser().getUUID();
+        ArrayList<Double> userGrades = grades.get(current);
+        userGrades.add(grade);
+        grades.put(current, userGrades);
+    }
     public boolean hasModules() {
         return !modules.isEmpty();
     }

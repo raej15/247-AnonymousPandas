@@ -5,7 +5,6 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
@@ -77,9 +76,7 @@ public class CourseList extends DataConstants{
 
         return null;
     }
-    
-
-    
+     
     /** 
      * determines if courses contains a specific index
      * @param index
@@ -100,7 +97,15 @@ public class CourseList extends DataConstants{
      */
     public void removeCourse(Course course){
         courses.remove(course);
-     }
+    }
+
+    /**
+     * Removes the course at the index
+     * @param index The location of the course being removed
+     */
+    public void removeCourseIndex(int index) {
+        courses.remove(index);
+    }
 
     public void printCourseNames() {
         for(int i = 0; courses.size() > i; i++) {
@@ -146,7 +151,7 @@ public class CourseList extends DataConstants{
         String courseName = sc.nextLine();
         System.out.println("What is the course description?");
         String courseDescription = sc.nextLine();
-        Course newCourse = new Course(courseName,courseDescription, lan);
+        Course newCourse = new Course(courseName,courseDescription, lan, null);
         newCourse.setAuthor(UI.getFacade().getUser().getUUID());
         addCourse(newCourse); // adding course to the courseList
         System.out.println("\nMODULES:");

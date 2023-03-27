@@ -283,7 +283,11 @@ public class UI {
         System.out.println("Please select which course you want to access");
         consoleBarrier();
 
-        facade.getCourseList().printCourseNames();
+        //facade.getCourseList().printCourseNames();
+        facade.getCourseList().printEnrolledCourses(); //NEW changed to only print enrolled courses
+        Student user = (Student) UI.getFacade().getUser();
+        // New - enroll into a new course
+        user.enrollCourse();
 
         int userInputINT = intCheck();
         facade.setCourse(userInputINT);

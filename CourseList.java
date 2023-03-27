@@ -10,25 +10,6 @@ public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
     private static CourseList courseList = new CourseList();
     
-/* 
-    public static void main(String[] args){
-        DataLoader.loadUsers();
-        DataLoader.loadCourses();
-        DataWriter2.saveUsers();
-        DataWriter2.saveCourses();
-        
-        courseList.addCourse();
-        DataWriter2.saveCourses();
-    }
-
-    private CourseList() {
-        //courses = new ArrayList<Course>();
-        //DataLoader.loadCourses();
-        //courses = DataLoader.loadCourses();
-        //courses.add(new Course("JavaScript", "JavaScript Basics", Language.JavaScript));
-    }
-*/
-    
     /** 
      * @return CourseList
      */
@@ -76,6 +57,7 @@ public class CourseList extends DataConstants{
 
         return null;
     }
+
      
     /** 
      * determines if courses contains a specific index
@@ -188,5 +170,19 @@ public class CourseList extends DataConstants{
         }
         int selectedLanguage = sc.nextInt();
         return languages[selectedLanguage];
+    }
+
+    // loops through courseList and returns a list of courses that the student is enrolled in
+    public void printEnrolledCourses(){
+        int numOfCoursesEnrolled = 0;
+        for(Course course:UI.getFacade().getCourseList().getCourses()){
+            if (course.getGrades().containsKey(UI.getFacade().getUser().getUUID())) {
+                System.out.println(numOfCoursesEnrolled+": "+course.getCourseName());
+                numOfCoursesEnrolled++;
+            }
+        }
+        if (numOfCoursesEnrolled == 0){
+            System.out.println("You are not enrolled into any courses!");
+        }
     }
 }

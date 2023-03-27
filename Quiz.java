@@ -13,7 +13,7 @@ public class Quiz extends DataConstants{
    private ArrayList<Question> questions;
 
    /**
-    * Creates a new quiz titled "Quiz"
+    * Creates a new quiz
     */
    Quiz() {
       questions = new ArrayList<Question>();
@@ -117,32 +117,16 @@ public class Quiz extends DataConstants{
               Question newQuestion = new Question(questiontitle, answerChoices, sc.nextInt());
               this.questions.add(newQuestion);
               return;
-          } else if (continueAC.equals("Y")) {
+         } else if (continueAC.equals("Y")) {
               System.out.println("What is the answer choice?");
               answerChoices.add(sc.nextLine());
-          } else {
+         } else {
               System.out.println("Invalid input");
               continueAC = "Y";
               continue;
-          }
-          numOfAnswerChoices++;
-               int index = 0;
-            for (String ac: answerChoices){
-               System.out.println(index+": "+ac);
-               index++;
-            }
-            Question newQuestion = new Question(questiontitle, answerChoices, sc.nextInt());
-            this.questions.add(newQuestion);
-            return;
-         } else if (continueAC.equals("Y")) {
-            System.out.println("What is the answer choice?");
-            answerChoices.add(sc.nextLine());
-         } else {
-            System.out.println("Invalid input");
-            continueAC = "Y";
-            continue;
          }
-         numOfAnswerChoices++;
+          numOfAnswerChoices++;
+          
       }   
   }
 

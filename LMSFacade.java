@@ -178,7 +178,6 @@ public class LMSFacade {
         }
  
          this.course = courseList.getCourse(courseIndex - 1);
-         UI.getFacade().getCourse().setGrade(90);
          return;
      }
  

@@ -4,6 +4,7 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
@@ -82,7 +83,7 @@ public class Module extends DataConstants{
      * @param lessonName The name of the lesson the user wants
      * @return A lesson
      */
-    public Lesson getLesson(int lessonIndex) {
+    public Lesson getLessonbyIndex(int lessonIndex) {
         if (lessons.size() == 0) {
             System.out.println("There are no lessons to get");
             return null;
@@ -139,6 +140,7 @@ public class Module extends DataConstants{
         }
         return finalStr;
     }
+    
 
     public void createQuiz(){
         Scanner sc = new Scanner(System.in);
@@ -146,8 +148,13 @@ public class Module extends DataConstants{
         setQuiz(newQuiz);
         String continueQuiz = "Y";
         while(continueQuiz.equals("Y")){
-            System.out.println("Would you like to add a question? (Y/N)");
-            continueQuiz = sc.nextLine();
+            if (newQuiz.getQuestions().size() == 0){
+                newQuiz.newQuestion();
+                continue;
+            } else {
+                System.out.println("Would you like to add a question? (Y/N)");
+                continueQuiz = sc.nextLine();
+            }
             if (continueQuiz.equals("N")) {
                 return;
             } else if (continueQuiz.equals("Y")) {
@@ -158,14 +165,13 @@ public class Module extends DataConstants{
                 continue;
             }
         }
-        
     }
 
     public void createLesson(){
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the lesson name?");
         String lessonName = sc.nextLine();
-        System.out.println("What is the lesson description?");
+        System.out.println("What is the lesson content?");
         String lessonDescription = sc.nextLine();
         Lesson newLesson = new Lesson(lessonName, lessonDescription);
         lessons.add(newLesson);
@@ -173,5 +179,13 @@ public class Module extends DataConstants{
 
     public void setQuiz(Quiz quiz){
         this.quiz = quiz;
+    }
+
+    public void takeQuiz(){
+        
+        this.quiz.takeQuiz();
+
+
+
     }
 }

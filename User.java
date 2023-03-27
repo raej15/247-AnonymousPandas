@@ -1,6 +1,7 @@
 /*
  * Written by Anonmyous Pandas 
  */
+
  import java.util.UUID;
 
  public class User {
@@ -9,9 +10,17 @@
     protected String email;
     protected String firstName;
     protected String lastName;
-    
+    protected UUID uuid;
+    protected int type;    
 
-    //What to put in this?
+     /**
+      * Creates a new user
+      * @param username The new user's username
+      * @param password The new user's password
+      * @param email The new user's email
+      * @param firstName The new user's first name
+      * @param lastName The new user's last type
+      */
     public User(String username, String password, String email, String firstName, String lastName) {
         this.username = username;
         this.password = password;
@@ -28,7 +37,22 @@
         this.lastName = lastName;
     }
 
-    
+    /**
+     * Returns the type of user
+     * @return 1 for students, 2 for course creators
+     */
+    public int getType(){
+        return type;
+    }
+
+    /**
+     * Return's the UUID of the user
+     * @return The UUID
+     */
+    public UUID getUUID(){
+        return uuid;
+    }
+
     /** 
      * @return String
      */

@@ -6,7 +6,8 @@
     "email":"twhite@gmail.com",
     "username": "trey12",
     "password": "treyWhite12",
-    "type":"Student"
+    "type":"Student",
+    "certifications": []
   },{
     "userid": "dd6e2806-c8bd-4f14-a1f5-4ef0bdbcb7cc",
     "firstName":"Molly",
@@ -22,7 +23,8 @@
     "email":"topher@gmail.com",
     "username": "topherR",
     "password": "topheristiktokfamous",
-    "type":"Student"
+    "type":"Student",
+    "certifications": []
   },{
     "userid": "41cacde1-48d5-4374-9119-4121510741f5",
     "firstName":"Taylor",
@@ -30,7 +32,8 @@
     "email":"tswizzle@gmail.com",
     "username": "swiftie13",
     "password": "youbelongwithme",
-    "type":"Student"
+    "type":"Student",
+    "certifications": []
   },{
     "userid": "878a27e5-78b2-499a-847e-1c60c84cf9f2",
     "firstName":"Oprah",
@@ -38,7 +41,8 @@
     "email":"oprah@gmail.com",
     "username": "youGetACar",
     "password": "oprahOprah",
-    "type":"Student"
+    "type":"Student",
+    "certifications": []
   },{
     "userid": "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf",
     "firstName":"Michael",
@@ -54,6 +58,7 @@
     "email":"email",
     "username": "username",
     "password": "password",
-    "type":"Student"
+    "type":"Student",
+    "certifications": []
   }
 ]

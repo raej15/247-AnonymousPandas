@@ -1,35 +1,55 @@
+import java.util.Scanner;
+
 /*
  * Written by Anonmyous Pandas 
  */
 
- public class FinalCertification extends Quiz{
-    private String certificate;
-    private double grade;
-    private String title;
+ public class FinalCertification{
+
+    private Quiz quiz;
 
     FinalCertification() {
-        this.title = "Final Cert";
+        this.quiz = new Quiz();
     }
 
-    //needs to be completed
-    public void addFinalCertification() {
-        
+    public Boolean checkPassedStr(String passed){
+        boolean toReturn = false;
+        if (passed.equalsIgnoreCase("true")){
+            toReturn = true;
+        }
+        return toReturn;
     }
-    
-    /** 
-     * @return double
-     * get grade 
-     */
-    public double getGrade() {
-        return this.grade;
+
+    public Quiz getQuiz(){
+        return this.quiz;
     }
-    
-    
-    /** 
-     * @return String
-     */
-    //might need to be changed later
-    public String toString() {
-        return "This User has recieved a certificate in " + certificate + " and a final grade of " + grade;
+
+    public void setQuiz(Quiz quiz){
+        this.quiz = quiz;
     }
+
+    public void makeCert(){
+        Scanner sc = new Scanner(System.in);
+        Quiz newQuiz = new Quiz();
+        String continueQuiz = "Y";
+        while(continueQuiz.equals("Y")){
+            if (newQuiz.getQuestions().size() == 0){
+                newQuiz.newQuestion();
+                continue;
+            } else {
+                System.out.println("Would you like to add a question? (Y/N)");
+                continueQuiz = sc.nextLine();
+            }
+            if (continueQuiz.equals("N")) {
+                return;
+            } else if (continueQuiz.equals("Y")) {
+                newQuiz.newQuestion();
+            } else {
+                System.out.println("Invalid input");
+                continueQuiz = "Y";
+                continue;
+            }
+        }
+    }
+
  }

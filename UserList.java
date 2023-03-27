@@ -178,6 +178,8 @@ public class UserList extends DataConstants{
             CourseCreator newUser = new CourseCreator(userInput[0], userInput[1], userInput[2],userInput[3], userInput[4]);
             users.add(newUser);
         }
-             
+        
+        sc.close();
+        
     }
 }

@@ -1,3 +1,4 @@
+import java.util.UUID;
 
 /*
  * Written by Anonmyous Pandas 
@@ -15,6 +16,7 @@ public abstract class DataConstants{
 	protected static final String USER_LAST_NAME = "lastName";
 	protected static final String USER_EMAIL = "email";
     protected static final String USER_TYPE = "type";
+    protected static final String CERTIFICATIONS = "certifications";
 
     /**
      * Data Contants for courses.json
@@ -43,8 +45,10 @@ public abstract class DataConstants{
     protected static final String COURSE_NESTED_COMMENT = "nestedComment";
     protected static final String COURSE_MODULE_MODULE_COMMENTS = "moduleComments";
     protected static final String COURSE_COURSE_COMMENTS = "courseComments";
-
-
+    protected static final String COURSE_FINAL_CERTIFICATION = "certification";
+    protected static final String COURSE_FINAL_CERTIFICATION_PASSED = "passed";
+    protected static final String COURSE_FINAL_CERTIFICATION_QUIZ = "certQuiz";
+                                         
     protected static final String RESET = "\u001B[0m";
     protected static final String BLACK = "\u001B[30m";
     protected static final String RED = "\u001B[31m";

@@ -16,7 +16,7 @@ public class Course extends DataConstants{
     private String courseName;
     private String description;
     private Language language;
-    private FinalCertification cert;
+    private FinalCertification cert = new FinalCertification();
     public HashMap<UUID, ArrayList<Double>> grades;
     public UUID author;
     public ArrayList<Comment> courseComments;
@@ -34,7 +34,7 @@ public class Course extends DataConstants{
         this.description = description;
         this.language = language;
         this.students = new ArrayList<UUID>();
-        cert = new FinalCertification();
+        //cert = new FinalCertification();
     }
 
     Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<UUID> students){
@@ -56,6 +56,9 @@ public class Course extends DataConstants{
         }
     }
 
+    public void setAuthor(UUID uuid){
+        this.author = uuid;
+    }
     public String getLanguageStr(Language language) {
         if (language == Language.JavaScript){
             return "JavaScript";
@@ -156,6 +159,10 @@ public class Course extends DataConstants{
         return null;
     }
 
+    public FinalCertification getFinalCert(){
+        return this.cert;
+    }
+
     /**
      * Removes a module via a name, if it exists
      * @param moduleName The module to remove
@@ -180,6 +187,10 @@ public class Course extends DataConstants{
         this.grades = grades;
     }
 
+    public void setCert(FinalCertification cert){
+        this.cert = cert;
+    }
+
     public String gradesToString() {
         String finalStr = "Student Grades:";
         for(Entry<UUID, ArrayList<Double>> entry: grades.entrySet()) {
@@ -188,8 +199,6 @@ public class Course extends DataConstants{
         }
         return finalStr;
     }
-
-
 
     public void printModuleNames() {
         for(int i = 0; modules.size() > i; i++) {
@@ -231,10 +240,17 @@ public class Course extends DataConstants{
         Module newModule = new Module(moduleName);
         modules.add(newModule);
         String continueModule = "Y";
+            System.out.println("\nLESSONS:");
             while(continueModule.equals("Y")){
-                System.out.println("Would you like to add a lesson? (Y/N)");
-                continueModule = sc.nextLine();
-                if (continueModule.equals("N")) { 
+                if (newModule.getLessons().size() == 0){
+                    newModule.createLesson();
+                    continue;
+                } else {
+                    System.out.println("Would you like to add a lesson? (Y/N)");
+                    continueModule = sc.nextLine();
+                }
+                if (continueModule.equals("N")) {
+                    System.out.println("\nQUIZ:");
                     newModule.createQuiz();
                     return;
                 } else if (continueModule.equals("Y")) {
@@ -245,6 +261,17 @@ public class Course extends DataConstants{
                     continue;
                 }
             }
+    }
+
+    public void createFinalCert(){
+        System.out.println("\nFINAL CERTIFICATION:");
+        this.cert.makeCert();
+
+    }
+
+    public void takeCert(){
+        this.cert.getQuiz().takeQuiz();
+        //return cert.getQuiz();
     }
 
     

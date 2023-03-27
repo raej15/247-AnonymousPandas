@@ -4,7 +4,8 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
  */
@@ -130,6 +131,9 @@ public class Module extends DataConstants{
         for(int i = 0; lessons.size() > i; i++) {
             System.out.println(i + 1+": "+lessons.get(i).getLessonName());
         }
+
+        //testing
+            //getModuleFiles();
     }
 
     
@@ -203,5 +207,29 @@ public class Module extends DataConstants{
 
     public void addGrade(double grade){
         UI.getFacade().getCourse().setGrade(grade);
+    }
+
+    public String getLessonContents() {
+        String allContent = "";
+        for(int i = 0; lessons.size() > i; i++) {
+            allContent = allContent + lessons.get(i).getLessonName() + "\n" + lessons.get(i).getContent() + "\n" ;
+        } 
+
+        return allContent;
+    }
+    public void getModuleFiles() {
+        
+        String user = UI.getFacade().getUser().getFirstName();
+        String module = UI.getFacade().getModule().getModuleName();
+        String fileName = "txtFileTests//" + user + module + "Lessons.txt";
+        try {
+            FileWriter myWriter = new FileWriter(fileName);
+            myWriter.write(getLessonContents());
+            myWriter.close();
+            System.out.println("Successfully wrote to file.");
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
     }
 }

@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map.Entry;
 import java.util.UUID;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for, and if it's been completed
  */ 
 public class Course extends DataConstants{
+
     private ArrayList<Module> modules;
     private String courseName;
     private String description;
@@ -287,6 +290,8 @@ public class Course extends DataConstants{
         if (grade > 75){
             System.out.println("Congraulations you passed the certification exam!");
             addUserCertifications();
+            //testing
+                //getCertificationFile();
         } else {
             System.out.println("Unfortunately, you did not pass.");
         }
@@ -297,6 +302,21 @@ public class Course extends DataConstants{
         Student user = (Student) UI.getFacade().getUser();
         user.setCertification(str);
         System.out.println(str);
+    }
+
+    public void getCertificationFile() {
+        String user = UI.getFacade().getUser().getFirstName();
+        //System.out.println(getCertificate());
+        String fileName = "txtFileTests//" + user + "FinalCert.txt";
+        try {
+            FileWriter myWriter = new FileWriter(fileName);
+            myWriter.write("*************************************\n     Certificate of Completion\n             "+UI.getFacade().getUser().getFirstName().toUpperCase() + " " + UI.getFacade().getUser().getLastName().toUpperCase() + "\n   passed the certifcation exam for\n     " + courseName+"!\n*************************************");
+            myWriter.close();
+            System.out.println("Successfully wrote to file.");
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
     }
 
     public void setGrade(double grade){

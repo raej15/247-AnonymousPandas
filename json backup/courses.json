@@ -37,12 +37,12 @@
                     {
                         "question":"How is a string formatted?",
                         "answers":["var strName = 'apple'", "String 'apple'", "Str strName = 'apple'" ],
-                        "correctIndex": 0
+                        "correctIndex": 1
                     },
                     {
                         "question":"You can multiply a string and a number.",
                         "answers":["True", "False" ],
-                        "correctIndex": 0
+                        "correctIndex": 1
                     }
                 ],
                 "moduleComments":[
@@ -98,12 +98,12 @@
                     {
                         "question":"What is the difference between an object and other variables?",
                         "answers":["Objects can only store numbers.", "Objects can only store strings.", "Objects can store a mixture of variables." ],
-                        "correctIndex": 2
+                        "correctIndex": 3
                     },
                     {
                         "question":"An example of an array of objects...var users = [{firstName: 'Ann',lastName: 'Smith'},{firstName: 'Jennifer',lastName: 'Smith'}]",
                         "answers":[ "True", "False" ],
-                        "correctIndex": 0
+                        "correctIndex": 1
                     }
                 ],
                 "moduleComments":[
@@ -183,12 +183,12 @@
                 "certQuiz":[{
                     "question":"What is the relationship between JavaScript and HTML?",
                     "answers":["HTML is for logic and is used with JavaScript to make a website.", "JavaScript and HTML are the same language.", "JavaScript is used with HTML to make webpages behavior." ],
-                    "correctIndex": 2
+                    "correctIndex": 3
                 },
                 {
                     "question":"JavaScript is how developers add style to a webpage?",
                     "answers":[ "True", "False" ],
-                    "correctIndex": 1
+                    "correctIndex": 2
                 }
                 ]
             }

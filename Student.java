@@ -32,7 +32,7 @@ public class Student extends User{
 
     public void printCertifications() {
         for(String cert: certifications) {
-            System.out.println(cert);
+            System.out.println(cert+"\n");
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataWriter extends DataConstants {
+public class DataWriter2 extends DataConstants {
     
     /** 
      * @param args

@@ -71,7 +71,7 @@ public class Quiz extends DataConstants{
 
    public void printQuestions() {
       for(int i = 0; questions.size() > i; i++) {
-         System.out.println(i+": "+questions.get(i).getQuestion());
+         System.out.println(i+1+": "+questions.get(i).getQuestion());
       }
    }
 
@@ -109,7 +109,7 @@ public class Quiz extends DataConstants{
                if (numOfAnswerChoices >= MAXNUMANSWERCHOICES)
                   System.out.println("Too many answer choices.");
                System.out.println("What is the correct answer? Please indicate using the corresponding number...");
-               int index = 0;
+               int index = 1;
                for (String ac: answerChoices){
                   System.out.println(index+": "+ac);
                   index++;
@@ -139,7 +139,7 @@ public class Quiz extends DataConstants{
             total+=10;
             System.out.println(question.getQuestion());
             ArrayList<String> answerChoices = question.getAnswers();
-            int counter = 0;
+            int counter = 1;
             for (String ac: answerChoices){
                 System.out.println(counter+": "+ac);
                 counter++;

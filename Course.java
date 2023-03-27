@@ -280,9 +280,10 @@ public class Course extends DataConstants{
     }
 
     public void addUserCertifications(){
-        String str = UI.getFacade().getUser().getFirstName() + " " + UI.getFacade().getUser().lastName + " passed the certifcation exam for " + courseName+"!";
+        String str = "*************************************\n     Certificate of Completion\n             "+UI.getFacade().getUser().getFirstName().toUpperCase() + " " + UI.getFacade().getUser().getLastName().toUpperCase() + "\n   passed the certifcation exam for\n     " + courseName+"!\n*************************************";
         Student user = (Student) UI.getFacade().getUser();
         user.setCertification(str);
+        System.out.println(str);
     }
 
     public void setGrade(double grade){

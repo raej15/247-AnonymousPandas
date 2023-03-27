@@ -183,6 +183,7 @@
          }
  
          this.course = courseList.getCourse(courseIndex - 1);
+         UI.getFacade().getCourse().setGrade(90);
          return;
      }
  
@@ -224,9 +225,8 @@
              return;
          }
          if (mode == 1) {
-             //quiz = course.getCertificate();
              this.quiz = course.getCertificate().getQuiz();
-             course.takeCert();
+             return;
          } else if (mode == 2) {
              quiz = module.getQuiz();
          }
@@ -245,7 +245,7 @@
          question = quiz.getQuestion(questionIndex);
      }
  
-     //TODO fix this
+     // TODO fix this
      public void setComment(int commentIndex) {
          if (commentIndex == -1) {
              comment = null;

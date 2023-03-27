@@ -308,8 +308,9 @@ public class UI {
 
         // This needs to be completed
         if (facade.hasQuiz()) {
-            quizLoader();
-            return true;
+            //quizLoader();
+            UI.getFacade().getCourse().takeCert();
+            return false;
         }
 
         if (modulePrint) {

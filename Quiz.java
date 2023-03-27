@@ -129,11 +129,11 @@ public class Quiz extends DataConstants{
       }   
   }
 
-  public void takeQuiz() {
+  public double takeQuiz() {
    Scanner sc = new Scanner(System.in);
         int points = 0;
         int total = 0;
-        int grade = 0;
+        double grade = 0;
         ArrayList<Question> questions = UI.getFacade().getQuiz().getQuestions();
         for (Question question: questions){
             total+=10;
@@ -151,10 +151,7 @@ public class Quiz extends DataConstants{
         }
         grade = (points/total)*100;
 
-        if (grade > 75){
-            System.out.println("Congraulations you passed!");
-        }
-        // need current user to add grades to grade hashmap and current course
+        return grade;
   }
 
   

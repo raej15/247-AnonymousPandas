@@ -182,10 +182,16 @@ public class Module extends DataConstants{
     }
 
     public void takeQuiz(){
-        
-        this.quiz.takeQuiz();
+        double grade = this.quiz.takeQuiz();
+        if (grade > 75){
+            System.out.println("Congraulations you passed the quiz!");
+            addGrade(grade);
+        } else {
+            System.out.println("Unfortunately, you did not pass.");
+        }
+    }
 
-
-
+    public void addGrade(double grade){
+        UI.getFacade().getCourse().setGrade(grade);
     }
 }

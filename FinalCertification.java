@@ -27,7 +27,6 @@ import java.util.Scanner;
     public void setQuiz(Quiz quiz){
         this.quiz = quiz;
     }
-    //hey
 
     public void makeCert(){
         Scanner sc = new Scanner(System.in);

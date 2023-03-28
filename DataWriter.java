@@ -287,7 +287,7 @@ public class DataWriter extends DataConstants {
         // final certification
         JSONArray finalCertJSON = new JSONArray();
         JSONObject certJSON = new JSONObject();
-        ArrayList<Question> Questions = course.getFinalCert().getQuiz().getQuestions();
+        ArrayList<Question> Questions = course.getCertificate().getQuiz().getQuestions();
         JSONArray questionsJSON = new JSONArray();
         for (Question question: Questions){
             JSONObject questionJSON = new JSONObject();

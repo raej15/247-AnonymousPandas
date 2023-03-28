@@ -4,14 +4,15 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.UUID;
-
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
  */
 public class Module extends DataConstants{
     private ArrayList<Lesson> lessons;
     private String moduleName;
+    private String description;
     private Quiz quiz;
     private ArrayList<Comment> comments;
 
@@ -38,8 +39,8 @@ public class Module extends DataConstants{
      * @param lesson The name of the new lesson
      * @param description The description of the new lesson
      */
-    public void addLesson(String lesson, String description) {
-        lessons.add(new Lesson(lesson, description));
+    public void addLesson(String lesson) {
+        lessons.add(new Lesson(lesson, null));
     }
 
     /**
@@ -48,6 +49,10 @@ public class Module extends DataConstants{
      */
     public void updateModuleName(String moduleName) {
         this.moduleName = moduleName;
+    }
+
+    public void updateDescription(String description) {
+        this.description = description;
     }
 
     public ArrayList<Lesson> getLessons(){
@@ -60,6 +65,10 @@ public class Module extends DataConstants{
      */
     public String getModuleName() {
         return moduleName;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public ArrayList<Comment> getComments(){
@@ -101,26 +110,30 @@ public class Module extends DataConstants{
      * Removes a lesson via its name, if it exists
      * @param lessonName The name of the lesson the user wants to remove
      */
-    public void removeLesson(String lessonName) {
+    public int removeLesson(int lessonIndex) {
         if (lessons.size() == 0) {
-            System.out.println("There are no lessons to remove");
-            return;
+            return 1;
         }
         
-        for (int i = 0; lessons.size() > i; i++) {
-            if (lessons.get(i).getLessonName().equals(lessonName)) {
-                lessons.remove(i);
-                return;
-            }
+        if (0 > lessonIndex) {
+            return 3;
         }
 
-        System.out.println("That lesson could not be found");
+        if (lessons.size() > lessonIndex) {
+            lessons.remove(lessonIndex);
+            return 0;
+        }
+
+        return 2;
     }
 
     public void printLessonNames() {
         for(int i = 0; lessons.size() > i; i++) {
             System.out.println(i + 1+": "+lessons.get(i).getLessonName());
         }
+
+        //testing
+            //getModuleFiles();
     }
 
     
@@ -175,6 +188,7 @@ public class Module extends DataConstants{
         String lessonDescription = sc.nextLine();
         Lesson newLesson = new Lesson(lessonName, lessonDescription);
         lessons.add(newLesson);
+        sc.close();
     }
 
     public void setQuiz(Quiz quiz){
@@ -182,10 +196,40 @@ public class Module extends DataConstants{
     }
 
     public void takeQuiz(){
+        double grade = this.quiz.takeQuiz();
+        if (grade > 75){
+            System.out.println("Congraulations you passed the quiz!");
+            addGrade(grade);
+        } else {
+            System.out.println("Unfortunately, you did not pass.");
+        }
+    }
+
+    public void addGrade(double grade){
+        UI.getFacade().getCourse().setGrade(grade);
+    }
+
+    public String getLessonContents() {
+        String allContent = "";
+        for(int i = 0; lessons.size() > i; i++) {
+            allContent = allContent + lessons.get(i).getLessonName() + "\n" + lessons.get(i).getContent() + "\n" ;
+        } 
+
+        return allContent;
+    }
+    public void getModuleFiles() {
         
-        this.quiz.takeQuiz();
-
-
-
+        String user = UI.getFacade().getUser().getFirstName();
+        String module = UI.getFacade().getModule().getModuleName();
+        String fileName = "txtFileTests//" + user + module + "Lessons.txt";
+        try {
+            FileWriter myWriter = new FileWriter(fileName);
+            myWriter.write(getLessonContents());
+            myWriter.close();
+            System.out.println("Successfully wrote to file.");
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
     }
 }

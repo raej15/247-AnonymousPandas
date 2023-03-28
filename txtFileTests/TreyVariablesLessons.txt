@@ -1,0 +1,6 @@
+Strings
+One way to use a variable is to hold text. You use key word 'var' to do this. Ex: var color = 'blue'.
+Numbers
+You also use 'var' to hold numbers. You can use variables to do calculations. Ex: var size = 5. Notice how their are no quotes around the value.
+Arrays
+Arrays are used to store multiple values in a single variable. Ex: var colors = ['red', 'orange', 'yellow']. This example is an array of strings therefore each value is surrounded by quotes. Arrays are indexed starting at zero. For this example colors[0] is equal to 'red' and colors[2] is equal to 'yellow'.

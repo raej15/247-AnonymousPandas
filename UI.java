@@ -428,7 +428,7 @@ public class UI {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
-        System.out.println("1. Pick a lesson\n2. Take the quiz\n3.Leave a comment\n4. Go back");
+        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Leave a comment\n4. Go back");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
@@ -440,6 +440,8 @@ public class UI {
                 return;
             case 3:
                 facade.setModule(-1);
+            case 4:
+                facade.setComment(1);
             default:
                 System.out.println("Please input a valid option");
                 return;

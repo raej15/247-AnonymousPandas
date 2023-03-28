@@ -96,6 +96,14 @@ public class LMSFacade {
     public Quiz getQuiz() {
         return quiz;
     }
+
+    /**
+     * Returns the comment 
+     * @return the current comment
+     */
+    public Comment getComment(){
+        return comment;
+    }
  
     /**
      * Checks if there is a user logged in
@@ -153,6 +161,17 @@ public class LMSFacade {
         if (quiz == null) {
             return false;
         } else {
+            return true;
+        }
+    }
+    /**
+     * Checks if there is a comment added in
+     * @return true if there is a comment added in otherwise it returns false
+     */
+    public boolean hasComment(){
+        if(comment == null){
+            return false;
+        } else{
             return true;
         }
     }
@@ -245,11 +264,13 @@ public class LMSFacade {
     }
  
     //TODO fix this
+    // jammel said that we might need addcoment and removecomment ? 
     public void setComment(int commentIndex) {
         if (commentIndex == -1) {
             comment = null;
             return;
         }
+        comment = module.getComments(commentIndex);
     }
 
     /**

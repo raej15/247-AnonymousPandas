@@ -109,7 +109,7 @@ public class DataLoader extends DataConstants{
                         ArrayList <Double> studentGrades = new ArrayList<Double>();
                         // loop through grades array
                         for (int k = 0; k < gradesJSON.size(); k++) {
-                            double grade = (double)(long) gradesJSON.get(k);
+                            double grade = (double)(long)gradesJSON.get(k);
                             studentGrades.add(grade);
                         }
                         grades.put(studentID,studentGrades);

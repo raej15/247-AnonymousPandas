@@ -427,7 +427,7 @@ public class UI {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
-        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go back");
+        System.out.println("1. Pick a lesson\n2. Take the quiz\n3.Leave a comment\n4. Go back");
         int userInputINT = intCheck();
 
         switch (userInputINT) {

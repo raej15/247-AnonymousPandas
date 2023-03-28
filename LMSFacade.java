@@ -40,6 +40,10 @@ public class LMSFacade {
         }
     }
  
+    
+    /** 
+     * @return CourseList
+     */
     // Used for testing purposes
     public CourseList getCourseList() {
         return courseList;

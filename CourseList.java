@@ -134,7 +134,6 @@ public class CourseList extends DataConstants{
         System.out.println("What is the course description?");
         String courseDescription = sc.nextLine();
         Course newCourse = new Course(courseName,courseDescription, lan, UI.getFacade().getUser().getUUID());
-        //newCourse.setAuthor(UI.getFacade().getUser().getUUID());
         addCourse(newCourse); // adding course to the courseList
         System.out.println("\nMODULES:");
         String continueCourse = "Y";

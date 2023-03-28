@@ -264,7 +264,7 @@ public class LMSFacade {
     }
  
     //TODO fix this
-    // jammel said that we might need addcoment and removecomment ? 
+    // jamal said that we might need addcoment and removecomment ? 
     public void setComment(int commentIndex) {
         if (commentIndex == -1) {
             comment = null;

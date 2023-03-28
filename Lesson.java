@@ -54,8 +54,19 @@ public class Lesson extends DataConstants{
         return content;
     }
 
+    /**
+     * toString() method that parses together lesson name and content and sets to correct colors
+     */
     public String toString() {
         return BLUE+BOLD+"Lesson Name: " + this.lessonName +RESET+BLUE+ "\nContent: "+ this.content+RESET;
+    }
+
+    /**
+     * a Black and White version of the toString() method
+     * @return
+     */
+    public String bwToString() {
+        return "Lesson Name: " + this.lessonName + "\nContent: "+ this.content;
     }
 
     public void getLessonFiles() {
@@ -66,7 +77,7 @@ public class Lesson extends DataConstants{
         String fileName = "txtFileTests//" + user + module + name + ".txt";
         try {
             FileWriter myWriter = new FileWriter(fileName);
-            myWriter.write(toString());
+            myWriter.write(bwToString());
             myWriter.close();
             System.out.println("Successfully wrote to file.");
           } catch (IOException e) {

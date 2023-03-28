@@ -1,0 +1,2 @@
+Lesson Name: What is an object?
+Content: An object is a data type that can take in collections of key-value pairs. A major difference between an object and other data types such as strings and numbers in JavaScript is that an objects can store different types of data as its values.

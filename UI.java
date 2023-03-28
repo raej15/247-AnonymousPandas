@@ -585,15 +585,19 @@ public class UI {
 
         while (true) {
             userInputINT = intCheck();
+
+            switch (userInputINT) {
+                case 1:
+                    facade.setLesson(-1);
+                    return true;
+                case 2:
+                    facade.getLesson().getLessonFiles();
+                    return true;
+                default:
+                    System.out.println("Please input a valid option");
+                    return true;
+            }
             
-            if (userInputINT == 1) {
-                facade.setLesson(-1);
-                return true;
-            }
-            if (userInputINT == 2) {
-                facade.getLesson().getLessonFiles();
-                return true;
-            }
         }
     }
 

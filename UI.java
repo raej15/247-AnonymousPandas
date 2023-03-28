@@ -201,7 +201,8 @@ public class UI {
                 coursePrint = true;
                 return true;
             case 2:
-                courseAdd();
+                //courseAdd();
+                UI.getFacade().getCourseList().addCourse();
                 return true;
             case 3:
                 courseRemove();
@@ -217,7 +218,8 @@ public class UI {
     /**
      * Adds a new course
      */
-    private static void courseAdd() {
+    
+     private static void courseAdd() {
         System.out.println("What would you like the new course to be called?");
         String courseName = input.nextLine();
 
@@ -283,11 +285,7 @@ public class UI {
         System.out.println("Please select which course you want to access");
         consoleBarrier();
 
-        //facade.getCourseList().printCourseNames();
-        facade.getCourseList().printEnrolledCourses(); //NEW changed to only print enrolled courses
-        Student user = (Student) UI.getFacade().getUser();
-        // New - enroll into a new course
-        user.enrollCourse();
+        facade.getCourseList().printCourseNames();
 
         int userInputINT = intCheck();
         facade.setCourse(userInputINT);
@@ -302,6 +300,12 @@ public class UI {
         System.out.println(facade.getCourse().getCourseName());
         consoleBarrier();
 
+        /*
+         *  facade.getCourseList().printEnrolledCourses(); //NEW changed to only print enrolled courses
+            Student user = (Student) UI.getFacade().getUser();
+            // New - enroll into a new course
+            user.enrollCourse();
+         */
         System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Go back");
         int userInputINT = intCheck();
 

@@ -2,6 +2,9 @@
  * Written by Anonymous Pandas
  */
 
+ import java.io.FileWriter;
+ import java.io.IOException;
+
 /**
  * A lesson which consists of a name and its description, which is what the user will read
  */
@@ -51,7 +54,36 @@ public class Lesson extends DataConstants{
         return content;
     }
 
+    /**
+     * toString() method that parses together lesson name and content and sets to correct colors
+     */
     public String toString() {
         return BLUE+BOLD+"Lesson Name: " + this.lessonName +RESET+BLUE+ "\nContent: "+ this.content+RESET;
     }
+
+    /**
+     * a Black and White version of the toString() method
+     * @return
+     */
+    public String bwToString() {
+        return "Lesson Name: " + this.lessonName + "\nContent: "+ this.content;
+    }
+
+    public void getLessonFiles() {
+        
+        String user = UI.getFacade().getUser().getFirstName();
+        String module = UI.getFacade().getModule().getModuleName();
+        String name = getLessonName();
+        String fileName = "txtFileTests//" + user + module + name + ".txt";
+        try {
+            FileWriter myWriter = new FileWriter(fileName);
+            myWriter.write(bwToString());
+            myWriter.close();
+            System.out.println("Successfully wrote to file.");
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+    }
+
 }

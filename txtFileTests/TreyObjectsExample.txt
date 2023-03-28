@@ -1,0 +1,2 @@
+Lesson Name: Example
+Content: You might use an object for a user. Each user could have a first name, last name, and weight. The first and last names would be a string. The weight would be a number. Ex: var user1 = {firstName:'Ann', lastName:'Smith', weight:'125'}

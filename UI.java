@@ -338,6 +338,7 @@ public class UI {
         switch (userInputINT) {
             case 1:
                 modulePrint = true;
+                //add printing current lesson here
                 return;
             case 2:
                 facade.setQuiz(1);
@@ -458,6 +459,7 @@ public class UI {
         switch (userInputINT) {
             case 1:
                 modulePrint = true;
+
                 return;
             case 2:
                 facade.setQuiz(2);

@@ -54,4 +54,5 @@ public class Lesson extends DataConstants{
     public String toString() {
         return BLUE+BOLD+"Lesson Name: " + this.lessonName +RESET+BLUE+ "\nContent: "+ this.content+RESET;
     }
+
 }

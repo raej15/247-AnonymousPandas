@@ -306,7 +306,7 @@ public class UI {
             // New - enroll into a new course
             user.enrollCourse();
          */
-        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Go back");
+        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Go back");
         int userInputINT = intCheck();
 
         switch(userInputINT) {
@@ -317,6 +317,8 @@ public class UI {
                 facade.setQuiz(1);
                 return;
             case 3:
+                facade.getCourse().getCertificationFile();
+            case 4:
                 facade.setCourse(-1);
                 return;
             default:

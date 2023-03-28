@@ -255,7 +255,7 @@ public class UI {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
-        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go back");
+        System.out.println("1. Pick a lesson\n2. Take the quiz\n3.Leave a comment\n4. Go back");
         int userInputINT = intCheck();
 
         if (userInputINT == 1) {
@@ -264,6 +264,8 @@ public class UI {
             facade.setQuiz(2);
         } else if (userInputINT == 3) {
             facade.setModule(-1);
+        } else if (userInputINT == 4) {
+            facade.setComment(1);
         } else {
             System.out.println("Please input a valid option");
         }

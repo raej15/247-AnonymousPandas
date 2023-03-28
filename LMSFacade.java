@@ -270,7 +270,7 @@ public class LMSFacade {
             comment = null;
             return;
         }
-        comment = module.getComments(commentIndex);
+        //comment = module.getComments(commentIndex);
     }
 
     /**

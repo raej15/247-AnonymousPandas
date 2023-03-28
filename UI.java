@@ -530,6 +530,7 @@ public class UI {
         int userInputINT = intCheck();
         facade.setLesson(userInputINT - 1);
         lessonPrint = false;
+
         return;
     }
 
@@ -578,7 +579,7 @@ public class UI {
 
         System.out.println(facade.getLesson().getContent());
         consoleBarrier();
-        System.out.println("1. Go back");
+        System.out.println("1. Go back\n2. Print lesson to txt file");
 
         int userInputINT = 0;
 
@@ -587,6 +588,10 @@ public class UI {
             
             if (userInputINT == 1) {
                 facade.setLesson(-1);
+                return true;
+            }
+            if (userInputINT == 2) {
+                facade.getLesson().getLessonFiles();
                 return true;
             }
         }

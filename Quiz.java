@@ -47,6 +47,16 @@ public class Quiz extends DataConstants{
       return questions.get(index);
    }
 
+   public String[] getQuestionNames() {
+      String[] questionNames = new String[50];
+
+      for(int i = 0; questions.size() > i; i++) {
+          questionNames[i] = (i + 1+": "+questions.get(i).getQuestion());
+      }
+
+      return questionNames;
+   }
+
    public int getLastIndex() {
       int lastIndex = 0;
       for(int i = 0; i < questions.size(); i++) {

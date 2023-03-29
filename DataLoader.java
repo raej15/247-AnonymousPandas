@@ -1,4 +1,3 @@
-
 /*
  * Written by Anonmyous Pandas 
  */
@@ -239,7 +238,7 @@ public class DataLoader extends DataConstants{
                 
                 for (int a = 0; a < finalCertJSON.size();a++){
                     JSONObject certJSON = (JSONObject)finalCertJSON.get(a);
-                    String passed = (String)certJSON.get(COURSE_FINAL_CERTIFICATION_PASSED);
+                    //String passed = (String)certJSON.get(COURSE_FINAL_CERTIFICATION_PASSED);
                     JSONArray certQuizJSON = (JSONArray)certJSON.get(COURSE_FINAL_CERTIFICATION_QUIZ);
                     ArrayList<Question> questions = new ArrayList<Question>();
                     for (int j = 0; j < certQuizJSON.size(); j++) {

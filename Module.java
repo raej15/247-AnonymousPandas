@@ -142,13 +142,18 @@ public class Module extends DataConstants{
         return 2;
     }
 
-    public void printLessonNames() {
+    /**
+     * Returns an array of strings of the lesson names in this module
+     * @return An array of lesson names
+     */
+    public String[] getLessonNames() {
+        String[] lessonNames = new String[50];
+
         for(int i = 0; lessons.size() > i; i++) {
-            System.out.println(i + 1+": "+lessons.get(i).getLessonName());
+            lessonNames[i] = (i + 1+": "+lessons.get(i).getLessonName());
         }
 
-        //testing
-            //getModuleFiles();
+        return lessonNames;
     }
 
     

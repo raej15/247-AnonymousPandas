@@ -4,7 +4,6 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Map.Entry;
 import java.util.UUID;
 import java.io.FileWriter;
@@ -195,6 +194,17 @@ public class Course extends DataConstants{
      */
     public void addModule(String moduleName) {
         modules.add(new Module(moduleName));
+        return;
+    }
+
+    /**
+     * Adds a new comment directly to the course
+     * @param commentContent The comment being left
+     * @param commentor The author of the comment
+     */
+    public void addComment(String commentContent, UUID commentor) {
+        courseComments.add(new Comment(commentor, commentContent, null));
+        return;
     }
 
     /**
@@ -304,50 +314,15 @@ public class Course extends DataConstants{
             System.out.println(student);
         }
     }
-
-    //TODO Fix this
-    public void createModules() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What is the module name?");
-        String moduleName = sc.nextLine();
-        Module newModule = new Module(moduleName);
-        modules.add(newModule);
-        String continueModule = "Y";
-            System.out.println("\nLESSONS:");
-            while(continueModule.equals("Y")){
-                if (newModule.getLessons().size() == 0){
-                    newModule.createLesson();
-                    continue;
-                } else {
-                    System.out.println("Would you like to add a lesson? (Y/N)");
-                    continueModule = sc.nextLine();
-                }
-                if (continueModule.equals("N")) {
-                    System.out.println("\nQUIZ:");
-                    newModule.createQuiz();
-                    return;
-                } else if (continueModule.equals("Y")) {
-                    newModule.createLesson();
-                } else {
-                    System.out.println("Invalid input");
-                    continueModule = "Y";
-                    continue;
-                }
-            }
-    }
-
     
-    public void createFinalCert() {
-        System.out.println("\nFINAL CERTIFICATION:");
-        this.cert.makeCert();
-
-    }
+   
+    
 
     /**
-     * method that tells the user if they have passed the certification exam
+     * method that tells the user if they have passed the certification exam 
+     * @param grade grade of the quiz the user took
      */
-    public void takeCert(){
-        double grade = this.cert.getQuiz().takeQuiz();
+    public void takeCert(double grade){
         if (grade > 75){
             System.out.println("Congraulations you passed the certification exam!");
             addUserCertifications();

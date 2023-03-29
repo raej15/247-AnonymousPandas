@@ -3,9 +3,10 @@
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.UUID;
 import java.io.FileWriter;
 import java.io.IOException;
+
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
  */
@@ -46,6 +47,17 @@ public class Module extends DataConstants{
     public void addLesson(String lesson, String content) {
         lessons.add(new Lesson(lesson, content));
     }
+
+    /**
+     * Adds a new comment directly to the course
+     * @param commentContent The comment being left
+     * @param commentor The author of the comment
+     */
+    public void addComment(String commentContent, UUID commentor) {
+        comments.add(new Comment(commentor, commentContent, null));
+        return;
+    }
+
     /**
      * Changes the name of the module to a new name
      * @param moduleName The new name
@@ -156,50 +168,12 @@ public class Module extends DataConstants{
         }
         return finalStr;
     }
-    
-
-    public void createQuiz(){
-        Scanner sc = new Scanner(System.in);
-        Quiz newQuiz = new Quiz();
-        setQuiz(newQuiz);
-        String continueQuiz = "Y";
-        while(continueQuiz.equals("Y")){
-            if (newQuiz.getQuestions().size() == 0){
-                newQuiz.newQuestion();
-                continue;
-            } else {
-                System.out.println("Would you like to add a question? (Y/N)");
-                continueQuiz = sc.nextLine();
-            }
-            if (continueQuiz.equals("N")) {
-                return;
-            } else if (continueQuiz.equals("Y")) {
-                newQuiz.newQuestion();
-            } else {
-                System.out.println("Invalid input");
-                continueQuiz = "Y";
-                continue;
-            }
-        }
-    }
-
-    public void createLesson(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What is the lesson name?");
-        String lessonName = sc.nextLine();
-        System.out.println("What is the lesson content?");
-        String lessonDescription = sc.nextLine();
-        Lesson newLesson = new Lesson(lessonName, lessonDescription);
-        lessons.add(newLesson);
-        sc.close();
-    }
 
     public void setQuiz(Quiz quiz){
         this.quiz = quiz;
     }
 
-    public void takeQuiz(){
-        double grade = this.quiz.takeQuiz();
+    public void takeQuiz(Double grade){
         if (grade > 75){
             System.out.println("Congraulations you passed the quiz!");
             addGrade(grade);
@@ -220,11 +194,12 @@ public class Module extends DataConstants{
 
         return allContent;
     }
-    public void getModuleFiles() {
-        
+
+    public void getModuleFiles() {    
         String user = UI.getFacade().getUser().getFirstName();
         String module = UI.getFacade().getModule().getModuleName();
         String fileName = "txtFileTests//" + user + module + "Lessons.txt";
+        
         try {
             FileWriter myWriter = new FileWriter(fileName);
             myWriter.write(getLessonContents());
@@ -234,5 +209,13 @@ public class Module extends DataConstants{
             System.out.println("An error occurred.");
             e.printStackTrace();
           }
+    }
+
+    public boolean hasLessons() {
+        return !lessons.isEmpty();
+    }
+
+    public boolean hasLessonAt(int index) {
+        return (lessons.size() > index && index > -1);
     }
 }

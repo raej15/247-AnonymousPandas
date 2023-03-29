@@ -8,24 +8,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
-    
-    /** 
-     * @param args
+
+    /**
+     * method that calls getUsersJson for every user in our userList
      */
-    /*
-    * DataWriter extends from DataConstants
-    * the void method saveUsers() calls from the arraylist
-    * JSONArray stores the user sizes
-    * JSONObject getsUserJson(User user) and puts the users details
-    * @return usersDetails
-    */
-    public static void main(String[] args){
-        UserList.setUserList(DataLoader.loadUsers());
-        CourseList.setCourseList(DataLoader.loadCourses());
-        saveUsers();
-        saveCourses();
-    }
-    //users json
     public static void saveUsers(){
         System.out.println("Writing users...");
         UserList users = UserList.getInstance();
@@ -43,6 +29,7 @@ public class DataWriter extends DataConstants {
     }
     
     /** 
+     * method that gets all of the users information and adds it to a JSONObject
      * @param user
      * @return JSONObject
      */
@@ -76,7 +63,9 @@ public class DataWriter extends DataConstants {
         return userDetails;
     }
 
-    //saveCourses
+    /**
+     * method that calls getCourseJSON() for every course in our coursesList
+     */
     public static void saveCourses(){
         System.out.println("Writing course...");
         CourseList courses = CourseList.getInstance();
@@ -94,7 +83,8 @@ public class DataWriter extends DataConstants {
     }
     
     /** 
-     * @param course
+     * method that gets all the data of the course sent in through the parameter and returns it as a JSONObject
+     * @param course course object
      * @return JSONObject
      */
     // called for each course in courseList

@@ -46,6 +46,15 @@ public class Quiz extends DataConstants{
 
       return questions.get(index);
    }
+
+   public int getLastIndex() {
+      int lastIndex = 0;
+      for(int i = 0; i < questions.size(); i++) {
+         lastIndex = i;
+      }
+
+      return lastIndex;
+   }
      
    /**
    * Removes a question, if it exist

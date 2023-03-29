@@ -62,13 +62,16 @@ public class Lesson extends DataConstants{
     }
 
     /**
-     * a Black and White version of the toString() method
-     * @return
+     * method that returns lesson information
+     * @return string of lesson information
      */
     public String bwToString() {
         return "Lesson Name: " + this.lessonName + "\nContent: "+ this.content;
     }
 
+    /**
+     * method that writes lesson files to a text file
+     */
     public void getLessonFiles() {
         
         String user = UI.getFacade().getUser().getFirstName();

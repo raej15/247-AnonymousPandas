@@ -98,6 +98,14 @@ public class LMSFacade {
     }
 
     /**
+     * Returns the current question
+     * @return The current question
+     */
+    public Question getQuestion() {
+        return question;
+    }
+
+    /**
      * Returns the current comment 
      * @return the current comment
      */
@@ -164,6 +172,19 @@ public class LMSFacade {
             return true;
         }
     }
+
+    /**
+     * Checks if there is a question laoded in
+     * @return True if there is a question loaded in, false if not
+     */
+    public boolean hasQuestion() {
+        if (question == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     /**
      * Checks if there is a comment added in
      * @return true if there is a comment added in otherwise it returns false
@@ -265,10 +286,28 @@ public class LMSFacade {
 
     /**
      * Sets the comment at the index as the current comment
-     * @param commentIndex The comment that's going to be loaded
+     * @param commentIndex The index of the comment that's going to be loaded
+     * @param mode Where the comment is located (1 for course, 2 for module, 3 for a comment within a comment)
      */
-    public void setComment(int commentIndex) {
+    public void setComment(int commentIndex, int mode) {
+        if (commentIndex == -1) {
+            comment = null;
+            return;
+        }
 
+        switch (mode) {
+            case 1:
+                comment = course.getCourseComments().get(commentIndex);
+                return;
+            case 2:
+                comment = module.getComments().get(commentIndex);
+                return;
+            case 3:
+                comment = comment.getComments().get(commentIndex);
+                return;
+            default:
+                return;
+        }
     }
  
     /**
@@ -386,33 +425,93 @@ public class LMSFacade {
         return 0;
     }
 
+    /**
+     * Updates the name of the current course
+     * @param newName The new name of the course
+     */
     public void updateCourseName(String newName) {
         course.updateCourseName(newName);
         return;
     }
 
+    /**
+     * Updates the description of the current course
+     * @param newDescription The new description of the course
+     */
     public void updateCourseDescription(String newDescription) {
         course.updateDescription(newDescription);
         return;
     }
 
+    /**
+     * Updates the name of the current module
+     * @param newName The new name of the module
+     */
     public void updateModuleName(String newName) {
         module.updateModuleName(newName);
         return;
     }
 
+    /**
+     * Updates the description of the current module
+     * @param newDescription The new description of the module
+     */
     public void updateModuleDescription(String newDescription) {
         module.updateDescription(newDescription);
         return;
     }
 
+    /**
+     * Updates the name of the current lesson
+     * @param newName The new name of the lesson
+     */
     public void updateLessonName(String newName) {
         lesson.updateLessonName(newName);
         return;
     }
 
+    /**
+     * Updates the content of the current lesson
+     * @param newContent The new content for the lesson
+     */
     public void updateLessonContent(String newContent) {
         lesson.updateContent(newContent);
         return;
+    }
+
+    /**
+     * Returns an array of all the course names
+     * @return A string array of all the course names
+     */
+    public String[] getCourseNames() {
+        return courseList.getCourseNames();
+    }
+
+    /**
+     * Returns an array of all the module names for the current module
+     * @return A string array of module names
+     */
+    public String[] getModuleNames() {
+        return course.getModuleNames();
+    }
+
+    /**
+     * Returns an array of all the lesson names for the current module
+     * @return A string array of lesson names
+     */
+    public String[] getLessonNames() {
+        return module.getLessonNames();
+    }
+
+    public String[] getQuestionNames() {
+        return quiz.getQuestionNames();
+    }
+
+    public String[] getAnswerNames() {
+        return question.getAnswerNames();
+    }
+
+    public String getCurrentQuestionName() {
+        return question.getQuestion();
     }
 }

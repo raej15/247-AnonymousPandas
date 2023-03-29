@@ -61,17 +61,17 @@ public class Question extends DataConstants{
     }
 
     /**
-     * Prints out all of the answers
+     * Returns a string array of all the answers
+     * @return An array of all the answers
      */
-    public void printAnswers() {
-        if (answers.size() == 0) {
-            System.out.println("There are no answers to return");
-            return;
-        }
+    public String[] getAnswerNames() {
+        String[] answerNames = new String[50];
 
         for (int i = 0; answers.size() > i; i++) {
-            System.out.println(i+": "+answers.get(i));
+            answerNames[i] = (i+": "+answers.get(i));
         }
+
+        return answerNames;
     }
 
     public ArrayList<String> getAnswers() {

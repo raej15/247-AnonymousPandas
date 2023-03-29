@@ -87,10 +87,18 @@ public class CourseList extends DataConstants{
         courses.remove(index);
     }
 
-    public void printCourseNames() {
+    /**
+     * Returns an array of strings of the course names in the course list
+     * @return An array of course names
+     */
+    public String[] getCourseNames() {
+        String[] courseNames = new String[50];
+
         for(int i = 0; courses.size() > i; i++) {
-            System.out.println(i+1+": "+courses.get(i).getCourseName());
+            courseNames[i] = (i+1+": "+courses.get(i).getCourseName());
         }
+
+        return courseNames;
     }
 
     public void printCourses(){

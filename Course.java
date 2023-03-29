@@ -13,7 +13,6 @@ import java.io.IOException;
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for
  */ 
 public class Course extends DataConstants{
-
     private ArrayList<Module> modules;
     private String courseName;
     private String description;
@@ -132,7 +131,6 @@ public class Course extends DataConstants{
      */
     public Module getModuleAtIndex(int moduleIndex) {
         if (modules.size() == 0) {
-            System.out.println("There are no modules to get");
             return null;
         }
         
@@ -140,7 +138,6 @@ public class Course extends DataConstants{
             return modules.get(moduleIndex);
         }
 
-        System.out.println("That module could not be found");
         return null;
     }
 
@@ -281,12 +278,17 @@ public class Course extends DataConstants{
     }
 
     /**
-     * method that prints out the modules name in this course
+     * Returns an array of strings of the module names in this course
+     * @return An array of module names
      */
-    public void printModuleNames() {
+    public String[] getModuleNames() {
+        String[] moduleNames = new String[50];
+        
         for(int i = 0; modules.size() > i; i++) {
-            System.out.println(i + 1+": "+modules.get(i).getModuleName());
+            moduleNames[i] = (i + 1+": "+modules.get(i).getModuleName());
         }
+
+        return moduleNames;
     }
 
     /**

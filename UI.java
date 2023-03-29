@@ -245,12 +245,23 @@ public class UI {
     }
 
     /**
+     * Prints out the course names
+     */
+    private static void coursePrinter() {
+        String[] courseNames = facade.getCourseNames();
+
+        for (int i = 0; courseNames[i] != null; i++) {
+            System.out.println(courseNames[i]);
+        }
+    }
+
+    /**
      * Lets the course creator remove a course
      */
     private static void courseRemove() {
         System.out.println("What course would you like to remove?\n0. Go back");
-        facade.getCourseList().printCourseNames();
         int userInputINT = 0;
+        coursePrinter();
 
         while (true) {
             userInputINT = intCheck();
@@ -282,8 +293,7 @@ public class UI {
     private static void courseLoader() {
         System.out.println("Please select which course you want to access");
         consoleBarrier();
-
-        facade.getCourseList().printCourseNames();
+        coursePrinter();
 
         int userInputINT = intCheck();
         facade.setCourse(userInputINT);
@@ -402,7 +412,12 @@ public class UI {
     private static void printModules() {
         System.out.println("Pick a module");
         consoleBarrier();
-        facade.getCourse().printModuleNames();
+        
+        String[] moduleNames = facade.getModuleNames();
+
+        for (int i = 0; moduleNames[i] != null; i++) {
+            System.out.println(moduleNames[i]);
+        }
 
         int userInputINT = intCheck();
         facade.setModule(userInputINT - 1);
@@ -410,18 +425,80 @@ public class UI {
         return;
     }
 
-    /**
-     * This lets the user access and complete quizzes (Need to finish this)
-     */
-    private static void quizLoader() {
-        System.out.println(facade.getQuiz().toString());
+    private static void questionLoader() {
+        System.out.println("Pick a question");
         consoleBarrier();
-        facade.getQuiz().printQuestions();
+
+        String[] questionNames = facade.getModuleNames();
+
+        for (int i = 0; questionNames[i] != null; i++) {
+            System.out.println(questionNames[i]);
+        }
 
         int userInputINT = intCheck();
+        facade.setQuestion(userInputINT - 1);
         return;
     }
+
+    /**
+     * 
+     */
+    private static void studentQuizOptions() {
+        System.out.println("Quiz");
+        consoleBarrier();
+
+        System.out.println("1. Answer a question\n2. Submit the exam\n3. Exit the Quiz");
+        int userInputINT = intCheck();
+
+        switch (userInputINT) {
+            case 1:
+                questionLoader();
+                return;
+            case 2:
+
+                return;
+            case 3:
+
+                return;
+            default:
+                System.out.println("Please input a valid option");
+                return;
+        }
+    }
+
+    /**
+     * Shows the options that the course creator has for the current quiz
+     */
+    private static boolean courseCreatorQuizOptions() {
+        
+        return true;
+    }
     
+    /**
+     * Shows the options that the student has for the current question
+     */
+    private static void studentQuestionOptions() {
+        System.out.println(facade.getCurrentQuestionName());
+        consoleBarrier();
+        System.out.println("0. Go back");
+
+        String[] answerNames = facade.getAnswerNames();
+
+        for (int i = 0; answerNames[i] != null; i++) {
+            System.out.println(answerNames[i]);
+        }
+
+        int userInputINT = intCheck();
+        
+        if (userInputINT == 0) {
+            facade.setQuestion(-1);
+            return;
+        }
+
+        switch (facade.answer(userInputINT)) {
+            
+        }
+    }
 
     /**
      * Shows the options that the student has for the current module
@@ -466,21 +543,6 @@ public class UI {
                 return;
             case 2:
                 facade.setQuiz(2);
-                System.out.println("Current questions:");
-                facade.getQuiz().printQuestions();
-                System.out.println("What would you like the new quiz question to be?");
-                facade.getQuiz().addQuestion(input.nextLine());
-                saveData();
-                for( int i=0; i<3; i++) {
-                   System.out.println("What would you like the question answer " + (i+1) + " to be?");
-                    facade.getQuiz().getQuestion(facade.getQuiz().getLastIndex()).addAnswer(input.nextLine());
-                    saveData(); 
-                }
-
-                System.out.println("What is the index of the correct answer?\nPlease pick from 1-3");
-                facade.getQuiz().getQuestion(facade.getQuiz().getLastIndex()).setCorrectIndex(Integer.parseInt(input.nextLine()));
-                saveData();
-
                 return;
             case 3:
                 System.out.println("What would you like the new module name to be?");
@@ -496,7 +558,7 @@ public class UI {
                 return;
             case 6:
                 System.out.println("Which lesson would you like to remove?");
-                printLessons();
+                lessonPrinter();
 
                 userInputINT = intCheck();
                 removeLesson(userInputINT);
@@ -535,12 +597,23 @@ public class UI {
     }
 
     /**
-     * Prints out the various options for lessons that the user has
+     * Prints out the lesson names
      */
-    private static void printLessons() {
+    private static void lessonPrinter() {
+        String[] lessonNames = facade.getLessonNames();
+
+        for (int i = 0; lessonNames[i] != null; i++) {
+            System.out.println(lessonNames[i]);
+        }
+    }
+
+    /**
+     * Allows the user to select a lesson to view
+     */
+    private static void lessonLoader() {
         System.out.println("Pick a lesson");
         consoleBarrier();
-        facade.getModule().printLessonNames();
+        lessonPrinter();
 
         int userInputINT = intCheck();
         facade.setLesson(userInputINT - 1);
@@ -565,10 +638,14 @@ public class UI {
             return studentHome();
         }
 
-        // This needs to be completed
+        if (facade.hasQuestion()) {
+            studentQuestionOptions();
+            return true;
+        }
+
         if (facade.hasQuiz()) {
-            quizLoader();
-            return false;
+            studentQuizOptions();
+            return true;
         }
 
         if (modulePrint) {
@@ -582,7 +659,7 @@ public class UI {
         }
 
         if (lessonPrint) {
-            printLessons();
+            lessonLoader();
             return true;
         }
 
@@ -631,10 +708,8 @@ public class UI {
             return courseCreatorHome();
         }
 
-        // This needs to be completed
         if (facade.hasQuiz()) {
-            //quizLoader();
-            return true;
+            return courseCreatorQuizOptions();
         }
 
         if (modulePrint) {
@@ -648,7 +723,7 @@ public class UI {
         }
 
         if (lessonPrint) {
-            printLessons();
+            lessonLoader();
             return true;
         }
 

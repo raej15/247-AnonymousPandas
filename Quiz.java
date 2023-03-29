@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * A quiz which consists of a title and an ArrayList of questions
  */
 public class Quiz extends DataConstants{
-   private static final int MAXNUMANSWERCHOICES = 5;
+   //private static final int MAXNUMANSWERCHOICES = 5;
    private ArrayList<Question> questions;
 
    /**

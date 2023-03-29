@@ -99,8 +99,8 @@ public class UI {
             return;
         }
 
-        System.out.println("\nYou have logged in as "+userInput);
         facade.setUser(user);
+        System.out.println("\nYou have logged in as "+ facade.getUser().getFirstName() + " " + facade.getUser().getLastName());
         return;
     }
 
@@ -156,7 +156,7 @@ public class UI {
             }
         }
 
-        facade.register(username, password, email, firstName, lastName, type);
+        facade.register(firstName, lastName, email, username, password, type);
         login(username);
         return;
     }
@@ -166,7 +166,7 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean studentHome() {
-        System.out.println("You are logged in as "+facade.getUser().getUserName());
+        //System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
         System.out.println("1. Enter a course\n2. Logout");
@@ -314,7 +314,7 @@ public class UI {
             // New - enroll into a new course
             user.enrollCourse();
          */
-        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Go back");
+        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Show Grades\n5. Go back");
         int userInputINT = intCheck();
 
         switch(userInputINT) {
@@ -327,6 +327,8 @@ public class UI {
             case 3:
                 facade.getCourse().getCertificationFile();
             case 4:
+                facade.getCourse().printUserGrades();
+            case 5:
                 facade.setCourse(-1);
                 return;
             default:

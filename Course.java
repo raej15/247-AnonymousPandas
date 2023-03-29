@@ -277,6 +277,21 @@ public class Course extends DataConstants{
         return finalStr;
     }
 
+    public void printUserGrades() {
+        String finalStr = "Your Grades:";
+        UUID current = UI.getFacade().getUser().getUUID();
+        ArrayList<Double> userGrades = grades.get(current);
+        for (int i =0; i < userGrades.size(); i++) {
+            if(userGrades.get(i) != -1) {
+                finalStr+="\n";
+                finalStr+=userGrades.get(i); 
+            }
+            
+        }
+
+        System.out.println(finalStr);
+    }
+
     /**
      * Returns an array of strings of the module names in this course
      * @return An array of module names

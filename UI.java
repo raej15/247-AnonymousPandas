@@ -99,8 +99,8 @@ public class UI {
             return;
         }
 
-        System.out.println("\nYou have logged in as "+userInput);
         facade.setUser(user);
+        System.out.println("\nYou have logged in as "+ facade.getUser().getFirstName() + " " + facade.getUser().getLastName());
         return;
     }
 

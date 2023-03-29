@@ -99,8 +99,8 @@ public class UI {
             return;
         }
 
-        System.out.println("\nYou have logged in as "+userInput);
         facade.setUser(user);
+        System.out.println("\nYou have logged in as "+ facade.getUser().getFirstName() + " " + facade.getUser().getLastName());
         return;
     }
 
@@ -166,7 +166,7 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean studentHome() {
-        System.out.println("You are logged in as "+facade.getUser().getUserName());
+        //System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
         System.out.println("1. Enter a course\n2. Logout");

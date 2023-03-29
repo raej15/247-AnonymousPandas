@@ -4,7 +4,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
@@ -126,50 +125,6 @@ public class CourseList extends DataConstants{
         }
     }
 
-    public void addCourse() {
-        Scanner sc = new Scanner(System.in);
-        Language lan = selectLanguages();
-        System.out.println("What is the course name?");
-        String courseName = sc.nextLine();
-        System.out.println("What is the course description?");
-        String courseDescription = sc.nextLine();
-        Course newCourse = new Course(courseName,courseDescription, lan, UI.getFacade().getUser().getUUID());
-        addCourse(newCourse); // adding course to the courseList
-        System.out.println("\nMODULES:");
-        String continueCourse = "Y";
-            while(continueCourse.equals("Y")){
-                if (newCourse.getModules().size() == 0) {
-                   newCourse.createModules();
-                   continue;
-                } else {
-                    System.out.println("MODULES:\nWould you like to add a module? (Y/N)");
-                    continueCourse = sc.nextLine();
-                }
-                if (continueCourse.equals("N")) {
-                    newCourse.createFinalCert();
-                    return;
-                } else if (continueCourse.equals("Y")) {
-                    newCourse.createModules();
-                } else {
-                    System.out.println("Invalid input");
-                    continueCourse = "Y";
-                    continue;
-                }
-            }
-    }
-
-    public Language selectLanguages(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What language would you like your course to be?");
-        Language languages[] = Language.values();
-        int counter = 0;
-        for(Language language: languages) {
-            System.out.println(counter+": "+language.toString());
-            counter++;
-        }
-        int selectedLanguage = sc.nextInt();
-        return languages[selectedLanguage];
-    }
 
     // loops through courseList and returns a list of courses that the student is enrolled in
     public void printEnrolledCourses(){

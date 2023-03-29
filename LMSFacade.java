@@ -98,7 +98,7 @@ public class LMSFacade {
     }
 
     /**
-     * Returns the comment 
+     * Returns the current comment 
      * @return the current comment
      */
     public Comment getComment(){
@@ -270,7 +270,7 @@ public class LMSFacade {
             comment = null;
             return;
         }
-        comment = module.getComments(commentIndex);
+        //comment = module.getComments(commentIndex);
     }
 
     /**
@@ -282,7 +282,11 @@ public class LMSFacade {
     public void addCourse(String courseName, String courseDescription, Language language) {
         courseList.addCourse(new Course(courseName, courseDescription, language, user.getUUID()));
     }
-
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public int removeCourse(int index) {
         if (!courseList.has(index)) {
             return 1;
@@ -302,7 +306,11 @@ public class LMSFacade {
     public void addModule() {
 
     }
-
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public int removeModule(int index) {
         if (!course.hasModules()) {
             return 1;

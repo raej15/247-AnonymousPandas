@@ -202,7 +202,6 @@ public class UI {
                 return true;
             case 2:
                 courseAdd();
-                //UI.getFacade().getCourseList().addCourse();
                 return true;
             case 3:
                 courseRemove();
@@ -305,7 +304,7 @@ public class UI {
             // New - enroll into a new course
             user.enrollCourse();
          */
-        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Go back");
+        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Go back");
         int userInputINT = intCheck();
 
         switch(userInputINT) {
@@ -316,6 +315,8 @@ public class UI {
                 facade.setQuiz(1);
                 return;
             case 3:
+                facade.getCourse().getCertificationFile();
+            case 4:
                 facade.setCourse(-1);
                 return;
             default:
@@ -337,6 +338,7 @@ public class UI {
         switch (userInputINT) {
             case 1:
                 modulePrint = true;
+                //add printing current lesson here
                 return;
             case 2:
                 facade.setQuiz(1);
@@ -367,6 +369,7 @@ public class UI {
                 System.out.println("Please input a valid option");
                 return;
         }
+
     }
 
     /**
@@ -453,12 +456,13 @@ public class UI {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
-        System.out.println("1. <INSERT TEXT>\n2. Edit the Quiz\n3. Edit Module Name\n4. Edit Module Description\n5. Make New Lesson\n6. Remove Lesson\n7. Go back");
+        System.out.println("1. Pick Lesson\n2. Edit the Quiz\n3. Edit Module Name\n4. Edit Module Description\n5. Make New Lesson\n6. Remove Lesson\n7. Go back");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
             case 1:
-                modulePrint = true;
+                lessonPrint = true;
+
                 return;
             case 2:
                 facade.setQuiz(2);
@@ -473,7 +477,12 @@ public class UI {
                 return;
             case 5:
                 System.out.println("What would you like the new lesson to be called?");
-                facade.getModule().addLesson(input.nextLine());
+                String lessonName = input.nextLine();
+                System.out.println("What would you like the new lesson's content to be?");
+                String lessonContent = input.nextLine();
+                facade.getModule().addLesson(lessonName, lessonContent);
+                saveData();
+                
                 return;
             case 6:
                 System.out.println("Which lesson would you like to remove?");
@@ -525,6 +534,7 @@ public class UI {
         int userInputINT = intCheck();
         facade.setLesson(userInputINT - 1);
         lessonPrint = false;
+
         return;
     }
 
@@ -546,8 +556,7 @@ public class UI {
 
         // This needs to be completed
         if (facade.hasQuiz()) {
-            //quizLoader();
-            UI.getFacade().getCourse().takeCert();
+            quizLoader();
             return false;
         }
 
@@ -573,17 +582,25 @@ public class UI {
 
         System.out.println(facade.getLesson().getContent());
         consoleBarrier();
-        System.out.println("1. Go back");
+        System.out.println("1. Go back\n2. Print lesson to txt file");
 
         int userInputINT = 0;
 
         while (true) {
             userInputINT = intCheck();
-            
-            if (userInputINT == 1) {
-                facade.setLesson(-1);
-                return true;
+
+            switch (userInputINT) {
+                case 1:
+                    facade.setLesson(-1);
+                    return true;
+                case 2:
+                    facade.getLesson().getLessonFiles();
+                    return true;
+                default:
+                    System.out.println("Please input a valid option");
+                    return true;
             }
+            
         }
     }
 

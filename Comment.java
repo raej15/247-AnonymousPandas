@@ -9,19 +9,22 @@ public class Comment {
     private String comment;
     public UUID commenter;
     private ArrayList<Comment> comments;
-
-
-    public Comment(String comment, Student commenter) {
-        this.comment = comment;
-        comments = new ArrayList<Comment>();
-    }
     
+    /**
+     * Comment constructor for all instance variables
+     * @param commenter UUID of the user making the comment
+     * @param comment contents of the comment
+     * @param comments arraylist of nested comments
+     */
     public Comment(UUID commenter, String comment, ArrayList<Comment> comments) {
         this.commenter = commenter;
         this.comment = comment;
         this.comments = comments;
     }
 
+    /**
+     * Comment constructor that sets commenter and comment null, creates an empty arraylist of nested comments
+     */
     public Comment(){
         comment = null;
         commenter = null;
@@ -30,8 +33,8 @@ public class Comment {
     
     
     /** 
-     * @param comment
-     * adding comments
+     * @param comment object Comment that gets added to the list of comments
+     * adding comments to list
      */
     public void addComment(Comment comment) {
         comments.add(comment);
@@ -39,38 +42,34 @@ public class Comment {
 
     
     /** 
-     * @param removeComment
-     * removing comments
-     */
-    public void removeComment(String removeComment){
-        for(Comment comment : comments) {
-            if(comment.getComment().equals(removeComment)) {
-                comments.remove(comment);
-                return;
-            }
-        }
-    }
-
-    
-    /** 
-     * @return String
-     * get comments
+     * @return String comment contents
+     * returns comment contents
      */
     public String getComment() {
         return this.comment;
     }
 
+    
+    /** 
+     * method that returns the commenters UUID
+     * @return UUID of commenter
+     */
     public UUID getCommenter(){
         return commenter;
     }
 
+    
+    /** 
+     *  method that gets the list of comments
+     * @return ArrayList<Comment> nested comments
+     */
     public ArrayList<Comment> getComments(){
         return comments;
     }
 
     
     /** 
-     * @return String
+     * @return String of comment and nested comments
      * print out comments 
      */
     public String toString(){

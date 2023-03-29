@@ -423,6 +423,7 @@ public class UI {
         int userInputINT = intCheck();
         return;
     }
+    
 
     /**
      * Shows the options that the student has for the current module
@@ -468,6 +469,21 @@ public class UI {
                 return;
             case 2:
                 facade.setQuiz(2);
+                System.out.println("Current questions:");
+                facade.getQuiz().printQuestions();
+                System.out.println("What would you like the new quiz question to be?");
+                facade.getQuiz().addQuestion(input.nextLine());
+                saveData();
+                for( int i=0; i<3; i++) {
+                   System.out.println("What would you like the question answer " + (i+1) + " to be?");
+                    facade.getQuiz().getQuestion(facade.getQuiz().getLastIndex()).addAnswer(input.nextLine());
+                    saveData(); 
+                }
+
+                System.out.println("What is the index of the correct answer?\nPlease pick from 1-3");
+                facade.getQuiz().getQuestion(facade.getQuiz().getLastIndex()).setCorrectIndex(Integer.parseInt(input.nextLine()));
+                saveData();
+
                 return;
             case 3:
                 System.out.println("What would you like the new module name to be?");
@@ -484,6 +500,7 @@ public class UI {
                 String lessonContent = input.nextLine();
                 facade.getModule().addLesson(lessonName, lessonContent);
                 saveData();
+                facade.setModule(-1);
                 
                 return;
             case 6:
@@ -625,7 +642,7 @@ public class UI {
 
         // This needs to be completed
         if (facade.hasQuiz()) {
-            quizLoader();
+            //quizLoader();
             return true;
         }
 

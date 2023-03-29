@@ -7,22 +7,25 @@
 
     private Quiz quiz;
 
+    /**
+     * method constructor that sets a quiz to the FinalCertification
+     */
     FinalCertification() {
         this.quiz = new Quiz();
     }
 
-    public Boolean checkPassedStr(String passed){
-        boolean toReturn = false;
-        if (passed.equalsIgnoreCase("true")){
-            toReturn = true;
-        }
-        return toReturn;
-    }
-
+    /**
+     * method that returns the quiz in the final certifcation
+     * @return type quiz
+     */
     public Quiz getQuiz(){
         return this.quiz;
     }
 
+    /**
+     * method that sets the quiz of this certification
+     * @param quiz type quiz
+     */
     public void setQuiz(Quiz quiz){
         this.quiz = quiz;
     }

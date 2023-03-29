@@ -431,7 +431,7 @@ public class UI {
         System.out.println("Pick a question");
         consoleBarrier();
 
-        String[] questionNames = facade.getModuleNames();
+        String[] questionNames = facade.getQuestionNames();
 
         for (int i = 0; questionNames[i] != null; i++) {
             System.out.println(questionNames[i]);
@@ -457,11 +457,10 @@ public class UI {
                 questionLoader();
                 return;
             case 2:
-
                 return;
             case 3:
 
-                return;
+            return;
             default:
                 System.out.println("Please input a valid option");
                 return;

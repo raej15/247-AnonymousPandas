@@ -482,7 +482,7 @@ public class UI {
                 System.out.println("What is the index of the correct answer?\nPlease pick from 1-3");
                 facade.getQuiz().getQuestion(facade.getQuiz().getLastIndex()).setCorrectIndex(Integer.parseInt(input.nextLine()));
                 saveData();
-
+                modulePrint = true;
                 return;
             case 3:
                 System.out.println("What would you like the new module name to be?");

@@ -303,8 +303,8 @@ public class LMSFacade {
     /**
      * TODO
      */
-    public void addModule() {
-
+    public void addModule(String moduleName) {
+        userList.add(new Module(moduleName));
     }
     /**
      * 

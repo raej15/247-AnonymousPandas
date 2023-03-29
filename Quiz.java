@@ -140,7 +140,7 @@ public class Quiz extends DataConstants{
   }
 
  
-  /*public double takeQuiz() {
+  public double takeQuiz() {
    Scanner sc = new Scanner(System.in);
         int points = 0;
         int total = 0;
@@ -164,7 +164,7 @@ public class Quiz extends DataConstants{
 
         return grade;
   }
-*/
+
   
 
 }

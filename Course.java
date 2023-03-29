@@ -39,6 +39,7 @@ public class Course extends DataConstants{
         this.language = language;
         this.students = new ArrayList<UUID>();
         author = authorID;
+        cert = new FinalCertification();
         //cert = new FinalCertification();
     }
 

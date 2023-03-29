@@ -201,8 +201,8 @@ public class UI {
                 coursePrint = true;
                 return true;
             case 2:
-                //courseAdd();
-                UI.getFacade().getCourseList().addCourse();
+                courseAdd();
+                //UI.getFacade().getCourseList().addCourse();
                 return true;
             case 3:
                 courseRemove();
@@ -218,7 +218,6 @@ public class UI {
     /**
      * Adds a new course
      */
-    
      private static void courseAdd() {
         System.out.println("What would you like the new course to be called?");
         String courseName = input.nextLine();

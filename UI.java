@@ -370,6 +370,7 @@ public class UI {
                 System.out.println("Please input a valid option");
                 return;
         }
+
     }
 
     /**
@@ -456,12 +457,12 @@ public class UI {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
-        System.out.println("1. <INSERT TEXT>\n2. Edit the Quiz\n3. Edit Module Name\n4. Edit Module Description\n5. Make New Lesson\n6. Remove Lesson\n7. Go back");
+        System.out.println("1. Pick Lesson\n2. Edit the Quiz\n3. Edit Module Name\n4. Edit Module Description\n5. Make New Lesson\n6. Remove Lesson\n7. Go back");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
             case 1:
-                modulePrint = true;
+                lessonPrint = true;
 
                 return;
             case 2:
@@ -477,7 +478,12 @@ public class UI {
                 return;
             case 5:
                 System.out.println("What would you like the new lesson to be called?");
-                facade.getModule().addLesson(input.nextLine());
+                String lessonName = input.nextLine();
+                System.out.println("What would you like the new lesson's content to be?");
+                String lessonContent = input.nextLine();
+                facade.getModule().addLesson(lessonName, lessonContent);
+                saveData();
+                
                 return;
             case 6:
                 System.out.println("Which lesson would you like to remove?");

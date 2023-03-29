@@ -3,7 +3,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 /**
@@ -156,50 +155,12 @@ public class Module extends DataConstants{
         }
         return finalStr;
     }
-    
-
-    public void createQuiz(){
-        Scanner sc = new Scanner(System.in);
-        Quiz newQuiz = new Quiz();
-        setQuiz(newQuiz);
-        String continueQuiz = "Y";
-        while(continueQuiz.equals("Y")){
-            if (newQuiz.getQuestions().size() == 0){
-                newQuiz.newQuestion();
-                continue;
-            } else {
-                System.out.println("Would you like to add a question? (Y/N)");
-                continueQuiz = sc.nextLine();
-            }
-            if (continueQuiz.equals("N")) {
-                return;
-            } else if (continueQuiz.equals("Y")) {
-                newQuiz.newQuestion();
-            } else {
-                System.out.println("Invalid input");
-                continueQuiz = "Y";
-                continue;
-            }
-        }
-    }
-
-    public void createLesson(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What is the lesson name?");
-        String lessonName = sc.nextLine();
-        System.out.println("What is the lesson content?");
-        String lessonDescription = sc.nextLine();
-        Lesson newLesson = new Lesson(lessonName, lessonDescription);
-        lessons.add(newLesson);
-        sc.close();
-    }
 
     public void setQuiz(Quiz quiz){
         this.quiz = quiz;
     }
 
-    public void takeQuiz(){
-        double grade = this.quiz.takeQuiz();
+    public void takeQuiz(Double grade){
         if (grade > 75){
             System.out.println("Congraulations you passed the quiz!");
             addGrade(grade);

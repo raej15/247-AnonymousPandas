@@ -57,11 +57,4 @@ public abstract class DataConstants{
     protected static final String PURPLE = "\u001B[35m";
     protected static final String CYAN = "\u001B[36m";
     protected static final String BOLD = "\u001b[1m";
-
-    protected static final String[] PROFILE = {"First Name","Last Name","Email","Username","Password","Type"};
-    protected static final String WELCOME_MESSAGE = "Welcome to our Learning Managment System";
-    protected static final String[] MAIN_MENU_CREATOR = {"Profile","List Courses","Create Course","Logout"};
-    protected static final String[] MAIN_MENU_STUDENT = {"Profile","Register For a Course","Check Grades", "Take Certification Exam","Logout"};
-	protected static final String[] MAIN_MENU = {"Login","Create Account", "Exit"};
-    
 }

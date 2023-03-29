@@ -201,8 +201,7 @@ public class UI {
                 coursePrint = true;
                 return true;
             case 2:
-                //courseAdd();
-                UI.getFacade().getCourseList().addCourse();
+                courseAdd();
                 return true;
             case 3:
                 courseRemove();
@@ -575,8 +574,7 @@ public class UI {
 
         // This needs to be completed
         if (facade.hasQuiz()) {
-            //quizLoader();
-            UI.getFacade().getCourse().takeCert();
+            quizLoader();
             return false;
         }
 

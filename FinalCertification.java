@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 /*
  * Written by Anonmyous Pandas 
@@ -8,48 +7,27 @@ import java.util.Scanner;
 
     private Quiz quiz;
 
+    /**
+     * method constructor that sets a quiz to the FinalCertification
+     */
     FinalCertification() {
         this.quiz = new Quiz();
     }
 
-    public Boolean checkPassedStr(String passed){
-        boolean toReturn = false;
-        if (passed.equalsIgnoreCase("true")){
-            toReturn = true;
-        }
-        return toReturn;
-    }
-
+    /**
+     * method that returns the quiz in the final certifcation
+     * @return type quiz
+     */
     public Quiz getQuiz(){
         return this.quiz;
     }
 
+    /**
+     * method that sets the quiz of this certification
+     * @param quiz type quiz
+     */
     public void setQuiz(Quiz quiz){
         this.quiz = quiz;
-    }
-
-    public void makeCert(){
-        Scanner sc = new Scanner(System.in);
-        Quiz newQuiz = new Quiz();
-        String continueQuiz = "Y";
-        while(continueQuiz.equals("Y")){
-            if (newQuiz.getQuestions().size() == 0){
-                newQuiz.newQuestion();
-                continue;
-            } else {
-                System.out.println("Would you like to add a question? (Y/N)");
-                continueQuiz = sc.nextLine();
-            }
-            if (continueQuiz.equals("N")) {
-                return;
-            } else if (continueQuiz.equals("Y")) {
-                newQuiz.newQuestion();
-            } else {
-                System.out.println("Invalid input");
-                continueQuiz = "Y";
-                continue;
-            }
-        }
     }
 
  }

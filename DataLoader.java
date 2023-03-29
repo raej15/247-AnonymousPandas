@@ -12,18 +12,14 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants{
-
-/**
- * Load users method 
- * users JSON  
- * Json Parser reads & writes 
- * JSON array store data
- * for loop has JSONObject, username, email, and password 
- * @return ArrayList<User> 
- */
     
-    /** 
-     * @return ArrayList<User>
+    /**
+     * Load users method 
+     * users JSON  
+     * Json Parser reads & writes 
+     * JSON array store data
+     * for loop has JSONObject, username, email, and password 
+     * @return ArrayList<User> 
      */
     public static ArrayList<User> loadUsers() {
         System.out.println("Loading users...");
@@ -70,6 +66,7 @@ public class DataLoader extends DataConstants{
 
     
     /** 
+     * loads in the courses written in the courses.json file
      * @return ArrayList<Course>
      */
     public static ArrayList<Course> loadCourses() {

@@ -31,6 +31,11 @@
                     "question":"When would you use a for loop?",
                     "answers":["When you do not know how long it needs to loop for","When you need an infinite loop.","When you do know how long it needs to loop for."],
                     "correctIndex":3
+                },
+                {
+                    "question":"You can nest loops.",
+                    "answers":["True", "False"],
+                    "correctIndex": 1
                 }
             ],
             "moduleComments":[

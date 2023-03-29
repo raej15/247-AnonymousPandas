@@ -43,6 +43,9 @@ public class Module extends DataConstants{
         lessons.add(new Lesson(lesson, null));
     }
 
+    public void addLesson(String lesson, String content) {
+        lessons.add(new Lesson(lesson, content));
+    }
     /**
      * Changes the name of the module to a new name
      * @param moduleName The new name

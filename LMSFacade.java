@@ -12,7 +12,6 @@ public class LMSFacade {
     private Quiz quiz;
     private Question question;
     private Comment comment;
-
  
     /**
      * Creates a new facade
@@ -31,10 +30,11 @@ public class LMSFacade {
      * @param lastName The new user's last type
      * @param type 1 for students, 2 for course creators
      */
-    public void register(String firstName, String lastName, String email, String username, String password, int type) {
+    public void register(String username, String password, String email, String firstName, String lastName, int type) {
         if (type == 1) {
-            userList.addUser(new Student(firstName, lastName, email, username, password));
+            userList.addUser(new Student(username, password, email, firstName, lastName));
         }
+        
         if (type == 2) {
             userList.addUser(new CourseCreator(firstName, lastName, email, username, password));
         }
@@ -513,5 +513,18 @@ public class LMSFacade {
 
     public String getCurrentQuestionName() {
         return question.getQuestion();
+    }
+
+    public int answer(int userAnswer) {
+        if (!question.hasAnswers()) {
+            return 1;
+        }
+
+        if (!question.hasAnswerAt(userAnswer)) {
+            return 2;
+        }
+
+        //TODO save the answer given
+        return 0;
     }
 }

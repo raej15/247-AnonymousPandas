@@ -98,6 +98,14 @@ public class Question extends DataConstants{
         System.out.println("That answer could not be found");
     }
 
+    public boolean hasAnswers() {
+        return !answers.isEmpty();
+    }
+
+    public boolean hasAnswerAt(int index) {
+        return (answers.size() > index && index > -1);
+    }
+
     
     /** 
      * @return String

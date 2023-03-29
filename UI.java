@@ -498,7 +498,10 @@ public class UI {
         }
 
         switch (facade.answer(userInputINT)) {
-            
+            case 0:
+
+            case 1:
+
         }
     }
 
@@ -520,9 +523,9 @@ public class UI {
                 facade.setQuiz(2);
                 return;
             case 3:
-                facade.setModule(-1);
+                facade.setComment(1, 1);
             case 4:
-                facade.setComment(1);
+                facade.setModule(-1);
             default:
                 System.out.println("Please input a valid option");
                 return;

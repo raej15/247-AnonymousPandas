@@ -11,7 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * A course, which contains an ArrayList of modules, a name, a description, what language it's for, and if it's been completed
+ * A course, which contains an ArrayList of modules, a name, a description, what language it's for
  */ 
 public class Course extends DataConstants{
 
@@ -39,9 +39,20 @@ public class Course extends DataConstants{
         this.language = language;
         this.students = new ArrayList<UUID>();
         author = authorID;
-        //cert = new FinalCertification();
+        cert = new FinalCertification();
     }
 
+    /**
+     * Course constructor used in the DataLoader class to assign all instance variables to Course
+     * @param courseName name of the course
+     * @param description description of the course
+     * @param languageStr language of the course in the form of a string
+     * @param author UUID of the user who made the course
+     * @param grades hash map of grades
+     * @param modules array list of type Module
+     * @param courseComments array list of type Comment
+     * @param students array list of UUID that keeps track of students currently enrolled in this course
+     */
     Course(String courseName, String description, String languageStr, UUID author, HashMap<UUID, ArrayList<Double>> grades, ArrayList<Module> modules,ArrayList<Comment> courseComments, ArrayList<UUID> students){
         this.courseName = courseName;
         this.description = description;
@@ -53,6 +64,11 @@ public class Course extends DataConstants{
         this.students = students;
     }
 
+    /**
+     * method that return corresponding string of language enum
+     * @param language enum language 
+     * @return string of the parameter
+     */
     public String getLanguageStr(Language language) {
         if (language == Language.JavaScript){
             return "JavaScript";
@@ -129,18 +145,34 @@ public class Course extends DataConstants{
         return null;
     }
 
+    /**
+     * method that gets the students enrolled in this course
+     * @return Array list type UUID
+     */
     public ArrayList<UUID> getStudents(){
         return students;
     }
 
+    /**
+     * method that get the course comments
+     * @return array list of type comment
+     */
     public ArrayList<Comment> getCourseComments(){
         return courseComments;
     }
 
+    /**
+     * method that gets the grades for this course
+     * @return hashmap type UUID and ArrayList<Double> 
+     */
     public HashMap<UUID, ArrayList<Double>> getGrades(){
         return grades;
     }
 
+    /**
+     * method that sets the enum language for this course
+     * @param languageStr string of language brought in my user
+     */
     public void setLanguage(String languageStr){
         if (languageStr.equalsIgnoreCase("javascript")){
             this.language=Language.JavaScript;
@@ -149,6 +181,10 @@ public class Course extends DataConstants{
         }
     }
 
+    /**
+     * method that sets the author of this course
+     * @param uuid ID of the author
+     */
     public void setAuthor(UUID uuid){
         this.author = uuid;
     }
@@ -206,14 +242,25 @@ public class Course extends DataConstants{
         return 2;
     }
 
+    /**
+     * method that sets the grades for this course
+     * @param grades Hash map <UUID, ArrayList<Double> that has the grades
+     */
     public void setGrades(HashMap<UUID, ArrayList<Double>> grades){
         this.grades = grades;
     }
-
+    /**
+     * method that sets the certification for this course
+     * @param cert FinalCertification that is getting set to this course
+     */
     public void setCert(FinalCertification cert){
         this.cert = cert;
     }
 
+    /**
+     * method that returns a string representation of student grades
+     * @return String of grades
+     */
     public String gradesToString() {
         String finalStr = "Student Grades:";
         for(Entry<UUID, ArrayList<Double>> entry: grades.entrySet()) {
@@ -223,12 +270,19 @@ public class Course extends DataConstants{
         return finalStr;
     }
 
+    /**
+     * method that prints out the modules name in this course
+     */
     public void printModuleNames() {
         for(int i = 0; modules.size() > i; i++) {
             System.out.println(i + 1+": "+modules.get(i).getModuleName());
         }
     }
 
+    /**
+     * method that concatinates the instance variable of this course into a string
+     * @return String representing of this course
+     */
     public String toString(){
         String finalStr =  BOLD+"Course Name: "+ this.courseName + RESET+"\nDescription: "+ this.description+"\nLanguage: "+this.language+"\nAuthor Id: "+this.author+ "\n"+gradesToString();
         for(Module module: modules) {
@@ -242,6 +296,9 @@ public class Course extends DataConstants{
         return finalStr;
     }
 
+    /**
+     * method that prints out the students in this course
+     */
     public void printStudents(){
         for (UUID student:students){
             System.out.println(student);
@@ -279,24 +336,29 @@ public class Course extends DataConstants{
             }
     }
 
+    
     public void createFinalCert() {
         System.out.println("\nFINAL CERTIFICATION:");
         this.cert.makeCert();
 
     }
 
+    /**
+     * method that tells the user if they have passed the certification exam
+     */
     public void takeCert(){
         double grade = this.cert.getQuiz().takeQuiz();
         if (grade > 75){
             System.out.println("Congraulations you passed the certification exam!");
             addUserCertifications();
-            //testing
-                //getCertificationFile();
         } else {
             System.out.println("Unfortunately, you did not pass.");
         }
     }
 
+    /**
+     * method that adds the certification to the list of certifications if the user passes the exam
+     */
     public void addUserCertifications(){
         String str = "*************************************\n     Certificate of Completion\n             "+UI.getFacade().getUser().getFirstName().toUpperCase() + " " + UI.getFacade().getUser().getLastName().toUpperCase() + "\n   passed the certifcation exam for\n     " + courseName+"!\n*************************************";
         Student user = (Student) UI.getFacade().getUser();
@@ -304,6 +366,9 @@ public class Course extends DataConstants{
         System.out.println(str);
     }
 
+    /**
+     * method that writes the certifications to a text file
+     */
     public void getCertificationFile() {
         String user = UI.getFacade().getUser().getFirstName();
         //System.out.println(getCertificate());
@@ -319,15 +384,25 @@ public class Course extends DataConstants{
           }
     }
 
+    /**
+     * method that adds a grade to the hash map of grades that corresponds with the current user
+     * @param grade
+     */
     public void setGrade(double grade){
         UUID current = UI.getFacade().getUser().getUUID();
         ArrayList<Double> userGrades = grades.get(current);
         userGrades.add(grade);
         grades.put(current, userGrades);
     }
+
+    /**
+     * method that checks if the list of modules is empty
+     * @return boolean if the modules are empty or not
+     */
     public boolean hasModules() {
         return !modules.isEmpty();
     }
+
 
     public boolean hasModuleAt(int index) {
         return (modules.size() > index && index > -1);

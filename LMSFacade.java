@@ -262,17 +262,15 @@ public class LMSFacade {
 
         question = quiz.getQuestion(questionIndex);
     }
- 
-    //TODO fix this
-    // jamal said that we might need addcoment and removecomment ? 
-    public void setComment(int commentIndex) {
-        if (commentIndex == -1) {
-            comment = null;
-            return;
-        }
-        //comment = module.getComments(commentIndex);
-    }
 
+    /**
+     * Sets the comment at the index as the current comment
+     * @param commentIndex The comment that's going to be loaded
+     */
+    public void setComment(int commentIndex) {
+
+    }
+ 
     /**
      * Adds a new course to the course list
      * @param courseName The name of the course
@@ -282,10 +280,11 @@ public class LMSFacade {
     public void addCourse(String courseName, String courseDescription, Language language) {
         courseList.addCourse(new Course(courseName, courseDescription, language, user.getUUID()));
     }
+
     /**
-     * 
-     * @param index
-     * @return
+     * Removes a course from the course list if possible
+     * @param index The index of the course being removed
+     * @return 0 for a successful removal, 1 for the course not existing, 2 for trying to delete a course not made by the user
      */
     public int removeCourse(int index) {
         if (!courseList.has(index)) {
@@ -301,15 +300,17 @@ public class LMSFacade {
     }
 
     /**
-     * TODO
+     * Creates a new module with the name provided by the user
+     * @param moduleName The name of the new module
      */
-    public void addModule() {
-
+    public void addModule(String moduleName) {
+        course.addModule(null);
     }
+
     /**
-     * 
-     * @param index
-     * @return
+     * Removes a module from the current course if possible
+     * @param index The index of the module being removed
+     * @return 0 for a successful removal, 1 for the module not existing, 2 for trying to delete a module not made by the user
      */
     public int removeModule(int index) {
         if (!course.hasModules()) {
@@ -326,5 +327,92 @@ public class LMSFacade {
 
         course.removeModule(index);
         return 0;
+    }
+
+    /**
+     * Creates a new lesson with the name provided by the user
+     * @param lessonName The name of the new lesson
+     */
+    public void addLesson(String lessonName) {
+        module.addLesson(lessonName);
+    }
+
+    /**
+     * Removes a lesson from the current module if possible
+     * @param index The index of the lesson being removed
+     * @return 0 for a successful removal, 1 for the lesson not existing, 2 for trying to delete a lesson not made by the user
+     */
+    public int removeLesson(int index) {
+        if (!module.hasLessons()) {
+            return 1;
+        }
+
+        if (!module.hasLessonAt(index)) {
+            return 2;
+        }
+        
+        if (!course.getAuthorID().equals(user.getUUID())) {
+            return 3;
+        }
+
+        module.removeLesson(index);
+        return 0;
+    }
+
+    /**
+     * Adds a comment to either a course or module based on the mode parameter
+     * @param comment The comment being added
+     * @param mode 1 for a comment to a course, 2 for a comment to a module
+     */
+    public void addComment(String comment, int mode) {
+        switch (mode) {
+            case 1:
+                course.addComment(comment, user.getUUID());
+                return;
+            case 2:
+                module.addComment(comment, user.getUUID());
+                return;
+            default:
+                return;
+        }
+    }
+
+    /**
+     * TODO this
+     * @param index
+     * @return
+     */
+    public int removeComment(int index) {
+        return 0;
+    }
+
+    public void updateCourseName(String newName) {
+        course.updateCourseName(newName);
+        return;
+    }
+
+    public void updateCourseDescription(String newDescription) {
+        course.updateDescription(newDescription);
+        return;
+    }
+
+    public void updateModuleName(String newName) {
+        module.updateModuleName(newName);
+        return;
+    }
+
+    public void updateModuleDescription(String newDescription) {
+        module.updateDescription(newDescription);
+        return;
+    }
+
+    public void updateLessonName(String newName) {
+        lesson.updateLessonName(newName);
+        return;
+    }
+
+    public void updateLessonContent(String newContent) {
+        lesson.updateContent(newContent);
+        return;
     }
 }

@@ -3,8 +3,10 @@
  */
 
 import java.util.ArrayList;
+import java.util.UUID;
 import java.io.FileWriter;
 import java.io.IOException;
+
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
  */
@@ -45,6 +47,17 @@ public class Module extends DataConstants{
     public void addLesson(String lesson, String content) {
         lessons.add(new Lesson(lesson, content));
     }
+
+    /**
+     * Adds a new comment directly to the course
+     * @param commentContent The comment being left
+     * @param commentor The author of the comment
+     */
+    public void addComment(String commentContent, UUID commentor) {
+        comments.add(new Comment(commentor, commentContent, null));
+        return;
+    }
+
     /**
      * Changes the name of the module to a new name
      * @param moduleName The new name
@@ -181,11 +194,12 @@ public class Module extends DataConstants{
 
         return allContent;
     }
-    public void getModuleFiles() {
-        
+
+    public void getModuleFiles() {    
         String user = UI.getFacade().getUser().getFirstName();
         String module = UI.getFacade().getModule().getModuleName();
         String fileName = "txtFileTests//" + user + module + "Lessons.txt";
+        
         try {
             FileWriter myWriter = new FileWriter(fileName);
             myWriter.write(getLessonContents());
@@ -195,5 +209,13 @@ public class Module extends DataConstants{
             System.out.println("An error occurred.");
             e.printStackTrace();
           }
+    }
+
+    public boolean hasLessons() {
+        return !lessons.isEmpty();
+    }
+
+    public boolean hasLessonAt(int index) {
+        return (lessons.size() > index && index > -1);
     }
 }

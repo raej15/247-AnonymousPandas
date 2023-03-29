@@ -194,6 +194,17 @@ public class Course extends DataConstants{
      */
     public void addModule(String moduleName) {
         modules.add(new Module(moduleName));
+        return;
+    }
+
+    /**
+     * Adds a new comment directly to the course
+     * @param commentContent The comment being left
+     * @param commentor The author of the comment
+     */
+    public void addComment(String commentContent, UUID commentor) {
+        courseComments.add(new Comment(commentor, commentContent, null));
+        return;
     }
 
     /**

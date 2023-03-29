@@ -156,7 +156,7 @@ public class UI {
             }
         }
 
-        facade.register(username, password, email, firstName, lastName, type);
+        facade.register(firstName, lastName, email, username, password, type);
         login(username);
         return;
     }

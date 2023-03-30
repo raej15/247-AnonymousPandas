@@ -9,7 +9,7 @@ import java.util.UUID;
     protected String password;
     protected String email;
     protected String firstName;
-    protected String lastName;khbkb
+    protected String lastName;
     protected UUID uuid;
     protected int type;    
 

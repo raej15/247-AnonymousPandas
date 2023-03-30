@@ -175,6 +175,17 @@ public class Course extends DataConstants{
         return grades;
     }
 
+    public String[] getGradeString(UUID user) {
+        String[] gradeArray = new String[50];
+        ArrayList<Double> gradeList = grades.get(user);
+
+        for (int i = 0; courseComments.size() > i; i++) {
+            gradeArray[i] = gradeList.get(i).toString();
+        }
+
+        return gradeArray;
+    }
+
     /**
      * method that sets the enum language for this course
      * @param languageStr string of language brought in my user

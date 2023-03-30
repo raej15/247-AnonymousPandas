@@ -17,8 +17,8 @@ public class UI {
      * Clears the terminal
      */
     private static void clearTerminal() {
-        //System.out.println("\033[H\033[2J");
-        //System.out.flush();
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
     }
 
     /**
@@ -377,6 +377,42 @@ public class UI {
         }
     }
 
+    public static void showGrades() {
+        System.out.println("Here are your grades");
+        consoleBarrier();
+        System.out.println("0. Go back");
+
+        String[] grades = facade.getGrades();
+
+        if (grades == null) {
+            System.out.println("You have not gotten any grades yet");
+
+            int userInputINT = intCheck();
+            
+            switch (userInputINT) {
+                default:
+                    return;
+            }
+        }
+
+        for (int i = 0; grades[i] != null; i++) {
+            System.out.println(i + 1 + "" + grades[i]);
+        }
+
+        int userInputINT = intCheck();
+
+        while (true) {
+            switch (userInputINT) {
+                case 0:
+                    return;
+                default:
+                    System.out.println("Please enter in 0 to go back");
+                    break;
+            }
+
+            userInputINT = intCheck();
+        }
+    }
     /**
      * Shows the user what options they have for the current course
      */
@@ -398,7 +434,8 @@ public class UI {
                 facade.getCourse().getCertificationFile();
                 return;
             case 4:
-                facade.getCourse().printUserGrades();
+                clearTerminal();
+                showGrades();
                 return;
             case 5:
                 facade.setCourse(-1);
@@ -941,7 +978,7 @@ public class UI {
         clearTerminal();
 
         while (loadUI()) {
-            //clearTerminal();
+            clearTerminal();
             
             if (notification != null) {
                 System.out.println(notification);

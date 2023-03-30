@@ -596,6 +596,10 @@ public class LMSFacade {
         }
     }
 
+    public String[] getGrades() {
+        return course.getGradeString(user.getUUID());
+    }
+
     public int enroll(int userChoice) {
         if (!courseList.has(userChoice)) {
             return 1;

@@ -1,2 +1,0 @@
-Lesson Name: For Loops
-Content: For loops are used for sequential traversal.

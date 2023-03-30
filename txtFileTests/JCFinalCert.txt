@@ -1,6 +1,0 @@
-*************************************
-     Certificate of Completion
-             JC JC
-   passed the certifcation exam for
-     Introduction to JavaScript!
-*************************************

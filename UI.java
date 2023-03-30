@@ -533,9 +533,8 @@ public class UI {
                         System.out.println(counter+": "+ac);
                         counter++;
                     }
-                    int choice = input.nextInt();
+                    int choice = Integer.parseInt(input.nextLine());
                     if (choice == question.getCorrectIndex()){
-                        System.out.println("correct");
                         points+=10;
 
                     }
@@ -545,8 +544,10 @@ public class UI {
 
                 facade.getCourse().setGrade(grade);
                 saveData();
-                studentCourseOptions();
-                return;
+                facade.setModule(-1);
+                studentUI();
+                studentHome();
+                 return;
             case 3:
                 facade.setComment(1, 1);
             case 4:

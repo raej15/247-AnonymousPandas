@@ -4,6 +4,10 @@
 
 import java.util.ArrayList;
 
+
+/**
+ * User list for dataconstants 
+ */
 public class UserList extends DataConstants{
     private static UserList userList = new UserList();
     public static ArrayList<User> users;

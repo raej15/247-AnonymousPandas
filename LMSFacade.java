@@ -2,6 +2,9 @@
  * Written by Anonmyous Pandas 
  */
 
+ /**
+  * Facade 
+  */
 public class LMSFacade {
     private CourseList courseList;
     private UserList userList;

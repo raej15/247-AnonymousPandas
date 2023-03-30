@@ -14,7 +14,8 @@ public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
     private static CourseList courseList = new CourseList();
     
-    /** 
+    /**  
+     * Returns courslist 
      * @return CourseList
      */
     public static CourseList getInstance(){
@@ -24,10 +25,10 @@ public class CourseList extends DataConstants{
 		}
         return courseList;
     }
-
     
     /** 
-     * @param courses 
+     * Returns an arraylist of courses 
+     * @param courses  setting courselist 
      * setcourselist 
      */
     public static void setCourseList(ArrayList <Course> courses){
@@ -36,6 +37,7 @@ public class CourseList extends DataConstants{
 
     
     /** 
+     * Returns String to obtain course name 
      * @param courseName 
      * @return Course
      */
@@ -51,6 +53,7 @@ public class CourseList extends DataConstants{
 
     
     /** 
+     * Gets course index 
      * @param index
      * @return Course
      */

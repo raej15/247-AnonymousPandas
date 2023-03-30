@@ -1,0 +1,6 @@
+What is an object?
+An object is a data type that can take in collections of key-value pairs. A major difference between an object and other data types such as strings and numbers in JavaScript is that an objects can store different types of data as its values.
+Example
+You might use an object for a user. Each user could have a first name, last name, and weight. The first and last names would be a string. The weight would be a number. Ex: var user1 = {firstName:'Ann', lastName:'Smith', weight:'125'}
+Objects and Arrays
+Objects can be stored in an array. For example, to store users you could create user objects and add them to a users array.

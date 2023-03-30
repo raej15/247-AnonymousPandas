@@ -597,7 +597,7 @@ public class UI {
         //System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
-        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Go back");
+        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Print Module Lessons\n5. Go back");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
@@ -611,7 +611,10 @@ public class UI {
                 clearTerminal();
                 loadComment();
                 return;
+
             case 4:
+                facade.getModule().getModuleFiles();
+            case 5:
                 facade.setModule(-1);
                 return;
             default:

@@ -1,7 +1,3 @@
-/*
- * Written by Anonymous Pandas
- */
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -11,6 +7,7 @@ import java.io.IOException;
 
 /**
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for
+ * @author Anonymous Pandas 
  */ 
 public class Course extends DataConstants{
     private ArrayList<Module> modules;
@@ -298,6 +295,9 @@ public class Course extends DataConstants{
         return finalStr;
     }
 
+    /**
+     * Printing each users grades 
+     */
     public void printUserGrades() {
 
         String finalStr = "Your Grades:";
@@ -355,8 +355,6 @@ public class Course extends DataConstants{
     }
     
    
-    
-
     /**
      * method that tells the user if they have passed the certification exam 
      * @param grade grade of the quiz the user took
@@ -427,6 +425,11 @@ public class Course extends DataConstants{
     }
 
 
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public boolean hasModuleAt(int index) {
         return (modules.size() > index && index > -1);
     }

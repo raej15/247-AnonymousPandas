@@ -1,10 +1,10 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Creates and manipulates list of courses from jsons
+ * @author Anonymous Pandas
+ */
 public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
     private static CourseList courseList = new CourseList();
@@ -22,7 +22,8 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param courses
+     * @param courses 
+     * setcourselist 
      */
     public static void setCourseList(ArrayList <Course> courses){
         CourseList.courses = courses;
@@ -30,7 +31,7 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param courseName
+     * @param courseName 
      * @return Course
      */
     public Course getCourse(String courseName){
@@ -119,7 +120,8 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param newCourse
+     * @param newCourse 
+     * add newcourse 
      */
     public void addCourse(Course newCourse) {
         courses.add(newCourse);

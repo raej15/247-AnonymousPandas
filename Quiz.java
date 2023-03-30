@@ -17,10 +17,18 @@ public class Quiz extends DataConstants{
       questions = new ArrayList<Question>();
    }
 
+   /**
+    * 
+    * @param questions
+    */
    public Quiz(ArrayList<Question> questions ) {
       this.questions = questions;
    }
 
+   /**
+    * 
+    * @return
+    */
    public ArrayList<Question> getQuestions(){
       return questions;
    }
@@ -47,6 +55,10 @@ public class Quiz extends DataConstants{
       return questions.get(index);
    }
 
+   /**
+    * 
+    * @return
+    */
    public String[] getQuestionNames() {
       String[] questionNames = new String[50];
 
@@ -57,6 +69,10 @@ public class Quiz extends DataConstants{
       return questionNames;
    }
 
+   /**
+    * 
+    * @return
+    */
    public int getLastIndex() {
       return questions.size() - 1;
    }
@@ -81,6 +97,9 @@ public class Quiz extends DataConstants{
       System.out.println("That question could not be found");
    }
 
+   /**
+    * 
+    */
    public void printQuestions() {
       for(int i = 0; questions.size() > i; i++) {
          System.out.println(i+1+": "+questions.get(i).getQuestion());

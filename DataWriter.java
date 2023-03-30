@@ -12,6 +12,7 @@ public class DataWriter extends DataConstants {
     /**
      * method that calls getUsersJson for every user in our userList
      */
+
     public static void saveUsers(){
         System.out.println("Writing users...");
         UserList users = UserList.getInstance();
@@ -29,9 +30,9 @@ public class DataWriter extends DataConstants {
     }
     
     /** 
-     * method that gets all of the users information and adds it to a JSONObject
+     * method that gets all of the users information and adds it to JSONObject
      * @param user
-     * @return JSONObject
+     * @return JSONObjects
      */
     public static JSONObject getUsersJson(User user) {
         JSONObject userDetails = new JSONObject();
@@ -87,6 +88,7 @@ public class DataWriter extends DataConstants {
      * @param course course object
      * @return JSONObject
      */
+
     // called for each course in courseList
     public static JSONObject getCourseJson(Course course){
         // object for current course
@@ -132,7 +134,7 @@ public class DataWriter extends DataConstants {
         }
     
 
-        courseJSON.put(COURSE_NAME, course.getCourseName()); // course courseName
+        courseJSON.put(COURSE_NAME, course.getCourseName()); // course and courseName
         courseJSON.put(COURSE_DESCRIPTION,course.getDescription()); // course description
         
         String languagestr = course.getLanguageStr(course.getLanguage());
@@ -151,7 +153,7 @@ public class DataWriter extends DataConstants {
             JSONArray lessonsJSON = new JSONArray();
             ArrayList<Lesson> lessons = module.getLessons();
             
-            // looping through lessons
+            // looping through all the lessons
             for (Lesson lesson: lessons) {
                 JSONObject lessonJSON = new JSONObject();
                 lessonJSON.put(COURSE_LESSON_NAME,lesson.getLessonName());
@@ -274,7 +276,7 @@ public class DataWriter extends DataConstants {
             courseJSON.put(COURSE_COURSE_COMMENTS, courseCommentsJSON); // moduleComments
         }
 
-        // final certification
+        // final certification (jasonarray and object)
         JSONArray finalCertJSON = new JSONArray();
         JSONObject certJSON = new JSONObject();
         ArrayList<Question> Questions = course.getCertificate().getQuiz().getQuestions();

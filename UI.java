@@ -287,6 +287,9 @@ public class UI {
         }
     }
 
+    /**
+     * 
+     */
     private static void enrolledCourseLoader() {
         clearTerminal();
         System.out.println("Which course do you want to enter?");
@@ -630,7 +633,7 @@ public class UI {
         System.out.println(facade.getModuleName());
         consoleBarrier();
 
-        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Go back");
+        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Print Module Lessons\n5. Go back");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
@@ -644,7 +647,10 @@ public class UI {
                 clearTerminal();
                 loadComment();
                 return;
+
             case 4:
+                facade.getModule().getModuleFiles();
+            case 5:
                 facade.setModule(-1);
                 return;
             default:
@@ -723,6 +729,10 @@ public class UI {
         }
     }
 
+    /**
+     * 
+     * @param mode
+     */
     private static void printComments(int mode) {
         String[] comments = facade.getCommentArray(mode);
 
@@ -745,6 +755,21 @@ public class UI {
         }
     }
 
+    private static void selectComment(int userInputINT, int mode) {
+        switch (facade.setComment(userInputINT - 2, mode)) {
+            case 0:
+                return;
+            case 1:
+                notification = "That is not a valid option";
+                return;
+            default:
+                return;
+        }
+    }
+
+    /**
+     * 
+     */
     private static void loadComment() {
         System.out.println("Which comment do you want to access");
         consoleBarrier();
@@ -1008,6 +1033,10 @@ public class UI {
         }
     }
 
+    /**
+     * main method to run the UI 
+     * @param args
+     */
     public static void main(String[] args) {
         input = new Scanner(System.in);
         loadData();
@@ -1016,6 +1045,7 @@ public class UI {
         clearTerminal();
 
         while (loadUI()) {
+            clearTerminal();
             clearTerminal();
             
             if (notification != null) {

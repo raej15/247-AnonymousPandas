@@ -167,7 +167,6 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean studentHome() {
-        //System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
         System.out.println("1. Enter a course\n2. Logout");
@@ -191,7 +190,6 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean courseCreatorHome() {
-        System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
         System.out.println("1. Edit a course\n2. Add a course\n3. Remove a course\n4. Logout");
@@ -590,10 +588,12 @@ public class UI {
                 System.out.println("What is the index of the correct answer?\nPlease pick from 1-3");
                 facade.getQuiz().getQuestion(facade.getQuiz().getLastIndex()).setCorrectIndex(Integer.parseInt(input.nextLine()));
                 saveData();
+                courseCreatorCourseOptions();
                 return;
             case 3:
                 System.out.println("What would you like the new module name to be?");
                 facade.updateModuleName(input.nextLine());
+                
                 return;
             case 4:
                 System.out.println("What would you like the new module description to be?");

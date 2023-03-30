@@ -177,7 +177,6 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean studentHome() {
-        System.out.println("Welcome "+facade.getUserName()+"!");        
         consoleBarrier();
 
         System.out.println("1. Enter an enrolled course\n2. Enroll in a new course\n3. Logout");

@@ -384,13 +384,15 @@ public class UI {
     public static void showGrades() {
         System.out.println("Here are your grades");
         consoleBarrier();
-        System.out.println("0. Go back");
+        System.out.println("0. Go back\n");
 
         String[] grades = facade.getGrades();
 
 
         for (int i = 0; grades[i] != null; i++) {
-            System.out.println(i + 1 + ". " + grades[i]);
+            if(!grades[i].contains("-1")) {
+            System.out.println(grades[i]);
+            }
         }
 
         int userInputINT = intCheck();

@@ -755,18 +755,6 @@ public class UI {
         }
     }
 
-    private static void selectComment(int userInputINT, int mode) {
-        switch (facade.setComment(userInputINT - 2, mode)) {
-            case 0:
-                return;
-            case 1:
-                notification = "That is not a valid option";
-                return;
-            default:
-                return;
-        }
-    }
-
     /**
      * 
      */

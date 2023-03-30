@@ -580,10 +580,6 @@ public class LMSFacade {
         return lesson.getLessonFiles();
     }
 
-    public String getLessonFiles() {
-        return lesson.getLessonFiles();
-    }
-
    /**
     * Returns an array of Question names for each current module 
     * @return A string of question names 
@@ -640,10 +636,6 @@ public class LMSFacade {
             default:
                 return null;
         }
-    }
-
-    public String[] getGrades() {
-        return course.getGradeString(user.getUUID());
     }
 
     public String[] getGrades() {

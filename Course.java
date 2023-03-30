@@ -218,7 +218,7 @@ public class Course extends DataConstants{
      * @param commentor The author of the comment
      */
     public void addComment(String commentContent, UUID commentor) {
-        courseComments.add(new Comment(commentor, commentContent, null));
+        courseComments.add(new Comment(commentor, commentContent, new ArrayList<Comment>()));
         return;
     }
 

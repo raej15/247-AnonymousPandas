@@ -148,7 +148,6 @@ public class DataWriter extends DataConstants {
         for (Module module: modules){
             JSONObject moduleJSON = new JSONObject();
         
-
             // lessons
             JSONArray lessonsJSON = new JSONArray();
             ArrayList<Lesson> lessons = module.getLessons();
@@ -255,7 +254,6 @@ public class DataWriter extends DataConstants {
                     commentJSON.put(COURSE_COMMENTS_COMMENT, comment.getComment());
                 }
                 
-        
                 ArrayList<Comment> nestedComments = comment.getComments();
                 JSONArray nestedCommentsJSON = new JSONArray();
                 for (Comment nestedC: nestedComments){

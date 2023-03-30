@@ -11,6 +11,14 @@ import org.json.simple.parser.JSONParser;
  * @author Anonymous Pandas
  */
 public class DataLoader extends DataConstants{
+
+
+    public static void main(String[] args) {
+       ArrayList<Course> courses = loadCourses();
+       for (Course course: courses){
+            System.out.println(course.toString());
+       }
+    }
     
     /**
      * Load users method 

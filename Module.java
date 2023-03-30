@@ -28,6 +28,13 @@ public class Module extends DataConstants{
     }
 
 
+    /**
+     * adding each module name, lesson, quiz, and comment to module 
+     * @param moduleName gets name
+     * @param lessons gets lesson 
+     * @param quiz gets each quiz 
+     * @param comments get comments 
+     */
     Module(String moduleName, ArrayList<Lesson> lessons, Quiz quiz, ArrayList<Comment> comments) {
         this.moduleName = moduleName;
         this.lessons = lessons;
@@ -44,6 +51,12 @@ public class Module extends DataConstants{
         lessons.add(new Lesson(lesson, null));
     }
 
+    
+    /** 
+     * adds the lesson content 
+     * @param lesson the new lesson content 
+     * @param content the description of content 
+     */
     public void addLesson(String lesson, String content) {
         lessons.add(new Lesson(lesson, content));
     }
@@ -60,16 +73,26 @@ public class Module extends DataConstants{
 
     /**
      * Changes the name of the module to a new name
-     * @param moduleName The new name
+     * @param moduleName The new nmodule name given 
      */
     public void updateModuleName(String moduleName) {
         this.moduleName = moduleName;
     }
 
+    
+    /** 
+     * adds the description
+     * @param description updating each descritpion 
+     */
     public void updateDescription(String description) {
         this.description = description;
     }
 
+    
+    /** 
+     * return lessons 
+     * @return ArrayList<Lesson> 
+     */
     public ArrayList<Lesson> getLessons(){
         return lessons;
     }
@@ -82,14 +105,27 @@ public class Module extends DataConstants{
         return moduleName;
     }
 
+    /** 
+     * return description
+     * @return String of descriptions
+     */
     public String getDescription() {
         return description;
     }
-
+    
+    /** 
+     * return arraylist to get each updated comment 
+     * @return ArrayList<Comment>
+     */
     public ArrayList<Comment> getComments(){
         return comments;
     }
 
+    
+    /** 
+     * get comments through array 
+     * @return String[] of comments 
+     */
     public String[] getCommentArray() {
         String[] commentArray = new String[50];
 
@@ -108,12 +144,17 @@ public class Module extends DataConstants{
         return quiz;
     }
 
+    
+    /** 
+     * Returns the quiz questions associated with the module 
+     * @return ArrayList<Question> quiz questions from arraylist 
+     */
     public ArrayList<Question> getQuizQuestions(){
         return quiz.getQuestions();
     }
 
     /**
-     * Returns a lesson via its name, if it exists
+     * Returns a lesson from its name (if it exists)
      * @param lessonName The name of the lesson the user wants
      * @return A lesson
      */
@@ -132,7 +173,7 @@ public class Module extends DataConstants{
     }
     
     /**
-     * Removes a lesson via its name, if it exists
+     * Removes a lesson from its name, if it exists
      * @param lessonName The name of the lesson the user wants to remove
      */
     public int removeLesson(int lessonIndex) {
@@ -154,7 +195,7 @@ public class Module extends DataConstants{
 
     /**
      * Returns an array of strings of the lesson names in this module
-     * @return An array of lesson names
+     * @return An array of each lesson names
      */
     public String[] getLessonNames() {
         String[] lessonNames = new String[50];
@@ -168,7 +209,8 @@ public class Module extends DataConstants{
 
     
     /** 
-     * @return String
+     * Reutrns module name 
+     * @return String of each name 
      */
     public String toString(){
         String finalStr = RED+BOLD+"\nModule Name: "+ moduleName+RESET;
@@ -184,11 +226,18 @@ public class Module extends DataConstants{
         return finalStr;
     }
 
+    /**
+     * Setting each quiz 
+     * @param quiz gives quiz 
+     */
     public void setQuiz(Quiz quiz){
         this.quiz = quiz;
     }
 
-    // TODO nothing uses this
+    /**
+     * Returning each quiz grade with description, tells you if you pass and if else gives you another description 
+     * @param grade 
+     */
     public void takeQuiz(Double grade){
         if (grade > 75){
             System.out.println("Congraulations you passed the quiz!");
@@ -198,11 +247,21 @@ public class Module extends DataConstants{
         }
     }
 
+    /**
+     *  Adds grade and outprints final grade to user 
+     * @param grade Sets grade and addes it 
+     * @param user User gets grade
+     * @return Returns description of final grade overall 
+     */
     public String addGrade(double grade, User user){
         UI.getFacade().getCourse().setGrade(grade, user);
         return "Your final grade was "+grade;
     }
 
+    /**
+     * Gets each lesson content
+     * @return Returns lesson name description and all content 
+     */
     public String getLessonContents() {
         String allContent = "";
         for(int i = 0; lessons.size() > i; i++) {
@@ -212,6 +271,9 @@ public class Module extends DataConstants{
         return allContent;
     }
 
+    /**
+     * 
+     */
     public void getModuleFiles() {    
         String user = UI.getFacade().getUser().getFirstName();
         String module = UI.getFacade().getModule().getModuleName();
@@ -228,10 +290,19 @@ public class Module extends DataConstants{
           }
     }
 
+    /**
+     * 
+     * @return
+     */
     public boolean hasLessons() {
         return !lessons.isEmpty();
     }
 
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public boolean hasLessonAt(int index) {
         return (lessons.size() > index && index > -1);
     }

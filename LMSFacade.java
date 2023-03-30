@@ -17,6 +17,7 @@ public class LMSFacade {
  
     /**
      * Creates a new facade
+     * gets courselist, userlist, and graades 
      */
     LMSFacade() {
         courseList = CourseList.getInstance();
@@ -46,6 +47,7 @@ public class LMSFacade {
     
     /** 
      * @return CourseList
+     * testing
      */
     // Used for testing purposes
     public CourseList getCourseList() {
@@ -53,7 +55,7 @@ public class LMSFacade {
     }
 
     /**
-     * Returns the userlist
+     * Returns the userlist 
      * @return The userlist
      */
     public UserList getUserList() {
@@ -61,7 +63,7 @@ public class LMSFacade {
     }
  
     /**
-     * Returns the current user
+     * Returns the current user 
      * @return The current user
      */
     public User getUser() {
@@ -69,8 +71,8 @@ public class LMSFacade {
     }
      
     /**
-     * Returns the current course
-     * @return The current course
+     * Returns the current course 
+     * @return The current course 
      */
     public Course getCourse() {
         return course;
@@ -118,7 +120,7 @@ public class LMSFacade {
  
     /**
      * Checks if there is a user logged in
-     * @return True if there's a user, false if not
+     * @return True if there's a user, false if else
      */
     public boolean hasUser() {
         if (user == null) {
@@ -177,7 +179,7 @@ public class LMSFacade {
     }
 
     /**
-     * Checks if there is a question laoded in
+     * Checks if there is a question laoded in 
      * @return True if there is a question loaded in, false if not
      */
     public boolean hasQuestion() {
@@ -465,9 +467,8 @@ public class LMSFacade {
     }
 
     /**
-     * TODO this
-     * @param index
-     * @return
+     * @param index 
+     * @return remove comment
      */
     public int removeComment(int index) {
         return 0;
@@ -483,8 +484,8 @@ public class LMSFacade {
     }
 
     /**
-     * Updates the description of the current course
-     * @param newDescription The new description of the course
+     * Updates the description of the current courses
+     * @param newDescription The new description of the courses
      */
     public void updateCourseDescription(String newDescription) {
         course.updateDescription(newDescription);
@@ -553,7 +554,7 @@ public class LMSFacade {
 
     /**
      * Returns an array of all the lesson names for the current module
-     * @return A string array of lesson names
+     * @return A string array of lesson names 
      */
     public String[] getLessonNames() {
         return module.getLessonNames();

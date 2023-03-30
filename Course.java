@@ -344,8 +344,6 @@ public class Course extends DataConstants{
     }
     
    
-    
-
     /**
      * method that tells the user if they have passed the certification exam 
      * @param grade grade of the quiz the user took
@@ -416,6 +414,11 @@ public class Course extends DataConstants{
     }
 
 
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public boolean hasModuleAt(int index) {
         return (modules.size() > index && index > -1);
     }

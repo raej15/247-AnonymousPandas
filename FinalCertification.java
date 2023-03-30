@@ -8,7 +8,7 @@
     private Quiz quiz;
 
     /**
-     * method constructor that sets a quiz to the FinalCertification
+     * method constructor that sets each quiz to the FinalCertification
      */
     FinalCertification() {
         this.quiz = new Quiz();

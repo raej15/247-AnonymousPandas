@@ -22,7 +22,8 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param courses
+     * @param courses 
+     * setcourselist 
      */
     public static void setCourseList(ArrayList <Course> courses){
         CourseList.courses = courses;
@@ -30,7 +31,7 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param courseName
+     * @param courseName 
      * @return Course
      */
     public Course getCourse(String courseName){
@@ -119,7 +120,8 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param newCourse
+     * @param newCourse 
+     * add newcourse 
      */
     public void addCourse(Course newCourse) {
         courses.add(newCourse);

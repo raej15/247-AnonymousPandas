@@ -1,3 +1,4 @@
+
 /*
  * Written by Anonmyous Pandas 
  */
@@ -6,6 +7,7 @@ import java.util.UUID;
 
 /**
  * A type of user that can edit, save, and create courses
+ * @author Anonymous Pandas
  */
 public class CourseCreator extends User{
 

@@ -1,3 +1,4 @@
+
 /*
  * Written by Anonmyous Pandas 
  */
@@ -10,7 +11,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * loads in content from json files
+ * @author Anonymous Pandas
+ */
 public class DataLoader extends DataConstants{
+
+
+    public static void main(String[] args) {
+       ArrayList<Course> courses = loadCourses();
+       for (Course course: courses){
+            System.out.println(course.toString());
+       }
+    }
     
     /**
      * Load users method 
@@ -65,7 +78,7 @@ public class DataLoader extends DataConstants{
 
     
     /** 
-     * loads in the courses written in the courses.json file
+     * loads in all the courses written in the courses.json file
      * @return ArrayList<Course>
      */
     public static ArrayList<Course> loadCourses() {

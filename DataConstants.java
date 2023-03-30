@@ -1,5 +1,11 @@
+
 /*
  * Written by Anonmyous Pandas 
+ */
+
+/**
+ * Holds all data constants for loading
+ * @author Anonymous Pandas
  */
 
 public abstract class DataConstants{

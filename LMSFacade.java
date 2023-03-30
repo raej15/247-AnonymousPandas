@@ -17,6 +17,7 @@ public class LMSFacade {
  
     /**
      * Creates a new facade
+     * gets courselist, userlist, and graades 
      */
     LMSFacade() {
         courseList = CourseList.getInstance();
@@ -46,6 +47,7 @@ public class LMSFacade {
     
     /** 
      * @return CourseList
+     * testing
      */
     // Used for testing purposes
     public CourseList getCourseList() {
@@ -53,7 +55,7 @@ public class LMSFacade {
     }
 
     /**
-     * Returns the userlist
+     * Returns the userlist 
      * @return The userlist
      */
     public UserList getUserList() {
@@ -61,7 +63,7 @@ public class LMSFacade {
     }
  
     /**
-     * Returns the current user
+     * Returns the current user 
      * @return The current user
      */
     public User getUser() {
@@ -69,8 +71,8 @@ public class LMSFacade {
     }
      
     /**
-     * Returns the current course
-     * @return The current course
+     * Returns the current course 
+     * @return The current course 
      */
     public Course getCourse() {
         return course;
@@ -118,7 +120,7 @@ public class LMSFacade {
  
     /**
      * Checks if there is a user logged in
-     * @return True if there's a user, false if not
+     * @return True if there's a user, false if else
      */
     public boolean hasUser() {
         if (user == null) {
@@ -177,7 +179,7 @@ public class LMSFacade {
     }
 
     /**
-     * Checks if there is a question laoded in
+     * Checks if there is a question laoded in 
      * @return True if there is a question loaded in, false if not
      */
     public boolean hasQuestion() {
@@ -313,24 +315,24 @@ public class LMSFacade {
      * @param commentIndex The index of the comment that's going to be loaded
      * @param mode Where the comment is located (1 for course, 2 for module, 3 for a comment within a comment)
      */
-    public void setComment(int commentIndex, int mode) {
+    public int setComment(int commentIndex, int mode) {
         if (commentIndex == -1) {
             comment = null;
-            return;
+            return 0;
         }
 
         switch (mode) {
             case 1:
                 comment = course.getCourseComments().get(commentIndex);
-                return;
+                return 0;
             case 2:
                 comment = module.getComments().get(commentIndex);
-                return;
+                return 0;
             case 3:
                 comment = comment.getComments().get(commentIndex);
-                return;
+                return 0;
             default:
-                return;
+                return 1;
         }
     }
 
@@ -465,9 +467,8 @@ public class LMSFacade {
     }
 
     /**
-     * TODO this
-     * @param index
-     * @return
+     * @param index 
+     * @return remove comment
      */
     public int removeComment(int index) {
         return 0;
@@ -483,8 +484,8 @@ public class LMSFacade {
     }
 
     /**
-     * Updates the description of the current course
-     * @param newDescription The new description of the course
+     * Updates the description of the current courses
+     * @param newDescription The new description of the courses
      */
     public void updateCourseDescription(String newDescription) {
         course.updateDescription(newDescription);
@@ -552,37 +553,78 @@ public class LMSFacade {
     }
 
     /**
+     * Returns a string of the current module's name
+     * @return A string of the current module's name
+     */
+    public String getModuleName() {
+        return module.getModuleName();
+    }
+
+    /**
      * Returns an array of all the lesson names for the current module
-     * @return A string array of lesson names
+     * @return A string array of lesson names 
      */
     public String[] getLessonNames() {
         return module.getLessonNames();
     }
 
+   /**
+    * Returns an array of all the lesson content for modules 
+    * @return A string of lesson content
+    */
     public String getLessonContent() {
         return lesson.getContent();
     }
 
+    public String getLessonFiles() {
+        return lesson.getLessonFiles();
+    }
+
+   /**
+    * Returns an array of Question names for each current module 
+    * @return A string of question names 
+    */
     public String[] getQuestionNames() {
         return quiz.getQuestionNames();
     }
 
+   /**
+    * Returns an array of each answer names of each current module 
+    * @return A string of each answer names 
+    */
     public String[] getAnswerNames() {
         return question.getAnswerNames();
     }
 
+    /**
+     *  Returns an array of each current question name
+     * @return A string of each question 
+     */
     public String getCurrentQuestionName() {
         return question.getQuestion();
     }
 
+    /**
+     * Returns an array of each current Username for module
+     * @return A string of usernames
+     */
     public String getUserName() {
         return user.getUserName();
     }
 
+    /**
+     * Returns an array description of full name 
+     * @return Returns a string of first and last name 
+     */
     public String getFullName() {
         return user.getFirstName() + " " + user.getLastName();
     }
 
+    /**
+     * Returns an arraylist to get each comment from course module 
+     * @param mode Gives cases for each comment array
+     * @return Returns comments
+     */
     public String[] getCommentArray(int mode) {
         switch (mode) {
             case 1:
@@ -596,6 +638,19 @@ public class LMSFacade {
         }
     }
 
+    /**
+     * Returns grades from courses 
+     * @return String of grades
+     */
+    public String[] getGrades() {
+        return course.getGradeString(user.getUUID());
+    }
+
+    /**
+     * Returns if statment of each user choice
+     * @param userChoice Gives courselist of each userchoice
+     * @return Returns choices
+     */
     public int enroll(int userChoice) {
         if (!courseList.has(userChoice)) {
             return 1;
@@ -609,6 +664,11 @@ public class LMSFacade {
         return 0;
     }
 
+    /**
+     * Returns each answer in module  
+     * @param userAnswer Gives if statments of each answers and their return
+     * @return Returns each selected answer
+     */
     public int answer(int userAnswer) {
         if (!question.hasAnswers()) {
             return 1;

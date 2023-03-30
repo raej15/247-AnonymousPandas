@@ -1,10 +1,15 @@
+
+/*
+ * Written by Anonmyous Pandas 
+ */
+
 import java.util.ArrayList;
 import java.util.UUID;
 
-/*
- * Written by Anonymous Pandas
+/**
+ * Comment object holds author and content info
+ * @author Anonymous Pandas
  */
-
 public class Comment {
     private String comment;
     public UUID commenter;
@@ -30,7 +35,6 @@ public class Comment {
         commenter = null;
         comments = new ArrayList<Comment>();
     }
-    
     
     /** 
      * @param comment object Comment that gets added to the list of comments
@@ -67,7 +71,10 @@ public class Comment {
         return comments;
     }
 
-    
+    /**
+     * Arraylist to get each comment
+     * @return Returns comments 
+     */
     public String[] getCommentArray() {
         String[] commentArray = new String[50];
 

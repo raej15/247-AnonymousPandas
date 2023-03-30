@@ -1,5 +1,6 @@
+
 /*
- * Written by Anonymous Pandas
+ * Written by Anonmyous Pandas 
  */
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.io.IOException;
 
 /**
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for
+ * @author Anonymous Pandas 
  */ 
 public class Course extends DataConstants{
     private ArrayList<Module> modules;
@@ -157,6 +159,10 @@ public class Course extends DataConstants{
         return courseComments;
     }
 
+    /**
+     * An arraylist of comments 
+     * @return Returns each comment 
+     */
     public String[] getCommentArray() {
         String[] commentArray = new String[50];
 
@@ -173,6 +179,22 @@ public class Course extends DataConstants{
      */
     public HashMap<UUID, ArrayList<Double>> getGrades(){
         return grades;
+    }
+
+    /**
+     * Array list of users grades 
+     * @param user Gives user grades 
+     * @return Returns a string of each grade 
+     */
+    public String[] getGradeString(UUID user) {
+        String[] gradeArray = new String[50];
+        ArrayList<Double> gradeList = grades.get(user);
+
+        for (int i = 0; gradeList.size() > i; i++) {
+            gradeArray[i] = gradeList.get(i).toString();
+        }
+
+        return gradeArray;
     }
 
     /**
@@ -210,7 +232,7 @@ public class Course extends DataConstants{
      * @param commentor The author of the comment
      */
     public void addComment(String commentContent, UUID commentor) {
-        courseComments.add(new Comment(commentor, commentContent, null));
+        courseComments.add(new Comment(commentor, commentContent, new ArrayList<Comment>()));
         return;
     }
 
@@ -266,6 +288,7 @@ public class Course extends DataConstants{
     public void setGrades(HashMap<UUID, ArrayList<Double>> grades){
         this.grades = grades;
     }
+
     /**
      * method that sets the certification for this course
      * @param cert FinalCertification that is getting set to this course
@@ -287,6 +310,9 @@ public class Course extends DataConstants{
         return finalStr;
     }
 
+    /**
+     * Printing each users grades 
+     */
     public void printUserGrades() {
 
         String finalStr = "Your Grades:";
@@ -335,7 +361,7 @@ public class Course extends DataConstants{
     }
 
     /**
-     * method that prints out the students in this course
+     * method that prints out the students in each course
      */
     public void printStudents(){
         for (UUID student:students){
@@ -344,8 +370,6 @@ public class Course extends DataConstants{
     }
     
    
-    
-
     /**
      * method that tells the user if they have passed the certification exam 
      * @param grade grade of the quiz the user took
@@ -416,6 +440,11 @@ public class Course extends DataConstants{
     }
 
 
+    /**
+     * Returns module index 
+     * @param index
+     * @return module 
+     */
     public boolean hasModuleAt(int index) {
         return (modules.size() > index && index > -1);
     }

@@ -1,3 +1,4 @@
+
 /*
  * Written by Anonmyous Pandas 
  */
@@ -5,6 +6,10 @@
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Creates and manipulates list of courses from jsons
+ * @author Anonymous Pandas
+ */
 public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
     private static CourseList courseList = new CourseList();
@@ -22,7 +27,8 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param courses
+     * @param courses 
+     * setcourselist 
      */
     public static void setCourseList(ArrayList <Course> courses){
         CourseList.courses = courses;
@@ -30,7 +36,7 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param courseName
+     * @param courseName 
      * @return Course
      */
     public Course getCourse(String courseName){
@@ -101,6 +107,9 @@ public class CourseList extends DataConstants{
         return courseNames;
     }
 
+    /**
+     * Returns a printed list of each courses 
+     */
     public void printCourses(){
         for (Course course: courses) {
             System.out.println("------------------------------------------------------------------------");
@@ -111,7 +120,8 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @return ArrayList<Course>
+     * Returns an array list of courses 
+     * @return ArrayList<Course> of all courses 
      */
     public ArrayList<Course> getCourses() {
         return courses;
@@ -119,12 +129,18 @@ public class CourseList extends DataConstants{
 
     
     /** 
-     * @param newCourse
+     * Returns each courses added 
+     * @param newCourse 
+     * add newcourse 
      */
     public void addCourse(Course newCourse) {
         courses.add(newCourse);
     }
 
+    /**
+     * Returns each students courses 
+     * Prints students 
+     */
     public void printStudents(){
         for (Course course: courses){
             System.out.println(course.getCourseName());
@@ -133,7 +149,11 @@ public class CourseList extends DataConstants{
     }
 
 
-    // loops through courseList and returns a list of courses that the student is enrolled in
+    /**
+     * Loops through each courselist 
+     * @param userID 
+     * @return returns a list of courses that student is currently enrolled in 
+     */
     public String[] printEnrolledCourses(UUID userID){
         String[] enrolledCoursesList = new String[10];
         int numOfCoursesEnrolled = 0;

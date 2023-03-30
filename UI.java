@@ -4,6 +4,9 @@
 
 import java.util.Scanner;
 
+/**
+ * UI class 
+ */
 public class UI {
     private static boolean coursePrint = false;
     private static boolean modulePrint = false;
@@ -17,8 +20,8 @@ public class UI {
      * Clears the terminal
      */
     private static void clearTerminal() {
-        //System.out.println("\033[H\033[2J");
-        //System.out.flush();
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
     }
 
     /**
@@ -55,7 +58,7 @@ public class UI {
     }
 
     /**
-     * Im using this for testing purposes
+     * testing purposes! 
      */
     private static void addCourses() {
         if (check == true) {
@@ -72,7 +75,7 @@ public class UI {
     }
 
     /**
-     * Saves data to the JSON files
+     * Saves all data to the JSON files
      */
     private static void saveData() {
         DataWriter.saveUsers();
@@ -80,7 +83,8 @@ public class UI {
     }
 
     /**
-     * Lets the user login
+     * Lets the user login (gives description to enter username and password)
+     * Lets the user known if the user does not exist 
      */
     private static void login() {
         clearTerminal();
@@ -118,6 +122,11 @@ public class UI {
 
     /**
      * Registers a new user
+     * Inputs username
+     * Inputs password
+     * Inputs email
+     * Inputs first and last name
+     * Chooses the option of being a student or a course creator 
      */
     private static void register() {
         boolean check = true;
@@ -177,6 +186,7 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean studentHome() {
+        System.out.println("Welcome "+facade.getUserName()+"!");
         consoleBarrier();
 
         System.out.println("1. Enter an enrolled course\n2. Enroll in a new course\n3. Logout");
@@ -230,6 +240,7 @@ public class UI {
 
     /**
      * Enrolls a student into a new course
+     * Lets the user know if they are already enrolled within the course 
      */
     private static void enroll() {
         System.out.println("Which course would you like to enroll in?");
@@ -254,7 +265,9 @@ public class UI {
     }
 
     /**
-     * Adds a new course
+     * Adds a new course 
+     * Able to add description of each course
+     * Able to choose language of the course: options java or python 
      */
      private static void courseAdd() {
         System.out.println("What would you like the new course to be called?");
@@ -286,6 +299,10 @@ public class UI {
         }
     }
 
+    /**
+     * Gives user / course creator the option to enroll in course 
+     * Checks which course they are already enrolled in 
+     */
     private static void enrolledCourseLoader() {
         clearTerminal();
         System.out.println("Which course do you want to enter?");
@@ -378,13 +395,45 @@ public class UI {
     }
 
     /**
+     * Returns grade and gives option to go back to previous page for user 
+     */
+    public static void showGrades() {
+        System.out.println("Here are your grades");
+        consoleBarrier();
+        System.out.println("0. Go back\n");
+
+        String[] grades = facade.getGrades();
+
+
+        for (int i = 0; grades[i] != null; i++) {
+            if(!grades[i].contains("-1")) {
+            System.out.println(grades[i]);
+            }
+        }
+
+        int userInputINT = intCheck();
+
+        while (true) {
+            switch (userInputINT) {
+                case 0:
+                    return;
+                default:
+                    clearTerminal();
+                    System.out.println("Please enter in 0 to go back");
+                    break;
+            }
+
+            userInputINT = intCheck();
+        }
+    }
+    /**
      * Shows the user what options they have for the current course
      */
     private static void studentCourseOptions() {
         System.out.println(facade.getCourse().getCourseName());
         consoleBarrier();
 
-        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Show Grades\n5. Go back");
+        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Show Grades\n5. Show the comment section\n6. Go back");
         int userInputINT = intCheck();
 
         switch(userInputINT) {
@@ -398,9 +447,14 @@ public class UI {
                 facade.getCourse().getCertificationFile();
                 return;
             case 4:
-                facade.getCourse().printUserGrades();
+                clearTerminal();
+                showGrades();
                 return;
             case 5:
+                clearTerminal();
+                loadComment();
+                return;
+            case 6:
                 facade.setCourse(-1);
                 return;
             default:
@@ -518,7 +572,9 @@ public class UI {
     }
 
     /**
-     * 
+     * Gives user options for quiz
+     * Able to answer questions, sumbit the test, and exit 
+     * gives cases to clear and enter 
      */
     private static void studentQuizOptions() {
         System.out.println("Quiz");
@@ -594,10 +650,10 @@ public class UI {
      * Shows the options that the student has for the current module
      */
     private static void studentModuleOptions() {
-        //System.out.println(facade.getModule().getModuleName());
+        System.out.println(facade.getModuleName());
         consoleBarrier();
 
-        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Go back");
+        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Print Module Lessons\n5. Go back");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
@@ -611,7 +667,10 @@ public class UI {
                 clearTerminal();
                 loadComment();
                 return;
+
             case 4:
+                facade.getModule().getModuleFiles();
+            case 5:
                 facade.setModule(-1);
                 return;
             default:
@@ -624,7 +683,7 @@ public class UI {
      * Shows the options that the course creator has for the current module
      */
     private static void courseCreatorModuleOptions() {
-        //System.out.println(facade.getModule().getModuleName());
+        System.out.println(facade.getModuleName());
         consoleBarrier();
 
         System.out.println("1. Pick Lesson\n2. Edit the Quiz\n3. Edit the module's name\n4. Edit the module's description\n5. Add a lesson\n6. Remove a lesson\n7. Go back");
@@ -690,26 +749,74 @@ public class UI {
         }
     }
 
+    /**
+     *  Returns the printed comments from the facade 
+     * @param mode Prints comments and returns 
+     */
     private static void printComments(int mode) {
         String[] comments = facade.getCommentArray(mode);
 
         for (int i = 0; comments[i] != null; i++) {
-            System.out.println(i + 1 + ". " + comments[i]);
+            System.out.println(i + 2 + ". " + comments[i]);
         }
 
         return;
     }
 
+    /**
+     * Returns description for user comments 
+     * @param userInputINT select comments 
+     * @param mode 
+     */
+    private static void selectComment(int userInputINT, int mode) {
+        switch (facade.setComment(userInputINT - 2, mode)) {
+            case 0:
+                return;
+            case 1:
+                notification = "That is not a valid option";
+                return;
+            default:
+                return;
+        }
+    }
+
+    /**
+     * Returns the loaded comments 
+     * Prints each comment in module 
+     */
     private static void loadComment() {
+        System.out.println("Which comment do you want to access");
+        consoleBarrier();
+        System.out.println("0. Go back\n1. Leave a comment");
+
+        int mode = 0;
+
         if (facade.hasComment()) {
-            printComments(3);
+            mode = 3;
+            printComments(mode);
         } else if (facade.hasModule()) {
-            printComments(2);
+            mode = 2;
+            printComments(mode);
         } else {
-            printComments(1);
+            mode = 1;
+            printComments(mode);
         }
 
-        return;
+        int userInputINT = intCheck();
+
+        switch (userInputINT) {
+            case 0:
+                facade.setComment(-1, mode);
+                return;
+            case 1:
+                clearTerminal();
+                System.out.println("Write down your comment");
+                facade.addComment(input.nextLine(), mode);
+                return;
+            default:
+                selectComment(userInputINT, mode);
+                return;
+        }
     }
 
     /**
@@ -778,6 +885,11 @@ public class UI {
             return studentHome();
         }
 
+        if (facade.hasComment()) {
+            loadComment();
+            return true;
+        }
+
         if (facade.hasQuestion()) {
             studentQuestionOptions();
             return true;
@@ -811,7 +923,7 @@ public class UI {
         int userInputINT = 0;
 
         while (true) {
-           // System.out.println(facade.getLessonContent());
+            System.out.println(facade.getLessonContent());
             consoleBarrier();
             System.out.println("1. Go back\n2. Print lesson to txt file");
 
@@ -822,7 +934,7 @@ public class UI {
                     facade.setLesson(-1);
                     return true;
                 case 2:
-                    facade.getLesson().getLessonFiles();
+                    notification = facade.getLessonFiles();
                     return true;
                 default:
                     clearTerminal();
@@ -904,7 +1016,10 @@ public class UI {
      */
     private static boolean loadUI() {
         if (!facade.hasUser()) {
-            System.out.println("Welcome, would you like to register or login?\n1. Login\n2. Register\n3. Exit");
+            System.out.println("Welcome, would you like to register or login?");
+            consoleBarrier();
+            System.out.println("1. Login\n2. Register\n3. Exit");
+            
             int userInputINT = intCheck();
 
             switch (userInputINT) {
@@ -933,6 +1048,10 @@ public class UI {
         }
     }
 
+    /**
+     * main method to run the UI 
+     * @param args
+     */
     public static void main(String[] args) {
         input = new Scanner(System.in);
         loadData();
@@ -941,7 +1060,8 @@ public class UI {
         clearTerminal();
 
         while (loadUI()) {
-            //clearTerminal();
+            clearTerminal();
+            clearTerminal();
             
             if (notification != null) {
                 System.out.println(notification);

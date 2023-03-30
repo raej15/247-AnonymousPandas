@@ -22,6 +22,12 @@ public class Question extends DataConstants{
         correctIndex = -1;
     }
 
+    /**
+     * Returns Question answers / index 
+     * @param question string 
+     * @param answers arraylist 
+     * @param correctIndex 
+     */
     Question(String question, ArrayList<String> answers, int correctIndex) {
         this.question = question;
         this.answers = answers;
@@ -74,6 +80,10 @@ public class Question extends DataConstants{
         return answerNames;
     }
 
+    /**
+     * Returns an array list of answers 
+     * @return Question answers 
+     */
     public ArrayList<String> getAnswers() {
         return answers;
     }
@@ -98,17 +108,27 @@ public class Question extends DataConstants{
         System.out.println("That answer could not be found");
     }
 
+    /**
+     * Returns each answer 
+     * @return Answers 
+     */
     public boolean hasAnswers() {
         return !answers.isEmpty();
     }
 
+    /**
+     * Returns answers index 
+     * @param index of each answer
+     * @return size 
+     */
     public boolean hasAnswerAt(int index) {
         return (answers.size() > index && index > -1);
     }
 
     
     /** 
-     * @return String
+     * Returns quizes and questions
+     * @return String of toString of each question 
      */
     public String toString(){
         String finalStr = GREEN+BOLD+"Question: "+RESET+GREEN+ question+RESET;

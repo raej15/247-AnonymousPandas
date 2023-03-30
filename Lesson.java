@@ -72,7 +72,7 @@ public class Lesson extends DataConstants{
     /**
      * method that writes lesson files to a text file
      */
-    public void getLessonFiles() {
+    public String getLessonFiles() {
         
         String user = UI.getFacade().getUser().getFirstName();
         String module = UI.getFacade().getModule().getModuleName();
@@ -82,10 +82,10 @@ public class Lesson extends DataConstants{
             FileWriter myWriter = new FileWriter(fileName);
             myWriter.write(bwToString());
             myWriter.close();
-            System.out.println("Successfully wrote to file.");
+            return ("Successfully wrote to file.");
           } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            return ("An error occurred.");
+            //e.printStackTrace();
           }
     }
 

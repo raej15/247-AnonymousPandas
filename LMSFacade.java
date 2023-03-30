@@ -2,8 +2,11 @@
  * Written by Anonmyous Pandas 
  */
 
-import java.util.ArrayList;
-
+ import java.util.ArrayList;
+ 
+ /**
+  * Facade 
+  */
 public class LMSFacade {
     private CourseList courseList;
     private UserList userList;
@@ -643,6 +646,10 @@ public class LMSFacade {
         }
     }
 
+    /**
+     * Returns grades from courses 
+     * @return String of grades
+     */
     public String[] getGrades() {
         return course.getGradeString(user.getUUID());
     }

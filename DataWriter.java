@@ -1,3 +1,8 @@
+
+/*
+ * Written by Anonmyous Pandas 
+ */
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +17,6 @@ public class DataWriter extends DataConstants {
     /**
      * method that calls getUsersJson for every user in our userList
      */
-
     public static void saveUsers(){
         System.out.println("Writing users...");
         UserList users = UserList.getInstance();
@@ -297,7 +301,5 @@ public class DataWriter extends DataConstants {
         
         return courseJSON;
     }
-
-
-
+    
 }

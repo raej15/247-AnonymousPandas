@@ -313,24 +313,24 @@ public class LMSFacade {
      * @param commentIndex The index of the comment that's going to be loaded
      * @param mode Where the comment is located (1 for course, 2 for module, 3 for a comment within a comment)
      */
-    public void setComment(int commentIndex, int mode) {
+    public int setComment(int commentIndex, int mode) {
         if (commentIndex == -1) {
             comment = null;
-            return;
+            return 0;
         }
 
         switch (mode) {
             case 1:
                 comment = course.getCourseComments().get(commentIndex);
-                return;
+                return 0;
             case 2:
                 comment = module.getComments().get(commentIndex);
-                return;
+                return 0;
             case 3:
                 comment = comment.getComments().get(commentIndex);
-                return;
+                return 0;
             default:
-                return;
+                return 1;
         }
     }
 
@@ -552,6 +552,14 @@ public class LMSFacade {
     }
 
     /**
+     * Returns a string of the current module's name
+     * @return A string of the current module's name
+     */
+    public String getModuleName() {
+        return module.getModuleName();
+    }
+
+    /**
      * Returns an array of all the lesson names for the current module
      * @return A string array of lesson names
      */
@@ -561,6 +569,10 @@ public class LMSFacade {
 
     public String getLessonContent() {
         return lesson.getContent();
+    }
+
+    public String getLessonFiles() {
+        return lesson.getLessonFiles();
     }
 
     public String[] getQuestionNames() {

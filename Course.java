@@ -179,7 +179,7 @@ public class Course extends DataConstants{
         String[] gradeArray = new String[50];
         ArrayList<Double> gradeList = grades.get(user);
 
-        for (int i = 0; courseComments.size() > i; i++) {
+        for (int i = 0; gradeList.size() > i; i++) {
             gradeArray[i] = gradeList.get(i).toString();
         }
 

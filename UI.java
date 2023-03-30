@@ -177,6 +177,7 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean studentHome() {
+        System.out.println("Welcome "+facade.getUserName()+"!");
         consoleBarrier();
 
         System.out.println("1. Enter an enrolled course\n2. Enroll in a new course\n3. Logout");
@@ -384,19 +385,9 @@ public class UI {
 
         String[] grades = facade.getGrades();
 
-        if (grades == null) {
-            System.out.println("You have not gotten any grades yet");
-
-            int userInputINT = intCheck();
-            
-            switch (userInputINT) {
-                default:
-                    return;
-            }
-        }
 
         for (int i = 0; grades[i] != null; i++) {
-            System.out.println(i + 1 + "" + grades[i]);
+            System.out.println(i + 1 + ". " + grades[i]);
         }
 
         int userInputINT = intCheck();
@@ -406,6 +397,7 @@ public class UI {
                 case 0:
                     return;
                 default:
+                    clearTerminal();
                     System.out.println("Please enter in 0 to go back");
                     break;
             }
@@ -420,7 +412,7 @@ public class UI {
         System.out.println(facade.getCourse().getCourseName());
         consoleBarrier();
 
-        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Show Grades\n5. Go back");
+        System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Show Grades\n5. Show the comment section\n6. Go back");
         int userInputINT = intCheck();
 
         switch(userInputINT) {
@@ -438,6 +430,10 @@ public class UI {
                 showGrades();
                 return;
             case 5:
+                clearTerminal();
+                loadComment();
+                return;
+            case 6:
                 facade.setCourse(-1);
                 return;
             default:
@@ -631,7 +627,7 @@ public class UI {
      * Shows the options that the student has for the current module
      */
     private static void studentModuleOptions() {
-        //System.out.println(facade.getModule().getModuleName());
+        System.out.println(facade.getModuleName());
         consoleBarrier();
 
         System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Go back");
@@ -661,7 +657,7 @@ public class UI {
      * Shows the options that the course creator has for the current module
      */
     private static void courseCreatorModuleOptions() {
-        //System.out.println(facade.getModule().getModuleName());
+        System.out.println(facade.getModuleName());
         consoleBarrier();
 
         System.out.println("1. Pick Lesson\n2. Edit the Quiz\n3. Edit the module's name\n4. Edit the module's description\n5. Add a lesson\n6. Remove a lesson\n7. Go back");
@@ -731,22 +727,56 @@ public class UI {
         String[] comments = facade.getCommentArray(mode);
 
         for (int i = 0; comments[i] != null; i++) {
-            System.out.println(i + 1 + ". " + comments[i]);
+            System.out.println(i + 2 + ". " + comments[i]);
         }
 
         return;
     }
 
+    private static void selectComment(int userInputINT, int mode) {
+        switch (facade.setComment(userInputINT - 2, mode)) {
+            case 0:
+                return;
+            case 1:
+                notification = "That is not a valid option";
+                return;
+            default:
+                return;
+        }
+    }
+
     private static void loadComment() {
+        System.out.println("Which comment do you want to access");
+        consoleBarrier();
+        System.out.println("0. Go back\n1. Leave a comment");
+
+        int mode = 0;
+
         if (facade.hasComment()) {
-            printComments(3);
+            mode = 3;
+            printComments(mode);
         } else if (facade.hasModule()) {
-            printComments(2);
+            mode = 2;
+            printComments(mode);
         } else {
-            printComments(1);
+            mode = 1;
+            printComments(mode);
         }
 
-        return;
+        int userInputINT = intCheck();
+
+        switch (userInputINT) {
+            case 0:
+                return;
+            case 1:
+                clearTerminal();
+                System.out.println("Write down your comment");
+                facade.addComment(input.nextLine(), mode);
+                return;
+            default:
+                selectComment(userInputINT, mode);
+                return;
+        }
     }
 
     /**
@@ -815,6 +845,11 @@ public class UI {
             return studentHome();
         }
 
+        if (facade.hasComment()) {
+            loadComment();
+            return true;
+        }
+
         if (facade.hasQuestion()) {
             studentQuestionOptions();
             return true;
@@ -848,7 +883,7 @@ public class UI {
         int userInputINT = 0;
 
         while (true) {
-           // System.out.println(facade.getLessonContent());
+            System.out.println(facade.getLessonContent());
             consoleBarrier();
             System.out.println("1. Go back\n2. Print lesson to txt file");
 
@@ -859,7 +894,7 @@ public class UI {
                     facade.setLesson(-1);
                     return true;
                 case 2:
-                    facade.getLesson().getLessonFiles();
+                    notification = facade.getLessonFiles();
                     return true;
                 default:
                     clearTerminal();
@@ -941,7 +976,10 @@ public class UI {
      */
     private static boolean loadUI() {
         if (!facade.hasUser()) {
-            System.out.println("Welcome, would you like to register or login?\n1. Login\n2. Register\n3. Exit");
+            System.out.println("Welcome, would you like to register or login?");
+            consoleBarrier();
+            System.out.println("1. Login\n2. Register\n3. Exit");
+            
             int userInputINT = intCheck();
 
             switch (userInputINT) {

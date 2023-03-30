@@ -6,7 +6,6 @@
 import java.util.ArrayList;
 import java.util.UUID;
 
-
 /**
  * Comment object holds author and content info
  * @author Anonymous Pandas
@@ -36,7 +35,6 @@ public class Comment {
         commenter = null;
         comments = new ArrayList<Comment>();
     }
-    
     
     /** 
      * @param comment object Comment that gets added to the list of comments

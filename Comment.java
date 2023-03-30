@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.UUID;
 
-/*
- * Written by Anonymous Pandas
- */
 
+/**
+ * Comment object holds author and content info
+ * @author Anonymous Pandas
+ */
 public class Comment {
     private String comment;
     public UUID commenter;

@@ -1,7 +1,3 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +6,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * loads in content from json files
+ * @author Anonymous Pandas
+ */
 public class DataLoader extends DataConstants{
     
     /**

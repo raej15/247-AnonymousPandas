@@ -1,7 +1,3 @@
-/*
- * Written by Anonymous Pandas
- */
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -11,6 +7,7 @@ import java.io.IOException;
 
 /**
  * A course, which contains an ArrayList of modules, a name, a description, what language it's for
+ * @author Anonymous Pandas 
  */ 
 public class Course extends DataConstants{
     private ArrayList<Module> modules;

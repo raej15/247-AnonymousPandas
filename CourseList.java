@@ -1,10 +1,10 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Creates and manipulates list of courses from jsons
+ * @author Anonymous Pandas
+ */
 public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
     private static CourseList courseList = new CourseList();

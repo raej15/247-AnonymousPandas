@@ -4,6 +4,9 @@
 
  import java.util.UUID;
 
+ /**
+  * A parent class for all user info
+  */
  public class User {
     protected String username;
     protected String password;

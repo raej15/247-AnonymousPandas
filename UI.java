@@ -1,11 +1,8 @@
-/*
- * Written by Anonymous Pandas
- */
-
 import java.util.Scanner;
 
 /**
  * UI class 
+ * @author Anonymous Pandas
  */
 public class UI {
     private static boolean coursePrint = false;

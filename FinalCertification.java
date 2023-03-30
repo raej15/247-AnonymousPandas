@@ -1,8 +1,8 @@
 
-/*
- * Written by Anonmyous Pandas 
+/**
+ * Final certification holds the official certificate for the users
+ * @author Anonymous Pandas
  */
-
  public class FinalCertification{
 
     private Quiz quiz;

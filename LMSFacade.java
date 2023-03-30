@@ -1,11 +1,8 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
  import java.util.ArrayList;
  
  /**
-  * Facade 
+  * Facade
+  * @author Anonymous Pandas
   */
 public class LMSFacade {
     private CourseList courseList;

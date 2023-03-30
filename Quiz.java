@@ -3,6 +3,7 @@
  */
 
 import java.util.ArrayList;
+
 /**
  * A quiz which consists of a title and an ArrayList of questions
  */
@@ -11,14 +12,14 @@ public class Quiz extends DataConstants{
    private ArrayList<Question> questions;
 
    /**
-    * Creates a new quiz
+    * Creates a new quiz for user 
     */
    Quiz() {
       questions = new ArrayList<Question>();
    }
 
    /**
-    * 
+    *  Returns an array list of questions 
     * @param questions
     */
    public Quiz(ArrayList<Question> questions ) {
@@ -26,8 +27,8 @@ public class Quiz extends DataConstants{
    }
 
    /**
-    * 
-    * @return
+    * Returns an array List of questions
+    * @return quiz questions 
     */
    public ArrayList<Question> getQuestions(){
       return questions;
@@ -56,8 +57,8 @@ public class Quiz extends DataConstants{
    }
 
    /**
-    * 
-    * @return
+    * Returns questions 
+    * @return Question names 
     */
    public String[] getQuestionNames() {
       String[] questionNames = new String[50];
@@ -70,8 +71,8 @@ public class Quiz extends DataConstants{
    }
 
    /**
-    * 
-    * @return
+    * Returns index 
+    * @return index 
     */
    public int getLastIndex() {
       return questions.size() - 1;
@@ -98,7 +99,7 @@ public class Quiz extends DataConstants{
    }
 
    /**
-    * 
+    * Prints each question 
     */
    public void printQuestions() {
       for(int i = 0; questions.size() > i; i++) {
@@ -108,6 +109,7 @@ public class Quiz extends DataConstants{
 
      
    /** 
+    * Returns each question and answer 
     * @return String
     */
    public String toString(){

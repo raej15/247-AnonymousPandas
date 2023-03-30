@@ -3,13 +3,13 @@
  */
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class UI {
     private static boolean coursePrint = false;
     private static boolean modulePrint = false;
     private static boolean lessonPrint = false;
     private static boolean check = true;
+    private static String notification;
     private static LMSFacade facade;
     private static Scanner input;
 
@@ -83,25 +83,28 @@ public class UI {
      * Lets the user login
      */
     private static void login() {
+        clearTerminal();
         System.out.println("Please enter in your username");
         String userInput = input.nextLine();
         
         if (!facade.getUserList().has(userInput)) {
-            System.out.println("The user does not exist");
+            notification = ("The user does not exist");
             return;
         }
 
-        System.out.println("\nPlease enter in your password");
+        clearTerminal();
+        System.out.println("Please enter in your password");
         User user = facade.getUserList().getUser(userInput);
         String password = input.nextLine();
 
         if (!facade.getUserList().login(user, password)) {
-            System.out.println("The password is incorrect");
+            notification = ("The password is incorrect");
             return;
         }
 
+        clearTerminal();
         facade.setUser(user);
-        System.out.println("\nYou have logged in as "+ facade.getUser().getFirstName() + " " + facade.getUser().getLastName());
+        notification = ("You have logged in as "+ facade.getFullName());
         return;
     }
 
@@ -127,18 +130,23 @@ public class UI {
 
         System.out.println("Input the username you will use");
         username = input.nextLine();
-        
+        clearTerminal();
+
         System.out.println("Now enter in the password you want");
         password = input.nextLine();
+        clearTerminal();
 
         System.out.println("Now enter in your email address");
         email = input.nextLine();
+        clearTerminal();
 
         System.out.println("Now enter in your first name");
         firstName = input.nextLine();
+        clearTerminal();
 
         System.out.println("Now enter in your last name");
         lastName = input.nextLine();
+        clearTerminal();
 
         while (check) {
             System.out.println("Are you a student or a course creator?\n1. Student\n2. Course Creator");
@@ -152,11 +160,13 @@ public class UI {
                     check = false;
                     break;
                 default:
+                    clearTerminal();
                     System.out.println("Please enter in a valid input");
                     break;
             }
         }
 
+        clearTerminal();
         facade.register(firstName, lastName, email, username, password, type);
         login(username);
         return;
@@ -167,23 +177,26 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean studentHome() {
-        //System.out.println("You are logged in as "+facade.getUser().getUserName());
         consoleBarrier();
 
-        System.out.println("1. Enter a course\n2. Logout");
+        System.out.println("1. Enter an enrolled course\n2. Enroll in a new course\n3. Logout");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
             case 1:
-                coursePrint = true;
+                clearTerminal();
+                enrolledCourseLoader();
                 return true;
             case 2:
+                clearTerminal();
+                enroll();
+                return true;
+            case 3:
                 return false;
             default:
-                System.out.println("Please enter in a valid input");
+                notification = ("Please enter in a valid input");
                 return true;
         }
-
     }
 
     /**
@@ -191,7 +204,7 @@ public class UI {
      * @return True if the program should continue, false if not
      */
     private static boolean courseCreatorHome() {
-        System.out.println("You are logged in as "+facade.getUser().getUserName());
+        System.out.println("Welcome "+facade.getUserName()+"!");
         consoleBarrier();
 
         System.out.println("1. Edit a course\n2. Add a course\n3. Remove a course\n4. Logout");
@@ -210,8 +223,33 @@ public class UI {
             case 4:
                 return false;
             default:
-                System.out.println("Please enter in a valid input");
+                notification = ("Please enter in a valid input");
                 return true;
+        }
+    }
+
+    /**
+     * Enrolls a student into a new course
+     */
+    private static void enroll() {
+        System.out.println("Which course would you like to enroll in?");
+        consoleBarrier();
+        coursePrinter();
+
+        int userInputINT = intCheck();
+        
+        switch (facade.enroll(userInputINT - 1)) {
+            case 0:
+                notification = ("You have now enrolled in that course");
+                return;
+            case 1:
+                notification = ("That is not a valid input");
+                return;
+            case 2:
+                notification = ("You can't enroll in a course you're already in");
+                return;
+            default:
+                return;
         }
     }
 
@@ -221,12 +259,15 @@ public class UI {
      private static void courseAdd() {
         System.out.println("What would you like the new course to be called?");
         String courseName = input.nextLine();
+        clearTerminal();
 
         System.out.println("Now what would you like its description to be?");
         String courseDescription = input.nextLine();
+        clearTerminal();
 
         System.out.println("Now what language is it for?\n1. JavaScript\n2. Python");
         int userInputINT = intCheck();
+        clearTerminal();
 
         while (true) {
             switch (userInputINT) {
@@ -237,11 +278,37 @@ public class UI {
                     facade.addCourse(courseName, courseDescription, Language.Python);
                     return;
                 default:
-                    System.out.println("Please input a valid option");
+                    notification = ("Please input a valid option");
                     break;
             }
 
             userInputINT = intCheck();
+        }
+    }
+
+    private static void enrolledCourseLoader() {
+        clearTerminal();
+        System.out.println("Which course do you want to enter?");
+        consoleBarrier();
+
+        String[] courseNames = facade.getEnrolledCourses();
+
+        for (int i = 0; courseNames[i] != null; i++) {
+            System.out.println(courseNames[i]);
+        }
+
+        int userInputINT = intCheck();
+        switch (facade.setEnrolledCourse(courseNames, userInputINT - 1)) {
+            case 0:
+                return;
+            case 1:
+                notification = ("The course you entered in does not exist");
+                return;
+            case 2:
+                notification = ("You are not enrolled in course #"+userInputINT);
+                return;
+            default:
+                return;
         }
     }
 
@@ -273,16 +340,16 @@ public class UI {
 
             switch(facade.removeCourse(userInputINT)) {
                 case 0:
-                    System.out.println("The course has been deleted");
+                    notification = ("The course has been deleted");
                     return;
                 case 1:
-                    System.out.println("That course does not exist");
+                    notification = ("That course does not exist");
                     return;
                 case 2:
-                    System.out.println("You can't delete courses that you didn't make");
+                    notification = ("You can't delete courses that you didn't make");
                     return;
                 default:
-                    System.out.println("Please input a valid option");
+                    notification = ("Please input a valid option");
                     return;
             }
         }
@@ -297,9 +364,17 @@ public class UI {
         coursePrinter();
 
         int userInputINT = intCheck();
-        facade.setCourse(userInputINT);
-        coursePrint = false;
-        return;
+        
+        switch (facade.setCourse(userInputINT - 1)) {
+            case 0:
+                coursePrint = false;
+                return;
+            case 1:
+                notification = ("That input is invalid");
+                return;
+            default:
+                return;
+        }
     }
 
     /**
@@ -309,12 +384,6 @@ public class UI {
         System.out.println(facade.getCourse().getCourseName());
         consoleBarrier();
 
-        /*
-         *  facade.getCourseList().printEnrolledCourses(); //NEW changed to only print enrolled courses
-            Student user = (Student) UI.getFacade().getUser();
-            // New - enroll into a new course
-            user.enrollCourse();
-         */
         System.out.println("1. Pick a module\n2. Take the certificate exam\n3. Print final certificate\n4. Show Grades\n5. Go back");
         int userInputINT = intCheck();
 
@@ -327,13 +396,15 @@ public class UI {
                 return;
             case 3:
                 facade.getCourse().getCertificationFile();
+                return;
             case 4:
                 facade.getCourse().printUserGrades();
+                return;
             case 5:
                 facade.setCourse(-1);
                 return;
             default:
-                System.out.println("Please input a valid option");
+                notification = ("Please input a valid option");
                 return;
         }
     }
@@ -351,24 +422,27 @@ public class UI {
         switch (userInputINT) {
             case 1:
                 modulePrint = true;
-                //add printing current lesson here
                 return;
             case 2:
                 facade.setQuiz(1);
                 return;
             case 3:
+                clearTerminal();
                 System.out.println("What would you like the new course name to be?");
-                facade.getCourse().updateCourseName(input.nextLine());
+                facade.updateCourseName(input.nextLine());
                 return;
             case 4:
+                clearTerminal();
                 System.out.println("What would you like the new course description to be?");
-                facade.getCourse().updateDescription(input.nextLine());
+                facade.updateCourseDescription(input.nextLine());
                 return;
             case 5:
+                clearTerminal();
                 System.out.println("What would you like the new module to be called?");
                 facade.addModule(input.nextLine());
                 return;
             case 6:
+                clearTerminal();
                 System.out.println("Which module would you like to remove?");
                 printModules();
 
@@ -379,7 +453,7 @@ public class UI {
                 facade.setCourse(-1);
                 return;
             default:
-                System.out.println("Please input a valid option");
+                notification = ("Please input a valid option");
                 return;
         }
 
@@ -392,19 +466,19 @@ public class UI {
     private static void removeModule(int moduleIndex) {
         switch (facade.removeModule(moduleIndex - 1)) {
             case 0:
-                System.out.println("Module removed");
+                notification = ("Module removed");
                 return;
             case 1:
-                System.out.println("There are no modules to remove");
+                notification = ("There are no modules to remove");
                 return;
             case 2:
-                System.out.println("Please input a valid response");
+                notification = ("Please input a valid response");
                 return;
             case 3:
-                System.out.println("You can't remove modules that you didn't make");
+                notification = ("You can't remove modules that you didn't make");
                 return;
             default:
-                System.out.println("An unexpected error has occured");
+                notification = ("An unexpected error has occured");
                 return;
         }
     }
@@ -450,19 +524,23 @@ public class UI {
         System.out.println("Quiz");
         consoleBarrier();
 
-        System.out.println("1. Answer a question\n2. Submit the exam\n3. Exit the Quiz");
+        System.out.println("1. Answer a question\n2. Submit the test\n3. Exit the Quiz");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
             case 1:
+                clearTerminal();
                 questionLoader();
                 return;
             case 2:
+                clearTerminal();
+                notification = facade.setGrade();
                 return;
             case 3:
+                facade.setQuiz(-1);
                 return;
             default:
-                System.out.println("Please input a valid option");
+                notification = ("Please input a valid option");
                 return;
         }
     }
@@ -496,11 +574,19 @@ public class UI {
             return;
         }
 
-        switch (facade.answer(userInputINT)) {
+        switch (facade.answer(userInputINT - 1)) {
             case 0:
-
+                notification = ("Answer submitted");
+                facade.setQuestion(-1);
+                return;
             case 1:
-
+                notification = ("This question has no answers");
+                return;
+            case 2:
+                notification = ("That is not a valid input");
+                return;
+            default:
+                return;
         }
     }
 
@@ -511,7 +597,7 @@ public class UI {
         System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
-        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Leave a comment\n4. Go back");
+        System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Go back");
         int userInputINT = intCheck();
 
         switch (userInputINT) {
@@ -520,39 +606,16 @@ public class UI {
                 return;
             case 2:
                 facade.setQuiz(2);
-                int points = 0;
-                int total = 0;
-                double grade = 0;
-                ArrayList<Question> questions = UI.getFacade().getQuiz().getQuestions();
-                for (Question question: questions){
-                    total+=10;
-                    System.out.println(question.getQuestion());
-                    ArrayList<String> answerChoices = question.getAnswers();
-                    int counter = 1;
-                    for (String ac: answerChoices){
-                        System.out.println(counter+": "+ac);
-                        counter++;
-                    }
-                    int choice = input.nextInt();
-                    if (choice == question.getCorrectIndex()){
-                        System.out.println("correct");
-                        points+=10;
-
-                    }
-                }
-                grade = ((points*100)/total);
-                System.out.println("\nYour grade: " + grade);
-
-                facade.getCourse().setGrade(grade);
-                saveData();
-                studentCourseOptions();
                 return;
             case 3:
-                facade.setComment(1, 1);
+                clearTerminal();
+                loadComment();
+                return;
             case 4:
                 facade.setModule(-1);
+                return;
             default:
-                System.out.println("Please input a valid option");
+                notification = ("Please input a valid option");
                 return;
         }
     }
@@ -573,7 +636,6 @@ public class UI {
                 return;
             case 2:
                 facade.setQuiz(2);
-                facade.setQuiz(2);
                 System.out.println("Current questions:");
                 facade.getQuiz().printQuestions();
                 System.out.println("What would you like the new quiz question to be?");
@@ -588,20 +650,31 @@ public class UI {
                 System.out.println("What is the index of the correct answer?\nPlease pick from 1-3");
                 facade.getQuiz().getQuestion(facade.getQuiz().getLastIndex()).setCorrectIndex(Integer.parseInt(input.nextLine()));
                 saveData();
+                courseCreatorCourseOptions();
                 return;
             case 3:
+                clearTerminal();
+
                 System.out.println("What would you like the new module name to be?");
                 facade.updateModuleName(input.nextLine());
+                
                 return;
             case 4:
+                clearTerminal();
+
                 System.out.println("What would you like the new module description to be?");
                 facade.updateModuleDescription(input.nextLine());
+
                 return;
             case 5:
+                clearTerminal();
+
                 System.out.println("What would you like the new lesson to be called?");
                 facade.addLesson(input.nextLine());
+
                 return;
             case 6:
+                clearTerminal();
                 System.out.println("Which lesson would you like to remove?");
                 lessonPrinter();
 
@@ -612,9 +685,31 @@ public class UI {
                 facade.setModule(-1);
                 return;
             default:
-                System.out.println("Please input a valid option");
+                notification = "Please input a valid option";
                 return;
         }
+    }
+
+    private static void printComments(int mode) {
+        String[] comments = facade.getCommentArray(mode);
+
+        for (int i = 0; comments[i] != null; i++) {
+            System.out.println(i + 2 + comments[i]);
+        }
+
+        return;
+    }
+
+    private static void loadComment() {
+        if (facade.hasComment()) {
+            printComments(3);
+        } else if (facade.hasModule()) {
+            printComments(2);
+        } else {
+            printComments(1);
+        }
+
+        return;
     }
 
     /**
@@ -624,19 +719,19 @@ public class UI {
     private static void removeLesson(int lessonIndex) {
         switch (facade.removeLesson(lessonIndex - 1)) {
             case 0:
-                System.out.println("Lesson removed");
+                notification = ("Lesson removed");
                 return;
             case 1:
-                System.out.println("There are no lessons to remove");
+                notification = ("There are no lessons to remove");
                 return;
             case 2:
-                System.out.println("That lesson could not be found");
+                notification = ("That lesson could not be found");
                 return;
             case 3:
-                System.out.println("You can't delete lessons that you didn't make");
+                notification = ("You can't delete lessons that you didn't make");
                 return;
             default:
-                System.out.println("Please enter in a valid input");
+                notification = ("Please enter in a valid input");
                 return;
         }
     }
@@ -684,12 +779,12 @@ public class UI {
         }
 
         if (facade.hasQuestion()) {
-            //studentQuestionOptions(); leaving on makes infinite loops
+            studentQuestionOptions();
             return true;
         }
 
         if (facade.hasQuiz()) {
-            //studentQuizOptions(); leaving on makes infinite loops
+            studentQuizOptions();
             return true;
         }
 
@@ -713,13 +808,13 @@ public class UI {
             return true;
         }
 
-        System.out.println(facade.getLesson().getContent());
-        consoleBarrier();
-        System.out.println("1. Go back\n2. Print lesson to txt file");
-
         int userInputINT = 0;
 
         while (true) {
+            System.out.println(facade.getLessonContent());
+            consoleBarrier();
+            System.out.println("1. Go back\n2. Print lesson to txt file");
+
             userInputINT = intCheck();
 
             switch (userInputINT) {
@@ -730,6 +825,7 @@ public class UI {
                     facade.getLesson().getLessonFiles();
                     return true;
                 default:
+                    clearTerminal();
                     System.out.println("Please input a valid option");
                     return true;
             }
@@ -840,13 +936,18 @@ public class UI {
         loadData();
 
         facade = new LMSFacade();
-        //clearTerminal();
+        clearTerminal();
 
         while (loadUI()) {
-            //clearTerminal();
+            clearTerminal();
+            
+            if (notification != null) {
+                System.out.println(notification);
+                notification = null;
+            }
         }
 
-        //clearTerminal();
+        clearTerminal();
         System.out.println("Goodbye");
         saveData();
     }

@@ -286,6 +286,9 @@ public class UI {
         }
     }
 
+    /**
+     * 
+     */
     private static void enrolledCourseLoader() {
         clearTerminal();
         System.out.println("Which course do you want to enter?");
@@ -693,6 +696,10 @@ public class UI {
         }
     }
 
+    /**
+     * 
+     * @param mode
+     */
     private static void printComments(int mode) {
         String[] comments = facade.getCommentArray(mode);
 
@@ -703,6 +710,9 @@ public class UI {
         return;
     }
 
+    /**
+     * 
+     */
     private static void loadComment() {
         if (facade.hasComment()) {
             printComments(3);
@@ -937,6 +947,10 @@ public class UI {
         }
     }
 
+    /**
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         input = new Scanner(System.in);
         loadData();

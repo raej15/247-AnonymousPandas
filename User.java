@@ -114,8 +114,6 @@
     public String getLastName() {
         return this.lastName;
     }
-
-
     
     /** 
      * method that sets the user name of the user

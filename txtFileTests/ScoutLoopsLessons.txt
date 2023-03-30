@@ -1,4 +1,0 @@
-For Loops
-For loops are used for sequential traversal.
-While Loops
-In python, a while loop is used to execute a block of statements repeatedly until a given condition is satisfied. And when the condition becomes false, the line immediately after the loop in the program is executed.

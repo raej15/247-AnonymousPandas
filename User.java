@@ -19,7 +19,7 @@
       * @param password The new user's password
       * @param email The new user's email
       * @param firstName The new user's first name
-      * @param lastName The new user's last type
+      * @param lastName The new user's last name
       */
     public User(String username, String password, String email, String firstName, String lastName) {
         this.username = username;
@@ -29,6 +29,15 @@
         this.lastName = lastName;
     }
 
+    /**
+     * creates a new user
+     * @param id users uuid ID
+     * @param username The new user's username
+     * @param password The new user's password
+     * @param email The new user's email
+     * @param firstName The new user's first name
+     * @param lastName The new user's last type
+     */
     public User(UUID id, String username, String password, String email, String firstName, String lastName) {
         this.username = username;
         this.password = password;
@@ -54,7 +63,8 @@
     }
 
     /** 
-     * @return String
+     * method that returns the basic user info
+     * @return String about user
      */
     public String toString() {
         return "First Name: "+firstName+ "\nLast Name: "+lastName+"\nemail: "+email+"\nUsername: " + username +"\nPassword: "+password;
@@ -71,8 +81,8 @@
 
     
     /** 
-     * @return String
-     * get password
+     * method that returns the users password
+     * @return String representing password
      */
     public String getPassword() {
         return this.password;
@@ -80,8 +90,8 @@
 
     
     /** 
-     * @return String
-     * get email
+     * method that returns the users email
+     * @return String representing email
      */
     public String getEmail() {
         return this.email;
@@ -89,43 +99,35 @@
 
     
     /** 
-     * @return String
-     * get first name
+     * method that returns the users first name
+     * @return String representing first name
      */
     public String getFirstName() {
         return this.firstName;
     }
 
     
-    /** 
-     * @return String
-     * get last name
+   /** 
+     * method that returns the users last name
+     * @return String representing last name
      */
     public String getLastName() {
         return this.lastName;
     }
 
-    
-    /** 
-     * @return String
-     * get username
-     */
-    public String getUsername(){
-        return username;
-    }
 
     
     /** 
-     * @param username
-     * set username
+     * method that sets the user name of the user
+     * @param username new username
      */
     public void setUsername(String username){
         this.username = username;
     }
     
     /** 
-     * @param password
-     * set password
+     * method that sets the password of the user
+     * @param password new password
      */
     public void setPassword(String password){
         this.password=password;
@@ -133,8 +135,8 @@
 
     
     /** 
-     * @param email
-     * set email
+     * method that sets the email of the user
+     * @param email new email
      */
     public void setEmail(String email){
         this.email = email;
@@ -142,8 +144,8 @@
 
     
     /** 
-     * @param firstName
-     * set first name
+     * method that sets the first name of the user
+     * @param firstName new first name
      */
     public void setFirstName(String firstName){
         this.firstName = firstName;
@@ -151,8 +153,8 @@
 
     
     /** 
-     * @param lastName
-     * set last name
+     * method that sets the last name of the user
+     * @param lastName new last name
      */
     public void setLastName(String lastName){
         this.lastName = lastName;
@@ -160,9 +162,9 @@
 
     
     /** 
-     * @param password
-     * check password 
-     * @return boolean
+     * method that checks the password
+     * @param password password that needs to be checked
+     * @return boolean returns true if password is correct
      */
     public boolean checkPassword(String password) {
         if (password.equals(this.password))

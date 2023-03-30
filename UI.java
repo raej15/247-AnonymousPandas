@@ -458,11 +458,9 @@ public class UI {
                 questionLoader();
                 return;
             case 2:
-            
                 return;
             case 3:
-
-            return;
+                return;
             default:
                 System.out.println("Please input a valid option");
                 return;

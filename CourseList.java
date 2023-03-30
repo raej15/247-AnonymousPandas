@@ -1,9 +1,9 @@
-
 /*
  * Written by Anonmyous Pandas 
  */
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class CourseList extends DataConstants{
     public static ArrayList<Course> courses;
@@ -134,16 +134,25 @@ public class CourseList extends DataConstants{
 
 
     // loops through courseList and returns a list of courses that the student is enrolled in
-    public void printEnrolledCourses(){
+    public String[] printEnrolledCourses(UUID userID){
+        String[] enrolledCoursesList = new String[10];
         int numOfCoursesEnrolled = 0;
-        for(Course course:UI.getFacade().getCourseList().getCourses()){
-            if (course.getGrades().containsKey(UI.getFacade().getUser().getUUID())) {
-                System.out.println(numOfCoursesEnrolled+": "+course.getCourseName());
+        int index = 0;
+
+        for(Course course:courseList.getCourses()){
+            if (course.getGrades().containsKey(userID)) {
+                enrolledCoursesList[index] = (index + 1 +". "+course.getCourseName());
                 numOfCoursesEnrolled++;
             }
+
+            index++;
         }
+        
         if (numOfCoursesEnrolled == 0){
-            System.out.println("You are not enrolled into any courses!");
+            enrolledCoursesList[0] = "You are not enrolled into any courses!";
+            return enrolledCoursesList;
         }
+
+        return enrolledCoursesList;
     }
 }

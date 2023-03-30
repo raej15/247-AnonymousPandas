@@ -90,6 +90,16 @@ public class Module extends DataConstants{
         return comments;
     }
 
+    public String[] getCommentArray() {
+        String[] commentArray = new String[50];
+
+        for (int i = 0; comments.size() > i; i++) {
+            commentArray[i] = comments.get(i).getComment();
+        }
+
+        return commentArray;
+    }
+
     /**
      * Returns the quiz associated with the module
      * @return A quiz object
@@ -178,17 +188,19 @@ public class Module extends DataConstants{
         this.quiz = quiz;
     }
 
+    // TODO nothing uses this
     public void takeQuiz(Double grade){
         if (grade > 75){
             System.out.println("Congraulations you passed the quiz!");
-            addGrade(grade);
+            addGrade(grade, null);
         } else {
             System.out.println("Unfortunately, you did not pass.");
         }
     }
 
-    public void addGrade(double grade){
-        UI.getFacade().getCourse().setGrade(grade);
+    public String addGrade(double grade, User user){
+        UI.getFacade().getCourse().setGrade(grade, user);
+        return "Your final grade was "+grade;
     }
 
     public String getLessonContents() {

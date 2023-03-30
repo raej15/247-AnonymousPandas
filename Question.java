@@ -68,7 +68,7 @@ public class Question extends DataConstants{
         String[] answerNames = new String[50];
 
         for (int i = 0; answers.size() > i; i++) {
-            answerNames[i] = (i+": "+answers.get(i));
+            answerNames[i] = (i + 1 +": "+answers.get(i));
         }
 
         return answerNames;

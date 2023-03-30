@@ -785,6 +785,7 @@ public class UI {
 
         switch (userInputINT) {
             case 0:
+                facade.setComment(-1, mode);
                 return;
             case 1:
                 clearTerminal();

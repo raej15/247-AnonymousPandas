@@ -98,17 +98,27 @@ public class Question extends DataConstants{
         System.out.println("That answer could not be found");
     }
 
+    /**
+     * Returns each answer 
+     * @return Answers 
+     */
     public boolean hasAnswers() {
         return !answers.isEmpty();
     }
 
+    /**
+     * Returns answers index 
+     * @param index of each answer
+     * @return size 
+     */
     public boolean hasAnswerAt(int index) {
         return (answers.size() > index && index > -1);
     }
 
     
     /** 
-     * @return String
+     * Returns quizes and questions
+     * @return String of toString of each question 
      */
     public String toString(){
         String finalStr = GREEN+BOLD+"Question: "+RESET+GREEN+ question+RESET;

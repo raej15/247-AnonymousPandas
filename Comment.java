@@ -68,6 +68,17 @@ public class Comment {
     }
 
     
+    public String[] getCommentArray() {
+        String[] commentArray = new String[50];
+
+        for (int i = 0; comments.size() > i; i++) {
+            commentArray[i] = comments.get(i).getComment();
+        }
+
+        return commentArray;
+    }
+
+    
     /** 
      * @return String of comment and nested comments
      * print out comments 

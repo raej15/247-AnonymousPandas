@@ -12,6 +12,8 @@ public class LMSFacade {
     private Quiz quiz;
     private Question question;
     private Comment comment;
+    private double[] grade;
+    private int questionNum;
  
     /**
      * Creates a new facade
@@ -19,6 +21,7 @@ public class LMSFacade {
     LMSFacade() {
         courseList = CourseList.getInstance();
         userList = UserList.getInstance();
+        grade = new double[20];
     }
 
     /**
@@ -109,7 +112,7 @@ public class LMSFacade {
      * Returns the current comment 
      * @return the current comment
      */
-    public Comment getComment(){
+    public Comment getComment() {
         return comment;
     }
  
@@ -207,22 +210,40 @@ public class LMSFacade {
     }
 
     /**
+     * Used for making sure a course that the student is enrolled in is selected
+     * @param enrolledCourses The courses the user is enrolled in
+     * @param courseIndex The index of the course
+     * @return 0 for a success, 1 for the course not existing, 2 for the user not being in the course
+     */
+    public int setEnrolledCourse(String[] enrolledCourses, int courseIndex) {
+        if (!courseList.has(courseIndex)) {
+            return 1;
+        }
+
+        if (enrolledCourses[courseIndex] == null) {
+            return 2;
+        }
+
+        course = courseList.getCourse(courseIndex);
+        return 0;
+    }
+
+    /**
      * Sets the current course to the one at the index in the courseList
      * @param courseIndex The location where the wanted course is
      */
-    public void setCourse(int courseIndex) {
+    public int setCourse(int courseIndex) {
         if (courseIndex == -1) {
             course = null;
-            return;
+            return 0;
         }
  
-        if (!courseList.has(courseIndex - 1)) {
-            System.out.println("The course does not exist");
-            return;
+        if (!courseList.has(courseIndex)) {
+            return 1;
         }
  
-         this.course = courseList.getCourse(courseIndex - 1);
-         return;
+        course = courseList.getCourse(courseIndex);
+        return 0;
      }
  
     /**
@@ -278,10 +299,13 @@ public class LMSFacade {
     public void setQuestion(int questionIndex) {
         if (questionIndex == -1) {
             question = null;
+            questionNum = -1;
             return;
         }
 
+        questionNum = questionIndex;
         question = quiz.getQuestion(questionIndex);
+        return;
     }
 
     /**
@@ -308,6 +332,30 @@ public class LMSFacade {
             default:
                 return;
         }
+    }
+
+    /**
+     * Sets the grade for the quiz/exam and returns a string informing the user of their grade
+     * @param grade The grade the student got
+     * @return A string informing the user of their grade
+     */
+    public String setGrade() {
+        int totalQuestions = 0;
+        double overallGrade = 0;
+
+        while (quiz.getLastIndex() + 1 > totalQuestions) {
+            overallGrade += grade[totalQuestions];
+            totalQuestions++;
+        }
+
+        overallGrade *= 100;
+        quiz = null;
+
+        if (module == null) {
+            return course.setGrade(overallGrade/totalQuestions, user);
+        }
+
+        return module.addGrade(overallGrade/totalQuestions, user);
     }
  
     /**
@@ -488,6 +536,14 @@ public class LMSFacade {
     }
 
     /**
+     * Returns an array of all the enrolled couress
+     * @return A string array of every enrolled course
+     */
+    public String[] getEnrolledCourses() {
+        return courseList.printEnrolledCourses(user.getUUID());
+    }
+
+    /**
      * Returns an array of all the module names for the current module
      * @return A string array of module names
      */
@@ -503,6 +559,10 @@ public class LMSFacade {
         return module.getLessonNames();
     }
 
+    public String getLessonContent() {
+        return lesson.getContent();
+    }
+
     public String[] getQuestionNames() {
         return quiz.getQuestionNames();
     }
@@ -515,6 +575,40 @@ public class LMSFacade {
         return question.getQuestion();
     }
 
+    public String getUserName() {
+        return user.getUserName();
+    }
+
+    public String getFullName() {
+        return user.getFirstName() + " " + user.getLastName();
+    }
+
+    public String[] getCommentArray(int mode) {
+        switch (mode) {
+            case 1:
+                return course.getCommentArray();
+            case 2:
+                return module.getCommentArray();
+            case 3:
+                return comment.getCommentArray();
+            default:
+                return null;
+        }
+    }
+
+    public int enroll(int userChoice) {
+        if (!courseList.has(userChoice)) {
+            return 1;
+        }
+
+        if (courseList.getCourse(userChoice).getGrades().containsKey(user.getUUID())) {
+            return 2;
+        }
+
+        courseList.getCourse(userChoice).addStudent(user.getUUID());
+        return 0;
+    }
+
     public int answer(int userAnswer) {
         if (!question.hasAnswers()) {
             return 1;
@@ -524,7 +618,12 @@ public class LMSFacade {
             return 2;
         }
 
-        //TODO save the answer given
+        if (question.getCorrectIndex() - 1 == userAnswer) {
+            grade[questionNum] = 1;
+        } else {
+            grade[questionNum] = 0;
+        }
+
         return 0;
     }
 }

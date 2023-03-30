@@ -157,6 +157,16 @@ public class Course extends DataConstants{
         return courseComments;
     }
 
+    public String[] getCommentArray() {
+        String[] commentArray = new String[50];
+
+        for (int i = 0; courseComments.size() > i; i++) {
+            commentArray[i] = courseComments.get(i).getComment();
+        }
+
+        return commentArray;
+    }
+
     /**
      * method that gets the grades for this course
      * @return hashmap type UUID and ArrayList<Double> 
@@ -278,6 +288,7 @@ public class Course extends DataConstants{
     }
 
     public void printUserGrades() {
+
         String finalStr = "Your Grades:";
         UUID current = UI.getFacade().getUser().getUUID();
         ArrayList<Double> userGrades = grades.get(current);
@@ -380,11 +391,20 @@ public class Course extends DataConstants{
      * method that adds a grade to the hash map of grades that corresponds with the current user
      * @param grade
      */
-    public void setGrade(double grade){
-        UUID current = UI.getFacade().getUser().getUUID();
+    public String setGrade(double grade, User user) {
+        UUID current = user.getUUID();
         ArrayList<Double> userGrades = grades.get(current);
         userGrades.add(grade);
         grades.put(current, userGrades);
+        return "Your final grade was "+grade;
+    }
+
+    /**
+     * Enrolls a student into the course
+     * @param userID The UUID of the student enrolling
+     */
+    public void addStudent(UUID userID) {
+        grades.put(userID, new ArrayList<Double>());
     }
 
     /**

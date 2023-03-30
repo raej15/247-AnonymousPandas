@@ -948,7 +948,7 @@ public class UI {
     }
 
     /**
-     * 
+     * main method to run the UI 
      * @param args
      */
     public static void main(String[] args) {

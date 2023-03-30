@@ -594,7 +594,7 @@ public class UI {
      * Shows the options that the student has for the current module
      */
     private static void studentModuleOptions() {
-        System.out.println(facade.getModule().getModuleName());
+        //System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
         System.out.println("1. Pick a lesson\n2. Take the quiz\n3. Go to the comment section\n4. Go back");
@@ -624,7 +624,7 @@ public class UI {
      * Shows the options that the course creator has for the current module
      */
     private static void courseCreatorModuleOptions() {
-        System.out.println(facade.getModule().getModuleName());
+        //System.out.println(facade.getModule().getModuleName());
         consoleBarrier();
 
         System.out.println("1. Pick Lesson\n2. Edit the Quiz\n3. Edit the module's name\n4. Edit the module's description\n5. Add a lesson\n6. Remove a lesson\n7. Go back");
@@ -811,7 +811,7 @@ public class UI {
         int userInputINT = 0;
 
         while (true) {
-            System.out.println(facade.getLessonContent());
+           // System.out.println(facade.getLessonContent());
             consoleBarrier();
             System.out.println("1. Go back\n2. Print lesson to txt file");
 
@@ -873,7 +873,9 @@ public class UI {
             return true;
         }
 
-        System.out.println(facade.getLesson().getContent());
+        if (facade.getLesson().getContent() != null){
+            System.out.println(facade.getLesson().getContent());
+        }
         consoleBarrier();
         System.out.println("1. Edit\n2. Go back");
 
@@ -939,7 +941,7 @@ public class UI {
         clearTerminal();
 
         while (loadUI()) {
-            clearTerminal();
+            //clearTerminal();
             
             if (notification != null) {
                 System.out.println(notification);

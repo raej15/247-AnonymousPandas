@@ -7,19 +7,13 @@ import java.util.ArrayList;
 public class UserList extends DataConstants{
     private static UserList userList = new UserList();
     public static ArrayList<User> users;
-
-    /*
-    private UserList() {
-       users = DataLoader.loadUsers();
-    }
-     */
     
     /** 
+     * method that returns our list of userList
      * @return UserList
      */
     public static UserList getInstance(){
         if(userList == null){
-            System.out.println("null userList - debugging purposes - UserList Class line 23");
             userList = new UserList();
         }
         return userList;
@@ -27,7 +21,8 @@ public class UserList extends DataConstants{
 
     
     /** 
-     * @param users
+     *  method thats set the userList to an ArrayList of type user
+     * @param users arraylist of users
      */
     public static void setUserList(ArrayList <User> users){
         UserList.users = users;
@@ -35,8 +30,9 @@ public class UserList extends DataConstants{
 
     
     /** 
-     * @param username
-     * @return User
+     * method that searches and returns a user by username
+     * @param username string representing the users username
+     * @return User instance of user
      */
     public User getUser(String username){
         for(User user : users) {
@@ -47,23 +43,10 @@ public class UserList extends DataConstants{
         return null;
     }
 
-    
     /** 
-     * @param username
-     */
-    public void removeUser(String username){
-        for(User user : users) {
-            if(user.getUserName().equals(username)) {
-                users.remove(user);
-                return;
-            }
-        }
-    }
-
-    
-    /** 
-     * @param username
-     * @return boolean
+     * method that returns a boolean representing if a user exists
+     * @param username username of the user
+     * @return boolean true if user exsists
      */
     public boolean has(String username) {
         for(User user : users) {
@@ -77,9 +60,10 @@ public class UserList extends DataConstants{
 
     
     /** 
-     * @param user
-     * @param password
-     * @return boolean
+     * method that allows a user to login
+     * @param user type user
+     * @param password string password
+     * @return boolean true if user and their password matches
      */
     public boolean login(User user, String password) {
         if (user.checkPassword(password)) {
@@ -91,21 +75,25 @@ public class UserList extends DataConstants{
 
     
     /** 
-     * @return ArrayList<User>
+     * method that returns the list of users
+     * @return ArrayList<User> users list
      */
     public ArrayList<User> getUsers() {
         return users;
     }
 
+    /**
+     * method that prints out the users to string for each user
+     */
     public void printUsers(){
         for (User user: users) {
             System.out.println(user.toString()+"\n---------------");
         }
     }
 
-    
     /** 
-     * @param newUser
+     * method that adds a user to the users list
+     * @param newUser instance of a user
      */
     public void addUser(User newUser) {
         users.add(newUser);

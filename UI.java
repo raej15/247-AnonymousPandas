@@ -822,7 +822,8 @@ public class UI {
                     facade.setLesson(-1);
                     return true;
                 case 2:
-                    facade.getLesson().getLessonFiles();
+                    //facade.getLesson().getLessonFiles();
+                    facade.getModule().getModuleFiles();
                     return true;
                 default:
                     clearTerminal();
@@ -941,7 +942,7 @@ public class UI {
         clearTerminal();
 
         while (loadUI()) {
-            //clearTerminal();
+            clearTerminal();
             
             if (notification != null) {
                 System.out.println(notification);

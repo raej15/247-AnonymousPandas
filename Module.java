@@ -271,8 +271,10 @@ public class Module extends DataConstants{
         return allContent;
     }
 
+   
     /**
-     * 
+     * Prints all lessons to text files 
+     * Prints course modules out 
      */
     public void getModuleFiles() {    
         String user = UI.getFacade().getUser().getFirstName();
@@ -291,17 +293,17 @@ public class Module extends DataConstants{
     }
 
     /**
-     * 
-     * @return
+     * Prints lessons
+     * @return Returns lessons 
      */
     public boolean hasLessons() {
         return !lessons.isEmpty();
     }
 
     /**
-     * 
-     * @param index
-     * @return
+     * Returns each lessons 
+     * @param index gives lesson indexs 
+     * @return Returns lessons index 
      */
     public boolean hasLessonAt(int index) {
         return (lessons.size() > index && index > -1);

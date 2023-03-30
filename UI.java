@@ -4,6 +4,9 @@
 
 import java.util.Scanner;
 
+/**
+ * UI class 
+ */
 public class UI {
     private static boolean coursePrint = false;
     private static boolean modulePrint = false;
@@ -55,7 +58,7 @@ public class UI {
     }
 
     /**
-     * Im using this for testing purposes
+     * testing purposes! 
      */
     private static void addCourses() {
         if (check == true) {
@@ -72,7 +75,7 @@ public class UI {
     }
 
     /**
-     * Saves data to the JSON files
+     * Saves all data to the JSON files
      */
     private static void saveData() {
         DataWriter.saveUsers();
@@ -80,7 +83,8 @@ public class UI {
     }
 
     /**
-     * Lets the user login
+     * Lets the user login (gives description to enter username and password)
+     * Lets the user known if the user does not exist 
      */
     private static void login() {
         clearTerminal();
@@ -118,6 +122,11 @@ public class UI {
 
     /**
      * Registers a new user
+     * Inputs username
+     * Inputs password
+     * Inputs email
+     * Inputs first and last name
+     * Chooses the option of being a student or a course creator 
      */
     private static void register() {
         boolean check = true;
@@ -231,6 +240,7 @@ public class UI {
 
     /**
      * Enrolls a student into a new course
+     * Lets the user know if they are already enrolled within the course 
      */
     private static void enroll() {
         System.out.println("Which course would you like to enroll in?");
@@ -255,7 +265,9 @@ public class UI {
     }
 
     /**
-     * Adds a new course
+     * Adds a new course 
+     * Able to add description of each course
+     * Able to choose language of the course: options java or python 
      */
      private static void courseAdd() {
         System.out.println("What would you like the new course to be called?");
@@ -288,7 +300,8 @@ public class UI {
     }
 
     /**
-     * 
+     * Gives user / course creator the option to enroll in course 
+     * Checks which course they are already enrolled in 
      */
     private static void enrolledCourseLoader() {
         clearTerminal();
@@ -381,6 +394,9 @@ public class UI {
         }
     }
 
+    /**
+     * Returns grade and gives option to go back to previous page for user 
+     */
     public static void showGrades() {
         System.out.println("Here are your grades");
         consoleBarrier();
@@ -747,6 +763,11 @@ public class UI {
         return;
     }
 
+    /**
+     * Returns description for user comments 
+     * @param userInputINT select comments 
+     * @param mode 
+     */
     private static void selectComment(int userInputINT, int mode) {
         switch (facade.setComment(userInputINT - 2, mode)) {
             case 0:
@@ -785,6 +806,7 @@ public class UI {
 
         switch (userInputINT) {
             case 0:
+                facade.setComment(-1, mode);
                 return;
             case 1:
                 clearTerminal();

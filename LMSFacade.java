@@ -638,6 +638,10 @@ public class LMSFacade {
         }
     }
 
+    /**
+     * Returns grades from courses 
+     * @return String of grades
+     */
     public String[] getGrades() {
         return course.getGradeString(user.getUUID());
     }

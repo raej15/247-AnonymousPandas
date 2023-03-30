@@ -1,3 +1,8 @@
+
+/*
+ * Written by Anonmyous Pandas 
+ */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -154,6 +159,10 @@ public class Course extends DataConstants{
         return courseComments;
     }
 
+    /**
+     * An arraylist of comments 
+     * @return Returns each comment 
+     */
     public String[] getCommentArray() {
         String[] commentArray = new String[50];
 
@@ -172,6 +181,11 @@ public class Course extends DataConstants{
         return grades;
     }
 
+    /**
+     * Array list of users grades 
+     * @param user Gives user grades 
+     * @return Returns a string of each grade 
+     */
     public String[] getGradeString(UUID user) {
         String[] gradeArray = new String[50];
         ArrayList<Double> gradeList = grades.get(user);
@@ -274,6 +288,7 @@ public class Course extends DataConstants{
     public void setGrades(HashMap<UUID, ArrayList<Double>> grades){
         this.grades = grades;
     }
+
     /**
      * method that sets the certification for this course
      * @param cert FinalCertification that is getting set to this course
@@ -346,7 +361,7 @@ public class Course extends DataConstants{
     }
 
     /**
-     * method that prints out the students in this course
+     * method that prints out the students in each course
      */
     public void printStudents(){
         for (UUID student:students){
@@ -426,9 +441,9 @@ public class Course extends DataConstants{
 
 
     /**
-     * 
+     * Returns module index 
      * @param index
-     * @return
+     * @return module 
      */
     public boolean hasModuleAt(int index) {
         return (modules.size() > index && index > -1);

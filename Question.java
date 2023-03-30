@@ -22,6 +22,12 @@ public class Question extends DataConstants{
         correctIndex = -1;
     }
 
+    /**
+     * Returns Question answers / index 
+     * @param question string 
+     * @param answers arraylist 
+     * @param correctIndex 
+     */
     Question(String question, ArrayList<String> answers, int correctIndex) {
         this.question = question;
         this.answers = answers;
@@ -74,6 +80,10 @@ public class Question extends DataConstants{
         return answerNames;
     }
 
+    /**
+     * Returns an array list of answers 
+     * @return Question answers 
+     */
     public ArrayList<String> getAnswers() {
         return answers;
     }

@@ -560,30 +560,59 @@ public class LMSFacade {
         return module.getLessonNames();
     }
 
+   /**
+    * Returns an array of all the lesson content for modules 
+    * @return A string of lesson content
+    */
     public String getLessonContent() {
         return lesson.getContent();
     }
 
+   /**
+    * Returns an array of Question names for each current module 
+    * @return A string of question names 
+    */
     public String[] getQuestionNames() {
         return quiz.getQuestionNames();
     }
 
+   /**
+    * Returns an array of each answer names of each current module 
+    * @return A string of each answer names 
+    */
     public String[] getAnswerNames() {
         return question.getAnswerNames();
     }
 
+    /**
+     *  Returns an array of each current question name
+     * @return A string of each question 
+     */
     public String getCurrentQuestionName() {
         return question.getQuestion();
     }
 
+    /**
+     * Returns an array of each current Username for module
+     * @return A string of usernames
+     */
     public String getUserName() {
         return user.getUserName();
     }
 
+    /**
+     * Returns an array description of full name 
+     * @return Returns a string of first and last name 
+     */
     public String getFullName() {
         return user.getFirstName() + " " + user.getLastName();
     }
 
+    /**
+     * Returns an arraylist to get each comment from course module 
+     * @param mode Gives cases for each comment array
+     * @return Returns comments
+     */
     public String[] getCommentArray(int mode) {
         switch (mode) {
             case 1:
@@ -597,6 +626,11 @@ public class LMSFacade {
         }
     }
 
+    /**
+     * Returns if statment of each user choice
+     * @param userChoice Gives courselist of each userchoice
+     * @return Returns choices
+     */
     public int enroll(int userChoice) {
         if (!courseList.has(userChoice)) {
             return 1;
@@ -610,6 +644,11 @@ public class LMSFacade {
         return 0;
     }
 
+    /**
+     * Returns each answer in module  
+     * @param userAnswer Gives if statments of each answers and their return
+     * @return Returns each selected answer
+     */
     public int answer(int userAnswer) {
         if (!question.hasAnswers()) {
             return 1;

@@ -287,6 +287,9 @@ public class Course extends DataConstants{
         return finalStr;
     }
 
+    /**
+     * Printing each users grades 
+     */
     public void printUserGrades() {
 
         String finalStr = "Your Grades:";

@@ -3,6 +3,7 @@
  */
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class UI {
     private static boolean coursePrint = false;
@@ -521,7 +522,32 @@ public class UI {
                 return;
             case 2:
                 facade.setQuiz(2);
-                facade.getQuiz().printQuestions();
+                int points = 0;
+                int total = 0;
+                double grade = 0;
+                ArrayList<Question> questions = UI.getFacade().getQuiz().getQuestions();
+                for (Question question: questions){
+                    total+=10;
+                    System.out.println(question.getQuestion());
+                    ArrayList<String> answerChoices = question.getAnswers();
+                    int counter = 1;
+                    for (String ac: answerChoices){
+                        System.out.println(counter+": "+ac);
+                        counter++;
+                    }
+                    int choice = input.nextInt();
+                    if (choice == question.getCorrectIndex()){
+                        System.out.println("correct");
+                        points+=10;
+
+                    }
+                }
+                grade = ((points*100)/total);
+                System.out.println("\nYour grade: " + grade);
+
+                facade.getCourse().setGrade(grade);
+                saveData();
+                studentCourseOptions();
                 return;
             case 3:
                 facade.setComment(1, 1);
@@ -660,12 +686,12 @@ public class UI {
         }
 
         if (facade.hasQuestion()) {
-            studentQuestionOptions();
+            //studentQuestionOptions(); leaving on makes infinite loops
             return true;
         }
 
         if (facade.hasQuiz()) {
-            studentQuizOptions();
+            //studentQuizOptions(); leaving on makes infinite loops
             return true;
         }
 

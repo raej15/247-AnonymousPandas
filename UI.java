@@ -554,7 +554,9 @@ public class UI {
     }
 
     /**
-     * 
+     * Gives user options for quiz
+     * Able to answer questions, sumbit the test, and exit 
+     * gives cases to clear and enter 
      */
     private static void studentQuizOptions() {
         System.out.println("Quiz");
@@ -730,8 +732,8 @@ public class UI {
     }
 
     /**
-     * 
-     * @param mode
+     *  Returns the printed comments from the facade 
+     * @param mode Prints comments and returns 
      */
     private static void printComments(int mode) {
         String[] comments = facade.getCommentArray(mode);
@@ -756,7 +758,8 @@ public class UI {
     }
 
     /**
-     * 
+     * Returns the loaded comments 
+     * Prints each comment in module 
      */
     private static void loadComment() {
         System.out.println("Which comment do you want to access");

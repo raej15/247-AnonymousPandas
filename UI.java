@@ -17,8 +17,8 @@ public class UI {
      * Clears the terminal
      */
     private static void clearTerminal() {
-        System.out.println("\033[H\033[2J");
-        System.out.flush();
+        //System.out.println("\033[H\033[2J");
+        //System.out.flush();
     }
 
     /**
@@ -694,7 +694,7 @@ public class UI {
         String[] comments = facade.getCommentArray(mode);
 
         for (int i = 0; comments[i] != null; i++) {
-            System.out.println(i + 2 + comments[i]);
+            System.out.println(i + 1 + ". " + comments[i]);
         }
 
         return;

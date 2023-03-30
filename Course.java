@@ -288,6 +288,7 @@ public class Course extends DataConstants{
     }
 
     public void printUserGrades() {
+
         String finalStr = "Your Grades:";
         UUID current = UI.getFacade().getUser().getUUID();
         ArrayList<Double> userGrades = grades.get(current);

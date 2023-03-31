@@ -3,8 +3,7 @@
  * Written by Anonmyous Pandas 
  */
 
- public class FinalCertification{
-
+public class FinalCertification{
     private Quiz quiz;
 
     /**

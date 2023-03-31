@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 public class Comment {
     private String comment;
-    public UUID commenter;
+    private UUID commenter;
     private ArrayList<Comment> comments;
     
     /**

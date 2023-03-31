@@ -11,7 +11,7 @@ import java.util.UUID;
  * @author Anonymous Pandas
  */
 public class CourseList extends DataConstants{
-    public static ArrayList<Course> courses;
+    private static ArrayList<Course> courses;
     private static CourseList courseList = new CourseList();
     
     /**  
@@ -23,6 +23,7 @@ public class CourseList extends DataConstants{
 			courseList = new CourseList();
             System.out.println("Course List is null - debugging - Class UserList line 38");
 		}
+
         return courseList;
     }
     

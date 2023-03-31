@@ -20,10 +20,10 @@ public class Course extends DataConstants{
     private String description;
     private Language language;
     private FinalCertification cert = new FinalCertification();
-    public HashMap<UUID, ArrayList<Double>> grades;
-    public UUID author;
-    public ArrayList<Comment> courseComments;
-    public ArrayList<UUID> students;
+    private HashMap<UUID, ArrayList<Double>> grades;
+    private UUID author;
+    private ArrayList<Comment> courseComments;
+    private ArrayList<UUID> students;
 
     /**
      * Creates a new course

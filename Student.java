@@ -1,12 +1,9 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
 import java.util.ArrayList;
 import java.util.UUID;
 
 /**
  * Creates a student object with the appropiate variables
+ * @author Anonymous Pandas
  */
 public class Student extends User{
 

@@ -1,8 +1,7 @@
-/*
- * Written by Anonymous Pandas
- */
-
- //language options  
+ /**
+  * langugae options
+ * @author Anonymous Pandas
+  */
 public enum Language {
     JavaScript,
     Python,

@@ -1,9 +1,10 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
 import java.util.ArrayList;
 
+
+/**
+ * User list for dataconstants 
+ * @author Anonymous Pandas
+ */
 public class UserList extends DataConstants{
     private static UserList userList = new UserList();
     public static ArrayList<User> users;

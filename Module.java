@@ -1,7 +1,3 @@
-/*
- * Written by Anonymous Pandas
- */
-
 import java.util.ArrayList;
 import java.util.UUID;
 import java.io.FileWriter;
@@ -9,6 +5,7 @@ import java.io.IOException;
 
 /**
  * A module which consists of an ArrayList of lessons, a module name, a boolean representing if it has been completed, and a quiz
+ * @author Anonymous Pandas
  */
 public class Module extends DataConstants{
     private ArrayList<Lesson> lessons;

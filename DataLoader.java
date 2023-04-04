@@ -1,8 +1,3 @@
-
-/*
- * Written by Anonmyous Pandas 
- */
-
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +12,10 @@ import org.json.simple.parser.JSONParser;
  */
 public class DataLoader extends DataConstants{
 
-
+/**
+ * Main method to run
+ * @param args
+ */
     public static void main(String[] args) {
        ArrayList<Course> courses = loadCourses();
        for (Course course: courses){

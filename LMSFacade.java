@@ -1,7 +1,9 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
+ import java.util.ArrayList;
+ 
+ /**
+  * Facade
+  * @author Anonymous Pandas
+  */
 public class LMSFacade {
     private CourseList courseList;
     private UserList userList;
@@ -451,7 +453,7 @@ public class LMSFacade {
     /**
      * Adds a comment to either a course or module based on the mode parameter
      * @param comment The comment being added
-     * @param mode 1 for a comment to a course, 2 for a comment to a module
+     * @param mode 1 for a comment to a course, 2 for a comment to a module, 3 for a comment to a comment
      */
     public void addComment(String comment, int mode) {
         switch (mode) {
@@ -460,6 +462,9 @@ public class LMSFacade {
                 return;
             case 2:
                 module.addComment(comment, user.getUUID());
+                return;
+            case 3:
+                this.comment.addComment(new Comment(user.getUUID(), comment, new ArrayList<Comment>()));
                 return;
             default:
                 return;

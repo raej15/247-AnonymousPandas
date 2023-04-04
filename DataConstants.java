@@ -1,14 +1,10 @@
-
-/*
- * Written by Anonmyous Pandas 
- */
-
 /**
  * Holds all data constants for loading
  * @author Anonymous Pandas
  */
 
 public abstract class DataConstants{
+    
     /**
      * Data Contants for users.json
      */    

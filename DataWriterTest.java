@@ -1,11 +1,12 @@
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-public class DataWriterTest {
+class DataWriterTest {
+    private UserList users = UserList.getInstance();
+    private ArrayList<User> userList = 
     @Test
-    public void testing() {
+    public void testing(){
         assertTrue(true);
     }
-    
 }

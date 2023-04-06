@@ -10,19 +10,18 @@ public class DataLoaderTest {
     //private ArrayList<Course> courses = DataLoader.loadCourses();
 	private static LMSFacade facade = new LMSFacade();
 	
-	@BeforeEach
-    @Test
-	public void setup() {
-		//users.clear();
-		facade.getUserList().addUser(new Student("Kelly", "Finnegan", "finnegak@email.sc.edu", "finnegak", "kfinn999!"));
-		DataWriter.saveUsers();
-        assertEquals(1, facade.getUserList().getUsers().size());
-	}
 
 	@Test
 	public void dataLoaderTest(){
 		ArrayList <User> users = DataLoader.loadUsers();
-		assertEquals(7, users.size());
+		assertEquals(9, users.size());
+	}
+
+	@Test
+	public void setup() {
+		facade.getUserList().addUser(new Student("Kelly", "Finnegan", "finnegak@email.sc.edu", "finnegak", "kfinn999!"));
+		DataWriter.saveUsers();
+        assertEquals(1, facade.getUserList().getUsers().size());
 	}
 	
 

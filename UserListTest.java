@@ -12,15 +12,13 @@ public class UserListTest{
 
     @BeforeEach
     public void setUp() {
-        UserList.clear();
-        DataWriter.saveUserList();
+        users.clear();
+        DataWriter.saveUsers();
     }
 
     @AfterEach
     public void tearDown() {
-        UserList.getInstance().getUserList().clear;
-        dataWriter.saveUserList();
-
+        DataWriter.saveUsers();
     }
 
     @Test

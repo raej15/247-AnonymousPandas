@@ -11,7 +11,6 @@ public class DataWriter extends DataConstants {
 
     /**
      * method that calls getUsersJson for every user in our userList
-     * @return 
      */
     public static void saveUsers(){
         System.out.println("Writing users...");

@@ -18,9 +18,7 @@ public class UserListTest{
 
     @AfterEach
     public void tearDown() {
-        UserList.getInstance().getUserList().clear;
-        dataWriter.saveUserList();
-
+        DataWriter.saveUsers();
     }
 
     @Test

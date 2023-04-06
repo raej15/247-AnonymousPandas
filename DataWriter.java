@@ -27,6 +27,7 @@ public class DataWriter extends DataConstants {
         }catch(IOException e){
             e.printStackTrace();
         }
+        return jsonUsers;
     }
     
     /** 

@@ -9,6 +9,7 @@ class DataWriterTest {
     private ArrayList<User> userList = users.getUsers();
 
     @BeforeEach
+    @Test
 	public void setup() {
 		UserList.getInstance().getUsers().clear();
 		DataWriter.saveUsers();

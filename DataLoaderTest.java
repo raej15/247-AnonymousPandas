@@ -18,7 +18,7 @@ public class DataLoaderTest {
 	}
 
 	@Test
-	public void setup() {
+	public void addOneUser() {
 		facade.getUserList().addUser(new Student("Kelly", "Finnegan", "finnegak@email.sc.edu", "finnegak", "kfinn999!"));
 		DataWriter.saveUsers();
         assertEquals(1, facade.getUserList().getUsers().size());

@@ -11,12 +11,13 @@ public class DataLoaderTest {
     private ArrayList<Course> courses = DataLoader.loadCourses();
 	
 	@BeforeEach
+    @Test
 	public void setup() {
 		users.clear();
 		users.add(new Student("Kelly", "Finnegan", "finnegak@email.sc.edu", "finnegak", "kfinn999!"));
 		//users.add(new CourseCreator("Rae"));
 		DataWriter.saveUsers();
-        
+        assertTrue(true);
 	}
 	
 

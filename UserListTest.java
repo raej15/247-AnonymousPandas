@@ -12,8 +12,8 @@ public class UserListTest{
 
     @BeforeEach
     public void setUp() {
-        UserList.clear();
-        DataWriter.saveUserList();
+        users.clear();
+        DataWriter.saveUsers();
     }
 
     @AfterEach

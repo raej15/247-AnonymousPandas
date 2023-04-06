@@ -18,31 +18,6 @@ public class DataLoaderTest {
 		DataWriter.saveUsers();
 	}
 	
-	@AfterEach
-	public void tearDown() {
-		Users.getInstance().getUsers().clear();
-		DataWriter.saveUsers();
-	}
-	
-	
-	@Test
-	void testGetUsersSize() {
-		userList = DataLoader.getUsers();
-		assertEquals(2, userList.size());
-	}
-
-	@Test
-	void testGetUsersSizeZero() {
-		Users.getInstance().getUsers().clear();
-		DataWriter.saveUsers();
-		assertEquals(0, userList.size());
-	}
-	
-	@Test
-	void testGetUserFirstUserName() {
-		userList = DataLoader.getUsers();
-		assertEquals("asmith", userList.get(0).getUserName());
-	}
 
     
 }

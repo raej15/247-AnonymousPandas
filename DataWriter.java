@@ -13,7 +13,7 @@ public class DataWriter extends DataConstants {
      * method that calls getUsersJson for every user in our userList
      * @return 
      */
-    public static ArrayList<User> saveUsers(){
+    public static void saveUsers(){
         System.out.println("Writing users...");
         UserList users = UserList.getInstance();
         ArrayList<User> userList = users.getUsers();
@@ -27,7 +27,6 @@ public class DataWriter extends DataConstants {
         }catch(IOException e){
             e.printStackTrace();
         }
-        return jsonUsers;
     }
     
     /** 

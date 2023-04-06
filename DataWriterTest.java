@@ -20,9 +20,11 @@ class DataWriterTest {
 		DataWriter.saveUsers();
 	}
 
+    @Test
     public void testWritingOneUser(){
         userList.add(new User("Trey","White","twhite@gmail.com","trey12","treyWhite12"));
         DataWriter.saveUsers();
+        assertEquals()
     }
 
 }

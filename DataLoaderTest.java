@@ -6,11 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class DataLoaderTest {
 
-    //private ArrayList<User> users = DataLoader.loadUsers();
-    //private ArrayList<Course> courses = DataLoader.loadCourses();
 	private static LMSFacade facade = new LMSFacade();
 	
-
 	@Test
 	public void dataLoaderTest(){
 		ArrayList <User> users = DataLoader.loadUsers();
@@ -21,9 +18,14 @@ public class DataLoaderTest {
 	public void addOneUser() {
 		facade.getUserList().addUser(new Student("Kelly", "Finnegan", "finnegak@email.sc.edu", "finnegak", "kfinn999!"));
 		DataWriter.saveUsers();
+		DataLoader.loadUsers();
         assertEquals(1, facade.getUserList().getUsers().size());
 	}
-	
 
+	@Test
+	public void zeroUsers(){
+		DataLoader.loadUsers();
+		assertEquals(0, facade.getUserList().getUsers().size());
+	}
     
 }

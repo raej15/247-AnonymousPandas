@@ -1,11 +1,8 @@
-/*
- * Written by Anonymous Pandas
- */
-
- import java.util.ArrayList;
+import java.util.ArrayList;
 
 /**
  * A question (If an answer is set to -1, then that means it has not been set yet)
+ * @author Anonymous Pandas
  */
 public class Question extends DataConstants{
     private ArrayList<String> answers;

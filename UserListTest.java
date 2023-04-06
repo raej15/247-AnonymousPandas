@@ -7,8 +7,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class UserListTest{
+    private UserList userList = UserList.getInstance();
+    private ArrayList<User> users = new ArrayList<User>();
+
+    @BeforeEach
+    public void setUp() {
+        UserList.clear();
+        DataWriter.saveUserList();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        UserList.getInstance().getUserList().clear;
+        dataWriter.saveUserList();
+
+    }
+
     @Test
-    public void testing(){
+    public void testgetUser(){
         assertTrue(true);
+}
+
+    @Test
+    public void test(){
+        assertTrue(true); 
     }
 }

@@ -16,6 +16,7 @@ public class DataLoaderTest {
 		users.add(new Student("Kelly", "Finnegan", "finnegak@email.sc.edu", "finnegak", "kfinn999!"));
 		//users.add(new CourseCreator("Rae"));
 		DataWriter.saveUsers();
+        
 	}
 	
 

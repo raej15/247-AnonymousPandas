@@ -99,4 +99,8 @@ public class UserList extends DataConstants{
     public void addUser(User newUser) {
         users.add(newUser);
     }
+
+
+    public void add(User user) {
+    }
 }

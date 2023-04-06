@@ -6,28 +6,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class UserListTest{
+class UserListTest{
     private UserList userList = UserList.getInstance();
-    private ArrayList<User> users = new ArrayList<User>();
+    private ArrayList<User> users = userList.getUsers();
 
     @BeforeEach
+    @Test
     public void setUp() {
-        users.clear();
+       // users.clear();
+        userList.add(new User("Trey", "White", "twhite@gmail.com", "trey12", "treyWhite12"));
         DataWriter.saveUsers();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        DataWriter.saveUsers();
-    }
-
-    @Test
-    public void testgetUser(){
-        assertTrue(true);
-}
-
-    @Test
-    public void test(){
-        assertTrue(true); 
     }
 }

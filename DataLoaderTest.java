@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
+import java.util.UUID;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -94,6 +96,12 @@ public class DataLoaderTest {
 	}
 
 	@Test
+	public void getCourseCommentsSizeTest(){
+		int size = courses.get(0).getCourseComments().size();
+		assertEquals(2, size);
+	}
+
+	@Test
 	public void getCourseCommentsCommentTest(){
 		String comment = courses.get(0).getCourseComments().get(0).getComment();
 		assertEquals("Who uses JavaScript?", comment);
@@ -105,16 +113,129 @@ public class DataLoaderTest {
 		assertEquals("1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",commenter);
 	}
 
-	 @Test
-	 public void getCourseCommentsNestedCommentTest(){
-		String comment = courses.get(0).getCourseComments().get(0).getComments().get(0).getComment();
-		assertEquals("Front end developers use JavaScript to add behavior to webpages.", comment);
-	 }
+	@Test
+	public void getCourseCommentsNestedCommentsSizeTest(){
+		int size = courses.get(0).getCourseComments().get(0).getComments().size();
+		assertEquals(3, size);
+	}
 
 	 @Test
-	 public void getCourseCommentsNestedCommenterTest(){
+	public void getCourseCommentsNestedCommentTest(){
+		String comment = courses.get(0).getCourseComments().get(0).getComments().get(0).getComment();
+		assertEquals("Front end developers use JavaScript to add behavior to webpages.", comment);
+	}
+
+	@Test
+	public void getCourseCommentsNestedCommenterTest(){
 		String commenter = courses.get(0).getCourseComments().get(0).getComments().get(0).getCommenter().toString();
 		assertEquals("87410238-bbc8-4bd0-813b-9c04c25bc8e1",commenter);
-	 }
-    
+	}
+
+	@Test
+	public void getCourseCommentsNestedNestedCommentsSizeTest(){
+		int num = courses.get(0).getCourseComments().get(0).getComments().get(0).getComments().size();
+		assertEquals(0, num);
+	}
+
+	@Test
+	public void getCourseAuthorTest(){
+		assertEquals("51dc7b49-b0a3-4a04-a3d0-4781d1efbedf", courses.get(0).getAuthorID().toString());
+	}
+
+    @Test
+	public void getStudentIdTest(){
+		String id = courses.get(0).getStudents().get(0).toString();
+		assertEquals("41cacde1-48d5-4374-9119-4121510741f5", id);
+	}
+
+	@Test
+	public void getStudentGradeTest(){
+		UUID uuid = courses.get(0).getStudents().get(0);
+		double grade = courses.get(0).getGrades().get(uuid).get(0);
+		assertEquals(65, grade);
+	}
+
+	@Test
+	public void getQuizQuestionTest(){
+		String question = courses.get(0).getModules().get(0).getQuiz().getQuestions().get(0).getQuestion();
+		assertEquals("How is a string formatted?", question);
+	}
+
+	@Test
+	public void getQuizAnswerTest(){
+		String answer = courses.get(0).getModules().get(0).getQuiz().getQuestions().get(0).getAnswers().get(0);
+		assertEquals("var strName = 'apple'", answer);
+	}
+
+	@Test
+	public void getQuizAnswerChoiceTest(){
+		int correctIndex = courses.get(0).getModules().get(0).getQuiz().getQuestions().get(0).getCorrectIndex();
+		assertEquals(1, correctIndex);
+	}
+
+	@Test
+	public void getModuleNameTest(){
+		String name = courses.get(0).getModules().get(0).getModuleName();
+		assertEquals("Variables",name);
+	}
+
+	@Test
+	public void getModuleCommentsSize(){
+		int size = courses.get(0).getModules().get(0).getComments().size();
+		assertEquals(2, size);
+	}
+	@Test
+	public void getModuleCommentsCommentTest(){
+		String comment = courses.get(0).getModules().get(0).getComments().get(0).getComment();
+		assertEquals("How do you multiply two variables?", comment);
+	}
+
+	@Test
+	public void getModuleCommentsUserTest(){
+		String commenter = courses.get(0).getModules().get(0).getComments().get(0).getCommenter().toString();
+		assertEquals("1f9f3f3c-fead-4c41-b2ac-98aa2fd9ad58",commenter);
+	}
+
+	@Test
+	public void getModuleCommentsNestedCommentsSize(){
+		int size = courses.get(0).getModules().get(0).getComments().get(0).getComments().size();
+		assertEquals(2, size);
+	}
+
+	 @Test
+	public void getModuleCommentsNestedCommentTest(){
+		String comment = courses.get(0).getModules().get(0).getComments().get(0).getComments().get(0).getComment();
+		assertEquals("You create two variables that are type number (no quotes) and initialize their values. Then use the variable names to multiply using the asterisk symbol.", comment);
+	}
+
+	@Test
+	public void getModuleCommentsNestedCommenterTest(){
+		String commenter = courses.get(0).getModules().get(0).getComments().get(0).getComments().get(0).getCommenter().toString();
+		assertEquals("87410238-bbc8-4bd0-813b-9c04c25bc8e1",commenter);
+	}
+
+	@Test
+	public void getModuleCommentsNestedNestedCommentsSizeTest(){
+		int num = courses.get(0).getModules().get(0).getComments().get(0).getComments().get(0).getComments().size();
+		assertEquals(0, num);
+	}
+
+	@Test
+	public void getLessonsSize(){
+		int size = courses.get(0).getModules().get(0).getLessons().size();
+		assertEquals(3, size);
+	}
+
+	@Test
+	 public void getLessonNameTest(){
+		String name = courses.get(0).getModules().get(0).getLessons().get(0).getLessonName();
+		assertEquals("Strings", name);
+	}
+
+	@Test
+	 public void getLessonContentTest(){
+		String content = courses.get(0).getModules().get(0).getLessons().get(0).getContent();
+		assertEquals("One way to use a variable is to hold text. You use key word 'var' to do this. Ex: var color = 'blue'.", content);
+	}
+
 }

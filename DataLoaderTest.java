@@ -1,17 +1,16 @@
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.UUID;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DataLoaderTest {
 
 	private static LMSFacade facade = new LMSFacade();
-	ArrayList <User> users = DataLoader.loadUsers();
+	private ArrayList <User> users = DataLoader.loadUsers();
 	private ArrayList<Course> courses = DataLoader.loadCourses();
 	
+	// USERS.JSON
+
 	@Test
 	public void dataLoaderTest(){
 		assertEquals(9, users.size());
@@ -26,7 +25,7 @@ public class DataLoaderTest {
 	}
 
 	@Test
-	public void zeroUsers(){
+	public void zeroUsers(){ // users.json is loaded empty
 		assertEquals(0, facade.getUserList().getUsers().size());
 	}
 
@@ -75,6 +74,7 @@ public class DataLoaderTest {
 		assertEquals("87410238-bbc8-4bd0-813b-9c04c25bc8e1", users.get(0).getUUID().toString());
 	}
 
+	// COURSES.JSON
 	@Test
 	public void getCourseListSizeTest(){
 		assertEquals(2, courses.size());
@@ -95,6 +95,7 @@ public class DataLoaderTest {
 		assertEquals("JavaScript", courses.get(0).getLanguage().toString());
 	}
 
+	// Course Comments
 	@Test
 	public void getCourseCommentsSizeTest(){
 		int size = courses.get(0).getCourseComments().size();
@@ -155,10 +156,17 @@ public class DataLoaderTest {
 		assertEquals(65, grade);
 	}
 
+	// Module Quiz
 	@Test
 	public void getQuizQuestionTest(){
 		String question = courses.get(0).getModules().get(0).getQuiz().getQuestions().get(0).getQuestion();
 		assertEquals("How is a string formatted?", question);
+	}
+
+	@Test
+	public void getQuizACsize(){
+		int size = courses.get(0).getModules().get(0).getQuiz().getQuestions().get(0).getAnswers().size();
+		assertEquals(3, size);
 	}
 
 	@Test
@@ -173,12 +181,14 @@ public class DataLoaderTest {
 		assertEquals(1, correctIndex);
 	}
 
+	// Module
 	@Test
 	public void getModuleNameTest(){
 		String name = courses.get(0).getModules().get(0).getModuleName();
 		assertEquals("Variables",name);
 	}
 
+	// Module Commens
 	@Test
 	public void getModuleCommentsSize(){
 		int size = courses.get(0).getModules().get(0).getComments().size();
@@ -220,6 +230,7 @@ public class DataLoaderTest {
 		assertEquals(0, num);
 	}
 
+	// Module Lessons
 	@Test
 	public void getLessonsSize(){
 		int size = courses.get(0).getModules().get(0).getLessons().size();
@@ -236,6 +247,37 @@ public class DataLoaderTest {
 	 public void getLessonContentTest(){
 		String content = courses.get(0).getModules().get(0).getLessons().get(0).getContent();
 		assertEquals("One way to use a variable is to hold text. You use key word 'var' to do this. Ex: var color = 'blue'.", content);
+	}
+
+	// Course Final Certification
+	@Test
+	public void getCertQuizSizeTest(){
+		int size = courses.get(0).getCertificate().getQuiz().getQuestions().size();
+		assertEquals(2, size);
+	}
+
+	@Test
+	public void getCertQuizQuestionTest(){
+		String question = courses.get(0).getCertificate().getQuiz().getQuestions().get(0).getQuestion();
+		assertEquals("What is the relationship between JavaScript and HTML?", question);
+	}
+
+	@Test
+	public void getCertQuizQuestionACsizeTest(){
+		int size = courses.get(0).getCertificate().getQuiz().getQuestions().get(0).getAnswers().size();
+		assertEquals(3, size);
+	}
+
+	@Test
+	public void getCertQuizQuestionACTest(){
+		String choice = courses.get(0).getCertificate().getQuiz().getQuestions().get(0).getAnswers().get(0);
+		assertEquals("HTML is for logic and is used with JavaScript to make a website.", choice);
+	}
+
+	@Test
+	public void getCertQuizQuestionCorrectIndexTest(){
+		int correctIndex = courses.get(0).getCertificate().getQuiz().getQuestions().get(0).getCorrectIndex();
+		assertEquals(3, correctIndex);
 	}
 
 }

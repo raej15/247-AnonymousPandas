@@ -81,5 +81,13 @@ public class DataLoaderTest {
 		ArrayList <User> users = DataLoader.loadUsers();
 		assertEquals("87410238-bbc8-4bd0-813b-9c04c25bc8e1", users.get(0).getUUID().toString());
 	}
+
+	@Test
+	public void getCourseListSize(){
+		ArrayList<Course> courses = DataLoader.loadCourses();
+		assertEquals(2, courses.size());
+	}
+
+	
     
 }

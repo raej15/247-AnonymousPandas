@@ -81,7 +81,7 @@
       "lastName":"Solace",
       "password":"solace99",
       "type":"Student",
-      "certifications":[],
+      "certifications":["*************************************\n     Certificate of Completion\n             SCOUT SOLACE\n   passed the certifcation exam for\n     Introduction to JavaScript!\n*************************************"],
       "userid":"b7c44f2b-7b6c-4521-a361-f44941a8c418",
       "email":"solace@gmail.com",
       "username":"scout99"

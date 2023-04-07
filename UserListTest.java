@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserListTest{
+<<<<<<< HEAD
     private UserList userList;
     private User user1;
     private User user2;
@@ -79,3 +80,11 @@ class UserListTest{
     }
 
 }
+=======
+
+@Test
+   public void testing(){
+    assertTrue(true);
+   }
+}
+>>>>>>> 6d39f2dd9833756ca8716888cce6d29342ce5c89

@@ -7,7 +7,12 @@ import java.util.ArrayList;
  */
 public class UserList extends DataConstants{
     private static UserList userList = new UserList();
-    public static ArrayList<User> users;
+    public static ArrayList<User> users = new ArrayList<User>();
+
+    private UserList()
+    {
+        users = DataLoader.loadUsers();
+    }
     
     /** 
      * method that returns our list of userList
@@ -100,7 +105,10 @@ public class UserList extends DataConstants{
         users.add(newUser);
     }
 
+    public void saveUsers(){
+        DataWriter.saveUsers();
+    }
 
-    public void add(User user) {
+    public static void clear() {
     }
 }

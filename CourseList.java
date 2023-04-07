@@ -6,7 +6,7 @@ import java.util.UUID;
  * @author Anonymous Pandas
  */
 public class CourseList extends DataConstants{
-    public static ArrayList<Course> courses;
+    public static ArrayList<Course> courses = new ArrayList<Course>();
     private static CourseList courseList = new CourseList();
     
     /**  

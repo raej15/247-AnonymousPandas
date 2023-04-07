@@ -6,7 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserListTest{
+public class UserListTest {
+
     private UserList userList;
     private User user1;
     private User user2;
@@ -15,9 +16,11 @@ class UserListTest{
     @Before
     public void setUp() {
         userList = new UserList();
+
         user1 = new User("user1", "password1");
         user2 = new User("user2", "password2");
         user3 = new User("user3", "password3");
+
         ArrayList<User> users = new ArrayList<>();
         users.add(user1);
         users.add(user2);

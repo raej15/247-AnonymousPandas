@@ -42,7 +42,7 @@ class DataWriterTest {
     @Test
     public void testWritingOneUser(){
         userList.add(new User("Trey","White","twhite@gmail.com","trey12","treyWhite12"));
-        userList = DataLoader.loadUsers();
+        DataWriter.saveUsers();
         assertEquals("trey12", DataLoader.loadUsers().get(0).getUserName());
     }
 
@@ -68,7 +68,9 @@ class DataWriterTest {
 
     @Test
     public void testWritingCourseModuleName(){
-
+        courseList.add(new Course("Introduction to JavaScript", "JavaScript is a scripting language for creating dynamic web page content", "JavaScript", "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf");
+        DataWriter.saveCourses();
+        assertArrayEquals("Introduction to JavaScript", DataLoader.loadCourses().get(0).getCourseName());
     }
 
 }

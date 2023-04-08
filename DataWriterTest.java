@@ -11,6 +11,7 @@ class DataWriterTest {
     private ArrayList<Course> courseList = courses.getCourses();
 
     @BeforeEach
+    @Test
 	public void setup() {
 		UserList.getInstance().getUsers().clear();
 		DataWriter.saveUsers();

@@ -33,10 +33,16 @@ class DataWriterTest {
     }
 
     @Test
+    public void testWritingUserName(){
+        DataWriter.saveUsers();
+        assertEquals("trey12", DataLoader.loadUsers().get(0).getUserName());
+    }
+
+    @Test
     public void testWritingOneUser(){
         userList.add(new User("Trey","White","twhite@gmail.com","trey12","treyWhite12"));
         userList = DataLoader.loadUsers();
-        assertEquals("tWhite@gmail.com", DataLoader.loadUsers().get(0).getUserName());
+        assertEquals("trey12", DataLoader.loadUsers().get(0).getUserName());
     }
 
     @Test
@@ -58,5 +64,10 @@ class DataWriterTest {
         courseList = DataLoader.loadCourses();
         assertEquals(0, userList.size());
     }
-    
+
+    @Test
+    public void testWritingCourseModuleName(){
+
+    }
+
 }

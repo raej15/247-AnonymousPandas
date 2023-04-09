@@ -85,7 +85,9 @@ class DataWriterTest {
 
     @Test
     public void testWritingCourseModuleName(){
-
+        courseList.add(new Course("Introduction to JavaScript", "JavaScript is a scripting language for creating dynamic web page content", "JavaScript", "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf");
+        DataWriter.saveCourses();
+        assertArrayEquals("Introduction to JavaScript", DataLoader.loadCourses().get(0).getCourseName());
     }
 */
 }

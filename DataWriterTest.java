@@ -45,6 +45,27 @@ class DataWriterTest {
     }
 
     @Test
+    public void testWritingUserFirstName(){
+        DataWriter.saveUsers();
+        ArrayList <User> writtenUsers = DataLoader.loadUsers();
+        assertEquals("first", writtenUsers.get(0).getFirstName());
+    }
+
+    @Test
+    public void testWritingUserLastName(){
+        DataWriter.saveUsers();
+        ArrayList <User> writtenUsers = DataLoader.loadUsers();
+        assertEquals("last", writtenUsers.get(2).getLastName());
+    }
+
+    @Test
+    public void testWritingUserEmail(){
+        DataWriter.saveUsers();
+        ArrayList <User> writtenUsers = DataLoader.loadUsers();
+        assertEquals("email", writtenUsers.get(0).getEmail());
+    }
+
+    @Test
     public void testWritingOneUser(){
         Student newStudent = new Student("first", "last", "email", "username", "password");
         users.add(newStudent);
@@ -116,6 +137,6 @@ class DataWriterTest {
 
     @Test
     public void testWritingEmptyCourse(){
-        
+
     }
 }

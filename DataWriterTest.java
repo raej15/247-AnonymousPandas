@@ -1,4 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.rmi.StubNotFoundException;
 import java.util.ArrayList;
 //import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,6 +48,7 @@ class DataWriterTest {
 
     @Test
     public void testWritingUserFirstName(){
+        UserList.setUserList(users);
         DataWriter.saveUsers();
         ArrayList <User> writtenUsers = DataLoader.loadUsers();
         assertEquals("first", writtenUsers.get(0).getFirstName());
@@ -53,16 +56,34 @@ class DataWriterTest {
 
     @Test
     public void testWritingUserLastName(){
+        UserList.setUserList(users);
         DataWriter.saveUsers();
         ArrayList <User> writtenUsers = DataLoader.loadUsers();
-        assertEquals("last", writtenUsers.get(2).getLastName());
+        assertEquals("last", writtenUsers.get(0).getLastName());
     }
 
     @Test
     public void testWritingUserEmail(){
+        UserList.setUserList(users);
         DataWriter.saveUsers();
         ArrayList <User> writtenUsers = DataLoader.loadUsers();
         assertEquals("email", writtenUsers.get(0).getEmail());
+    }
+
+    @Test
+    public void testWritingUserPassword(){
+        UserList.setUserList(users);
+        DataWriter.saveUsers();
+        ArrayList <User> writtenUsers = DataLoader.loadUsers();
+        assertEquals("password", writtenUsers.get(0).getPassword());
+    }
+
+    @Test
+    public void testWritingUserType(){
+        UserList.setUserList(users);
+        DataWriter.saveUsers();
+        ArrayList <User> writtenUsers = DataLoader.loadUsers();
+        assertEquals(1, writtenUsers.get(0).getType());
     }
 
     @Test
@@ -117,8 +138,8 @@ class DataWriterTest {
 
     @Test
     public void testWritingNullCourses(){
-        Module newModule = new Module(null,"strings"," ", "");
-        courses.add(newModule);
+        Course newCourse = new Course(null,"description", "JAVASCRIPT", "authorID");
+        courses.add(newCourse);
         CourseList.setCourseList(courses);
         DataWriter.saveCourses();
         ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
@@ -127,7 +148,7 @@ class DataWriterTest {
 
     @Test
     public void testWritingOneCourse(){
-        Course newCourse = new Course("Introduction to JavaScript", "JavaScript is a scripting language for creating dynamic web page content", "JavaScript", "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf");
+        Course newCourse = new Course("Introduction to JavaScript", "JavaScript is a scripting language for creating dynamic web page content","JavaScript", "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf");
         courses.add(newCourse);
         CourseList.setCourseList(courses);
         DataWriter.saveCourses();
@@ -137,6 +158,22 @@ class DataWriterTest {
 
     @Test
     public void testWritingEmptyCourse(){
+        Course newCourse = new Course(null,null,null,null);
+        courses.add(newCourse);
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> writtenCourses = DataLoader.loadCourses();
+        assertEquals(null, writtenCourses.get(courses.size()-1).getCourseName());
+        assertEquals(null, writtenCourses.get(courses.size()-1).getDescription());
+        assertEquals(null, writtenCourses.get(courses.size()-1).getLanguage());
+        assertEquals(null, writtenCourses.get(courses.size()-1).getAuthorID());
+    }
 
+    @Test
+    public void testWritingCourseComment(){
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
+        assertEquals("hello, world.", wriitenCourses.get(courses.size()-1).getCommentArray());
     }
 }

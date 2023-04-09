@@ -176,4 +176,28 @@ class DataWriterTest {
         ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
         assertEquals("hello, world.", wriitenCourses.get(courses.size()-1).getCommentArray());
     }
+
+    @Test
+    public void testWritingCourseModuleName(){
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
+        assertEquals("Strings", wriitenCourses.get(courses.size()-1).getModuleNames());
+    }
+
+    @Test
+    public void testWritingCourseGrades(){
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
+        assertEquals("95", wriitenCourses.get(courses.size()-1).gradesToString());
+    }
+
+    @Test
+    public void testWritingCourseCertification(){
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
+        assertEquals("Congradulation", wriitenCourses.get(courses.size()-1).getCertificate());
+    }
 }

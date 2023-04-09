@@ -69,7 +69,6 @@ public class TestCourseList {
     }
 
 
-    //complete bug report
     @Test
     public void testingBlankCourse() {
         courses.add(new Course("", "", Language.valueOf(null), UUID.fromString("")));

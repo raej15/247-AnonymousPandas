@@ -11,7 +11,7 @@ import org.junit.jupiter.api.TestFactory;
 /**
  * tested by Rae/Sara Jones
  */
-public class CourseListTest {
+public class TestCourseList {
 
 	private static LMSFacade facade = new LMSFacade();
 	private ArrayList <User> users = DataLoader.loadUsers();

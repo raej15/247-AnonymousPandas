@@ -282,4 +282,29 @@ public class DataLoaderTest {
 		assertEquals(3, correctIndex);
 	}
 
+	@Test
+	public void nullFirstNameTest(){
+		assertEquals(null, users.get(0).getUserName());
+		assertEquals(null, users.get(0).getPassword());
+		assertEquals(null, users.get(0).getFirstName());
+		assertEquals(null, users.get(0).getEmail());
+		assertEquals(null, users.get(0).getUUID());
+		assertEquals(null, users.get(0).getLastName());
+	}
+
+	@Test
+	public void nullLastNameTest(){
+		assertEquals("Kelly", users.get(0).getUserName());
+		assertEquals(null, users.get(0).getPassword());
+		assertEquals(null, users.get(0).getFirstName());
+		assertEquals(null, users.get(0).getEmail());
+		assertEquals(null, users.get(0).getUUID());
+		assertEquals(null, users.get(0).getLastName());
+	}
+
+	@Test
+	public void nullCourseName(){
+		assertEquals(null, courses.get(0).getCourseName());
+	}
+
 }

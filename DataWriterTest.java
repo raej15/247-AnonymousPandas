@@ -178,6 +178,14 @@ class DataWriterTest {
     }
 
     @Test
+    public void testWritingCourseModuleName(){
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
+        assertEquals("Strings", wriitenCourses.get(courses.size()-1).getModuleNames());
+    }
+
+    @Test
     public void testWritingCourseGrades(){
         CourseList.setCourseList(courses);
         DataWriter.saveCourses();

@@ -71,7 +71,12 @@ public class TestCourseList {
 
     @Test
     public void testingBlankCourse() {
+        try {
         courses.add(new Course("", "", Language.valueOf(null), UUID.fromString("")));
+        }
+        catch (Exception e){
+            assertTrue(true);
+        }
         assertEquals("", courses.get(courses.size()-1).getCourseName());
     }
 

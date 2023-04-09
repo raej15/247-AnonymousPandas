@@ -2,12 +2,20 @@ import java.util.ArrayList;
 
 public class testing {
 
-    private static LMSFacade facade = new LMSFacade();
+    private static ArrayList<User> users = DataLoader.loadUsers();
     public static void main(String[] args) {
-        ArrayList<Course> courses = DataLoader.loadCourses();
-		int size = courses.get(0).getCourseComments().get(0).getComments().size();
-        String comment = courses.get(0).getCourseComments().get(0).getComments().get(0).getComment();
-        System.out.println(size);
-        System.out.println(comment);
+ 
+        System.out.println(users.size());
+        UserList.getInstance().getUsers().clear();
+        System.out.println("9");
+        DataWriter.saveUsers();
+        users = DataLoader.loadUsers();
+        System.out.println(users.size());
+        for (User user: users){
+            System.out.println(user.toString());
+        }
+        UserList.setUserList(users);
+        DataWriter.saveUsers();
+        ArrayList <User> writtenUsers = DataLoader.loadUsers();
     }
 }

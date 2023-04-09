@@ -63,6 +63,20 @@ public class TestCourseList {
     }
 
     @Test
+    public void testingCreateCourseAuthor() {
+        courses.add(new Course("Python Deep Dive", "Learn how to become an Python PRO!", Language.Python, UUID.fromString("3541edda-cbd8-4018-b5c9-34088171d1ae")) );
+        assertEquals(UUID.fromString("3541edda-cbd8-4018-b5c9-34088171d1ae"), courses.get(courses.size()-1).getAuthorID());
+    }
+
+
+    //complete bug report
+    @Test
+    public void testingBlankCourse() {
+        courses.add(new Course("", "", Language.valueOf(null), UUID.fromString("")));
+        assertEquals("", courses.get(courses.size()-1).getCourseName());
+    }
+
+    @Test
     public void testingHasFirstCourse() {
         assertEquals("JavaScript", courses.get(0).getCourseName());
     }
@@ -79,5 +93,9 @@ public class TestCourseList {
 
     }
 
-
+    @Test
+    public void testingRemoveCourse() {
+        courses.remove(0);
+        assertEquals("Python", courses.get(0).getCourseName());
+    }
 }

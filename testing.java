@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class testing {
 
     private static ArrayList<User> users = DataLoader.loadUsers();
+    private static ArrayList<Course> courses = DataLoader.loadCourses();
     public static void main(String[] args) {
  
         User user1 = new Student("Kennedy1", "last", "email", "username1", "password");

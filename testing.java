@@ -5,17 +5,16 @@ public class testing {
     private static ArrayList<User> users = DataLoader.loadUsers();
     public static void main(String[] args) {
  
-        System.out.println(users.size());
-        UserList.getInstance().getUsers().clear();
-        System.out.println("9");
-        DataWriter.saveUsers();
-        users = DataLoader.loadUsers();
-        System.out.println(users.size());
-        for (User user: users){
-            System.out.println(user.toString());
-        }
-        UserList.setUserList(users);
-        DataWriter.saveUsers();
-        ArrayList <User> writtenUsers = DataLoader.loadUsers();
+        User user1 = new Student("Kennedy1", "last", "email", "username1", "password");
+        User user2 = new Student("Kennedy2", "last", "email", "username2", "password");
+        User user3 = new Student("Kennedy3", "last", "email", "username2", "password");
+
+        
+        //UserList.users.add(user1);
+        UserList.getInstance().getUsers().add(user1);
+        UserList.getInstance().getUsers().add(user2);
+        UserList.getInstance().getUsers().add(user3);
+        boolean hasUser1 = UserList.getInstance().has("username1");
+        System.out.println(hasUser1);
     }
 }

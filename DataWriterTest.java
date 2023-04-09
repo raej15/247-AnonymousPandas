@@ -126,7 +126,7 @@ class DataWriterTest {
         CourseList.setCourseList(courses);
         DataWriter.saveCourses();
         ArrayList <Course> writtenCourses = DataLoader.loadCourses();
-        assertEquals("Introduction to JavaScript", writtenCourses.get(0).getCourseName()); //Might have something to do with the me not creating a course test yet for a student
+        assertEquals("Introduction to JavaScript", writtenCourses.get(0).getCourseName()); 
     }
 
     @Test
@@ -138,12 +138,12 @@ class DataWriterTest {
 
     @Test
     public void testWritingNullCourses(){
-        Course newCourse = new Course(null,"description", "JAVASCRIPT", "authorID");
+        Course newCourse = new Course(null,"description","JavaScript", "AuthorID");
         courses.add(newCourse);
         CourseList.setCourseList(courses);
         DataWriter.saveCourses();
         ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
-        assertEquals(null, wriitenCourses.get(courses.size()-1).getModuleNames());
+        assertEquals(null, wriitenCourses.get(courses.size()-1).getCourseName());
     }
 
     @Test

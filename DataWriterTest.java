@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 class DataWriterTest {
     //private UserList userList = UserList.getInstance();
     private ArrayList<User> users = DataLoader.loadUsers(); // this needs to hold the users.json with all the users
+    private ArrayList<Course> courses = DataLoader.loadCourses(); // this needs to hold the courses.json with all the courses
     //private CourseList coursesList = CourseList.getInstance();
     //private ArrayList<Course> courses = CourseList.getInstance().getCourses();
 
@@ -40,7 +41,7 @@ class DataWriterTest {
         UserList.setUserList(users);
         DataWriter.saveUsers();
         ArrayList <User> writtenUsers = DataLoader.loadUsers();
-        assertEquals("trey12", writtenUsers.get(0).getUserName());
+        assertEquals("username", writtenUsers.get(0).getUserName());
     }
 
     @Test
@@ -76,18 +77,45 @@ class DataWriterTest {
         assertEquals(null, writtenUsers.get(users.size()-1).getUserName());
         assertEquals(null, writtenUsers.get(users.size()-1).getPassword());
     }
-/*   
+ 
+
     @Test
-    public void testWritingCourseListSize(){
-        //courseList = DataLoader.loadCourses();
-        //assertEquals(0, userList.size());
+    public void testWritingCourseName(){
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> writtenCourses = DataLoader.loadCourses();
+        assertEquals("Introduction to JavaScript", writtenCourses.get(0).getCourseName()); //Might have something to do with the me not creating a course test yet for a student
     }
 
     @Test
-    public void testWritingCourseModuleName(){
-        courseList.add(new Course("Introduction to JavaScript", "JavaScript is a scripting language for creating dynamic web page content", "JavaScript", "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf");
+    public void testWritingZeroCourses(){
+        CourseList.getInstance().getCourses().clear();
         DataWriter.saveCourses();
-        assertArrayEquals("Introduction to JavaScript", DataLoader.loadCourses().get(0).getCourseName());
+        assertEquals(0, CourseList.getInstance().getCourses().size());
     }
-*/
+
+    @Test
+    public void testWritingNullCourses(){
+        Module newModule = new Module(null,"strings"," ", "");
+        courses.add(newModule);
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> wriitenCourses = DataLoader.loadCourses();
+        assertEquals(null, wriitenCourses.get(courses.size()-1).getModuleNames());
+    }
+
+    @Test
+    public void testWritingOneCourse(){
+        Course newCourse = new Course("Introduction to JavaScript", "JavaScript is a scripting language for creating dynamic web page content", "JavaScript", "51dc7b49-b0a3-4a04-a3d0-4781d1efbedf");
+        courses.add(newCourse);
+        CourseList.setCourseList(courses);
+        DataWriter.saveCourses();
+        ArrayList <Course> writtenCourses = DataLoader.loadCourses();
+        assertEquals("Introduction to JavaScript", writtenCourses.get(courses.size()-1).getCourseName());
+    }
+
+    @Test
+    public void testWritingEmptyCourse(){
+        
+    }
 }

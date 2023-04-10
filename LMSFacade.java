@@ -28,6 +28,13 @@ public class LMSFacade {
     }
 
     /**
+     * Used for testing purposes
+     */
+    public void setCourseList(CourseList courseList) {
+        this.courseList = courseList;
+    }
+
+    /**
      * Creates a new user and adds it to the user list
      * @param username The new user's username
      * @param password The new user's password

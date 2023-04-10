@@ -155,6 +155,13 @@ public class Course extends DataConstants{
     }
 
     /**
+     * For testing
+     */
+    public void setCommentArray(ArrayList<Comment> comments) {
+        courseComments = comments;
+    }
+
+    /**
      * An arraylist of comments 
      * @return Returns each comment 
      */

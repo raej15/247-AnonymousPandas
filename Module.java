@@ -69,6 +69,13 @@ public class Module extends DataConstants{
     }
 
     /**
+     * For testing
+     */
+    public void setCommentArray(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+
+    /**
      * Changes the name of the module to a new name
      * @param moduleName The new nmodule name given 
      */

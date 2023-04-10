@@ -1,16 +1,18 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
 import java.util.ArrayList;
 
 
 /**
  * User list for dataconstants 
+ * @author Anonymous Pandas
  */
 public class UserList extends DataConstants{
     private static UserList userList = new UserList();
-    public static ArrayList<User> users;
+    public static ArrayList<User> users = new ArrayList<User>();
+
+    private UserList()
+    {
+        users = DataLoader.loadUsers();
+    }
     
     /** 
      * method that returns our list of userList
@@ -101,5 +103,12 @@ public class UserList extends DataConstants{
      */
     public void addUser(User newUser) {
         users.add(newUser);
+    }
+
+    public void saveUsers(){
+        DataWriter.saveUsers();
+    }
+
+    public static void clear() {
     }
 }

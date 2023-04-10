@@ -1,8 +1,3 @@
-
-/*
- * Written by Anonmyous Pandas 
- */
-
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -11,7 +6,7 @@ import java.util.UUID;
  * @author Anonymous Pandas
  */
 public class CourseList extends DataConstants{
-    private static ArrayList<Course> courses;
+    public static ArrayList<Course> courses = new ArrayList<Course>();
     private static CourseList courseList = new CourseList();
     
     /**  

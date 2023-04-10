@@ -1,11 +1,8 @@
-/*
- * Written by Anonymous Pandas
- */
-
 import java.util.Scanner;
 
 /**
  * UI class 
+ * @author Anonymous Pandas
  */
 public class UI {
     private static boolean coursePrint = false;
@@ -69,7 +66,7 @@ public class UI {
     /**
      * Loads in data from the JSON files
      */
-    private static void loadData() {
+    public static void loadData() {
         UserList.setUserList(DataLoader.loadUsers());
         CourseList.setCourseList(DataLoader.loadCourses());
     }

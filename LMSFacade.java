@@ -1,11 +1,8 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
  import java.util.ArrayList;
  
  /**
-  * Facade 
+  * Facade
+  * @author Anonymous Pandas
   */
 public class LMSFacade {
     private CourseList courseList;
@@ -22,7 +19,7 @@ public class LMSFacade {
  
     /**
      * Creates a new facade
-     * gets courselist, userlist, and graades 
+     * gets courselist, userlist, and grades 
      */
     LMSFacade() {
         courseList = CourseList.getInstance();
@@ -398,7 +395,7 @@ public class LMSFacade {
      * @param moduleName The name of the new module
      */
     public void addModule(String moduleName) {
-        course.addModule(null);
+        course.addModule(moduleName);
     }
 
     /**

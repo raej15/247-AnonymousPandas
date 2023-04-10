@@ -1,12 +1,9 @@
-/*
- * Written by Anonymous Pandas
- */
-
- import java.io.FileWriter;
+import java.io.FileWriter;
  import java.io.IOException;
 
 /**
  * A lesson which consists of a name and its description, which is what the user will read
+ * @author Anonymous Pandas
  */
 public class Lesson extends DataConstants{
     private String lessonName;

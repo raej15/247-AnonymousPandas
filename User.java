@@ -1,11 +1,8 @@
-/*
- * Written by Anonmyous Pandas 
- */
-
- import java.util.UUID;
+import java.util.UUID;
 
  /**
   * A parent class for all user info
+ * @author Anonymous Pandas
   */
  public class User {
     protected String username;

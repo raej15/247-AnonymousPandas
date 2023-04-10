@@ -1,92 +1,84 @@
-
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import org.junit.Before;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 public class UserListTest {
+    private static LMSFacade facade = new LMSFacade();
+    private User user1 = new Student("Kennedy1", "last", "email", "username1", "password");
+    private User user2 = new Student("Kennedy2", "last", "email", "username2", "password");
+    private User user3 = new Student("Kennedy3", "last", "email", "username3", "password");
 
-
-  
-    private User user1;
-    private User user2;
-    private User user3;
- 
- 
-    @Before
+   
+    @BeforeEach
     public void setUp() {
-        user1 = new Student("Kennedy1", "last", "email", "username1", "password");
-        user2 = new Student("Kennedy2", "last", "email", "username2", "password");
-        user3 = new Student("Kennedy3", "last", "email", "username3", "password");
-        UserList.getInstance().getUsers().add(user1);
-        UserList.getInstance().getUsers().add(user2);
-        UserList.getInstance().getUsers().add(user3);
+        facade.getUserList().getUsers().clear();
+        facade.getUserList().addUser(user1);
+        facade.getUserList().addUser(user2);
+        facade.getUserList().addUser(user3);
+        assertEquals(3, UserList.getInstance().getUsers().size());
     }
  
- 
+
     @Test
     public void testGetInstance() {
         UserList instance = UserList.getInstance();
         assertNotNull(instance);
     }
  
- 
     @Test
-    public void testGetUser() {
+   public void testGetUser() {
+        
         User foundUser = UserList.getInstance().getUser("username1");
         assertEquals(user1, foundUser);
         User notFoundUser = UserList.getInstance().getUser("username4");
         assertNull(notFoundUser);
-    }
- 
- 
+   }
+
+   @Test
+   public void userListSize(){
+    
+    assertEquals(3, facade.getUserList().getUsers().size());
+   }
+
+
     @Test
     public void testHas() {
-        boolean hasUser1 = UserList.getInstance().has("username1");
-        //assertTrue(hasUser1); THIS ONE ISNT WORKING
-        boolean hasUser4 = UserList.getInstance().has("username4");
-        assertFalse(hasUser4);
+       
+        assertEquals(true, facade.getUserList().has("username2"));
+        assertFalse(facade.getUserList().has("username4"));
     }
- 
- 
+
     @Test
     public void testLogin() {
-        //boolean validLogin = UserList.getInstance().login(user1, "password");
-        //assertTrue(validLogin);
-        boolean invalidPassword = UserList.getInstance().login(user1, "wrongpassword");
-        assertFalse(invalidPassword);
-        //boolean nullUser = userList.login(null, "password1");
-        //assertFalse(nullUser);
+        assertTrue(facade.getUserList().login(user3, "password"));
+        assertFalse(facade.getUserList().login(user1, "wrongpassword"));
     }
- /*
+
     @Test
-    public void testGetUsers() {
-        ArrayList<User> users = userList.getUsers();
+    public void testPrintUsers() {
+        facade.getUserList().getUsers().clear();
+        facade.getUserList().getUsers().add(user1);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        facade.getUserList().printUsers();
+        String expectedOutput = "First Name: Kennedy1\nLast Name: last\nemail: email\nUsername: username1\nPassword: password\n---------------\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void testAddUser() {
+        ArrayList<User> users = facade.getUserList().getUsers();
         assertEquals(3, users.size());
         assertTrue(users.contains(user1));
         assertTrue(users.contains(user2));
         assertTrue(users.contains(user3));
     }
- 
- 
-    @Test
-    public void testAddUser() {
-        Student newUser = new Student("Kennedy", "last", "email", "username", "password");
-        userList.addUser(newUser);
-        assertTrue(userList.has("user4"));
-    }
- 
- 
-    @Test
-    public void testPrintUsers() {
-        userList.printUsers();
-    }
-    */
- }
- 
+
+}
  

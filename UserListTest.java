@@ -1,12 +1,14 @@
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/*
+ * Tested by kennedy
+ */
 
 public class UserListTest {
     private static LMSFacade facade = new LMSFacade();
@@ -14,7 +16,6 @@ public class UserListTest {
     private User user2 = new Student("Kennedy2", "last", "email", "username2", "password");
     private User user3 = new Student("Kennedy3", "last", "email", "username3", "password");
 
-   
     @BeforeEach
     public void setUp() {
         facade.getUserList().getUsers().clear();
@@ -24,7 +25,6 @@ public class UserListTest {
         assertEquals(3, UserList.getInstance().getUsers().size());
     }
  
-
     @Test
     public void testGetInstance() {
         UserList instance = UserList.getInstance();
@@ -45,7 +45,6 @@ public class UserListTest {
     
     assertEquals(3, facade.getUserList().getUsers().size());
    }
-
 
     @Test
     public void testHas() {
@@ -81,4 +80,3 @@ public class UserListTest {
     }
 
 }
- 

@@ -17,11 +17,14 @@ public class UserListTest {
 
     @Before
     public void setUp() {
-        userList = UserList.getInstance();
-        user1 = new User("user1", "password1");
-        user2 = new User("user2", "password2");
-        user3 = new User("user3", "password3");
+        user1 = new Student("Kennedy1", "last", "email", "username1", "password");
+        user2 = new Student("Kennedy2", "last", "email", "username2", "password");
+        user3 = new Student("Kennedy3", "last", "email", "username3", "password");
+        UserList.getInstance().getUsers().add(user1);
+        UserList.getInstance().getUsers().add(user2);
+        UserList.getInstance().getUsers().add(user3);
     }
+ 
 
     @Test
     public void testGetInstance() {

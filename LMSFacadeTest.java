@@ -444,11 +444,13 @@ public class LMSFacadeTest {
     void setCommentInvalidIndexIsIgnored() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
+
         facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
         facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
         facade.addCourse("Python 3", "Test", Language.Python);
         facade.setCourse(0);
 
+        facade.getCourse().setCommentArray(new ArrayList<Comment>());
         facade.setComment(99, 1);
         assertEquals(false, facade.hasComment());
     }
@@ -457,8 +459,13 @@ public class LMSFacadeTest {
     void setCommentInvalidModeModule() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
         facade.setCourse(0);
-        facade.setModule(0);
+
+        facade.getCourse().setCommentArray(new ArrayList<Comment>());
         facade.setComment(0, 99);
         assertEquals(false, facade.hasComment());
     }
@@ -467,7 +474,12 @@ public class LMSFacadeTest {
     void addCourse() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
         int result = facade.getCourseList().getCourses().size();
+
         facade.addCourse("Python 3 Basics", "This teaches the basics of Python 3", Language.Python);;
         assertEquals(result + 1, facade.getCourseList().getCourses().size());
     }
@@ -476,7 +488,12 @@ public class LMSFacadeTest {
     void addCourseRejectDuplicate() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
         int result = facade.getCourseList().getCourses().size();
+
         facade.addCourse("Python Tricks", "This teaches a few tricks for Python", Language.Python);;
         facade.addCourse("Python Tricks", "This teaches a few tricks for Python", Language.Python);;
         assertEquals(result + 1, facade.getCourseList().getCourses().size());
@@ -486,7 +503,12 @@ public class LMSFacadeTest {
     void addCourseRejectEmptyCourse() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
         int result = facade.getCourseList().getCourses().size();
+
         facade.addCourse(null, null, null);
         assertEquals(result, facade.getCourseList().getCourses().size());
     }
@@ -495,25 +517,40 @@ public class LMSFacadeTest {
     void removeCourse() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        int result = facade.removeCourse(2);
-        assertEquals(3, result);
-        // Nothing should be removed since the user has no UUID
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        
+        int result = facade.removeCourse(0);
+        assertEquals(0, result);
     }
 
     @Test
     void removeCourseInvalidIsIgnored() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        
         int result = facade.removeCourse(99);
-        assertEquals(2, result);
+        assertEquals(1, result);
     }
 
     @Test
     void addModule() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
         int result = facade.getCourse().getModules().size();
+        
         facade.addModule("A quick introduction");
         assertEquals(result + 1, facade.getCourse().getModules().size());
     }
@@ -522,8 +559,14 @@ public class LMSFacadeTest {
     void addModuleNullIsRejected() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
         int result = facade.getCourse().getModules().size();
+        
         facade.addModule(null);
         assertEquals(result, facade.getCourse().getModules().size());
     }
@@ -532,18 +575,31 @@ public class LMSFacadeTest {
     void removeModule() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.getCourse().addModule("Introduction");
         int result = facade.removeModule(0);
-        assertEquals(3, result);
-        // Nothing should be removed since the user has no UUID
+
+        assertEquals(0, result);
     }
     
     @Test
     void removeModuleInvalidIsIgnored() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.getCourse().addModule("Introduction");
         int result = facade.removeModule(33);
+
         assertEquals(2, result);
     }
 
@@ -551,9 +607,17 @@ public class LMSFacadeTest {
     void addLesson() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.addModule("Introduction");
         facade.setModule(0);
+
         int result = facade.getModule().getLessons().size();
+
         facade.addLesson("The very start");
         assertEquals(result + 1, facade.getModule().getLessons().size());
     }
@@ -562,9 +626,17 @@ public class LMSFacadeTest {
     void addLessonNullIsRejected() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.addModule("Introduction");
         facade.setModule(0);
+
         int result = facade.getModule().getLessons().size();
+
         facade.addLesson(null);
         assertEquals(result, facade.getModule().getLessons().size());
     }
@@ -573,19 +645,33 @@ public class LMSFacadeTest {
     void removeLesson() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.addModule("Introduction");
         facade.setModule(0);
+
+        facade.addLesson("The very start");
         int result = facade.removeLesson(0);
-        assertEquals(3, result);
-        // Nothing should be removed since the user has no UUID
+        assertEquals(0, result);
     }
 
     @Test
     void removeLessonInvalidIsIgnored() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.addModule("Introduction");
         facade.setModule(0);
+
+        facade.addLesson("The very start");
         int result = facade.removeLesson(99);
         assertEquals(2, result);
     }
@@ -594,9 +680,16 @@ public class LMSFacadeTest {
     void addCommentCourse() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.getCourse().setCommentArray(new ArrayList<Comment>());
         facade.addComment("Hello", 1);
         facade.setComment(0, 1);
+
         assertEquals(true, facade.hasComment());
     }
 
@@ -604,10 +697,19 @@ public class LMSFacadeTest {
     void addCommentModule() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.addModule("Introduction");
         facade.setModule(0);
+
+        facade.getModule().setCommentArray(new ArrayList<Comment>());
         facade.addComment("Hello", 2);
         facade.setComment(0, 2);
+
         assertEquals(true, facade.hasComment());
     }
 
@@ -615,9 +717,19 @@ public class LMSFacadeTest {
     void addCommentReply() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+        
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.getCourse().setCommentArray(new ArrayList<Comment>());
         facade.addComment("Hello", 1);
+        facade.setComment(0, 1);
+
+        facade.addComment("Hi", 3);
         facade.setComment(0, 3);
+
         assertEquals(true, facade.hasComment());
     }
 
@@ -625,9 +737,15 @@ public class LMSFacadeTest {
     void addCommentInvalidIsIgnored() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setCourse(2);
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+        facade.setCourse(0);
+
+        facade.getCourse().setCommentArray(new ArrayList<Comment>());
         facade.addComment("Hello", 99);
-        facade.setComment(2, 1);
+        facade.setComment(0, 1);
         assertEquals(false, facade.hasComment());
     }
 
@@ -635,7 +753,11 @@ public class LMSFacadeTest {
     void enroll() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setUser(facade.getUserList().getUser("JC"));
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+
         assertEquals(0, facade.enroll(1));
     }
 
@@ -643,7 +765,11 @@ public class LMSFacadeTest {
     void enrollDuplicateIsIgnored() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setUser(facade.getUserList().getUser("JC"));
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+
         assertEquals(2, facade.enroll(1));
     }
 
@@ -651,7 +777,11 @@ public class LMSFacadeTest {
     void enrollInvalidIsIgnored() {
         CourseList.setCourseList(new ArrayList<Course>());
         LMSFacade facade = new LMSFacade();
-        facade.setUser(facade.getUserList().getUser("JC"));
+
+        facade.setUser(new Student("J", "C", "JC@Gmail.com", "JC2023", "JC2023"));
+        facade.addCourse("Introduction to JavaScript", "Test", Language.JavaScript);
+        facade.addCourse("Python 3", "Test", Language.Python);
+
         assertEquals(1, facade.enroll(99));
     }
 }
